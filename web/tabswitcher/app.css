@@ -1,0 +1,64 @@
+ul ,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tabfirst{
+
+}
+li{
+    background-color: gray;
+    color: white;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    margin-right: 2px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.tabin{
+    background-color: antiquewhite;
+    color: black;
+    border: 1px solid gray;
+}
+
+
+.content{
+    clear: both;
+    width: 350px;
+    height: 200px;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    display: none;
+}
+.first{
+    display: block;
+}
+
+.tabsecond li{
+    float: left;
+    background-color: white;
+    color: black;
+    margin-right: 2px;
+}
+.tabsecond li.tabin2{
+    background-color: honeydew;
+    border: 1px solid black;
+    border-bottom: 0;
+    z-index: 100;
+    position: relative;
+}
+
+#content{
+    clear: left;
+    width: 550px;
+    height: 450px;
+    padding: 10px;
+    background-color: honeydew;
+    border: 1px solid black;
+    top: -2px;
+    position: relative;
+}

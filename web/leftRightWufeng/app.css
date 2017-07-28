@@ -1,0 +1,81 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.banner {
+    margin: 100px auto;
+    border: 5px solid black;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner ul.img {
+    position: absolute;
+    width: 10000px;
+    left: 0px;
+    top: 0;
+}
+
+.banner ul.img li {
+    float: left;
+}
+
+
+
+.banner .number {
+     position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 0;
+    /*让li元素在父元素中居中显示*/
+    text-align: center;
+    /*手动去掉li元素之间的空格*/
+    font-size: 0;
+}
+
+.banner .number li{
+    /*让li元素在一行显示*/
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    /*添加圆角*/
+    border-radius: 50%;
+    margin: 0 3px ;
+    cursor: pointer;
+}
+
+.banner .number li.on{
+    background-color: aqua;
+}
+
+.banner:hover .btn{
+    display: block;
+}
+
+.banner .btn{
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    width: 30px;
+    height: 50px;
+    background-color: grey;
+    text-align: center;
+    line-height: 50px;
+    color: wheat;
+    cursor: pointer;
+    font-size: 40px;
+    font-family: "宋体";
+    display: none;
+}
+.banner .btn_l{
+    left: 0;
+}
+.banner .btn_r{
+    right: 0;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>高亮显示导航栏-社区论坛</title>
+    <link href="css/gaoliang.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/gaoliang.js"></script>
+    <style>
+        table.responsive{
+            width: 98%;
+            margin: 0 auto;
+            border: 1px solid #666666;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+            border-collapse: collapse;
+        }
+        table.responsive th,table.responsive td{
+            border: 1px solid #666666;
+            padding: .5em 1em;
+            margin: 0;
+        }
+        table.responsive th{
+            background-color: #35b558;
+        }
+        table.responsive .actions a{
+            text-decoration: none;
+            padding: 0 4px;
+            color: #ff5c00;
+        }
+        table.responsive .number,table.responsive  .actions{
+            text-align: center;
+        }
+
+        @media (max-width: 840px) {
+            table.responsive{
+                border: none;
+                box-shadow: none;
+            }
+
+            table.responsive thead{
+                display: none;
+            }
+            table.responsive tr,table.responsive td{
+                display: block;
+                border: none;
+                position: relative;
+            }
+            table.responsive tr{
+                margin-bottom: 1em;
+                box-shadow: 0 1px 10px 0 rgba(0,0,0,.2);
+
+            }
+            table.responsive .number{
+                background-color: #35b558;
+                text-align: left;
+                padding-left: 38%;
+            }
+            table.responsive .number::before{
+                content: "课程序号";
+                position: absolute;
+                left: .5em;
+                top: .5em;
+                font-weight: bold;
+            }
+            table.responsive .name{
+                text-align: left;
+                padding-left: 38%;
+            }
+            table.responsive .name::before{
+                content: "课程名称";
+                position: absolute;
+                left: .5em;
+                top: .5em;
+                font-weight: bold;
+            }
+
+            table.responsive .actions{
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul class="list">
+            <li > <a href="gaoliang.html">首页</a></li>
+            <li > <a href="course.html">职业规划</a></li>
+            <li > <a href="study.html">学习计划</a></li>
+            <li > <a href="bbs.html">社区论坛</a></li>
+            <li > <a href="baidu.html">百度</a></li>
+
+        </ul>
+
+    </div>
+
+<h1>社区论坛</h1>
+
+
+<iframe src="svg/textPath.svg" frameborder="no" width="600" height="300"></iframe>
+
+<table class="responsive">
+   <thead>
+    <tr>
+        <th>课程序号</th>
+        <th>课程名称</th>
+        <th>课程操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="number">150406</td>
+        <td class="name">移动应用开发</td>
+        <td class="actions"><a href="#">修改</a><a href="#">删除</a></td>
+    </tr>
+    <tr>
+        <td class="number">104047</td>
+        <td class="name">wed前端开发</td>
+        <td class="actions"><a href="#">修改</a><a href="#">删除</a></td>
+    </tr>
+    <tr>
+        <td class="number">104048</td>
+        <td class="name">操作系统&amp;数据库系列课程</td>
+        <td class="actions"><a href="#">修改</a><a href="#">删除</a></td>
+    </tr>
+    <tr>
+        <td class="number">104049</td>
+        <td class="name">智能硬件&amp;物联网系列课程</td>
+        <td class="actions"><a href="#">修改</a><a href="#">删除</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

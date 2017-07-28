@@ -1,0 +1,25 @@
+.sign-in{
+    background-color: #efefef;
+    padding: 45px 15px;
+    margin-top: -20px;
+    background-image:url("../img/signup.jpg");
+    background-position:50% 25%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#sign-in-background{
+    background-color: #eeeeee;
+    padding: 15px 10px;
+}
+
+.sign-in .container .row .sign-in-body .sign-in-content .sign-in-modal a{
+    text-decoration: none;
+    color: red;
+    line-height: 1.8em;
+}
+.sign-in .container .row .sign-in-body .sign-in-content .sign-in-modal a:hover{
+    color: darkred;
+}
