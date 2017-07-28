@@ -2,6 +2,7 @@ body{
     overflow-x: hidden;
 }
 
+
 li{
     list-style: none;
 }
@@ -59,7 +60,9 @@ a{
 }
 
 .main-footer{
+
     background-color: #353535;
+    border-top: 2px solid coral;
 }
 .main-footer .weight{
     margin-top: 45px;
@@ -86,4 +89,43 @@ a{
     margin-top: 20px;
     margin-bottom: 35px;
     color: #efefef;
+}
+.my-box{
+    margin-bottom: 35px;
+}
+
+.my-box .container{
+    background-color: #ffffff;
+    border-top: 3px solid coral;
+    border-radius: 3px;
+}
+.my-box .container .box{
+
+}
+.my-box .container .box .box-header{
+    position: relative;
+    margin: 15px 10px;
+}
+.my-box .container .box .box-header .box-corner{
+    position: absolute;
+    right: 0px;
+    top: -7px;
+}
+.my-box .container .box .box-header .box-corner button{
+    background-color: transparent;
+}
+
+.my-box .container .box .box-header .box-corner .collapsed i:before{
+    content: "\e114";
+}
+.my-box .container .box .box-header .box-corner  i:before{
+    content: "\e113";
+}
+.my-box .container .box .box-body{
+    border-top: 1px solid #efefef;
+    padding: 15px 0;
+}
+.my-box .container .box .box-footer{
+    border-top: 1px solid #efefef;
+    padding: 15px 0;
 }

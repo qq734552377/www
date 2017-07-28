@@ -13,6 +13,8 @@
 #sign-in-background{
     background-color: #eeeeee;
     padding: 15px 10px;
+    border-top: 3px solid coral;
+    border-radius: 5px;
 }
 
 .sign-in .container .row .sign-in-body .sign-in-content .sign-in-modal a{
