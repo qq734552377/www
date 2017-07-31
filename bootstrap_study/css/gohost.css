@@ -60,7 +60,6 @@ a{
 }
 
 .main-footer{
-
     background-color: #353535;
     border-top: 2px solid coral;
 }
@@ -103,13 +102,15 @@ a{
 
 }
 .my-box .container .box .box-header{
-    position: relative;
     margin: 15px 10px;
+    margin-top: 0;
+    padding-top: 15px;
+}
+.my-box .container .box .box-header .box-header-title{
+
 }
 .my-box .container .box .box-header .box-corner{
-    position: absolute;
-    right: 0px;
-    top: -7px;
+    float: right;
 }
 .my-box .container .box .box-header .box-corner button{
     background-color: transparent;
