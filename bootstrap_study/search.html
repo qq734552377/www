@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="../bootstrap-3.3.7-dist/css/myboot.css" rel="stylesheet">
+    <link href="less/main.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="bg-info" ng-app="app" ng-controller="searchCtr">
+<!-- 头部-->
+<nav class="navbar navbar-static-top navbar-default navbar-topstyle">
+    <!--头部通知-->
+    <div id="notification" class="container-fluid">• Midnight Rate as low as $1.80/hr from 24th Jul • National Day
+        Promotion at $89/day • Extension of Weekend Daily Rate at $100/day • Extension of $0 SD and free $50 credit with
+        $1 credit purchased
+    </div>
+    <!--头部通知结尾-->
+    <div class="container">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                data-target="#bs-navbar"
+                aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header">
+            <div class="navbar-brand visible-xs">
+                <a href="#" style="">
+                    <img src="img/logo.png" alt="logo" style="margin: -16px auto;height:48px;width: 148px;">
+                </a>
+            </div>
+            <div class="navbar-brand hidden-xs">
+                <a href="#" style="display: inline-block;">
+                    <img src="img/logo-long.png" alt="logo"
+                         style="margin: -16px auto;height:48px;vertical-align: middle;">
+                </a>
+            </div>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="dropdownM" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Learn more
+                        <span class="glyphicon"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms &Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-play-circle"></i>
+                                Tutorial Video
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown with-left-icon">
+                    <!--<i href="#" class="user-icon"><img src="img/layout.jpg"></i>-->
+                    <a class="dropdown-toggle" id="dropdownM2" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i href="#"><img src="img/affordable.png"></i>
+                        Peng Jing
+                        <span class="glyphicon"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM2">
+                        <li><a href="#">My account</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">My bookings</a></li>
+                        <li><a href="#">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+<!-- 头部结尾-->
+
+<!--标签盒子-->
+
+<div class="no-margin ">
+    <div class="my-box noborder">
+        <div class="box-header">
+            <div class="box-corner">
+                <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
+                        aria-expanded="true">
+                    <i class="glyphicon"></i>
+                </button>
+            </div>
+            <h4 class="box-header-title">Search</h4>
+        </div>
+
+
+        <div class="box-body container collapse in" id="isme">
+
+            <div id="searchCarForm">
+                <form >
+                    <div class="col-md-12">
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupStartDate">Pickup Start date</label>
+                                <div class="input-group controls input-append date form_date" data-date=""
+                                     data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                    <input ng-model="searchMsg.startDate" type="text" class="form-control datepicker" id="pickupStartDate" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupStartTime">Pickup Start time</label>
+                                <select ng-model="searchMsg.startTime" id="pickupStartTime"  class="form-control">
+                                    <option value="">Pickup Time</option>
+                                    <option value="00:00">00:00</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="04:00">04:00</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupEndDate">Pickup End date</label>
+
+                                <div class="input-group controls input-append date form_date" data-date=""
+                                     data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                    <input ng-model="searchMsg.endDate" type="text" class="form-control datepicker" id="pickupEndDate">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupEndTime">Pickup End time</label>
+                                <select ng-model="searchMsg.endTime" id="pickupEndTime" class="form-control">
+                                    <option value="">Pickup Time</option>
+                                    <option value="00:00">00:00</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="04:00">04:00</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div class="col-md-3 col-sm-4 col-xs-12 text-left">-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label" for="pickupArea">Area</label>-->
+                                <!--<select  id="pickupArea"  class="form-control">-->
+                                    <!--<option value="">Pickup Area</option>-->
+                                    <!--<option value="23:00">23:00</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupLocation">Location</label>
+                                <select ng-model="searchMsg.location" id="pickupLocation"  class="form-control">
+                                    <option value="">Pickup Location</option>
+                                    <option ng-repeat="item in locations" value="{{item.ID}}">{{item.Address}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupCategory">Category</label>
+                                <select ng-model="searchMsg.category" id="pickupCategory" class="form-control">
+                                    <option value="">Any Category</option>
+                                    <option value="1">Petrol Hybrid</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 text-left">
+                            <div class="form-group">
+                                <label class="control-label" for="pickupRentFor">Rent For</label>
+                                <select ng-model="searchMsg.rentFor" id="pickupRentFor" class="form-control">
+                                    <option value="">Taxi</option>
+                                    <option value="1">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 " style="margin-top: 25px">
+                            <button ng-click="search()" type="submit" class="btn btn-block bg-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--标签盒子结尾-->
+
+
+
+<div ng-if="!isWaitting&&!isNoCar" class="view-car-list container margin-top-25">
+    <div class="my-box my-box-top-border">
+        <div class="box-body row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class=" col-sm-3 col-md-2  hidden-xs box-body-thumb-wrap">
+                        <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                    </div>
+                    <div class="col-xs-12  hidden-sm hidden-md hidden-lg box-body-thumb-wrap">
+                        <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-md-10 ">
+                        <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
+                        <p class="box-header-p">Toyota Prius or similar</p>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            Anchorvale Rd Blk 308
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 top-border margin-top-20">
+                <div class="row">
+                    <div class=" col-sm-5 col-md-4 col-xs-12">
+                        <div class="row text-center">
+                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                <h5>Pickup</h5>
+                                <p>
+                                    <i class="glyphicon glyphicon-time"></i>
+                                    15:00
+                                </p>
+                                <p>
+                                    4 Aug 2017
+                                </p>
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
+                                <i class="glyphicon glyphicon-arrow-right"></i>
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                <h5>Return</h5>
+                                <p>
+                                    <i class="glyphicon glyphicon-time"></i>
+                                    15:00
+                                </p>
+                                <p>
+                                    4 Aug 2017
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-3 col-md-2 col-xs-12 text-center">
+                        <h5>Duration</h5>
+                        <h5>
+                            <i class="glyphicon glyphicon-time"></i>
+                            4hrs
+                        </h5>
+                    </div>
+                    <div class=" col-md-2 hidden-xs hidden-sm"></div>
+                    <div class=" col-sm-2 col-md-2 hidden-xs">
+                        <h2>$193.4</h2>
+                    </div>
+                    <div class=" col-sm-2 col-md-2 col-xs-12 text-center margin-top-20">
+                        <a href="#" class="btn btn-primary btn-block">View Car</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div ng-if="isWaitting" class="container margin-top-25 hidden-xs">
+    <div class=" col-md-12 iframe-item-wrap-padding-md iframe-item-wrap">
+    <iframe src="waitting.html" class="ifram-item"></iframe>
+    </div>
+</div>
+
+<div ng-if="isNoCar" class="container margin-top-25 hidden-show-transation">
+    <div class="col-md-12 my-box-top-border warning-box" >
+        <h4>
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            No results found for this location at this time.
+        </h4>
+
+        <p>
+            There are no cars availabile in based on your selection for
+            <b>Today</b>
+            . You might want to:
+        </p>
+        <ul>
+            <li>Select another pickup time</li>
+            <li>Select another location</li>
+            <li>Select another category</li>
+        </ul>
+    </div>
+
+</div>
+
+<div ng-if="isWaitting" class="container margin-top-25 hidden-md hidden-sm hidden-lg">
+    <div class="pic-center-wrap col-md-12 ">
+        <img src="img/waitting.gif">
+    </div>
+</div>
+
+
+
+<div style="margin-bottom: 80px">
+
+</div>
+
+
+<!--页面脚部-->
+<footer class="main-footer">
+    <div class="container">
+        <!--底部链接-->
+        <div class="row">
+            <div class="col-md-4 col-xs-12 ">
+                <div class="weight">
+                    <h4>About TaxiShare</h4>
+                    <div class="weight-list">
+                        <a href="#">About us</a>
+                        <br>
+                        <a href="#">Contact</a>
+                        <br>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            taxishare-enquiry@smrt.com.sg
+                        </a>
+                        <br>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-phone-alt"></i>
+                            +65 6477 5353
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-xs-6 ">
+                <div class="weight">
+                    <h4>Learn more</h4>
+                    <div class="weight-list">
+                        <a href="#">FAQ</a>
+                        <br>
+                        <a href="#">Terms &Conditions</a>
+                        <br>
+                        <a href="#">Privacy Policy</a>
+                        <br>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-play-circle"></i>
+                            Tutorial Video
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 ">
+                <div class="weight">
+                    <h4>Follow us</h4>
+                    <div class="weight-list">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-facebook-sign"></i>
+                            Follow us on Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-6 ">
+                <div class="weight">
+                    <h4>Quick Links</h4>
+                    <div class="weight-list">
+                        <a href="#">Home</a>
+                        <br>
+                        <a href="#">Our Rates</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--底部链接结尾-->
+        <div class="copyright">
+            <div class="content">
+                Copyright © 2017 SMRT Taxis<span style="margin-left:20px;">Registration No: 198905369K</span>
+            </div>
+
+        </div>
+        <!--底部审核-->
+        <!--底部审核结尾-->
+    </div>
+</footer>
+<!--页面脚部结尾-->
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../angular-1.5.8/angular.min.js"></script>
+<script>
+
+    angular.module('app',[])
+            .controller('searchCtr',function ($scope,$http) {
+               $scope.searchMsg={
+                   startDate:'',
+                   startTime:'',
+                   endDate:'',
+                   endTime:'',
+                   location:'',
+                   category:'',
+                   rentFor:'',
+                   searchUrl:'http://192.168.0.103:12907/api/VehicleShareQuery',
+                   getLocations:'http://192.168.0.103:12907/Select/QueryParkingSpace'
+               };
+
+
+                $scope.locations=[{ID:1,Address:'劉安'},
+                    {ID:2,Address:'合肥'}
+                ];
+                $scope.isWaitting=true;
+                $scope.isNoCar=false;
+                $scope.allCarsMsg={
+
+                };
+
+
+                function init(){
+                    $http({
+                        method: "POST",
+                        url: $scope.searchMsg.getLocations,
+                        headers: {'Content-Type': 'application/json'}
+                    }).success(function (data) {
+                        console.log(data);
+                        if (data.MsgType == 'Success') {
+                            $scope.locations=data.Data;
+                        } else {
+
+                        }
+
+                    }).error(function () {
+
+                    });
+                };
+                init();
+
+                $scope.search=function () {
+                    console.log($scope.searchMsg);
+                    $scope.isWaitting=true;
+                    $scope.isNoCar=false;
+                    $http({
+                        method: "POST",
+                        url: $scope.searchMsg.searchUrl,
+                        data:{StartTime:($scope.searchMsg.startDate+' '+$scope.searchMsg.startTime+':00'),
+                            EndTime:($scope.searchMsg.endDate+' '+$scope.searchMsg.endTime+':00'),
+                            LeaseType:$scope.searchMsg.rentFor,
+                            VehiceType:$scope.searchMsg.category,
+                            Address:$scope.searchMsg.location
+                        },
+                        headers: {'Content-Type': 'application/json'}
+                    }).success(function (data) {
+                        console.log(data);
+                        $scope.isWaitting=false;
+                        if (data.MsgType == 'Success') {
+                            $scope.isNoCar=false;
+
+                        } else {
+                            $scope.isNoCar=true;
+                        }
+
+                    }).error(function () {
+                        $scope.isWaitting=false;
+                        $scope.isNoCar=true;
+                    });
+
+                }
+
+
+
+
+                var startDateTime=addHours(1);
+                var endDateTime=addHours(4);
+
+                var startDate=startDateTime.getFullYear()+'-'+((startDateTime.getMonth()+1)>10?(startDateTime.getMonth()+1):('0'+(startDateTime.getMonth()+1)))+'-'+startDateTime.getDate();
+                var endDate=endDateTime.getFullYear()+'-'+((endDateTime.getMonth()+1)>10?(endDateTime.getMonth()+1):('0'+(endDateTime.getMonth()+1)))+'-'+endDateTime.getDate();
+                var startHour=startDateTime.getHours()>10?(startDateTime.getHours()+":00"):("0"+startDateTime.getHours()+":00");
+                var endHour=endDateTime.getHours()>10?(endDateTime.getHours()+":00"):("0"+endDateTime.getHours()+":00");
+
+                $scope.searchMsg.startDate=startDate;
+                $scope.searchMsg.startTime=startHour;
+                $scope.searchMsg.endDate=endDate;
+                $scope.searchMsg.endTime=endHour;
+
+
+                function addHours(hours) {
+                    var a = new Date();
+                    a = a.valueOf();
+                    a = a + hours * 60 * 60 * 1000;
+                    a = new Date(a);
+                    return a;
+                }
+            });
+
+
+
+
+
+
+
+
+
+    $('.form_date').datetimepicker({
+        language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    var date=new Date();
+    var todayDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+
+
+    var startDateTime=addHours(1);
+    var endDateTime=addHours(4);
+
+    var startDate=startDateTime.getFullYear()+'-'+(startDateTime.getMonth()+1)+'-'+startDateTime.getDate();
+    var endDate=endDateTime.getFullYear()+'-'+(endDateTime.getMonth()+1)+'-'+endDateTime.getDate();
+    var startHour=startDateTime.getHours()>10?(startDateTime.getHours()+":00"):("0"+startDateTime.getHours()+":00");
+    var endHour=endDateTime.getHours()>10?(endDateTime.getHours()+":00"):("0"+endDateTime.getHours()+":00");
+
+
+
+    $('#pickupStartDate').val(startDate);
+    $('#pickupEndDate').val(endDate);
+
+    $('#pickupStartTime').val(startHour);
+    $('#pickupEndTime').val(endHour);
+
+
+    function addHours(hours) {
+        var a = new Date();
+        a = a.valueOf();
+        a = a + hours * 60 * 60 * 1000;
+        a = new Date(a);
+        return a;
+    }
+</script>
+</body>
+</html>

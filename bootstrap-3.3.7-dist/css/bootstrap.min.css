@@ -285,6 +285,10 @@ td, th {
     -moz-osx-font-smoothing: grayscale
 }
 
+.glyphicon-facebook{
+    content: "\0001"
+}
+
 .glyphicon-asterisk:before {
     content: "\002a"
 }

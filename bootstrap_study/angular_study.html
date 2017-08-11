@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Study</title>
+
+</head>
+<body ng-app="angular_study" ng-controller="Myctr">
+    <input type="text" ng-model="name">
+    <input type="text" ng-model="count">
+    <div >{{name*count | currency}}</div>
+    <div class="w">{{name*count}}</div>
+    <ul>
+        <li ng-repeat="item in li_list" ng-bind="item"></li>
+    </ul>
+
+</body>
+<script src="../angular-1.5.8/angular.min.js"></script>
+<script src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    angular.module("angular_study",[])
+            .controller('Myctr',function ($scope) {
+                $scope.name=4;
+                $scope.count=12;
+                $scope.li_list=["赵六","万物","纷争","张舍"];
+            });
+
+
+    $('div.w').html("woshi wangwu");
+//
+//    (function(angular) {
+//        'use strict';
+//        angular.module('angular_study', [])
+//                .controller('Myctr', function($scope, $filter) {
+//                    $scope.name="1231";
+//                });
+//    })(window.angular);
+</script>
+</html>

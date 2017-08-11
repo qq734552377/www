@@ -18,15 +18,9 @@
 
     <![endif]-->
 </head>
-<body class="bg-info">
+<body class="bg-info" ng-app="app" ng-controller="searchCtr">
 <!-- 头部-->
 <nav class="navbar navbar-static-top navbar-default navbar-topstyle">
-    <!--头部通知-->
-    <div id="notification" class="container-fluid">• Midnight Rate as low as $1.80/hr from 24th Jul • National Day
-        Promotion at $89/day • Extension of Weekend Daily Rate at $100/day • Extension of $0 SD and free $50 credit with
-        $1 credit purchased
-    </div>
-    <!--头部通知结尾-->
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                 data-target="#bs-navbar"
@@ -94,6 +88,142 @@
 </nav>
 <!-- 头部结尾-->
 
+<!--标签盒子-->
+
+<div class="container margin-top-25 margin-bottom-25" style="overflow-x: hidden">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="my-box my-box-top-border margin-top-20">
+                <div class="box-header">
+                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
+                    <p class="box-header-p">Toyota Prius or similar</p>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        Anchorvale Rd Blk 308
+                    </a>
+                </div>
+                <div class="box-body  left-right-padding-40 row my-box-boundary">
+                    <div class="col-sm-12 col-md-12 box-body-thumb-wrap">
+                        <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <h5 class="bottom-border">Pickup</h5>
+                        <p>
+                            <i class="glyphicon glyphicon-time"></i>
+                            8:00
+                        </p>
+                        <p>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            4 Aug 2017
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <h5 class="bottom-border">Return</h5>
+                        <p>
+                            <i class="glyphicon glyphicon-time"></i>
+                            13:00
+                        </p>
+                        <p>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            4 Aug 2017
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="my-box my-box-top-border margin-top-20">
+                <div class="box-header">
+                    <div class="box-corner">
+                        <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Map</h4>
+                </div>
+                <div class="box-body collapse in my-box-boundary" id="isme">
+                    <div class="map-area" style="height: 300px;">
+
+                    </div>
+                </div>
+            </div>
+            <div class="my-box my-box-top-border margin-top-20">
+                <div class="box-header">
+                    <div class="box-corner">
+                        <button class="btn" data-toggle="collapse" data-target="#isme2" aria-controls="isme2"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Address, Directions to vehicle</h4>
+                </div>
+                <div class="box-body collapse in my-box-boundary" id="isme2">
+                    <div class="map-area" style="height: 120px;">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeTable margin-top-25">
+                <div>
+                    11
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<!--标签盒子结尾-->
+
+
+
+
+<div style="margin-bottom: 80px">
+
+</div>
+
 
 <!--页面脚部-->
 <footer class="main-footer">
@@ -143,7 +273,7 @@
                     <h4>Follow us</h4>
                     <div class="weight-list">
                         <a href="#">
-                            <i class="glyphicon glyphicon-facebook"></i>
+                            <i class="glyphicon glyphicon-facebook-sign"></i>
                             Follow us on Facebook
                         </a>
                     </div>
@@ -180,16 +310,20 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-
+<script src="../angular-1.5.8/angular.min.js"></script>
 <script>
-//    $(function () {
-//        $(".navbar-topstyle .container .collapse .nav .dropdown").hover(function () {
-//            $(this).find(".dropdown-menu").stop().slideDown({duration: 1000, easing: 'easeOutBounce'});
-//        }, function () {
-//            $(this).find(".dropdown-menu").stop().slideUp({duration: 1000, easing: 'easeOutBounce'});
-//        });
-//    });
+
+    angular.module('app',[])
+            .controller('searchCtr',function ($scope,$http) {
+
+            });
+
+
+
+
+
+
+
 
 
 </script>

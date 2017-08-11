@@ -7,11 +7,13 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>Bootstrap 101 Template</title>
 
+
+    <script src="jquery-3.1.1.min.js"></script>
     <!-- Bootstrap -->
     <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../bootstrapvalidator-master/dist/css/bootstrapValidator.css"/>
-    <link href="css/gohost.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="less/main.css" rel="stylesheet">
+    <link href="less/login.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,7 +22,9 @@
 
     <![endif]-->
 </head>
-<body class="bg-info">
+<body class="bg-info" ng-app="app" ng-controller="loginCtr">
+
+
 <!-- 头部-->
 <nav class="navbar navbar-static-top navbar-default navbar-topstyle">
     <div class="container">
@@ -67,52 +71,65 @@
 <!-- 头部结尾-->
 
 <!--登录表-->
-<div class="form-content-background" >
-    <div class="login-form col-md-4 col-md-offset-4 ">
-        <div class="login--form-content">
-            <div class="login-form-title">
-                Log In
-            </div>
-            <form method="post" action="">
-                <div class="form-group has-feedback">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" id="userEmail" name="user_email" value="" placeholder="Email" require="require" aria-describedby="inputEmailState">
-                    </div>
-                   <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputEmailState" class="sr-only">(success)</span>-->
+
+<div class="login-bgi no-margin">
+    <div class="">
+        <div class="login-form col-md-4 col-md-offset-4 ">
+            <div class="login-form-content">
+                <div class="login-form-title">
+                    Log In
+                </div>
+                <div class="error-tishi" ng-if="errorState" ng-bind="errorMsg" style="color: red;text-align: center">
+
                 </div>
 
-                <div class="form-group has-feedback">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" class="form-control" id="userPassword" name="user_password" value="" placeholder="Password" require="require" aria-describedby="inputPasswordState">
-                    </div>
-                    <!--<span class="glyphicon glyphicon-ok form-control-feedback " aria-hidden="true"></span>
-                    <span id="inputPasswordState" class="sr-only">(success)</span>-->
-                </div>
-                <div class="form-group has-feedback">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="remeberMe" name="remeber_me"> Remember me
-                        </label>
-                    </div>
-                </div>
+                <form id="loginForm">
+                    <div class="form-group has-feedback">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input ng-model="loginMsg.email" type="email" class="form-control" value=""
+                                   placeholder="Email" required>
 
-                <div class="form-group has-feedback">
-                    <button class="btn btn-info btn-block" type="submit" id="login" value="Log In">Log In</button>
+                        </div>
+                        <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                         <span id="inputEmailState" class="sr-only">(success)</span>-->
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input ng-model="loginMsg.password" type="password" class="form-control" value=""
+                                   placeholder="Password" required>
+                        </div>
+                        <!--<span class="glyphicon glyphicon-ok form-control-feedback " aria-hidden="true"></span>
+                        <span id="inputPasswordState" class="sr-only">(success)</span>-->
+                    </div>
+                    <div class="form-group has-feedback">
+                        <div class="checkbox">
+                            <label>
+                                <input ng-model="isRemeberMe" type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <button ng-click="login()" class="btn btn-info btn-block" type="submit" id="login"
+                                value="Log In">Log In
+                        </button>
+                    </div>
+                </form>
+                <div style="margin-top: 15px;">
+                    <a href="#">I forgot my password</a>
+                    <br>
+                    <a href="signin.html" class="text-center">Sign up an account, it's free!</a>
                 </div>
-            </form>
-            <div style="margin-top: 15px;">
-                <a href="#">I forgot my password</a>
-                <br>
-                <a href="signin.html" class="text-center">Sign up an account, it's free!</a>
             </div>
+
         </div>
 
     </div>
-
 </div>
+
 <!--登录表结尾-->
 
 
@@ -184,38 +201,63 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+<script src="../angular-1.5.8/angular.min.js"></script>
+<script src="js/md5.js"></script>
 <script>
-    $(function () {
-        $('.form-content-background .login-form .login--form-content form').bootstrapValidator({
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                user_email: {
-                    message: 'The input is not a valid email address',
-                    validators: {
-                        notEmpty: {
-                            message: 'The email address is required and can\'t be empty'
-                        }
+    angular.module('app', [])
+            .controller('loginCtr', function ($scope, $http) {
+                $scope.isRemeberMe = true;
+                $scope.errorState = false;
+                $scope.errorMsg = 'Incorrect account name or password!';
+
+                $scope.loginMsg = {
+                    url: "http://192.168.0.113:12907/api/Login",
+                    email: '',
+                    password: '',
+                    loginSucessUrl: 'http://192.168.0.132/bootstrap_study/search.html'
+                };
+
+                $scope.login = function () {
+                    console.log($scope.loginMsg.email + '------' + $scope.loginMsg.password);
+                    console.log($scope.loginMsg.email);
+                    if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != '') {
+                        $http({
+                            method: "POST",
+                            url: $scope.loginMsg.url,
+                            data: {Email: $scope.loginMsg.email, Password: $scope.loginMsg.password},
+                            headers: {'Content-Type': 'application/json'}
+                        }).success(function (data) {
+                            console.log(data);
+                            if (data.MsgType == 'Success') {
+                                $scope.errorState = false;
+                                $scope.errorMsg = 'Incorrect account name or password!';
+                                localStorage.setItem('isRemeberMe', $scope.isRemeberMe);
+                                if ($scope.isRemeberMe) {
+                                    localStorage.setItem('Token', data.Info);
+                                    sessionStorage.removeItem('Token');
+                                } else {
+                                    sessionStorage.setItem('Token', data.Info);
+                                    localStorage.removeItem('Token');
+                                }
+                                window.location.href = $scope.loginMsg.loginSucessUrl;
+
+                            } else {
+                                $scope.errorState = true;
+                                $scope.errorMsg = data.Info;
+                            }
+
+                        }).error(function () {
+                            $scope.errorState = true;
+                            $scope.errorMsg = "The network may have problems";
+                        });
                     }
-                },
-                user_password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The password is required and can\'t be empty'
-                        }
-                    }
+
                 }
-            }
-        });
-    });
+            });
 </script>
 </body>
 </html>

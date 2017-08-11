@@ -9,8 +9,9 @@
 
     <!-- Bootstrap -->
     <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/gohost.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="less/main.css" rel="stylesheet">
+    <link href="less/signin.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -66,302 +67,328 @@
 <!-- 头部结尾-->
 
 <!--注册表-->
-<div class="sign-in">
-    <div class="container">
-        <div class="row" id="sign-in-background">
-            <div class="row sign-in-body">
-                <div class="sign-in-content">
-                    <form method="post" action="">
+<div class="">
 
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--name-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInName">Name</label>
-                                <input type="text" class="form-control" id="signInName" required="required"
-                                       name="sign_in_name" placeholder="Your Full Name">
-                            </div>
-                            <!--name end-->
+    <div class="sign-in">
+        <div class="container">
+            <div class="row" id="sign-in-background">
+                <div class="row sign-in-body">
+                    <div class="sign-in-content">
+                        <div class="text-center margin-bottom-25"><h2>Sign Up Now</h2></div>
+                        <form method="post" enctype="multipart/form-data"  action="">
 
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--regist for-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInRegistFor">Please select whether you are
-                                    registering for</label>
-                                <select id="signInRegistFor" name="sign_in_regist-for" class="form-control">
-                                    <option value="1">Taxi</option>
-                                    <option value="2">Private</option>
-                                    <option value="3">Both</option>
-                                </select>
-                            </div>
-                            <!--regist for end-->
-                        </div>
-
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Salutation-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInName">Salutation</label>
-                                <select id="signInSalutation" name="sign_in_salutation" class="form-control">
-                                    <option value="1">Mr</option>
-                                    <option value="2">Mrs</option>
-                                    <option value="3">Ms</option>
-                                    <option value="4">Miss</option>
-                                </select>
-                            </div>
-                            <!--Salutation end-->
-
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--NRIC-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInNRIC">NRIC</label>
-                                <input type="text" class="form-control" id="signInNRIC" name="sign_in_nric"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--NRIC end-->
-                        </div>
-
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Gender-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInGender">Gender</label>
-                                <select id="signInGender" name="sign_in_gender" class="form-control">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <!--Gender end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Nationality-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInNationality">Nationality</label>
-                                <select id="signInNationality" name="sign_in_nationality" class="form-control">
-                                    <option value="1">Singaporean</option>
-                                    <option value="2">Non-Singaporean</option>
-                                </select>
-                            </div>
-                            <!--Nationality end-->
-                        </div>
-
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Race-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInRace">Race</label>
-                                <select id="signInRace" name="sign_in_race" class="form-control">
-                                    <option value="1">Chinese</option>
-                                    <option value="2">Indian</option>
-                                    <option value="3">Malay</option>
-                                    <option value="4">Eurasian</option>
-                                    <option value="5">Others</option>
-                                    <option value="6">None</option>
-                                </select>
-                            </div>
-                            <!--Race end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Marital status-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInMaritalStatus">Marital Status</label>
-                                <select id="signInMaritalStatus" name="sign_in_marital_status" class="form-control">
-                                    <option value="1">Single</option>
-                                    <option value="2">Married</option>
-                                    <option value="3">Divorce</option>
-                                    <option value="4">Widow</option>
-                                </select>
-                            </div>
-                            <!--Marital status end-->
-                        </div>
-
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Education Level-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInEducation">Education Level</label>
-                                <select id="signInEducation" name="sign_in_education" class="form-control">
-                                    <option value="1">Primary</option>
-                                    <option value="2">Secondary</option>
-                                    <option value="3">A Level</option>
-                                    <option value="4">Vocational School</option>
-                                    <option value="5">Diploma</option>
-                                    <option value="6">Degree</option>
-                                    <option value="7">Other</option>
-                                    <option value="8">None</option>
-                                </select>
-                            </div>
-                            <!--Education Level end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Handphone-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInHandphone">Handphone</label>
-                                <input type="text" class="form-control" id="signInHandphone" name="sign_in_handphone"
-                                       required="required" placeholder="Your mobile number">
-                            </div>
-                            <!--Handphone end-->
-                        </div>
-
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Email-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInName">Email</label>
-                                <input type="email" class="form-control" id="signInEmail" name="sign_in_email"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Email end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Block No.-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInBlockNo">Block No.</label>
-                                <input type="text" class="form-control" id="signInBlockNo" name="sign_in_block_no"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Block No. end-->
-                        </div>
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Storey-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInName">Storey</label>
-                                <input type="text" class="form-control" id="signInStorey" name="sign_in_storey"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Storey end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Unit No.-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInUnitNo">Unit No.</label>
-                                <input type="text" class="form-control" id="signInUnitNo" name="sign_in_unit_no"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Unit No. end-->
-                        </div>
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Street Name-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInName">Street Name</label>
-                                <input type="text" class="form-control" id="signInStreet" name="sign_in_street"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Street Name end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Postal Code-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInPostalCode">Postal Code</label>
-                                <input type="text" class="form-control" id="signInPostalCode" name="sign_in_postal_code"
-                                       required="required" placeholder="">
-                            </div>
-                            <!--Postal Code end-->
-                        </div>
-
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Date of Birth-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInDateOfBirth">Date of Birth</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    <input type="date" class="form-control datepicker" id="signInDateOfBirth"
-                                           name="sign_in_date_of_birth" required="required" placeholder="">
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--name-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Name">Name</label>
+                                    <input type="text" class="form-control" id="Name" required="required"
+                                           name="Name" placeholder="Your Full Name">
                                 </div>
+                                <!--name end-->
+
                             </div>
-                            <!--Date of Birth end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--Driving License Issue Date-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInDrivingLicenseIssueDate">Driving License Issue
-                                    Date</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    <input type="date" class="form-control datepicker"
-                                           id="signInDrivingLicenseIssueDate" name="sign_in_driving_license_issue_date"
+                            <div class="col-md-5 col-xs-12">
+                                <!--regist for-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="LicenseType">Please select whether you are
+                                        registering for</label>
+                                    <select id="LicenseType" name="LicenseType-for" class="form-control">
+                                        <option value="1">Taxi</option>
+                                        <option value="2">Private</option>
+                                        <option value="3">Both</option>
+                                    </select>
+                                </div>
+                                <!--regist for end-->
+                            </div>
+
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Salutation-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInSalutation">Salutation</label>
+                                    <select id="signInSalutation" name="sign_in_salutation" class="form-control">
+                                        <option value="1">Mr</option>
+                                        <option value="2">Mrs</option>
+                                        <option value="3">Ms</option>
+                                        <option value="4">Miss</option>
+                                    </select>
+                                </div>
+                                <!--Salutation end-->
+
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--NRIC-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="NRIC">NRIC</label>
+                                    <input type="text" class="form-control" id="NRIC" name="NRIC"
                                            required="required" placeholder="">
                                 </div>
+                                <!--NRIC end-->
                             </div>
-                            <!--Driving License Issue Date end-->
-                        </div>
 
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--TDVL First Issue Date-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInTDVLFirstIssueDate">TDVL First Issue
-                                    Date</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    <input type="date" class="form-control datepicker" id="signInTDVLFirstIssueDate"
-                                           name="sign_in_tdvl_first_issue_date" required="required" placeholder="">
-                                </div>
-                            </div>
-                            <!--TDVL First Issue Date end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--TDVL Expiry Date-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInTDVLExpiryDate">TDVL Expiry Date</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    <input type="date" class="form-control datepicker" id="signInTDVLExpiryDate"
-                                           name="sign_in_tdvl_expiry_date" required="required" placeholder="">
-                                </div>
-                            </div>
-                            <!--TDVL Expiry Date end-->
-                        </div>
 
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--NRIC, Driving License, TDVL (Front)-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInFileFront">NRIC, Driving License, TDVL
-                                    (Front)</label>
-                                <div class="sign-in-modal">
-                                    <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Gender-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Gender">Gender</label>
+                                    <select id="Gender" name="Gender" class="form-control">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
-                                <div class="sign-in-file">
-                                    <input type="file" class="btn  btn-block" id="signInFileFront"
-                                           name="sign_in_file_front" required="required">
-                                </div>
+                                <!--Gender end-->
                             </div>
-                            <!--NRIC, Driving License, TDVL (Front) end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
-                            <!--NRIC, Driving License, TDVL (Back)-->
-                            <div class="form-group">
-                                <label class="sign-in-label" for="signInFileBack">NRIC, Driving License, TDVL
-                                    (Back)</label>
-                                <div class="sign-in-modal">
-                                    <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Nationality-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Nationality">Nationality</label>
+                                    <select id="Nationality" name="Nationality" class="form-control">
+                                        <option value="1">Singaporean</option>
+                                        <option value="2">Non-Singaporean</option>
+                                    </select>
                                 </div>
-                                <div class="sign-in-file">
-                                    <input type="file" class="btn  btn-block" id="signInFileBack"
-                                           name="sign_in_file_back" required="required">
-                                </div>
+                                <!--Nationality end-->
                             </div>
-                            <!--NRIC, Driving License, TDVL (Back) end-->
-                        </div>
 
-                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                            <!--Submit-->
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-info" id="signInSubmit" name="sign_in_submit">
-                                    Register
-                                </button>
-                            </div>
-                            <!--Submit end-->
-                        </div>
-                        <div class="col-md-5 col-xs-12">
 
-                        </div>
-                    </form>
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Race-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Race">Race</label>
+                                    <select id="Race" name="Race" class="form-control">
+                                        <option value="1">Chinese</option>
+                                        <option value="2">Indian</option>
+                                        <option value="3">Malay</option>
+                                        <option value="4">Eurasian</option>
+                                        <option value="5">Others</option>
+                                        <option value="6">None</option>
+                                    </select>
+                                </div>
+                                <!--Race end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Marital status-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInMaritalStatus">Marital Status</label>
+                                    <select id="signInMaritalStatus" name="sign_in_marital_status" class="form-control">
+                                        <option value="1">Single</option>
+                                        <option value="2">Married</option>
+                                        <option value="3">Divorce</option>
+                                        <option value="4">Widow</option>
+                                    </select>
+                                </div>
+                                <!--Marital status end-->
+                            </div>
+
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Education Level-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="EducationLevel">Education Level</label>
+                                    <select id="EducationLevel" name="EducationLevel" class="form-control">
+                                        <option value="1">Primary</option>
+                                        <option value="2">Secondary</option>
+                                        <option value="3">A Level</option>
+                                        <option value="4">Vocational School</option>
+                                        <option value="5">Diploma</option>
+                                        <option value="6">Degree</option>
+                                        <option value="7">Other</option>
+                                        <option value="8">None</option>
+                                    </select>
+                                </div>
+                                <!--Education Level end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Handphone-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Phone">Handphone</label>
+                                    <input type="text" class="form-control" id="Phone"
+                                           name="Phone"
+                                           required="required" placeholder="Your mobile number">
+                                </div>
+                                <!--Handphone end-->
+                            </div>
+
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Email-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="Email">Email</label>
+                                    <input type="email" class="form-control" id="Email" name="Email"
+                                           required="required" placeholder="As a login account">
+                                </div>
+                                <!--Email end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Block No.-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="BlockNo">Block No.</label>
+                                    <input type="text" class="form-control" id="BlockNo" name="BlockNo"
+                                           required="required" placeholder="">
+                                </div>
+                                <!--Block No. end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Storey-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInStorey">Storey</label>
+                                    <input type="text" class="form-control" id="signInStorey" name="sign_in_storey"
+                                           required="required" placeholder="">
+                                </div>
+                                <!--Storey end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Unit No.-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInUnitNo">Unit No.</label>
+                                    <input type="text" class="form-control" id="signInUnitNo" name="sign_in_unit_no"
+                                           required="required" placeholder="">
+                                </div>
+                                <!--Unit No. end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Street Name-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="StreetName">Street Name</label>
+                                    <input type="text" class="form-control" id="StreetName" name="StreetName"
+                                           required="required" placeholder="">
+                                </div>
+                                <!--Street Name end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Postal Code-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="PostalCode">Postal Code</label>
+                                    <input type="text" class="form-control" id="PostalCode"
+                                           name="PostalCode"
+                                           required="required" placeholder="">
+                                </div>
+                                <!--Postal Code end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+
+                                <!--Date of Birth-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="DateOfBirth">Date of Birth</label>
+
+                                    <div class="input-group controls input-append date form_date" data-date=""
+                                         data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="DateOfBirth"
+                                               name="DateOfBirth" required>
+                                    </div>
+
+                                </div>
+                                <!--Date of Birth end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--Driving License Issue Date-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="LicenseIssueDate">Driving License
+                                        Issue
+                                        Date</label>
+
+                                    <div class="input-group controls input-append date form_date" data-date=""
+                                         data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="LicenseIssueDate"
+                                               name="LicenseIssueDate" required>
+                                    </div>
+
+                                </div>
+                                <!--Driving License Issue Date end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--TDVL First Issue Date-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInTDVLFirstIssueDate">TDVL First Issue
+                                        Date</label>
+
+                                    <div class="input-group controls input-append date form_date" data-date=""
+                                         data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="signInTDVLFirstIssueDate"
+                                               name="sign_in_tdvl_first_issue_date" required>
+                                    </div>
+
+                                </div>
+                                <!--TDVL First Issue Date end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--TDVL Expiry Date-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInTDVLExpiryDate">TDVL Expiry Date</label>
+                                    <div class="input-group controls input-append date form_date" data-date=""
+                                         data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="signInTDVLExpiryDate"
+                                               name="sign_in_tdvl_expiry_date" required>
+                                    </div>
+
+                                </div>
+                                <!--TDVL Expiry Date end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--NRIC, Driving License, TDVL (Front)-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInFileFront">NRIC, Driving License, TDVL
+                                        (Front)</label>
+                                    <div class="sign-in-modal">
+                                        <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                                    </div>
+                                    <div class="sign-in-file">
+                                        <input type="file" class="btn  btn-block" id="signInFileFront"
+                                               name="sign_in_file_front" required="required">
+                                    </div>
+                                </div>
+                                <!--NRIC, Driving License, TDVL (Front) end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <!--NRIC, Driving License, TDVL (Back)-->
+                                <div class="form-group">
+                                    <label class="sign-in-label" for="signInFileBack">NRIC, Driving License, TDVL
+                                        (Back)</label>
+                                    <div class="sign-in-modal">
+                                        <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                                    </div>
+                                    <div class="sign-in-file">
+                                        <input type="file" class="btn  btn-block" id="signInFileBack"
+                                               name="sign_in_file_back" required="required">
+                                    </div>
+                                </div>
+                                <!--NRIC, Driving License, TDVL (Back) end-->
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                <!--Submit-->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info" id="signInSubmit" name="sign_in_submit">
+                                        Register
+                                    </button>
+                                </div>
+                                <!--Submit end-->
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>
@@ -460,8 +487,22 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="jquery-3.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script>
+    $('.form_date').datetimepicker({
+        language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
 </body>
 </html>

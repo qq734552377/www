@@ -8,118 +8,364 @@
 
     <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../bootstrapvalidator-master/dist/css/bootstrapValidator.css"/>
-
-    <script type="text/javascript" src="jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.offcanvas.css"/>
+    <link rel="stylesheet" href="less/sidemenu.css" type="text/css"/>
+    <link rel="stylesheet" href="less/main.css" type="text/css"/>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+//        var url = 'http://192.168.0.113:12907/api/GetUserInfo';
+//        var yanzhengUrl = 'http://192.168.0.132/bootstrap_study/login.html';
+//        var isRemeberMe = localStorage.getItem('isRemeberMe');
+//        var token = '';
+//        if (isRemeberMe && isRemeberMe=='true') {
+//            token = localStorage.getItem('Token');
+//        } else {
+//            token = sessionStorage.getItem('Token');
+//        }
+//        if (token && token != '') {
+//            var settings = {
+//                type: "POST",
+//                url:url,
+//                dataType:"json",
+//                error: function(XHR,textStatus,errorThrown) {
+//                    alert ("XHR="+XHR+"\ntextStatus="+textStatus+"\nerrorThrown=" + errorThrown);
+//                },
+//                success: function(data) {
+//                    console.log(data);
+//                    if (data.MsgType =='Success'){
+//
+//                    }else{
+//                        window.location.href = yanzhengUrl;
+//                    }
+//                },
+//                headers: {
+//                    Authorization: "Basic " + token
+//                }
+//            };
+//            $.ajax(settings);
+//        } else {
+//            window.location.href = yanzhengUrl;
+//        }
+    </script>
     <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="bootstrap.offcanvas.js"></script>
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-            <div class="page-header">
-                <h2>Using Ajax to submit data</h2>
+<body class="bg-info">
+
+
+<!-- 侧边栏页面头部-->
+<nav class="navbar navbar-static-top navbar-default navbar-topstyle">
+    <div class="container">
+        <button class="navbar-toggle offcanvas-toggle pull-left" type="button" data-toggle="offcanvas"
+                data-target="#side-menu"
+                aria-controls="side-menu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header">
+            <div class=" visible-xs">
+                <a href="#" style="">
+                    <img src="img/logo.png" alt="logo"
+                         style="margin: 0 auto;height:50px;width: 148px;transform:translate(-25%);">
+                </a>
+            </div>
+            <div class=" hidden-xs">
+                <a href="#" style="">
+                    <img src="img/logo-long.png" alt="logo"
+                         style="margin: 0px auto;height:50px;">
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</nav>
+<!-- 侧边栏页面头部结尾-->
+
+<!--侧边栏区域-->
+<nav class="side-menu-wrap navbar-offcanvas navbar-offcanvas-touch  navbar-offcanvas-fade"
+     role="navigation"
+     id="side-menu">
+    <aside>
+        <div class="side-menu-header">
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <div class="side-menu-body">
+            <ul class="">
+                <li class="header sidebar-dashboard-header">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-file"></i>
+                        <span>Bookings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-fire"></i>
+                        <span>Make a Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-share-alt"></i>
+                        <span>Refer a Friend</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-log-out"></i>
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </aside>
+
+</nav>
+<!--侧边栏区域结尾-->
+
+<!--侧边栏页面的主体内容区域-->
+<div class=" side-menu-content">
+    <di class="row">
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme2" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+                <div class="box-body collapse in" id="isme2">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
             </div>
 
-            <form id="defaultForm" method="post" class="form-horizontal" action="../bootstrapvalidator-master/demo/ajaxSubmit.php">
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Username</label>
-                    <div class="col-lg-5">
-                        <input type="text" class="form-control" name="username" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Email address</label>
-                    <div class="col-lg-5">
-                        <input type="text" class="form-control" name="email" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Password</label>
-                    <div class="col-lg-5">
-                        <input type="password" class="form-control" name="password" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-lg-9 col-lg-offset-3">
-                        <button type="submit" class="btn btn-primary">Sign up</button>
-                    </div>
-                </div>
-            </form>
         </div>
-    </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme4" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme4">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme3" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme3">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme5" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme5">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme6" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme6">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+    </di>
+
 </div>
+<!--侧边栏页面的主体内容区域结尾-->
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#defaultForm')
-                .bootstrapValidator({
-                    message: 'This value is not valid',
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    fields: {
-                        username: {
-                            message: 'The username is not valid',
-                            validators: {
-                                notEmpty: {
-                                    message: 'The username is required and can\'t be empty'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 30,
-                                    message: 'The username must be more than 6 and less than 30 characters long'
-                                },
-                                /*remote: {
-                                 url: 'remote.php',
-                                 message: 'The username is not available'
-                                 },*/
-                                regexp: {
-                                    regexp: /^[a-zA-Z0-9_\.]+$/,
-                                    message: 'The username can only consist of alphabetical, number, dot and underscore'
-                                }
-                            }
-                        },
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The email address is required and can\'t be empty'
-                                },
-                                emailAddress: {
-                                    message: 'The input is not a valid email address'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The password is required and can\'t be empty'
-                                }
-                            }
-                        }
-                    }
-                })
-                .on('success.form.bv', function(e) {
-                    // Prevent form submission
-                    e.preventDefault();
+<button class="btn btn-default" id="toggle"> 改变</button>
 
-                    // Get the form instance
-                    var $form = $(e.target);
+<!--侧边栏页面脚部-->
+<footer class="main-footer-side-menu footer-style">
+    <div class="container">
+        <!--底部链接-->
+        <div class="row">
+            <div class="col-md-8 col-xs-12 ">
+                <div class="weight">
+                    <h4>Quick Links</h4>
+                    <div class="weight-list">
+                        <a href="#">Home</a>
+                        <a href="#">Help</a>
+                        <a href="#">Terms &Conditions</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
 
-                    // Get the BootstrapValidator instance
-                    var bv = $form.data('bootstrapValidator');
+            </div>
 
-                    // Use Ajax to submit form data
-                    $.post($form.attr('action'), $form.serialize(), function(result) {
-                        console.log(result);
-                    }, 'json');
-                });
-    });
+
+        </div>
+        <!--底部链接结尾-->
+
+    </div>
+</footer>
+<!--侧边栏页面脚部结尾-->
+<script>
+   $(function(){
+       $(window).resize(function() {
+           $('.side-menu-wrap').height($('body').height()-50);
+       });
+       $('.side-menu-wrap').height($('body').height()-50);
+
+       $('#toggle').bind( "click",function (e) {
+           $('.side-menu-wrap').toggleClass('mini')
+           $('.side-menu-content').toggleClass('mini')
+           $('.main-footer-side-menu').toggleClass('mini')
+       });
+   });
+
+
 </script>
+
 </body>
 </html>
