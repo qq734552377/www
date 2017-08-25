@@ -172,6 +172,7 @@
                 target = this.element.attr('data-target') ? this.element.attr('data-target') : false;
                 if (target) {
                     this.target = $(target);
+
                     if (this.target.length && !this.target.hasClass('js-offcanvas-done')) {
                         this.element.addClass('js-offcanvas-has-events');
                         this.location = this.target.hasClass("navbar-offcanvas-right") ? "right" : "left";
@@ -325,6 +326,7 @@
                 });
                 return $('.offcanvas-toggle').removeClass('is-open');
             });
+            console.log($('.offcanvas-toggle'));
             return $('.offcanvas-toggle').each(function () {
                 return $(this).on('click', function (e) {
                     var el, selector;

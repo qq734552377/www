@@ -42,6 +42,12 @@ a{
 }
 .list li:hover .down{
     display: block;
+    opacity: 1;
+    -webkit-transform: translate(0,5px);
+    -moz-transform: translate(0,5px);
+    -ms-transform: translate(0,5px);
+    -o-transform: translate(0,5px);
+    transform: translate(0,5px);
 }
 
 .list li div.down{
@@ -52,6 +58,12 @@ a{
     top: 40px;
     left: 0;
     display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition:all 0.3s ease;
 }
 
 .list li .down a{

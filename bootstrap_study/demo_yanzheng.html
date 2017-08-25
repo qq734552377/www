@@ -7,7 +7,6 @@
     <title>Using Ajax to submit data</title>
 
     <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../bootstrapvalidator-master/dist/css/bootstrapValidator.css"/>
     <link rel="stylesheet" href="css/bootstrap.offcanvas.css"/>
     <link rel="stylesheet" href="less/sidemenu.css" type="text/css"/>
     <link rel="stylesheet" href="less/main.css" type="text/css"/>
@@ -48,7 +47,6 @@
 //        }
     </script>
     <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../bootstrapvalidator-master/dist/js/bootstrapValidator.min.js"></script>
     <script type="text/javascript" src="bootstrap.offcanvas.js"></script>
 </head>
 <body class="bg-info">
@@ -59,7 +57,7 @@
     <div class="container">
         <button class="navbar-toggle offcanvas-toggle pull-left" type="button" data-toggle="offcanvas"
                 data-target="#side-menu"
-                aria-controls="side-menu" aria-expanded="false">
+                aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -81,68 +79,81 @@
             </div>
         </div>
 
+        <!--侧边栏区域-->
+        <nav class="side-menu-wrap navbar-offcanvas navbar-offcanvas-touch  navbar-offcanvas-fade"
+             role="navigation"
+             id="side-menu">
+            <aside>
+                <div class="side-menu-header ">
+                    <a id="toggle" class="hidden-xs">
+                        <img src="img/fullyequipped.png">
+                        <span>Hi,xxxx!</span>
+                    </a>
+                    <a class="hidden-sm hidden-md hidden-lg">
+                        <img src="img/fullyequipped.png">
+                        <span>Hi,xxxx!</span>
+                    </a>
+                </div>
+
+                <div class="side-menu-body">
+                    <ul class="level-one">
+                        <li class="header sidebar-dashboard-header">
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-th-large"></i>
+                                <span class="span-title">Account</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-file"></i>
+                                <span class="span-title">Bookings</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-fire"></i>
+                                <span class="span-title">Make a Booking</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-share-alt"></i>
+                                <span class="span-title">Refer a Friend</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-question-sign"></i>
+                                <span class="span-title">Help</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-log-out"></i>
+                                <span class="span-title">Log Out</span>
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </aside>
+
+        </nav>
+        <!--侧边栏区域结尾-->
 
     </div>
 </nav>
 <!-- 侧边栏页面头部结尾-->
 
-<!--侧边栏区域-->
-<nav class="side-menu-wrap navbar-offcanvas navbar-offcanvas-touch  navbar-offcanvas-fade"
-     role="navigation"
-     id="side-menu">
-    <aside>
-        <div class="side-menu-header">
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
-
-        <div class="side-menu-body">
-            <ul class="">
-                <li class="header sidebar-dashboard-header">
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-th-large"></i>
-                        <span>Account</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-file"></i>
-                        <span>Bookings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-fire"></i>
-                        <span>Make a Booking</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-share-alt"></i>
-                        <span>Refer a Friend</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-question-sign"></i>
-                        <span>Help</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-log-out"></i>
-                        <span>Log Out</span>
-                    </a>
-                </li>
-            </ul>
-
-        </div>
-    </aside>
-
-</nav>
-<!--侧边栏区域结尾-->
 
 <!--侧边栏页面的主体内容区域-->
 <div class=" side-menu-content">
@@ -323,7 +334,6 @@
 </div>
 <!--侧边栏页面的主体内容区域结尾-->
 
-<button class="btn btn-default" id="toggle"> 改变</button>
 
 <!--侧边栏页面脚部-->
 <footer class="main-footer-side-menu footer-style">

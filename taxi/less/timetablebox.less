@@ -1,0 +1,57 @@
+@import "variable";
+.timeTable {
+  background-color: @time-table-bgc;
+  height: 120px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  div > table {
+    margin: 0 auto;
+    border: 1px solid @time-table-border-color;
+    //box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+    border-collapse: collapse;
+    thead > tr > th {
+      text-align: center;
+      margin: 0;
+    }
+    tbody > tr > td {
+      border: 3px solid @time-table-td-border-color;
+      padding: 0;
+      width: 25px;
+      height: 25px;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .timeTable {
+    div > table {
+      thead > tr > th {
+        font-size: 10px;
+      }
+      tbody > tr > td {
+        border: 1px solid @time-table-td-border-color;
+        width: 13px;
+        height: 13px;
+        //padding: .3em .3em;
+      }
+    }
+  }
+  //.no-margin {
+  //  margin-top:0px;
+  //}
+}
+
+.can-booking-bgc {
+  background-color: @time-table-td-can-bgc;
+}
+
+.not-booking-bgc {
+  background-color: @time-table-td-not-bgc;
+}
+
+.may-booking-bgc {
+  background-color: @time-table-td-may-bgc;
+}

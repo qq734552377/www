@@ -22,12 +22,7 @@
 <body class="bg-info" ng-app="app" ng-controller="searchCtr">
 <!-- 头部-->
 <nav class="navbar navbar-static-top navbar-default navbar-topstyle">
-    <!--头部通知-->
-    <div id="notification" class="container-fluid">• Midnight Rate as low as $1.80/hr from 24th Jul • National Day
-        Promotion at $89/day • Extension of Weekend Daily Rate at $100/day • Extension of $0 SD and free $50 credit with
-        $1 credit purchased
-    </div>
-    <!--头部通知结尾-->
+
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                 data-target="#bs-navbar"
@@ -59,18 +54,39 @@
                     <a class="dropdown-toggle" id="dropdownM" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         Learn more
-                        <span class="glyphicon"></span>
+                        <span class="glyphicon menu-right"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownM">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Terms &Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
                         <li>
                             <a href="#">
-                                <i class="glyphicon glyphicon-play-circle"></i>
-                                Tutorial Video
+                                <span class="span-left"></span>
+                                FAQ
+                                <span class="span-right"></span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                Terms &Conditions
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                Privacy Policy
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                <i class="glyphicon glyphicon-play-circle"></i>
+                                Tutorial Video
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -80,13 +96,37 @@
                        aria-haspopup="true" aria-expanded="false">
                         <i href="#"><img src="img/affordable.png"></i>
                         Peng Jing
-                        <span class="glyphicon"></span>
+                        <span class="glyphicon menu-right"></span>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownM2">
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">My bookings</a></li>
-                        <li><a href="#">Log out</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM2" aria-haspopup="true">
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                My account
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                Profile
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                My bookings
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                Log out
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -113,7 +153,7 @@
         <div class="box-body container collapse in" id="isme">
 
             <div id="searchCarForm">
-                <form >
+                <form>
                     <div class="col-md-12">
 
                         <div class="col-md-3 col-sm-6 col-xs-12 text-left">
@@ -124,14 +164,15 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-calendar"></i>
                                         </span>
-                                    <input ng-model="searchMsg.startDate" type="text" class="form-control datepicker" id="pickupStartDate" >
+                                    <input ng-model="searchMsg.startDate" type="text" class="form-control datepicker"
+                                           id="pickupStartDate">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 text-left">
                             <div class="form-group">
                                 <label class="control-label" for="pickupStartTime">Pickup Start time</label>
-                                <select ng-model="searchMsg.startTime" id="pickupStartTime"  class="form-control">
+                                <select ng-model="searchMsg.startTime" id="pickupStartTime" class="form-control">
                                     <option value="">Pickup Time</option>
                                     <option value="00:00">00:00</option>
                                     <option value="01:00">01:00</option>
@@ -171,7 +212,8 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-calendar"></i>
                                         </span>
-                                    <input ng-model="searchMsg.endDate" type="text" class="form-control datepicker" id="pickupEndDate">
+                                    <input ng-model="searchMsg.endDate" type="text" class="form-control datepicker"
+                                           id="pickupEndDate">
                                 </div>
 
                             </div>
@@ -210,18 +252,18 @@
                         </div>
 
                         <!--<div class="col-md-3 col-sm-4 col-xs-12 text-left">-->
-                            <!--<div class="form-group">-->
-                                <!--<label class="control-label" for="pickupArea">Area</label>-->
-                                <!--<select  id="pickupArea"  class="form-control">-->
-                                    <!--<option value="">Pickup Area</option>-->
-                                    <!--<option value="23:00">23:00</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label class="control-label" for="pickupArea">Area</label>-->
+                        <!--<select  id="pickupArea"  class="form-control">-->
+                        <!--<option value="">Pickup Area</option>-->
+                        <!--<option value="23:00">23:00</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
                         <!--</div>-->
                         <div class="col-md-3 col-sm-6 col-xs-12 text-left">
                             <div class="form-group">
                                 <label class="control-label" for="pickupLocation">Location</label>
-                                <select ng-model="searchMsg.location" id="pickupLocation"  class="form-control">
+                                <select ng-model="searchMsg.location" id="pickupLocation" class="form-control">
                                     <option value="">Pickup Location</option>
                                     <option ng-repeat="item in locations" value="{{item.ID}}">{{item.Address}}</option>
                                 </select>
@@ -258,7 +300,6 @@
 </div>
 
 <!--标签盒子结尾-->
-
 
 
 <div ng-if="!isWaitting&&!isNoCar" class="view-car-list container margin-top-25">
@@ -337,12 +378,12 @@
 
 <div ng-if="isWaitting" class="container margin-top-25 hidden-xs">
     <div class=" col-md-12 iframe-item-wrap-padding-md iframe-item-wrap">
-    <iframe src="waitting.html" class="ifram-item"></iframe>
+        <iframe src="wait.html" class="ifram-item"></iframe>
     </div>
 </div>
 
 <div ng-if="isNoCar" class="container margin-top-25 hidden-show-transation">
-    <div class="col-md-12 my-box-top-border warning-box" >
+    <div class="col-md-12 my-box-top-border warning-box">
         <h4>
             <i class="glyphicon glyphicon-warning-sign"></i>
             No results found for this location at this time.
@@ -369,14 +410,13 @@
 </div>
 
 
-
 <div style="margin-bottom: 80px">
 
 </div>
 
 
 <!--页面脚部-->
-<footer class="main-footer">
+<footer class="main-footer hidden-xs">
     <div class="container">
         <!--底部链接-->
         <div class="row">
@@ -465,32 +505,30 @@
 <script src="../angular-1.5.8/angular.min.js"></script>
 <script>
 
-    angular.module('app',[])
-            .controller('searchCtr',function ($scope,$http) {
-               $scope.searchMsg={
-                   startDate:'',
-                   startTime:'',
-                   endDate:'',
-                   endTime:'',
-                   location:'',
-                   category:'',
-                   rentFor:'',
-                   searchUrl:'http://192.168.0.103:12907/api/VehicleShareQuery',
-                   getLocations:'http://192.168.0.103:12907/Select/QueryParkingSpace'
-               };
-
-
-                $scope.locations=[{ID:1,Address:'劉安'},
-                    {ID:2,Address:'合肥'}
-                ];
-                $scope.isWaitting=true;
-                $scope.isNoCar=false;
-                $scope.allCarsMsg={
-
+    angular.module('app', [])
+            .controller('searchCtr', function ($scope, $http) {
+                $scope.searchMsg = {
+                    startDate: '',
+                    startTime: '',
+                    endDate: '',
+                    endTime: '',
+                    location: '',
+                    category: '',
+                    rentFor: '',
+                    searchUrl: 'http://192.168.0.103:12907/api/VehicleShareQuery',
+                    getLocations: 'http://192.168.0.103:12907/Select/QueryParkingSpace'
                 };
 
 
-                function init(){
+                $scope.locations = [{ID: 1, Address: '劉安'},
+                    {ID: 2, Address: '合肥'}
+                ];
+                $scope.isWaitting = true;
+                $scope.isNoCar = false;
+                $scope.allCarsMsg = {};
+
+
+                function init() {
                     $http({
                         method: "POST",
                         url: $scope.searchMsg.getLocations,
@@ -498,7 +536,7 @@
                     }).success(function (data) {
                         console.log(data);
                         if (data.MsgType == 'Success') {
-                            $scope.locations=data.Data;
+                            $scope.locations = data.Data;
                         } else {
 
                         }
@@ -509,52 +547,52 @@
                 };
                 init();
 
-                $scope.search=function () {
+                $scope.search = function () {
                     console.log($scope.searchMsg);
-                    $scope.isWaitting=true;
-                    $scope.isNoCar=false;
+                    $scope.isWaitting = true;
+                    $scope.isNoCar = false;
                     $http({
                         method: "POST",
                         url: $scope.searchMsg.searchUrl,
-                        data:{StartTime:($scope.searchMsg.startDate+' '+$scope.searchMsg.startTime+':00'),
-                            EndTime:($scope.searchMsg.endDate+' '+$scope.searchMsg.endTime+':00'),
-                            LeaseType:$scope.searchMsg.rentFor,
-                            VehiceType:$scope.searchMsg.category,
-                            Address:$scope.searchMsg.location
+                        data: {
+                            StartTime: ($scope.searchMsg.startDate + ' ' + $scope.searchMsg.startTime + ':00'),
+                            EndTime: ($scope.searchMsg.endDate + ' ' + $scope.searchMsg.endTime + ':00'),
+                            LeaseType: $scope.searchMsg.rentFor,
+                            VehiceType: $scope.searchMsg.category,
+                            Address: $scope.searchMsg.location
                         },
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data) {
                         console.log(data);
-                        $scope.isWaitting=false;
+                        $scope.isWaitting = false;
                         if (data.MsgType == 'Success') {
-                            $scope.isNoCar=false;
+                            $scope.isNoCar = false;
 
                         } else {
-                            $scope.isNoCar=true;
+                            $scope.isNoCar = true;
                         }
 
                     }).error(function () {
-                        $scope.isWaitting=false;
-                        $scope.isNoCar=true;
+                        $scope.isWaitting = false;
+                        $scope.isNoCar = true;
                     });
 
                 }
 
 
+                var startDateTime = addHours(1);
+                var endDateTime = addHours(4);
 
+                var startDate = startDateTime.getFullYear() + '-' + ((startDateTime.getMonth() + 1) > 9 ? (startDateTime.getMonth() + 1) : ('0' + (startDateTime.getMonth() + 1))) + '-' + startDateTime.getDate();
+                var endDate = endDateTime.getFullYear() + '-' + ((endDateTime.getMonth() + 1) > 9 ? (endDateTime.getMonth() + 1) : ('0' + (endDateTime.getMonth() + 1))) + '-' + endDateTime.getDate();
+                var startHour = startDateTime.getHours() > 9 ? (startDateTime.getHours() + ":00") : ("0" + startDateTime.getHours() + ":00");
+                var endHour = endDateTime.getHours() > 9 ? (endDateTime.getHours() + ":00") : ("0" + endDateTime.getHours() + ":00");
 
-                var startDateTime=addHours(1);
-                var endDateTime=addHours(4);
-
-                var startDate=startDateTime.getFullYear()+'-'+((startDateTime.getMonth()+1)>10?(startDateTime.getMonth()+1):('0'+(startDateTime.getMonth()+1)))+'-'+startDateTime.getDate();
-                var endDate=endDateTime.getFullYear()+'-'+((endDateTime.getMonth()+1)>10?(endDateTime.getMonth()+1):('0'+(endDateTime.getMonth()+1)))+'-'+endDateTime.getDate();
-                var startHour=startDateTime.getHours()>10?(startDateTime.getHours()+":00"):("0"+startDateTime.getHours()+":00");
-                var endHour=endDateTime.getHours()>10?(endDateTime.getHours()+":00"):("0"+endDateTime.getHours()+":00");
-
-                $scope.searchMsg.startDate=startDate;
-                $scope.searchMsg.startTime=startHour;
-                $scope.searchMsg.endDate=endDate;
-                $scope.searchMsg.endTime=endHour;
+                $scope.searchMsg.startDate = startDate;
+                $scope.searchMsg.startTime = startHour;
+                console.log(startHour+'------------------------')
+                $scope.searchMsg.endDate = endDate;
+                $scope.searchMsg.endTime = endHour;
 
 
                 function addHours(hours) {
@@ -567,13 +605,6 @@
             });
 
 
-
-
-
-
-
-
-
     $('.form_date').datetimepicker({
         language: 'fr',
         weekStart: 1,
@@ -584,18 +615,17 @@
         minView: 2,
         forceParse: 0
     });
-    var date=new Date();
-    var todayDate=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+    var date = new Date();
+    var todayDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 
 
-    var startDateTime=addHours(1);
-    var endDateTime=addHours(4);
+    var startDateTime = addHours(1);
+    var endDateTime = addHours(4);
 
-    var startDate=startDateTime.getFullYear()+'-'+(startDateTime.getMonth()+1)+'-'+startDateTime.getDate();
-    var endDate=endDateTime.getFullYear()+'-'+(endDateTime.getMonth()+1)+'-'+endDateTime.getDate();
-    var startHour=startDateTime.getHours()>10?(startDateTime.getHours()+":00"):("0"+startDateTime.getHours()+":00");
-    var endHour=endDateTime.getHours()>10?(endDateTime.getHours()+":00"):("0"+endDateTime.getHours()+":00");
-
+    var startDate = startDateTime.getFullYear() + '-' + (startDateTime.getMonth() + 1) + '-' + startDateTime.getDate();
+    var endDate = endDateTime.getFullYear() + '-' + (endDateTime.getMonth() + 1) + '-' + endDateTime.getDate();
+    var startHour = startDateTime.getHours() > 9 ? (startDateTime.getHours() + ":00") : ("0" + startDateTime.getHours() + ":00");
+    var endHour = endDateTime.getHours() > 9 ? (endDateTime.getHours() + ":00") : ("0" + endDateTime.getHours() + ":00");
 
 
     $('#pickupStartDate').val(startDate);

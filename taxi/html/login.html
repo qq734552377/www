@@ -1,0 +1,62 @@
+<!--登录表-->
+
+<div class="login-bgi container-fluid">
+    <div class="col-md-4 col-md-offset-4 ">
+        <div class="login-form row">
+
+            <div class="login-form-content">
+                <div class="login-form-title">
+                    Log In
+                </div>
+                <div class="error-tishi" ng-if="errorState" ng-bind="errorMsg" style="color: red;text-align: center">
+
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group has-feedback">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input ng-model="loginMsg.email" type="email" class="form-control" value=""
+                                   placeholder="Email" required>
+
+                        </div>
+                        <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                         <span id="inputEmailState" class="sr-only">(success)</span>-->
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input ng-model="loginMsg.password" type="password" class="form-control" value=""
+                                   placeholder="Password" required>
+                        </div>
+                        <!--<span class="glyphicon glyphicon-ok form-control-feedback " aria-hidden="true"></span>
+                        <span id="inputPasswordState" class="sr-only">(success)</span>-->
+                    </div>
+                    <div class="form-group has-feedback">
+                        <div class="checkbox">
+                            <label>
+                                <input ng-model="isRemeberMe" type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <button ng-click="login()" class="btn btn-info btn-block" type="submit" id="login"
+                                value="Log In">Log In
+                        </button>
+                    </div>
+                </form>
+                <div style="margin-top: 15px;">
+                    <a href="#">I forgot my password</a>
+                    <br>
+                    <a href="#/signup_f" class="text-center">Sign up an account, it's free!</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--登录表结尾-->

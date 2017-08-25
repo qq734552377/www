@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+    <!--侧边栏页面的主体内容区域-->
+    <div class=" side-menu-content" ng-controller="sidemenuCtr">
+        <div class="header hidden-overflow-x">
+           <div class="row">
+               <div class="col-md-12 col-xs-12 text-right">
+                   <ol class="breadcrumb" style="margin-top: 20px">
+                       <li><a href="#/sidemenu/account">Account</a></li>
+                       <li ng-bind="curpath" ng-if="curpath!=''" class="active"></li>
+                   </ol>
+               </div>
+           </div>
+
+
+        </div>
+
+
+        <div ui-view=""></div>
+    </div>
+    <!--侧边栏页面的主体内容区域结尾-->
+
+
+    <!--侧边栏页面脚部-->
+    <footer class="main-footer-side-menu footer-style">
+        <div class="container">
+            <!--底部链接-->
+            <div class="row">
+                <div class="col-md-8 col-xs-12 ">
+                    <div class="weight">
+                        <h4>Quick Links</h4>
+                        <div class="weight-list">
+                            <a href="#/mainsearch">Home</a>
+                            <a href="#/help">Help</a>
+                            <a href="#/terms">Terms &Conditions</a>
+                            <a href="#/privacy">Privacy</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!--底部链接结尾-->
+
+        </div>
+    </footer>
+    <!--侧边栏页面脚部结尾-->
+    <script src="js/bootstrap.offcanvas.js"></script>
+    <script>
+        $(function () {
+//        $(window).resize(function() {
+//            $('.side-menu-wrap').height($('body').height()-50);
+//        });
+//        $('.side-menu-wrap').height($('body').height()-50);
+
+            $('#toggle').bind("click", function (e) {
+                $('.side-menu-wrap').toggleClass('mini')
+                $('.side-menu-content').toggleClass('mini')
+                $('.main-footer-side-menu').toggleClass('mini')
+            });
+        });
+
+
+    </script>

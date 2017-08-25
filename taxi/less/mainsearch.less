@@ -1,0 +1,67 @@
+@import "variable";
+.bg{
+  min-height: 440px;
+  background-image: url("../img/homepage-banner.jpg");
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: -20px;
+}
+.mainsearch {
+  border-radius: 3px;
+  background-color: @main-search-bgc;
+  padding: 20px;;
+
+  .mainsearch-item {
+    margin-bottom: 0;
+    > div {
+      span {
+        background-color: transparent;
+        border: 0;
+        color: (@main-search-span-color)-#232323;
+        i {
+          font-size: 32px
+        }
+      }
+      label {
+        color: @main-search-span-color;
+      }
+      input {
+        padding-left: 0;
+        border: 0;
+        background-color: transparent;
+        .no-box-shadow();
+        color: @main-search-input-color;
+      }
+
+    }
+    select {
+      padding-left: 0;
+      border: 0;
+      background-color: transparent;
+      .no-box-shadow();
+      color: @main-search-input-color;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &.only-padding-left{
+        padding-left: 56px;
+      }
+    }
+  }
+
+}
+@media (max-width: @xs-width) {
+    .mainsearch{
+      padding: 5px 2px;
+      .mainsearch-item{
+        select{
+          &.only-padding-left{
+            padding-left: 7px;
+          }
+        }
+      }
+    }
+}

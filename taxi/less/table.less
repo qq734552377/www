@@ -1,0 +1,183 @@
+@import "variable";
+
+table.responsive {
+  width: 98%;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, .1);
+  //box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+  border-collapse: collapse;
+  th, td {
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: .5em 1em;
+    margin: 0;
+  }
+  th {
+    background-color: @table-head-color;
+
+    text-align: center;
+
+  }
+  .actions {
+    text-align: center;
+    a {
+      text-decoration: none;
+      padding: 0 4px;
+      color: #ff5c00;
+    }
+  }
+}
+
+.mytable {
+
+  .show-counts {
+    margin: 20px 0;
+    padding-top: 8px;
+    text-align: left;
+  }
+  .page-table {
+    text-align: right;
+  }
+}
+
+@media (max-width: @sm-width) {
+  table.responsive {
+    border: none;
+    box-shadow: none;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      margin-bottom: 1em;
+      box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .2);
+
+    }
+    tr, td {
+      display: block;
+      border: none;
+      position: relative;
+    }
+
+    .ref {
+      background-color: @table-head-color;
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Booking Ref";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .date {
+      background-color: @table-head-color;
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Date";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+
+    .car {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Car";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .type {
+          text-align: left;
+          padding-left: @table-xs-td-padding-left;
+          &:before {
+            content: "Type";
+            position: absolute;
+            left: .5em;
+            top: .5em;
+            font-weight: bold;
+          }
+        }
+    .enteredBy {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Enter By";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+
+    .pickup {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Pickup";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .return {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Return";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .amount {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Amount($)";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .status {
+      text-align: left;
+      padding-left: @table-xs-td-padding-left;
+      &:before {
+        content: "Status";
+        position: absolute;
+        left: .5em;
+        top: .5em;
+        font-weight: bold;
+      }
+    }
+    .actions {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+  }
+
+  .mytable {
+    .show-counts {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .page-table {
+      text-align: center;
+    }
+  }
+}

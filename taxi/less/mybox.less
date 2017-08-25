@@ -1,0 +1,210 @@
+@import "variable";
+
+.my-box {
+  background-color: @my-box-background-color;
+  padding: 5px 15px;
+  /*margin-top:10px ;*/
+  border-radius: 3px 3px 0px 0px;
+  .my-box-shadow();
+}
+
+.search-bgc {
+  background-color: @main-search-bgc;
+}
+
+.my-box-top-border {
+  border-top: 3px solid @border-right-color;
+}
+
+.my-box .box-header {
+  margin: 0 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  .box-header-title {
+
+  }
+  P {
+
+  }
+  > a {
+    text-decoration: none;
+    color: @location-a-color;
+    &:hover {
+      color: @location-a-color-hover;
+    }
+  }
+
+  .box-corner {
+    float: right;
+  }
+}
+
+.my-box .box-header .box-corner button {
+  background-color: transparent;
+}
+
+.my-box .box-header .box-corner .collapsed i:before {
+  content: "\002b"; //"\f067";
+}
+
+.my-box .box-header .box-corner i:before {
+  content: "\2212"; //"\f068";
+}
+
+.my-box-boundary {
+  border-top: 1px solid @my-box-boundary-color;
+}
+
+.my-box .box-body {
+  padding: 15px 0px;
+}
+
+.left-right-padding-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.my-box .box-body .box-body-thumb-wrap {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+.pic-center-wrap {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+.my-box .box-body .box-body-thumb-wrap .box-body-thumb {
+  max-height: 240px;
+  min-height: 88px;
+  max-width: 100%;
+}
+
+.my-box .box-body {
+  .bottom-border {
+    line-height: 1.8em;
+  }
+
+  .row div {
+    .box-header-title {
+
+    }
+    p {
+
+    }
+    a {
+      text-decoration: none;
+      color: @location-a-color;
+      &:hover {
+        color: @location-a-color-hover;
+      }
+    }
+  }
+
+  .payPrice {
+    .countPrice {
+      .top {
+        margin-top: 20px;
+        table {
+          tbody > tr {
+            margin: 5px 0;
+            > td {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      .totalPrice {
+        table {
+          tbody > tr {
+            margin: 5px 0;
+            > td {
+              font-size: 18px;
+            }
+          }
+        }
+      ;
+      }
+
+    }
+  }
+
+  .myAccount{
+    padding: 10px;
+    .wrap{
+      border: 2px solid @navbar-background-color;
+      border-radius: 8px 8px 1px 1px;
+      padding: 0 15px;
+      .my-account-header{
+        margin: 0 -15px ;
+        padding-left: 15px;
+        background-color: @navbar-background-color;
+        color: @a-hover-color;
+        b{
+
+          font-size: 18px;
+          line-height: 45px;
+          a{
+            font-size: 12px;
+            text-decoration: none;
+            color: @a-hover-color - #202020;
+            &:hover{
+              color: @a-hover-color;
+            }
+          }
+        }
+
+      }
+      .my-account-body{
+        table{
+          tbody{
+            padding: 20px;
+            tr{
+              td{
+                font-size: 18px;
+                line-height: 36px;
+              }
+              &.balance{
+                border-top: 1px solid @navbar-background-color;
+                color: red;
+              }
+              &.noMoreMoney{
+                color:  @location-a-color;
+                td{
+                  font-size: 14px;
+                  a{
+                    text-decoration: none;
+                    color: @a-hover-color;
+                    &:hover{
+                      color: @a-color;
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+
+}
+
+.my-box .box-footer {
+  padding: 15px 0;
+
+}
+
+.table-no-border {
+  tbody > tr {
+    margin: 5px 0;
+    > td {
+      border: none;
+    }
+  }
+}

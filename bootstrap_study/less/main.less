@@ -55,19 +55,47 @@ a {
 
 .navbar-topstyle .container .collapse .nav li.dropdown .dropdown-menu li {
   text-align: center;
+  position: relative;
   a {
     padding-right: 5px;
     &:hover {
-      border-right: 4px solid @xiala-border-right-color;
-      border-left: 4px solid @xiala-border-right-color;
+
       background-color: @xiala-a-hover-backfround-color;
       color: @a-hover-color;
+      .span-left{
+        display: block;
+        border-color:@xiala-a-hover-backfround-color ;
+        border-left-color: @a-hover-color;
+      }
+      .span-right{
+        display: block;
+        border-color:@xiala-a-hover-backfround-color ;
+        border-right-color: @a-hover-color;
+      }
+    }
+    .span-left {
+      display: none;
+      position: absolute;
+      height: 0px;
+      width: 0px;
+      border: 7.5px solid @navbar-background-color;
+      top: 8px;
+      left: 10px;
+    }
+    .span-right {
+      display: none;
+      position: absolute;
+      height: 0px;
+      width: 0px;
+      border: 7.5px solid @navbar-background-color;
+      top: 8px;
+      right: 10px;
     }
   }
 }
 
 .navbar-topstyle .container .collapse .nav .open a {
-  background-color: @ul-menu-backfround-color;
+  background-color: @navbar-background-color;
 }
 
 .navbar-topstyle .container .collapse .nav li a span {
@@ -79,11 +107,11 @@ a {
   height: 18px;
 }
 
-.navbar-topstyle .container .collapse .nav .dropdown a span:before {
+.navbar-topstyle .container .collapse .nav .dropdown a span.menu-right:before {
   content: '\f078'; //'\e259';
 }
 
-.navbar-topstyle .container .collapse .nav .open a span:before {
+.navbar-topstyle .container .collapse .nav .open a span.menu-right:before {
   content: '\f077'; //'\e260';
 }
 
@@ -219,7 +247,7 @@ a {
 .my-box .box-header {
   margin: 5px 10px;
   margin-top: 0;
-  padding-top: 15px;
+  padding-top: 5px;
   .box-header-title {
 
   }
@@ -234,7 +262,6 @@ a {
     }
   }
 }
-
 
 .my-box .box-header .box-corner {
   float: right;
@@ -284,7 +311,7 @@ a {
 }
 
 .my-box .box-body.row {
-  .bottom-border{
+  .bottom-border {
     line-height: 1.8em;
   }
 
@@ -317,12 +344,15 @@ a {
   padding: 15px 0;
 
 }
-.noborder{
+
+.noborder {
   border-radius: 0;
 }
-.hidden-show-transation{
+
+.hidden-show-transation {
   .transition(0.3s);
 }
+
 .iframe-item-wrap {
   position: relative;
   display: block;
@@ -342,40 +372,116 @@ a {
   }
 }
 
-.warning-box{
+.warning-box {
   background-color: @warning-box-bgc;
-  padding: 10px ;
+  padding: 10px;
   .my-box-shadow();
-  h4{
+  h4 {
     color: @warning-box-color;
     margin: 10px 5px;
     line-height: 2.2em;
   }
-  p ,ul>li{
+  p, ul > li {
     color: @warning-box-color;
     line-height: 1.8em;
   }
-  ul{
+  ul {
     margin: 10px 5px;
   }
-  ul>li{
+  ul > li {
     list-style: decimal-leading-zero;
   }
 }
 
-
-.timeTable{
+.timeTable {
   background-color: @time-table-bgc;
-  height: 200px;
+  height: 120px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 
-  div>table {
-    width: 90%;
+  div > table {
     margin: 0 auto;
-    border: 1px solid #666666;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+    border: 1px solid @time-table-border-color;
+    //box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
     border-collapse: collapse;
     thead > tr > th {
-
+      text-align: center;
+      margin: 0;
     }
+    tbody > tr > td {
+      border: 3px solid @time-table-td-border-color;
+      padding: 0;
+      width: 25px;
+      height: 25px;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  //.no-margin{
+  //  margin-top: 50px;
+  //}
+
+  .timeTable {
+    div > table {
+      thead > tr > th {
+        font-size: 10px;
+      }
+      tbody > tr > td {
+        border: 1px solid @time-table-td-border-color;
+        width: 13px;
+        height: 13px;
+        //padding: .3em .3em;
+      }
+    }
+  }
+
+}
+
+.can-booking-bgc {
+  background-color: @time-table-td-can-bgc;
+}
+
+.not-booking-bgc {
+  background-color: @time-table-td-not-bgc;
+}
+
+.may-booking-bgc {
+  background-color: @time-table-td-may-bgc;
+}
+
+.signin-first-bg {
+  background-color: #efefef;
+}
+
+.signin-first {
+  padding-top: 50px;
+  padding-bottom: 80px;
+  .signin-first-form {
+    margin: 5px 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .row {
+      .form-group .tishi-msg {
+        padding-top: 7px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.sucess-span {
+  color: #55dd55;
+  &:before {
+    content: "\e013";
+  }
+}
+
+.error-sapn {
+  color: #dd5555;
+  &:before {
+    content: "\e014";
   }
 }

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+    <div class="margin-top-25 good-padding-bottom-m" >
+
+        <div class="mytable my-box my-box-top-border margin-top-20">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="select-count">
+                            Show
+                            <select ng-model='avg' class="input-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            entries
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 margin-top-25">
+                        <table class="responsive table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>Booking Ref</th>
+                                <th>Car</th>
+                                <th>Pickup</th>
+                                <th>Return</th>
+                                <th>Amount($)</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in currentPageBookings">
+                                <td class="ref" ng-bind="item.ref"></td>
+                                <td class="car" ng-bind="item.car"></td>
+                                <td class="pickup" ng-bind="item.pickup"></td>
+                                <td class="return" ng-bind="item.return"></td>
+                                <td class="amount" ng-bind="item.amount"></td>
+                                <td class="status" ng-bind="item.status"></td>
+                                <td class="actions">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Dropdown
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="#" >lock</a></li>
+                                            <li><a href="#" >unlock</a></li>
+                                            <li><a href="#" >return</a></li>
+                                            <li><a href="#" >postpone</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="show-counts">
+                            Showing {{currentIndex==0?0:(currentIndex-1)*avg+1}} to {{currentIndex==0?0:(currentIndex-1)*avg+currentPageBookings.length}} of {{sourceBookings.length}} entries
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="page-table">
+                            <ul class="pagination">
+                                <li ng-class="{disabled:currentIndex==1||currentIndex==0}"   ng-click="jumpPage(currentIndex-1)">
+                                    <span  aria-label="Previous" >
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </span>
+                                </li>
+                                <li ng-repeat="item in allPageBookings" ng-class="{active:currentIndex==item.index}" ng-click="jumpPage(item.index)"><span  ng-bind="item.index"></span></li>
+                                <li ng-class="{disabled:currentIndex==pageCount}"   ng-click="jumpPage(currentIndex+1)">
+                                    <span aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+</div>

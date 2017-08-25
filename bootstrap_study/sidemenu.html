@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Using Ajax to submit data</title>
+
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.offcanvas.css"/>
+    <link rel="stylesheet" href="less/sidemenu.css" type="text/css"/>
+    <link rel="stylesheet" href="less/main.css" type="text/css"/>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        //        var url = 'http://192.168.0.113:12907/api/GetUserInfo';
+        //        var yanzhengUrl = 'http://192.168.0.132/bootstrap_study/login.html';
+        //        var isRemeberMe = localStorage.getItem('isRemeberMe');
+        //        var token = '';
+        //        if (isRemeberMe && isRemeberMe=='true') {
+        //            token = localStorage.getItem('Token');
+        //        } else {
+        //            token = sessionStorage.getItem('Token');
+        //        }
+        //        if (token && token != '') {
+        //            var settings = {
+        //                type: "POST",
+        //                url:url,
+        //                dataType:"json",
+        //                error: function(XHR,textStatus,errorThrown) {
+        //                    alert ("XHR="+XHR+"\ntextStatus="+textStatus+"\nerrorThrown=" + errorThrown);
+        //                },
+        //                success: function(data) {
+        //                    console.log(data);
+        //                    if (data.MsgType =='Success'){
+        //
+        //                    }else{
+        //                        window.location.href = yanzhengUrl;
+        //                    }
+        //                },
+        //                headers: {
+        //                    Authorization: "Basic " + token
+        //                }
+        //            };
+        //            $.ajax(settings);
+        //        } else {
+        //            window.location.href = yanzhengUrl;
+        //        }
+    </script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap.offcanvas.js"></script>
+    <script type="text/javascript" src="../jquery-ui-1.11.4/jquery-ui.min.js"></script>
+</head>
+<body class="bg-info" ng-app="app" ng-controller="sideMenuCtr">
+
+
+<!-- 侧边栏页面头部-->
+<nav class="navbar navbar-static-top navbar-default navbar-topstyle">
+    <div class="container">
+        <button class="navbar-toggle offcanvas-toggle pull-left" type="button" data-toggle="offcanvas"
+                data-target="#side-menu"
+                aria-controls="side-menu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header">
+            <div class=" visible-xs">
+                <a href="#" style="">
+                    <img src="img/logo.png" alt="logo"
+                         style="margin: 0 auto;height:50px;width: 148px;transform:translate(-25%);">
+                </a>
+            </div>
+            <div class=" hidden-xs">
+                <a href="#" style="">
+                    <img src="img/logo-long.png" alt="logo"
+                         style="margin: 0px auto;height:50px;">
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</nav>
+<!-- 侧边栏页面头部结尾-->
+
+<!--侧边栏区域-->
+<nav class="side-menu-wrap navbar-offcanvas navbar-offcanvas-touch  navbar-offcanvas-fade"
+     role="navigation"
+     id="side-menu">
+    <aside>
+        <div class="side-menu-header ">
+            <a id="toggle" class="hidden-xs">
+                <img src="img/fullyequipped.png">
+                <span>Hi,xxxx!</span>
+            </a>
+            <a class="hidden-sm hidden-md hidden-lg">
+                <img src="img/fullyequipped.png">
+                <span>Hi,xxxx!</span>
+            </a>
+        </div>
+
+        <div class="side-menu-body">
+            <ul class="level-one" id="aaa">
+                <li class="header sidebar-dashboard-header">
+                    Dashboard
+                </li>
+
+                <li ng-repeat="item in menus">
+                    <a href="{{item.href}}">
+                        <span ng-bind="item.title"></span>
+                        <div class="pull-right" ng-if="item.levelTwo">
+                            <i class="glyphicon right"></i>
+                        </div>
+                    </a>
+                    <ul class="level-two">
+                        <li ng-repeat="item2 in item.levelTwo">
+                            <a href="{{item2.href}}">
+                                <span ng-bind="item2.title"></span>
+                                <span class="span-right-two"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </aside>
+
+</nav>
+<!--侧边栏区域结尾-->
+
+<!--侧边栏页面的主体内容区域-->
+<div class=" side-menu-content">
+    <di class="row">
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme2" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+                <div class="box-body collapse in" id="isme2">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme4" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme4">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme3" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme3">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme5" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme5">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            <div class="my-box">
+                <div class="box-header">
+                    <div class="box-corner ">
+                        <button class="btn" data-toggle="collapse" data-target="#isme6" aria-controls="isme"
+                                aria-expanded="true">
+                            <i class="glyphicon"></i>
+                        </button>
+                    </div>
+                    <h4 class="box-header-title">Reset Password</h4>
+                </div>
+
+                <div class="box-body collapse in" id="isme6">
+                    <p>404A Admiralty Link, Singapore 751404</p>
+                    <p>
+                        404A Admiralty Link
+                        <br/>
+                        Proceed to Deck 5B, Lot 370 - 390.
+                        <br/>Alternative car park lots if full: 370 - 390
+
+                    </p>
+                </div>
+
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-info" value="Reset password"/>
+                </div>
+
+            </div>
+        </div>
+    </di>
+
+</div>
+<!--侧边栏页面的主体内容区域结尾-->
+
+
+<!--侧边栏页面脚部-->
+<footer class="main-footer-side-menu footer-style">
+    <div class="container">
+        <!--底部链接-->
+        <div class="row">
+            <div class="col-md-8 col-xs-12 ">
+                <div class="weight">
+                    <h4>Quick Links</h4>
+                    <div class="weight-list">
+                        <a href="#">Home</a>
+                        <a href="#">Help</a>
+                        <a href="#">Terms &Conditions</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!--底部链接结尾-->
+
+    </div>
+</footer>
+<!--侧边栏页面脚部结尾-->
+
+<script src="../angular-1.5.8/angular.min.js"></script>
+<script>
+    $(function () {
+        $(window).resize(function () {
+            $('.side-menu-wrap').height($('body').height() - 50);
+        });
+        $('.side-menu-wrap').height($('body').height() - 50);
+
+        $('#toggle').bind("click", function (e) {
+            $('.side-menu-wrap').toggleClass('mini')
+            $('.side-menu-content').toggleClass('mini')
+            $('.main-footer-side-menu').toggleClass('mini')
+        });
+
+        $('#aaa').accordion({
+            heightStyle: "content"
+        });
+
+
+    });
+
+    angular.module('app', [])
+            .controller('sideMenuCtr', function ($scope, $http) {
+                $scope.menus = [
+                    {
+                        title: 'Account',
+                        levelTwo: [{title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}],
+                        href:''
+                    },
+                    {
+                        title: 'Bookings',
+                        levelTwo: [{title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}],
+                        href:''
+                    },
+                    {
+                        title: 'Make a Booking',
+                        levelTwo: [{title: '余额', href: ''}, {title: '余额', href: ''}],
+                        href:''
+                    },
+                    {
+                        title: 'Refer a Friend',
+                        levelTwo: [{title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}],
+                        href:''
+                    },
+                    {
+                        title: 'Help',
+                        levelTwo: [{title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}, {title: '余额', href: ''}],
+                        href:''
+                    },
+                    {title: 'Log Out'}
+                ];
+
+
+            });
+
+</script>
+
+</body>
+</html>

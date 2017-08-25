@@ -1,0 +1,30 @@
+.login-bgi {
+  background-image: url("../img/homepage-banner.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.login-form-content {
+  min-height: 390px;
+  border: 1px solid grey;
+  margin: 100px -10px;
+  padding: 20px 10px 0px 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.login-form-content .login-form-title {
+  text-align: center;
+  font-size: 2.4em;
+  margin-bottom: 35px;
+}
+.login-form-content div {
+  margin-top: 10px;
+}
+.login-form-content div a {
+  color: red;
+  line-height: 1.8em;
+  text-decoration: none;
+}
+.login-form-content div a:hover {
+  color: orange;
+}

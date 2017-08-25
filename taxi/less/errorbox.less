@@ -1,0 +1,45 @@
+@import "variable";
+
+
+.warning-box {
+  background-color: @warning-box-bgc;
+  padding: 10px;
+  .my-box-shadow();
+  h4 {
+    color: @warning-box-color;
+    margin: 10px 15px;
+    line-height: 2.2em;
+  }
+  p, ul > li {
+    color: @warning-box-color;
+    line-height: 1.8em;
+  }
+  p{
+    margin-left: 15px;
+  }
+
+  ul {
+    margin: 10px 15px;
+  }
+  ul > li {
+    margin-left: 50px;
+    list-style: decimal-leading-zero;
+  }
+}
+
+@media (max-width: @xs-width) {
+
+  .warning-box{
+    h4{
+      margin-left: 0px;
+      padding-left: 0;
+    }
+    p{
+      margin-left: 0px;
+      padding-left: 0;
+    }
+    ul > li {
+      margin-left: 15px;
+    }
+  }
+}
