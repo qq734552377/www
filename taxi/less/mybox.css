@@ -1,0 +1,148 @@
+.my-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 5px 15px;
+  /*margin-top:10px ;*/
+  border-radius: 3px 3px 0px 0px;
+  -webkit-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+}
+.search-bgc {
+  background-color: rgba(88, 88, 88, 0.9);
+}
+.my-box-top-border {
+  border-top: 3px solid coral;
+}
+.my-box .box-header {
+  margin: 0 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.my-box .box-header > a {
+  text-decoration: none;
+  color: darkorange;
+}
+.my-box .box-header > a:hover {
+  color: orange;
+}
+.my-box .box-header .box-corner {
+  float: right;
+}
+.my-box .box-header .box-corner button {
+  background-color: transparent;
+}
+.my-box .box-header .box-corner .collapsed i:before {
+  content: "\002b";
+}
+.my-box .box-header .box-corner i:before {
+  content: "\2212";
+}
+.my-box-boundary {
+  border-top: 1px solid #efefef;
+}
+.my-box .box-body {
+  padding: 15px 0px;
+}
+.left-right-padding-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.my-box .box-body .box-body-thumb-wrap {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+.pic-center-wrap {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+.my-box .box-body .box-body-thumb-wrap .box-body-thumb {
+  max-height: 240px;
+  min-height: 88px;
+  max-width: 100%;
+}
+.my-box .box-body .bottom-border {
+  line-height: 1.8em;
+}
+.my-box .box-body .row div a {
+  text-decoration: none;
+  color: darkorange;
+}
+.my-box .box-body .row div a:hover {
+  color: orange;
+}
+.my-box .box-body .payPrice .countPrice .top {
+  margin-top: 20px;
+}
+.my-box .box-body .payPrice .countPrice .top table tbody > tr {
+  margin: 5px 0;
+}
+.my-box .box-body .payPrice .countPrice .top table tbody > tr > td {
+  font-size: 18px;
+}
+.my-box .box-body .payPrice .countPrice .totalPrice table tbody > tr {
+  margin: 5px 0;
+}
+.my-box .box-body .payPrice .countPrice .totalPrice table tbody > tr > td {
+  font-size: 18px;
+}
+.my-box .box-body .myAccount {
+  padding: 10px;
+}
+.my-box .box-body .myAccount .wrap {
+  border: 2px solid red;
+  border-radius: 8px 8px 1px 1px;
+  padding: 0 15px;
+}
+.my-box .box-body .myAccount .wrap .my-account-header {
+  margin: 0 -15px;
+  padding-left: 15px;
+  background-color: red;
+  color: #efefef;
+}
+.my-box .box-body .myAccount .wrap .my-account-header b {
+  font-size: 18px;
+  line-height: 45px;
+}
+.my-box .box-body .myAccount .wrap .my-account-header b a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #cfcfcf;
+}
+.my-box .box-body .myAccount .wrap .my-account-header b a:hover {
+  color: #efefef;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody {
+  padding: 20px;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr td {
+  font-size: 18px;
+  line-height: 36px;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr.balance {
+  border-top: 1px solid red;
+  color: red;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney {
+  color: darkorange;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td {
+  font-size: 14px;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td a {
+  text-decoration: none;
+  color: #efefef;
+}
+.my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td a:hover {
+  color: #afafaf;
+}
+.my-box .box-footer {
+  padding: 15px 0;
+}
+.table-no-border tbody > tr {
+  margin: 5px 0;
+}
+.table-no-border tbody > tr > td {
+  border: none;
+}

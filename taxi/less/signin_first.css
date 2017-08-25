@@ -1,0 +1,41 @@
+.signin-first-bg {
+  background-color: #efefef;
+}
+.signin-first {
+  padding-top: 0px;
+  padding-bottom: 80px;
+}
+.signin-first .sign-in-background {
+  margin: 100px -10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px 10px;
+  border-top: 3px solid coral;
+  border-radius: 5px;
+}
+.signin-first .signin-first-form {
+  padding: 20px 30px;
+}
+.signin-first .signin-first-form .row .form-group .tishi-msg {
+  padding-top: 7px;
+  text-align: left;
+}
+.sucess-span {
+  color: #55dd55;
+}
+.sucess-span:before {
+  content: "\e013";
+}
+.error-sapn {
+  color: #dd5555;
+}
+.error-sapn:before {
+  content: "\e014";
+}
+@media (max-width: 768px) {
+  .signin-first {
+    padding-bottom: 0px;
+  }
+  .signin-first .sign-in-background {
+    margin-top: 25px;
+  }
+}

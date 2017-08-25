@@ -1,0 +1,149 @@
+.nopadding {
+  padding: 0;
+}
+.hidden-overflow-x {
+  overflow-x: hidden;
+}
+.bottom-border {
+  border-bottom: 2px solid coral;
+}
+.top-border {
+  border-top: 2px solid coral;
+}
+.noborder {
+  border-radius: 0;
+}
+.hidden-show-transation {
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.no-margin {
+  margin-top: -20px;
+}
+.padding-top-25 {
+  padding-top: 25px;
+}
+.padding-top-20 {
+  padding-top: 20px;
+}
+.padding-bottom-25 {
+  padding-bottom: 25px;
+}
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+.padding-left-25 {
+  padding-left: 25px;
+}
+.padding-left-20 {
+  padding-left: 20px;
+}
+.padding-right-25 {
+  padding-right: 25px;
+}
+.padding-right-20 {
+  padding-right: 20px;
+}
+.margin-top-25 {
+  margin-top: 25px;
+}
+.margin-top-20 {
+  margin-top: 20px;
+}
+.margin-bottom-25 {
+  margin-bottom: 25px;
+}
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.margin-left-25 {
+  margin-left: 25px;
+}
+.margin-left-20 {
+  margin-left: 20px;
+}
+.margin-right-25 {
+  margin-right: 25px;
+}
+.margin-right-20 {
+  margin-right: 20px;
+}
+.maincontent-bgc {
+  background-color: #efefef;
+}
+.good-padding-bottom-l {
+  padding-bottom: 360px;
+}
+.good-padding-bottom-m {
+  padding-bottom: 240px;
+}
+.good-padding-bottom-s {
+  padding-bottom: 120px;
+}
+.good-margin-top-l {
+  margin-top: 240px;
+}
+.good-margin-top-m {
+  margin-top: 160px;
+}
+.good-margin-top-s {
+  margin-top: 100px;
+}
+.good-padding-top-l {
+  padding-top: 360px;
+}
+.good-padding-top-m {
+  padding-top: 240px;
+}
+.good-padding-top-s {
+  padding-top: 120px;
+}
+.good-margin-bottom-l {
+  margin-bottom: 240px;
+}
+.good-margin-bottom-m {
+  margin-bottom: 160px;
+}
+.good-margin-bottom-s {
+  margin-bottom: 100px;
+}
+@media (max-width: 768px) {
+  .good-padding-bottom-l {
+    padding-bottom: 60px;
+  }
+  .good-padding-bottom-m {
+    padding-bottom: 50px;
+  }
+  .good-padding-bottom-s {
+    padding-bottom: 40px;
+  }
+  .good-margin-top-l {
+    margin-top: 40px;
+  }
+  .good-margin-top-m {
+    margin-top: 30px;
+  }
+  .good-margin-top-s {
+    margin-top: 25px;
+  }
+  .good-padding-top-l {
+    padding-top: 60px;
+  }
+  .good-padding-top-m {
+    padding-top: 50px;
+  }
+  .good-padding-top-s {
+    padding-top: 40px;
+  }
+  .good-margin-bottom-l {
+    margin-bottom: 40px;
+  }
+  .good-margin-bottom-m {
+    margin-bottom: 30px;
+  }
+  .good-margin-bottom-s {
+    margin-bottom: 25px;
+  }
+}

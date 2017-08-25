@@ -1,0 +1,165 @@
+table.responsive {
+  width: 98%;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+table.responsive th,
+table.responsive td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: .5em 1em;
+  margin: 0;
+}
+table.responsive th {
+  background-color: #22c79a;
+  text-align: center;
+}
+table.responsive .actions {
+  text-align: center;
+}
+table.responsive .actions a {
+  text-decoration: none;
+  padding: 0 4px;
+  color: #ff5c00;
+}
+.mytable .show-counts {
+  margin: 20px 0;
+  padding-top: 8px;
+  text-align: left;
+}
+.mytable .page-table {
+  text-align: right;
+}
+@media (max-width: 992px) {
+  table.responsive {
+    border: none;
+    box-shadow: none;
+  }
+  table.responsive thead {
+    display: none;
+  }
+  table.responsive tr {
+    margin-bottom: 1em;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  table.responsive tr,
+  table.responsive td {
+    display: block;
+    border: none;
+    position: relative;
+  }
+  table.responsive .ref {
+    background-color: #22c79a;
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .ref:before {
+    content: "Booking Ref";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .date {
+    background-color: #22c79a;
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .date:before {
+    content: "Date";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .car {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .car:before {
+    content: "Car";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .type {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .type:before {
+    content: "Type";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .enteredBy {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .enteredBy:before {
+    content: "Enter By";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .pickup {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .pickup:before {
+    content: "Pickup";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .return {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .return:before {
+    content: "Return";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .amount {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .amount:before {
+    content: "Amount($)";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .status {
+    text-align: left;
+    padding-left: 28%;
+  }
+  table.responsive .status:before {
+    content: "Status";
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    font-weight: bold;
+  }
+  table.responsive .actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .mytable .show-counts {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .mytable .page-table {
+    text-align: center;
+  }
+}

@@ -1,0 +1,314 @@
+.navbar .container .side-menu-wrap {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 230px;
+  min-height: 100%;
+  background-color: #353535;
+  border: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+.navbar .container .side-menu-wrap.mini {
+  width: 50px;
+}
+.navbar .container .side-menu-wrap.mini aside {
+  overflow: hidden;
+}
+.navbar .container .side-menu-wrap.mini aside:hover {
+  overflow: visible;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-header a img {
+  left: 5px;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-header a span {
+  display: none;
+  margin-left: 0;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 15px;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li:hover a span.span-title {
+  opacity: 1;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li a span.span-title {
+  opacity: 0;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li ul.level-two {
+  display: none;
+}
+.navbar .container .side-menu-wrap.mini aside .side-menu-body ul li.header {
+  display: none;
+}
+.navbar .container .side-menu-wrap aside .side-menu-header {
+  margin: 10px 0;
+  height: 50px;
+}
+.navbar .container .side-menu-wrap aside .side-menu-header a {
+  height: 50px;
+  display: block;
+  position: relative;
+  color: #afafaf;
+}
+.navbar .container .side-menu-wrap aside .side-menu-header a img {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 5px;
+  left: 10px;
+}
+.navbar .container .side-menu-wrap aside .side-menu-header a span {
+  position: absolute;
+  left: 85px;
+  top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.navbar .container .side-menu-wrap aside .side-menu-body {
+  margin: 10px 0;
+}
+.navbar .container .side-menu-wrap aside .side-menu-body ul.level-one li.header {
+  color: #afafaf;
+}
+.navbar .container .side-menu-wrap aside .side-menu-body ul.level-one li.header:hover {
+  background-color: #353535;
+  border: 0;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li {
+  width: 230px;
+  margin: 5px 0;
+  padding: 0px 0 0px 10px;
+  line-height: 3.6em;
+  position: relative;
+  text-align: left;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li:hover {
+  background-color: #535353;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li:hover a {
+  color: #efefef;
+  cursor: pointer;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li:hover a .span-right {
+  border-color: #535353;
+  display: block;
+  border-right-color: #efefef;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li a.ui-accordion-header-active i.right:before {
+  content: '\e260';
+  /*'\f077'*/
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li a {
+  text-decoration: none;
+  color: #afafaf;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li a span {
+  margin-left: 35px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li a i.right:before {
+  content: '\e259';
+  /*'\f078'*/
+  margin-right: 10px;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li a .span-right {
+  display: none;
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  border: 10px solid #353535;
+  top: 15px;
+  right: 10px;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li {
+  margin-left: -10px;
+  width: 230px;
+  padding: 0px 0 0px 30px;
+  line-height: 2.8em;
+  position: relative;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li:hover {
+  background-color: #353535;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li:hover a {
+  color: #ffffff;
+  cursor: pointer;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li:hover .span-right-two {
+  border-color: #353535;
+  display: block;
+  border-right-color: #ffffff;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li a {
+  text-decoration: none;
+  color: #afafaf;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li a span {
+  margin-left: 35px;
+  font-size: 12px;
+  font-weight: 200;
+}
+.navbar .container .side-menu-wrap aside ul.level-one > li ul.level-two > li a .span-right-two {
+  display: none;
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  border: 8px solid #535353;
+  top: 12px;
+  right: 10px;
+}
+li {
+  list-style: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.side-menu-content {
+  margin-left: 230px;
+  background-color: #efefef;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+}
+.side-menu-content.mini {
+  margin-left: 50px;
+}
+.side-menu-content .header ol {
+  list-style: none;
+}
+.side-menu-content .header ol li a {
+  color: darkorange;
+  text-decoration: none;
+}
+.side-menu-content .header ol li a:hover {
+  color: orange;
+}
+@media (max-width: 767px) {
+  .side-menu-content {
+    margin-left: 0;
+  }
+  .side-menu-content.mini {
+    margin-left: 0;
+  }
+  .offcanvas-stop-scrolling .side-menu-content {
+    -webkit-transform: translate(230px, 0);
+    -moz-transform: translate(230px, 0);
+    -ms-transform: translate(230px, 0);
+    -o-transform: translate(230px, 0);
+    transform: translate(230px, 0);
+  }
+  .navbar .container .side-menu-wrap.mini {
+    width: 230px;
+  }
+  .navbar .container .side-menu-wrap.mini aside {
+    overflow: hidden;
+  }
+  .navbar .container .side-menu-wrap.mini aside:hover {
+    overflow: visible;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-header a img {
+    left: 10px;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-header a span {
+    display: block;
+    margin-left: 0;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li a span.span-title {
+    opacity: 1;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li ul.level-two {
+    display: block;
+  }
+  .navbar .container .side-menu-wrap.mini aside .side-menu-body ul li.header {
+    display: block;
+  }
+}
+.main-footer-side-menu {
+  margin-left: 230px;
+  border-top: 2px solid coral;
+  padding: 25px;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  overflow: hidden;
+}
+.main-footer-side-menu.mini {
+  margin-left: 50px;
+}
+@media (max-width: 767px) {
+  .main-footer-side-menu {
+    margin-left: 0;
+    padding: 10px;
+  }
+  .main-footer-side-menu.mini {
+    margin-left: 0;
+    padding: 10px;
+  }
+  .offcanvas-stop-scrolling .main-footer-side-menu {
+    -webkit-transform: translate(230px, 0);
+    -moz-transform: translate(230px, 0);
+    -ms-transform: translate(230px, 0);
+    -o-transform: translate(230px, 0);
+    transform: translate(230px, 0);
+  }
+}
+@media (min-width: 1240px) {
+  .padding-box {
+    height: 300px;
+  }
+}
+@media (min-width: 1480px) {
+  .padding-box {
+    height: 120px;
+  }
+  /*    .main-footer-side-menu {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+      }*/
+}
+.footer-style {
+  background-color: #353535;
+}
+.main-footer-side-menu .row .weight h4 {
+  color: #efefef;
+}
+.main-footer-side-menu .row .weight .weight-list a {
+  text-decoration: none;
+  margin: 5px;
+  color: #afafaf;
+  line-height: 1.8em;
+}
+.main-footer-side-menu .row .weight .weight-list a:hover {
+  color: #efefef;
+}
