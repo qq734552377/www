@@ -109,6 +109,11 @@
 .good-margin-bottom-s {
   margin-bottom: 100px;
 }
+.good-quadrate {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
 @media (max-width: 768px) {
   .good-padding-bottom-l {
     padding-bottom: 60px;
@@ -145,5 +150,9 @@
   }
   .good-margin-bottom-s {
     margin-bottom: 25px;
+  }
+  .good-quadrate {
+    width: 13px;
+    height: 13px;
   }
 }

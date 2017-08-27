@@ -13,14 +13,14 @@
     }
 
     .navbar-offcanvas {
-        position: fixed;
+        position: absolute;
         width: 230px;
         height: 100%;
-        left: -230px;
-        top: 0;
+        left:0px;
+        top: 50px;
         padding-left: 0px;
         padding-right: 0px;
-        z-index: 999;
+        z-index: 1000;
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -33,7 +33,7 @@
     }
 
     .navbar-offcanvas.navbar-offcanvas-fade {
-        opacity: 1;
+
         -webkit-transform: translateX(-230px);
         -moz-transform:translateX(-230px);
         -ms-transform:translateX(-230px);
@@ -42,7 +42,7 @@
     }
 
     .navbar-offcanvas.navbar-offcanvas-fade.in {
-        opacity: 1;
+
     }
 
     .navbar-offcanvas.offcanvas-transform.in {
@@ -66,15 +66,15 @@
 
     .navbar-offcanvas.navbar-offcanvas-right {
         left: auto;
-        right: -250px;
+        right: -230px;
     }
 
     .navbar-offcanvas.navbar-offcanvas-right.offcanvas-transform.in {
-        -webkit-transform: translateX(-250px);
-        -moz-transform:translateX(-250px);
-        -ms-transform:translateX(-250px);
-        -o-transform: translateX(-250px);
-        transform: translateX(-250px);
+        -webkit-transform: translateX(-230px);
+        -moz-transform:translateX(-230px);
+        -ms-transform:translateX(-230px);
+        -o-transform: translateX(-230px);
+        transform: translateX(-230px);
     }
 
     .navbar-offcanvas.navbar-offcanvas-right.offcanvas-position.in {

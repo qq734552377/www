@@ -140,9 +140,9 @@
 .my-box .box-footer {
   padding: 15px 0;
 }
-.table-no-border tbody > tr {
+table.table-no-border tbody > tr {
   margin: 5px 0;
 }
-.table-no-border tbody > tr > td {
+table.table-no-border tbody > tr > td {
   border: none;
 }

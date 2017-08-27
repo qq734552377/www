@@ -1,22 +1,28 @@
 @import "variable";
 .timeTable {
   background-color: @time-table-bgc;
-  height: 120px;
+
   padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 20px;
 
-  div > table {
+  table.table-time {
     margin: 0 auto;
     border: 1px solid @time-table-border-color;
     //box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
     border-collapse: collapse;
-    thead > tr > th {
+    thead  tr  th {
       text-align: center;
       margin: 0;
+      padding: 0;
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
     }
-    tbody > tr > td {
-      border: 3px solid @time-table-td-border-color;
+    tbody  tr  td {
+      font-size: 14px;
+      border: 5px solid @time-table-border-color;
       padding: 0;
       width: 25px;
       height: 25px;
@@ -25,14 +31,22 @@
   }
 }
 
+
+
+
 @media (max-width: 767px) {
   .timeTable {
-    div > table {
-      thead > tr > th {
-        font-size: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    table.table-time {
+      thead  tr  th {
+        font-size: 8px;
+        width: 13px;
+        height: 13px;
       }
-      tbody > tr > td {
-        border: 1px solid @time-table-td-border-color;
+      tbody  tr  td {
+        font-size: 6px;
+        border: 1px solid @time-table-border-color;
         width: 13px;
         height: 13px;
         //padding: .3em .3em;

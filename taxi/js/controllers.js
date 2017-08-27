@@ -2,11 +2,42 @@
  * Created by pj on 2017/8/16.
  */
 var appControllers = angular.module('appControllers', []);
-appControllers.factory('isSide', function () {
-    return {
-        isSidemenu: false
-    }
+appControllers.factory('allUrl',function () {
+        return {
+            searchUrl: 'http://192.168.0.103:12907/api/VehicleShareQuery',
+            getLocationsUrl: 'http://192.168.0.103:12907/Select/QueryParkingSpace',
+            loginUrl:"http://192.168.0.113:12907/api/Login",
+            isAutUserUrl:'http://192.168.0.113:12907/api/GetUserInfo'
+        }
+    })
+    .factory('appContext',function (allUrl) {
+        var appMsg= {
+            allCarsMsg: [],
+            bookingDetailMsgs: [],
+            userMsg: {},
+            isSidemenu: false,
+            searchMsg:{
+                startDate: '',
+                startTime: '',
+                endDate: '',
+                endTime: '',
+                location: '',
+                category: '1',
+                rentFor: '1',
+                searchUrl: allUrl.searchUrl,
+                getLocationsUrl: allUrl.getLocationsUrl,
+                locations:[]
+            }
+        };
+
+
+        return {
+            getAll:function () {
+                return appMsg;
+            }
+        };
 })
+
     .factory('path', function ($location) {
         function isSideMenuge() {
             var path = $location.path();
@@ -19,7 +50,7 @@ appControllers.factory('isSide', function () {
             }
 
             return {
-                path: path,
+                path:  $location.path(),
                 isSidemenu: isSidemenu
             }
         }
@@ -28,10 +59,10 @@ appControllers.factory('isSide', function () {
             getResult: isSideMenuge
         };
     })
-    .factory('JIANCE', function ($http, path) {
+    .factory('JIANCE', function ($http, path,allUrl) {
 
         function doFirst() {
-            var url = 'http://192.168.0.113:12907/api/GetUserInfo';
+            var url = allUrl.isAutUserUrl;
             var yanzhengUrl = '#/login'
             var isRemeberMe = localStorage.getItem('isRemeberMe');
             var token = '';
@@ -75,30 +106,17 @@ appControllers.factory('isSide', function () {
 
         return {init: doFirst};
     })
-    .factory('searchMsg',function () {
-        return {
-            startDate: '',
-            startTime: '',
-            endDate: '',
-            endTime: '',
-            location: '',
-            category: '1',
-            rentFor: '1',
-            searchUrl: 'http://192.168.0.103:12907/api/VehicleShareQuery',
-            getLocations: 'http://192.168.0.103:12907/Select/QueryParkingSpace',
-            locations:[]
-        };
-    })
-    .factory('initLocations',function ($http,searchMsg) {
+
+    .factory('initLocations',function ($http,appContext) {
         function initLocations() {
             $http({
                 method: "POST",
-                url: searchMsg.getLocations,
+                url: appContext.getAll().searchMsg.getLocationsUrl,
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data) {
                 console.log(data);
                 if (data.MsgType == 'Success') {
-                    searchMsg.locations = data.Data;
+                    appContext.getAll().searchMsg.locations = data.Data;
                 } else {
 
                 }
@@ -110,6 +128,33 @@ appControllers.factory('isSide', function () {
         return   {
             initLocations:initLocations
         }
+    })
+    .factory('allCarsMsg',function () {
+        var allCars=[];
+
+        return {
+            all:function () {
+                return allCars;
+            },
+            getCarById:function (id) {
+                for (var i = 0; i < allCars.length; i++) {
+                    if (allCars[i].id == id) {
+                        return allCars[i];
+                    }
+                }
+                return null;
+            },
+            setAllCars:function (data) {
+                allCars=[];
+                allCars=data;
+            }
+        };
+    })
+    .factory('walletMsgs',function ($http) {
+
+    })
+    .factory('bookingDetailMsgs',function ($http) {
+
     });
 
 
@@ -127,7 +172,7 @@ appControllers.directive('myheader', function () {
     });
 
 
-appControllers.controller('appCtr', function ($scope, JIANCE, path, isSide,initLocations) {
+appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext,initLocations) {
     initLocations.initLocations();
 
     $scope.isLogin = {
@@ -141,18 +186,17 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, isSide,initL
     //绑定数据并检测当前是否为已登录状态
     $scope.isLogin = JIANCE.init();
     //初始化isSide
-    isSide.isSidemenu = path.getResult().isSidemenu;
-    $scope.isSidemenu = isSide;
+    appContext.getAll().isSidemenu = path.getResult().isSidemenu;
+    $scope.isSidemenu = appContext.getAll();
 });
 
-appControllers.controller('loginCtr', function ($scope, $http, path, isSide) {
-    // isSide.isSidemenu=path.getResult().isSidemenu;
+appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
     $scope.isRemeberMe = true;
     $scope.errorState = false;
     $scope.errorMsg = 'Incorrect account name or password!';
 
     $scope.loginMsg = {
-        url: "http://192.168.0.113:12907/api/Login",
+        url: allUrl.loginUrl,
         email: '',
         password: '',
         loginSucessUrl: '#/search'
@@ -196,14 +240,14 @@ appControllers.controller('loginCtr', function ($scope, $http, path, isSide) {
     }
 });
 
-appControllers.controller('searchCtr', function ($scope, $http, searchMsg) {
-    console.log(searchMsg);
+appControllers.controller('searchCtr', function ($scope, $http, appContext,allCarsMsg) {
+    console.log(appContext.getAll().searchMsg);
 
-    $scope.searchMsg = searchMsg;
+    $scope.searchMsg = appContext.getAll().searchMsg;
 
     $scope.isWaitting = true;
     $scope.isNoCar = false;
-    $scope.allCarsMsg = {};
+    $scope.allCarsMsg = allCarsMsg.all();
 
 
     if ($scope.searchMsg.startTime==''||compareTimeWithCurrentTime($scope.searchMsg.startDate+" "+$scope.searchMsg.startTime)){
@@ -231,6 +275,8 @@ appControllers.controller('searchCtr', function ($scope, $http, searchMsg) {
 
     $scope.search = function () {
         console.log($scope.searchMsg);
+        $scope.isWaitting = true;
+        $scope.isNoCar = false;
 
         var startDateTime=$scope.searchMsg.startDate+" " +$scope.searchMsg.startTime;
         var endDateTime=$scope.searchMsg.endDate+" " +$scope.searchMsg.endTime;
@@ -245,10 +291,7 @@ appControllers.controller('searchCtr', function ($scope, $http, searchMsg) {
             $scope.isNoCar = true;
             return
         }
-
-
-        $scope.isWaitting = true;
-        $scope.isNoCar = false;
+        //请求所有的车辆信息
         $http({
             method: "POST",
             url: $scope.searchMsg.searchUrl,
@@ -265,7 +308,7 @@ appControllers.controller('searchCtr', function ($scope, $http, searchMsg) {
             $scope.isWaitting = false;
             if (data.MsgType == 'Success') {
                 $scope.isNoCar = false;
-
+                allCarsMsg.setAllCars(data.Data);
             } else {
                 $scope.isNoCar = true;
             }
@@ -278,15 +321,15 @@ appControllers.controller('searchCtr', function ($scope, $http, searchMsg) {
     }
 
 })
-    .controller('mainsearchCtr', function ($scope, $http,searchMsg) {
-        $scope.searchMsg = searchMsg;
+    .controller('mainsearchCtr', function ($scope, $http,appContext) {
+        $scope.searchMsg = appContext.getAll().searchMsg;
         if ($scope.searchMsg.startTime==''||compareTimeWithCurrentTime($scope.searchMsg.startDate+" "+$scope.searchMsg.startTime)){
             initsearchTime($scope);
         }
     });
 
 
-appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $location, path) {
+appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $location) {
     // JIANCE.init()
     if ($location.path() == '/sidemenu') {
         $state.go('sidemenu.account');//默认显示第一个tab
@@ -304,9 +347,11 @@ appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $loca
 })
     .controller('accountCtr', function ($scope) {
         $scope.$emit('curPath', '');
-    }).controller('editprofileCtr', function ($scope) {
-    $scope.$emit('curPath', 'Edit Profile');
-})
+    })
+    .controller('editprofileCtr', function ($scope) {
+        $scope.$emit('curPath', 'Edit Profile');
+
+    })
     .controller('walletCtr', function ($scope) {
         $scope.$emit('curPath', 'E-wallet History');
         $scope.sourceBookings = [
@@ -832,9 +877,9 @@ appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $loca
         $scope.$emit('curPath', 'Refer a Friend');
     });
 
-appControllers.controller('bookingCtr', function ($scope, $http) {
+appControllers.controller('bookingCtr', function ($scope, $http,$stateParams) {
     $scope.timeTable = {
-        times: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        times: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
         bgcolors: [{bgcClass: 'can-booking-bgc'},
             {bgcClass: 'can-booking-bgc'},
             {bgcClass: 'can-booking-bgc'},
@@ -861,6 +906,8 @@ appControllers.controller('bookingCtr', function ($scope, $http) {
             {bgcClass: 'can-booking-bgc'}
         ]
     };
+
+    console.log($stateParams.id)
 
 });
 

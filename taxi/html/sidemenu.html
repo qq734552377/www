@@ -27,7 +27,7 @@
 
 
     <!--侧边栏页面脚部-->
-    <footer class="main-footer-side-menu footer-style">
+    <footer class="main-footer-side-menu footer-style" >
         <div class="container">
             <!--底部链接-->
             <div class="row">
@@ -51,7 +51,7 @@
         </div>
     </footer>
     <!--侧边栏页面脚部结尾-->
-    <script src="js/bootstrap.offcanvas.js"></script>
+    <script src="components/offcancas/bootstrap.offcanvas.js"></script>
     <script>
         $(function () {
 //        $(window).resize(function() {
@@ -64,7 +64,37 @@
                 $('.side-menu-content').toggleClass('mini')
                 $('.main-footer-side-menu').toggleClass('mini')
             });
+            $('.navbar .side-menu-wrap .side-menu-body ul li a').each(function () {
+                $(this).on('click',function () {
+                    if (!$(this).hasClass('in')) {
+                        $('body').removeClass('offcanvas-stop-scrolling')
+                        $('.navbar-offcanvas').height('').removeClass('in');
+                        $('.offcanvas-toggle').removeClass('is-open');
+                    }
+                })
+            });
+
+            var xx,yy,XX,YY,swipeX,swipeY ;
+
+            $('body').on('touchstart',function(event){
+                xx = event.targetTouches[0].screenX ;
+                yy = event.targetTouches[0].screenY ;
+                swipeX = true;
+            });
+
+            $('body').on('touchmove',function(event){
+                XX = event.targetTouches[0].screenX ;
+                YY = event.targetTouches[0].screenY ;
+                if(swipeX && Math.abs(XX-xx)/Math.abs(YY-yy)>=0.5)  //左右滑动
+                {
+                    event.stopPropagation();//阻止冒泡
+                    event.preventDefault();//阻止浏览器默认事件
+                }
+            });
+
+//            $('body').on('touchend',function(event){
+//                event.stopPropagation();//阻止冒泡
+//                event.preventDefault();//阻止浏览器默认事件
+//            });
         });
-
-
     </script>

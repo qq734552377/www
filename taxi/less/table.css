@@ -51,7 +51,7 @@ table.responsive .actions a {
   table.responsive .ref {
     background-color: #22c79a;
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .ref:before {
     content: "Booking Ref";
@@ -63,7 +63,7 @@ table.responsive .actions a {
   table.responsive .date {
     background-color: #22c79a;
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .date:before {
     content: "Date";
@@ -74,7 +74,7 @@ table.responsive .actions a {
   }
   table.responsive .car {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .car:before {
     content: "Car";
@@ -85,7 +85,7 @@ table.responsive .actions a {
   }
   table.responsive .type {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .type:before {
     content: "Type";
@@ -96,7 +96,7 @@ table.responsive .actions a {
   }
   table.responsive .enteredBy {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .enteredBy:before {
     content: "Enter By";
@@ -107,7 +107,7 @@ table.responsive .actions a {
   }
   table.responsive .pickup {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .pickup:before {
     content: "Pickup";
@@ -118,7 +118,7 @@ table.responsive .actions a {
   }
   table.responsive .return {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .return:before {
     content: "Return";
@@ -129,7 +129,7 @@ table.responsive .actions a {
   }
   table.responsive .amount {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .amount:before {
     content: "Amount($)";
@@ -140,7 +140,7 @@ table.responsive .actions a {
   }
   table.responsive .status {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .status:before {
     content: "Status";

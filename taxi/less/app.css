@@ -3,7 +3,7 @@
   left: 0;
   top: 50px;
   width: 230px;
-  min-height: 100%;
+  height: 100%;
   background-color: #353535;
   border: 0;
   border-radius: 0;
@@ -182,6 +182,7 @@ a {
   text-decoration: none;
 }
 .side-menu-content {
+  overflow-x: hidden;
   margin-left: 230px;
   background-color: #efefef;
   -webkit-transition: all 0.15s ease-in;
@@ -202,8 +203,9 @@ a {
 .side-menu-content .header ol li a:hover {
   color: orange;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .side-menu-content {
+    z-index: 100;
     margin-left: 0;
   }
   .side-menu-content.mini {
@@ -252,6 +254,7 @@ a {
   }
 }
 .main-footer-side-menu {
+  overflow-x: hidden;
   margin-left: 230px;
   border-top: 2px solid coral;
   padding: 25px;
@@ -264,9 +267,10 @@ a {
 .main-footer-side-menu.mini {
   margin-left: 50px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .main-footer-side-menu {
     margin-left: 0;
+    z-index: 100;
     padding: 10px;
   }
   .main-footer-side-menu.mini {
@@ -522,41 +526,53 @@ a {
 .my-box .box-footer {
   padding: 15px 0;
 }
-.table-no-border tbody > tr {
+table.table-no-border tbody > tr {
   margin: 5px 0;
 }
-.table-no-border tbody > tr > td {
+table.table-no-border tbody > tr > td {
   border: none;
 }
 .timeTable {
   background-color: #efefef;
-  height: 120px;
   padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 20px;
 }
-.timeTable div > table {
+.timeTable table.table-time {
   margin: 0 auto;
   border: 1px solid #efefef;
   border-collapse: collapse;
 }
-.timeTable div > table thead > tr > th {
+.timeTable table.table-time thead tr th {
   text-align: center;
   margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
 }
-.timeTable div > table tbody > tr > td {
-  border: 3px solid #006666;
+.timeTable table.table-time tbody tr td {
+  font-size: 14px;
+  border: 5px solid #efefef;
   padding: 0;
   width: 25px;
   height: 25px;
   margin: 0;
 }
 @media (max-width: 767px) {
-  .timeTable div > table thead > tr > th {
-    font-size: 10px;
+  .timeTable {
+    padding-left: 2px;
+    padding-right: 2px;
   }
-  .timeTable div > table tbody > tr > td {
-    border: 1px solid #006666;
+  .timeTable table.table-time thead tr th {
+    font-size: 8px;
+    width: 13px;
+    height: 13px;
+  }
+  .timeTable table.table-time tbody tr td {
+    font-size: 6px;
+    border: 1px solid #efefef;
     width: 13px;
     height: 13px;
   }
@@ -765,7 +781,7 @@ table.responsive .actions a {
   table.responsive .ref {
     background-color: #22c79a;
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .ref:before {
     content: "Booking Ref";
@@ -777,7 +793,7 @@ table.responsive .actions a {
   table.responsive .date {
     background-color: #22c79a;
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .date:before {
     content: "Date";
@@ -788,7 +804,7 @@ table.responsive .actions a {
   }
   table.responsive .car {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .car:before {
     content: "Car";
@@ -799,7 +815,7 @@ table.responsive .actions a {
   }
   table.responsive .type {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .type:before {
     content: "Type";
@@ -810,7 +826,7 @@ table.responsive .actions a {
   }
   table.responsive .enteredBy {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .enteredBy:before {
     content: "Enter By";
@@ -821,7 +837,7 @@ table.responsive .actions a {
   }
   table.responsive .pickup {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .pickup:before {
     content: "Pickup";
@@ -832,7 +848,7 @@ table.responsive .actions a {
   }
   table.responsive .return {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .return:before {
     content: "Return";
@@ -843,7 +859,7 @@ table.responsive .actions a {
   }
   table.responsive .amount {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .amount:before {
     content: "Amount($)";
@@ -854,7 +870,7 @@ table.responsive .actions a {
   }
   table.responsive .status {
     text-align: left;
-    padding-left: 28%;
+    padding-left: 33%;
   }
   table.responsive .status:before {
     content: "Status";
@@ -988,6 +1004,11 @@ table.responsive .actions a {
 .good-margin-bottom-s {
   margin-bottom: 100px;
 }
+.good-quadrate {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
 @media (max-width: 768px) {
   .good-padding-bottom-l {
     padding-bottom: 60px;
@@ -1025,6 +1046,10 @@ table.responsive .actions a {
   .good-margin-bottom-s {
     margin-bottom: 25px;
   }
+  .good-quadrate {
+    width: 13px;
+    height: 13px;
+  }
 }
 .bg-info {
   background-color: #353535;
@@ -1032,11 +1057,6 @@ table.responsive .actions a {
 body {
   overflow-x: hidden;
   overflow-y: auto;
-  display: flex;
-  display: -webkit-flex;
-  /* Safari */
-  min-height: 100vh;
-  flex-direction: column;
 }
 li {
   list-style: none;

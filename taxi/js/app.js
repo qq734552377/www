@@ -27,14 +27,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl:'html/sidemenu.html',
         controller:'sidemenuCtr',
         //注入'isSide'服务
-        resolve: { myIsSide:'isSide' },
+        resolve: { myIsSide:'appContext' },
         // myIsSide 是解决依赖项注入控制器
         onEnter: function(myIsSide){
-            myIsSide.isSidemenu=true;
+            myIsSide.getAll().isSidemenu=true;
         },
         // myIsSide 是解决依赖项注入控制器
         onExit: function(myIsSide){
-            myIsSide.isSidemenu=false;
+            myIsSide.getAll().isSidemenu=false;
         }
     }).state("sidemenu.account",{
             url:"/account",
@@ -71,7 +71,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl:'html/signin_second.html',
         controller:'signin_secondCtr'
     }).state('booking',{
-        url:'/booking',
+        url:'/booking/:id',
         templateUrl:'html/booking.html',
         controller:'bookingCtr'
     }).state('lunbo',{
