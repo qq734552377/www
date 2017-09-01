@@ -40,19 +40,20 @@
                                 <td class="amount" ng-bind="item.amount"></td>
                                 <td class="status" ng-bind="item.status"></td>
                                 <td class="actions">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Dropdown
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#" >lock</a></li>
-                                            <li><a href="#" >unlock</a></li>
-                                            <li><a href="#" >return</a></li>
-                                            <li><a href="#" >postpone</a></li>
-                                        </ul>
-                                    </div>
+                                    <!--<div class="dropdown">-->
+                                        <!--<button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1"-->
+                                                <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                                            <!--Dropdown-->
+                                            <!--<span class="caret"></span>-->
+                                        <!--</button>-->
+                                        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                                            <!--<li><a href="#" >lock</a></li>-->
+                                            <!--<li><a href="#" >unlock</a></li>-->
+                                            <!--<li><a href="#" >return</a></li>-->
+                                            <!--<li><a href="#" >postpone</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                    <a href="#/bookingdetails/{{item.ref}}">Details</a>
                                 </td>
                             </tr>
                             </tbody>

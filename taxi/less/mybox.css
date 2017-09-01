@@ -18,7 +18,15 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.my-box .box-header .box-header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.my-box .box-header P {
+  font-size: 16px;
+}
 .my-box .box-header > a {
+  font-size: 16px;
   text-decoration: none;
   color: darkorange;
 }
@@ -43,10 +51,6 @@
 .my-box .box-body {
   padding: 15px 0px;
 }
-.left-right-padding-40 {
-  padding-left: 40px;
-  padding-right: 40px;
-}
 .my-box .box-body .box-body-thumb-wrap {
   vertical-align: middle;
   display: table-cell;
@@ -65,7 +69,15 @@
 .my-box .box-body .bottom-border {
   line-height: 1.8em;
 }
+.my-box .box-body .row div .box-header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.my-box .box-body .row div p {
+  font-size: 16px;
+}
 .my-box .box-body .row div a {
+  font-size: 16px;
   text-decoration: none;
   color: darkorange;
 }
@@ -85,20 +97,21 @@
   margin: 5px 0;
 }
 .my-box .box-body .payPrice .countPrice .totalPrice table tbody > tr > td {
+  border-top: 1px solid #e81e06;
   font-size: 18px;
 }
 .my-box .box-body .myAccount {
   padding: 10px;
 }
 .my-box .box-body .myAccount .wrap {
-  border: 2px solid red;
+  border: 2px solid #e81e06;
   border-radius: 8px 8px 1px 1px;
   padding: 0 15px;
 }
 .my-box .box-body .myAccount .wrap .my-account-header {
   margin: 0 -15px;
   padding-left: 15px;
-  background-color: red;
+  background-color: #e81e06;
   color: #efefef;
 }
 .my-box .box-body .myAccount .wrap .my-account-header b {
@@ -121,7 +134,7 @@
   line-height: 36px;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.balance {
-  border-top: 1px solid red;
+  border-top: 1px solid #e81e06;
   color: red;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney {
@@ -135,7 +148,7 @@
   color: #efefef;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td a:hover {
-  color: #afafaf;
+  color: #cccccc;
 }
 .my-box .box-footer {
   padding: 15px 0;
@@ -145,4 +158,11 @@ table.table-no-border tbody > tr {
 }
 table.table-no-border tbody > tr > td {
   border: none;
+}
+table.profile-ps tbody > tr > td {
+  font-size: 18px;
+  line-height: 36px;
+}
+.promoCode table tbody > tr > td {
+  font-size: 18px;
 }

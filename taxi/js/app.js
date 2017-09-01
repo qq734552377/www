@@ -1,7 +1,7 @@
 /**
  * Created by pj on 2017/8/16.
  */
-var myApp = angular.module("app", ["ui.router","appControllers"]);
+var myApp = angular.module("app", ["ui.router","allservice","appControllers"]);
 //这里叫做App模块，这将告诉HTML页面这是一个AngularJS作用的页面，并把ui-router注入AngularJS主模块，它的内容由AngularJS引擎来解释。
 myApp.config(function ($stateProvider, $urlRouterProvider) {
     //这一行声明了把 $stateProvider 和 $urlRouteProvider 路由引擎作为函数参数传入，这样我们就可以为这个应用程序配置路由了.
@@ -14,11 +14,22 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "html/login.html",//这里是html的路径，这是跟标识符相对应的html页面
             controller:'loginCtr'
         })
+        .state("forgetPassword",{
+            url:'/forgetPassword',
+            templateUrl:'html/forgetPassword.html',
+            controller:'forgetPasswordCtr'
+        })
         .state("signin_first",{
             url:'/signup_f',
             templateUrl:'html/signin_first.html',
             controller:'signinCtr'
-        }).state("search",{
+        })
+        .state('signin_second',{
+            url:'/signup_s',
+            templateUrl:'html/signin_second.html',
+            controller:'signin_secondCtr'
+        })
+        .state("search",{
         url:'/search',
         templateUrl:'html/search.html',
         controller:'searchCtr'
@@ -56,24 +67,29 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl:"html/sidemenu/topup.html",
             controller:'topupCtr'
         })
-        .state("sidemenu.bookingdetail",{
-            url:"/bookingdetail",
-            templateUrl:"html/sidemenu/bookingdetail.html",
-            controller:'bookingdetailCtr'
+        .state("sidemenu.mybookings",{
+            url:"/mybookings",
+            templateUrl:"html/sidemenu/mybookings.html",
+            controller:'mybookingsCtr'
         })
         .state("sidemenu.refer",{
             url:"/refer",
             templateUrl:"html/sidemenu/refer.html",
             controller:'referCtr'
         })
-    .state('signin_second',{
-        url:'/signup_s',
-        templateUrl:'html/signin_second.html',
-        controller:'signin_secondCtr'
-    }).state('booking',{
+
+    .state('booking',{
         url:'/booking/:id',
         templateUrl:'html/booking.html',
         controller:'bookingCtr'
+    }).state('bookingcomfirm',{
+        url:'/bookingcomfirm',
+        templateUrl:'html/bookingcomfirm.html',
+        controller:'bookingcomfirmCtr'
+    }) .state("bookingdetails",{
+        url:"/bookingdetails/:id",
+        templateUrl:"html/bookingdetails.html",
+        controller:'bookingdetailsCtr'
     }).state('lunbo',{
         url:'/lunbo',
         templateUrl:'html/lunbo.html',

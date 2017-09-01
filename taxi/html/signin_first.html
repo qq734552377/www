@@ -1,19 +1,91 @@
+
+
+
+
+
+
+
 <!--注册第一步-->
 <div class="signin-first signin-first-bg container-fluid">
+
+    <div class="step hidden-xs hidden-sm" style="margin-left: -15px;margin-right: -15px">
+        <div class="row" >
+            <div class="col-md-10 col-md-offset-2 ">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="media active">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/1_red.png" alt="1">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">First Step</h4>
+                                <p>Basic information</p>
+                            </div>
+                            <div class="media-right" style="">
+                                <a>
+                                    <img class="media-object" src="img/next_red.png" alt="next">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <div class="media ">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/2_grey.png" alt="2">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">Second Step</h4>
+                                <p>Perfect information</p>
+                            </div>
+                            <div class="media-right" style="">
+                                <a>
+                                    <img class="media-object" src="img/next_grey.png" alt="next">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="media ">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/3_grey.png" alt="3">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">Third Step</h4>
+                                <p>Pending audit</p>
+                            </div>
+                            <div class="media-right" style="padding-left: 10px">
+                                <div style="width: 64px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="col-md-6 col-md-offset-3 col-xs-12 ">
         <div class="sign-in-background">
 
-            <form action="" class=" signin-first-form form-horizontal row">
+            <form class=" signin-first-form form-horizontal row">
                 <div class="text-center margin-bottom-25"><h2>Sign Up Now</h2></div>
                 <!--Email-->
                 <div class="row">
                     <div class="form-group">
                         <label for="Email" class="col-md-3 control-label">Email</label>
                         <div class="col-md-6">
-                            <input type="email" class="form-control" id="Email"
+                            <input ng-model="signin_f.Email" type="email" class="form-control" id="Email"
                                    required="required" placeholder="As a login account">
                         </div>
-                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon sucess-span">&nbsp;用户已存在</span>
+                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.emailSpan}}">&nbsp;{{errorMsg.emailMsg}}</span>
                     </div>
                 </div>
                 <!--Email end-->
@@ -21,20 +93,20 @@
                     <div class="form-group">
                         <label for="Password" class="col-md-3 control-label">Password</label>
                         <div class="col-md-6">
-                            <input type="password" class="form-control" id="Password"
+                            <input ng-model="signin_f.Password" type="password" class="form-control" id="Password"
                                    required="required" placeholder="As a login password">
                         </div>
-                        <span class="tishi-msg col-md-3 col-xs-12"></span>
+                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordSpan}}">&nbsp;{{errorMsg.passwordMsg}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <label for="Password" class="col-md-3 control-label"></label>
+                        <label for="Password" class="col-md-3 control-label">Confirm password</label>
                         <div class="col-md-6">
-                            <input type="password" class="form-control" id="PasswordAgain"
+                            <input ng-model="signin_f.PasswordAgain" type="password" class="form-control" id="PasswordAgain"
                                    required="required" placeholder="Input login password again">
                         </div>
-                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon error-sapn">&nbsp;两次密码不一致</span>
+                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordAgainSpan}}">&nbsp;{{errorMsg.passwordAgainMsg}}</span>
                     </div>
                 </div>
                 <!--Name-->
@@ -42,7 +114,7 @@
                     <div class="form-group">
                         <label for="Name" class="col-md-3 control-label">Name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="Name" required="required"
+                            <input ng-model="signin_f.Name" type="text" class="form-control" id="Name" required="required"
                                    placeholder="Your Full Name">
                         </div>
                         <span class="tishi-msg col-md-3  col-xs-12"></span>
@@ -55,10 +127,10 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="NRIC">NRIC</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="NRIC"
+                            <input ng-model="signin_f.NRIC" type="text" class="form-control" id="NRIC"
                                    required="required" placeholder="Input your NRIC number">
                         </div>
-                        <span class="tishi-msg col-md-3  col-xs-12"></span>
+                        <span class="tishi-msg col-md-3  col-xs-12 glyphicon {{errorMsg.NRICSpan}}">&nbsp;{{errorMsg.NRICMsg}}</span>
                     </div>
                 </div>
                 <!--NRIC end-->
@@ -68,16 +140,16 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="Phone">Handphone</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="Phone"
+                            <input ng-model="signin_f.Phone" type="text" class="form-control" id="Phone"
                                    required="required" placeholder="Your mobile number">
                         </div>
-                        <span class="tishi-msg col-md-3 col-xs-12"></span>
+                        <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.PhoneSpan}}">&nbsp;{{errorMsg.PhoneMsg}}</span>
                     </div>
                 </div>
                 <!--Handphone end-->
                 <div class="row">
                     <div class="">
-                        <button type="submit" class="btn btn-info col-md-offset-3 col-md-3 col-xs-12" >Regist</button>
+                        <button type="submit" ng-click="signIn()"  class="btn btn-success col-md-offset-3 col-md-6 col-xs-12" style="font-weight: bold">Next</button>
                     </div>
                 </div>
 

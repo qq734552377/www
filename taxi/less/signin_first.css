@@ -2,11 +2,12 @@
   background-color: #efefef;
 }
 .signin-first {
+  overflow-x: hidden;
   padding-top: 0px;
   padding-bottom: 80px;
 }
 .signin-first .sign-in-background {
-  margin: 100px -10px;
+  margin: 25px -10px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 15px 10px;
   border-top: 3px solid coral;
@@ -19,19 +20,20 @@
   padding-top: 7px;
   text-align: left;
 }
-.sucess-span {
+.success-span {
   color: #55dd55;
 }
-.sucess-span:before {
+.success-span:before {
   content: "\e013";
 }
-.error-sapn {
+.error-span {
   color: #dd5555;
+  font-weight: bold;
 }
-.error-sapn:before {
+.error-span:before {
   content: "\e014";
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .signin-first {
     padding-bottom: 0px;
   }

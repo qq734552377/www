@@ -8,9 +8,11 @@
                 <div class="login-form-title">
                     Log In
                 </div>
-                <div class="error-tishi" ng-if="errorState" ng-bind="errorMsg" style="color: red;text-align: center">
 
+                <div ng-if="!errorState" class="zhanwei-tishi"></div>
+                <div class="error-tishi" ng-if="errorState" ng-bind="errorMsg">
                 </div>
+
 
                 <form id="loginForm">
                     <div class="form-group has-feedback">
@@ -42,15 +44,21 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                        <button ng-click="login()" class="btn btn-info btn-block" type="submit" id="login"
-                                value="Log In">Log In
+                        <button ng-click="login()" class="btn btn-success btn-block" type="submit" id="login"
+                                value="Log In" style="font-weight: bold">Log In
                         </button>
                     </div>
                 </form>
+
                 <div style="margin-top: 15px;">
-                    <a href="#">I forgot my password</a>
-                    <br>
-                    <a href="#/signup_f" class="text-center">Sign up an account, it's free!</a>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                            <a href="#/forgetPassword" class="">Forgot password&nbsp;?</a>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                            <a href="#/signup_f" class="" >Sign up now</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

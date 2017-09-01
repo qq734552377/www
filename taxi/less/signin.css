@@ -1,31 +1,30 @@
 .sign-in {
   background-color: #efefef;
-  padding: 20px 15px;
-  margin-top: -20px;
   background-image: url("../img/signup.jpg");
   background-position: 50% 25%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-x: hidden;
 }
 #sign-in-background {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 15px 10px;
   border-top: 3px solid coral;
   border-radius: 5px;
-  margin: 100px -10px;
+  margin: 25px 0px;
 }
-.sign-in .row .sign-in-body .sign-in-content .sign-in-modal a {
+.sign-in .sign-in-body .sign-in-content .sign-in-modal a {
   text-decoration: none;
   color: red;
   line-height: 1.8em;
 }
-.sign-in .row .sign-in-body .sign-in-content .sign-in-modal a:hover {
+.sign-in .sign-in-body .sign-in-content .sign-in-modal a:hover {
   cursor: pointer;
   color: darkred;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #sign-in-background {
     margin-top: 25px;
   }

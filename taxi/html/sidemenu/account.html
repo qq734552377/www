@@ -3,7 +3,6 @@
     <div class="margin-top-25 good-margin-bottom-l">
 
         <div class="row">
-
             <div class="col-md-6">
                 <!--Profile-->
                 <div class="my-box my-box-top-border margin-top-20 ">
@@ -17,7 +16,7 @@
                         <h4 class="box-header-title"><i class="glyphicon glyphicon-user"></i>&nbsp;Profile</h4>
                     </div>
                     <div class="box-body collapse in my-box-boundary" id="isme">
-                        <table class="table table-no-border">
+                        <table class="table table-no-border profile-ps">
                             <tbody>
                             <tr>
                                 <td class="left">
@@ -35,11 +34,47 @@
                                     S1510658A
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Handphone</strong>
+                                </td>
+                                <td class="right">
+                                    85612354
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Email</strong>
+                                </td>
+                                <td class="right">
+                                    jeffrey@ucast.com
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Your Balance</strong>
+                                </td>
+                                <td class="right">
+                                    $ 50.00
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
-
+                        <div class="row margin-top-25">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 style="font-size: 18px">Promotion:</h4>
+                                    <p style="font-size: 16px">
+                                        You will not be able to start any trip or make any bookings until you do a top up.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="my-box-boundary" style="padding: 15px 0">
                             <a class="btn btn-primary" role="button" href="#/sidemenu/editprofile">Edit Profile</a>
+                            <a class="btn btn-primary" role="button" href="#/sidemenu/topup">Top Up</a>
+                            <a class="btn btn-primary" role="button" href="#/sidemenu/wallet">View History</a>
                         </div>
                     </div>
 
@@ -47,7 +82,7 @@
                 </div>
                 <!--Profile end-->
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" hidden>
                 <!--wallet-->
                 <div class="my-box my-box-top-border margin-top-20 ">
                     <div class="box-header">
@@ -61,11 +96,11 @@
                     </div>
                     <div class="box-body collapse in my-box-boundary" id="isme2">
                         <div class="row">
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-md-6 col-xs-12">
                                 <p>Your Balance</p>
                                 <h2>$ 50.00</h2>
                             </div>
-                            <div class="col-md-8 col-xs-12">
+                            <div class="col-md-6 col-xs-12">
 
                             </div>
                         </div>
@@ -79,6 +114,133 @@
                 </div>
                 <!--wallet end-->
             </div>
+            <div class="col-md-6">
+                <div class="my-box my-box-top-border margin-top-20">
+                    <div class="box-header">
+                        <div class="box-corner">
+                            <button class="btn" data-toggle="collapse" data-target="#isme3" aria-controls="isme3"
+                                    aria-expanded="true">
+                                <i class="glyphicon"></i>
+                            </button>
+                        </div>
+                        <h4 class="box-header-title"><i class="glyphicon"></i>&nbsp;Current Booking</h4>
+                    </div>
+                    <div class="box-body  my-box-boundary collapse in" id="isme3">
+                        <div class="row">
+                            <h4 class="box-header-title text-center">Reservation No:123456</h4>
+                            <h4 class="box-header-title text-center">Vehical NO:SHC1234G</h4>
+                            <div class="col-sm-12 col-md-12 col-xs-12 box-body-thumb-wrap">
+                                <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
+                            </div>
+                            <div class="col-md-6 ">
+                                <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Pickup
+                                    Details</h5>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <p>
+                                            <i class="glyphicon glyphicon-map-marker"></i>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 col-xs-10">
+                                        <p>
+                                            354 Admiralty Dr, Singapore 750354
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <p>
+                                            <i class="glyphicon glyphicon-time"></i>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 col-xs-10">
+                                        <p>
+                                            2017-08-04 15:00
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Drop
+                                    off
+                                    Details</h5>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <p>
+                                            <i class="glyphicon glyphicon-map-marker"></i>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 col-xs-10">
+                                        <p>
+                                            354 Admiralty Dr, Singapore 750354
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <p>
+                                            <i class="glyphicon glyphicon-time"></i>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 col-sm-10 col-xs-10">
+                                        <p>
+                                            2017-08-14 15:00
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
+                                        <button class="btn btn-block btn-success disabled">
+                                            START TRIP
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
+                                        <button class="btn btn-block btn-warning disabled">
+                                            END TRIP
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
+                                        <div class=" btn-group btn-group-justified">
+                                            <div class=" btn-group ">
+                                                <button type="button" class="btn btn-primary btn-block dropdown-toggle"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    NEED HELP ? &nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Report issue</a></li>
+                                                    <li><a href="#">Break down</a></li>
+                                                    <li><a href="#">Accident</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
+                                        <button class="btn btn-block btn-danger">
+                                            CANCEL
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
         </div>
     </div>
 

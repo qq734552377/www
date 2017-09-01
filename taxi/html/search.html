@@ -1,4 +1,4 @@
-<div class="maincontent-bgc padding-bottom-25">
+<div class="maincontent-bgc padding-bottom-25 hidden-overflow-x">
     <!--标签盒子-->
     <div class="hidden-overflow-x ">
         <div class="my-box noborder nopadding search-bgc">
@@ -9,7 +9,7 @@
                         <i class="glyphicon" style="color: #efefef"></i>
                     </button>
                 </div>
-                <h4 class="box-header-title" style="color: #efefef">Search</h4>
+                <h4 class="box-header-title" style="color: #efefef;font-size: 24px">Search</h4>
             </div>
 
 
@@ -132,8 +132,7 @@
                                             <select ng-model="searchMsg.location" id="pickupLocation"
                                                     class="form-control only-padding-left">
                                                 <option value="">Pickup Location</option>
-                                                <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">{{item.Address}}
-                                                </option>
+                                                <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">{{item.Address}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -168,8 +167,75 @@
             </div>
         </div>
     </div>
-
     <!--标签盒子结尾-->
+
+
+    <div class="step hidden-xs hidden-sm" >
+        <div class="row" style="margin-left: 0px;margin-right: 0px">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="media active">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/1_red.png" alt="1">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">Searching</h4>
+                                <p>Get the right taxi for you</p>
+                            </div>
+                            <div class="media-right">
+                                <a>
+                                    <img class="media-object" src="img/next_red.png" alt="next">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <div class="media ">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/2_grey.png" alt="2">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">Booking Details</h4>
+                                <p> Taxi details and payment</p>
+                            </div>
+                            <div class="media-right">
+                                <a>
+                                    <img class="media-object" src="img/next_grey.png" alt="next">
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <div class="media">
+                            <div class="media-left">
+                                <a>
+                                    <img class="media-object" src="img/3_grey.png" alt="3">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="margin-top: 10px">Confirm & Reserved</h4>
+                                <p>Booking confirm information</p>
+                            </div>
+                            <div class="media-right" style="padding-left: 10px">
+                                <div style="width: 64px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!--ng-if="!isWaitting&&!isNoCar"-->
 
     <div class="view-car-list container-fluid margin-top-25">
@@ -178,10 +244,10 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class=" col-sm-3 col-md-2  hidden-xs box-body-thumb-wrap">
-                            <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                            <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
                         </div>
                         <div class="col-xs-12  hidden-sm hidden-md hidden-lg box-body-thumb-wrap">
-                            <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                            <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
                         </div>
                         <div class="col-xs-12 col-sm-9 col-md-10 ">
                             <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
@@ -202,7 +268,7 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4">
                                     <h5>Pickup</h5>
                                     <p>
-                                        <i class="glyphicon glyphicon-time"></i>
+                                        <i class="glyphicon glyphicon-cog"></i>
                                         15:00
                                     </p>
                                     <p>
@@ -215,7 +281,7 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4">
                                     <h5>Return</h5>
                                     <p>
-                                        <i class="glyphicon glyphicon-time"></i>
+                                        <i class="glyphicon glyphicon-cog"></i>
                                         15:00
                                     </p>
                                     <p>
@@ -251,13 +317,13 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
+                                    <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
                                 </div>
                                 <div class="col-md-12 col-xs-12 text-center">
                                     <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
                                     <p class="box-header-p">Toyota Prius or similar</p>
                                     <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                        <i class="glyphicon glyphicon-map-marker"></i>
                                         Anchorvale Rd Blk 308
                                     </a>
                                 </div>
@@ -269,495 +335,40 @@
                                 <div class="col-md-12 col-xs-12">
                                     <div class="row text-center">
                                         <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
+                                            <h5 style="font-size: 16px;font-weight: bold">Pickup</h5>
+                                            <p style="font-size: 14px;font-weight: bold">
                                                 <i class="glyphicon glyphicon-time"></i>
                                                 15:00
                                             </p>
-                                            <p>
-                                                4 Aug 2017
+                                            <p style="font-size: 14px;">
+                                                2017-08-04
                                             </p>
                                         </div>
                                         <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
                                             <i class="glyphicon glyphicon-arrow-right"></i>
                                         </div>
                                         <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
+                                            <h5 style="font-size: 16px;font-weight: bold">Return</h5>
+                                            <p style="font-size: 14px;font-weight: bold">
                                                 <i class="glyphicon glyphicon-time"></i>
                                                 15:00
                                             </p>
-                                            <p>
-                                                4 Aug 2017
+                                            <p style="font-size: 14px;">
+                                                2017-08-14
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#/booking/545" class="btn btn-primary btn-block">$193.4&nbsp;&raquo;</a>
+                                <a href="#/booking/545" class="btn btn-primary btn-block" style="font-size: 18px">$193.4&nbsp;&raquo;</a>
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="my-box my-box-top-border margin-top-20">
-                    <div class="box-body row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 box-body-thumb-wrap">
-                                    <img src="img/homepage-banner.jpg" alt="thumb" class="box-body-thumb"/>
-                                </div>
-                                <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                        Anchorvale Rd Blk 308
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 top-border margin-top-20">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12">
-                                    <div class="row text-center">
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Pickup</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                            <h5>Return</h5>
-                                            <p>
-                                                <i class="glyphicon glyphicon-time"></i>
-                                                15:00
-                                            </p>
-                                            <p>
-                                                4 Aug 2017
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#" class="btn btn-primary btn-block">$193.4&nbsp;View Car</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
 
@@ -767,7 +378,7 @@
     <div ng-if="isNoCar" class="container-fluid margin-top-25 hidden-show-transation ">
         <div class="col-md-12 my-box-top-border warning-box">
             <h4>
-                <i class="glyphicon glyphicon-warning-sign"></i>
+                <i class="glyphicon glyphicon-alert"></i>
                 No results found for this location at this time.
             </h4>
 
@@ -795,7 +406,7 @@
 
 <script>
     $('.form_date').datetimepicker({
-        language: 'fr',
+        language: 'en',
         weekStart: 1,
         todayBtn: 1,
         autoclose: 1,

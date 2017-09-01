@@ -73,6 +73,23 @@
 .maincontent-bgc {
   background-color: #efefef;
 }
+.error-tishi {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.zhanwei-tishi {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.left-right-padding-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .good-padding-bottom-l {
   padding-bottom: 360px;
 }
@@ -114,7 +131,7 @@
   width: 25px;
   height: 25px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .good-padding-bottom-l {
     padding-bottom: 60px;
   }
@@ -143,7 +160,7 @@
     padding-top: 40px;
   }
   .good-margin-bottom-l {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
   }
   .good-margin-bottom-m {
     margin-bottom: 30px;
@@ -154,5 +171,9 @@
   .good-quadrate {
     width: 13px;
     height: 13px;
+  }
+  .left-right-padding-40 {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

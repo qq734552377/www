@@ -7,9 +7,18 @@
   padding-right: 10px;
   padding-bottom: 20px;
 
+  a{
+    color: @navbar-background-color;
+    text-decoration: none;
+    &:hover{
+      cursor: pointer;
+      color: coral;
+    }
+  }
+
   table.table-time {
     margin: 0 auto;
-    border: 1px solid @time-table-border-color;
+    border: 2px solid @time-table-border-color;
     //box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
     border-collapse: collapse;
     thead  tr  th {
