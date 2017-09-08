@@ -211,6 +211,23 @@ a {
   .transition(.15s);
 
   .header {
+    a.back {
+      color: @location-a-color;
+      text-decoration: none;
+      position: absolute;
+      left: 30px;
+      top:6px;
+      font-size: 24px;
+      cursor: pointer;
+      &:hover {
+        color: @location-a-color-hover;
+
+        img{
+          source: 'img/back_hover.png';
+        }
+      }
+    }
+
     ol {
       list-style: none;
       li {
@@ -257,10 +274,9 @@ a {
 }
 
 @media (max-width: @xs-width) {
-  .navbar .container .side-menu-wrap{
+  .navbar .container .side-menu-wrap {
     left: -230px;
   }
-
 
   .navbar .container .side-menu-wrap.mini {
     width: @side-menu-width;
@@ -311,7 +327,11 @@ a {
     &.mini {
       margin-left: 0;
     }
-
+    .header {
+      a.back {
+        left: 30px;
+      }
+    }
   }
 
   .offcanvas-stop-scrolling .side-menu-content {

@@ -1,0 +1,43 @@
+@import "variable";
+
+.faq-style {
+
+  h4 {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px 0;
+  }
+
+  .question {
+    a {
+      text-decoration: none;
+      color: @navbar-background-color;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 2.2em;
+      &:hover {
+        color: @navbar-background-color - #101000;
+      }
+      i:before {
+        content: '\e113';
+      }
+      &.collapsed {
+        i:before {
+          content: '\e080';
+        }
+      }
+    }
+  }
+
+  .answer {
+    font-size: 18px;
+    line-height: 1.2em;
+    background-color: rgba(53,197,56,0.2);
+    ul > li {
+      font-size: 18px;
+      margin-left: 50px;
+      list-style: disc;
+    }
+  }
+
+}

@@ -189,6 +189,21 @@ a {
 .side-menu-content.mini {
   margin-left: 50px;
 }
+.side-menu-content .header a.back {
+  color: darkorange;
+  text-decoration: none;
+  position: absolute;
+  left: 30px;
+  top: 6px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.side-menu-content .header a.back:hover {
+  color: orange;
+}
+.side-menu-content .header a.back:hover img {
+  source: 'img/back_hover.png';
+}
 .side-menu-content .header ol {
   list-style: none;
 }
@@ -272,6 +287,9 @@ a {
   }
   .side-menu-content.mini {
     margin-left: 0;
+  }
+  .side-menu-content .header a.back {
+    left: 30px;
   }
   .offcanvas-stop-scrolling .side-menu-content {
     -webkit-transform: translate(230px, 0);

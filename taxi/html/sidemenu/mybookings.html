@@ -16,6 +16,12 @@
                             entries
                         </div>
                     </div>
+                    <div class="col-md-6 col-xs-6 text-right">
+                        <button class="btn btn-success" ng-click="querry()">
+                            <i class="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;
+                            Refresh
+                        </button>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top-25">
@@ -33,12 +39,12 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="item in currentPageBookings">
-                                <td class="ref" ng-bind="item.ref"></td>
-                                <td class="car" ng-bind="item.car"></td>
-                                <td class="pickup" ng-bind="item.pickup"></td>
-                                <td class="return" ng-bind="item.return"></td>
-                                <td class="amount" ng-bind="item.amount"></td>
-                                <td class="status" ng-bind="item.status"></td>
+                                <td class="ref" ng-bind="item.LeaseNumber"></td>
+                                <td class="car" ng-bind="item.VehicleType+' | '+ item.VehicleSeats + ' Seater'"></td>
+                                <td class="pickup" ng-bind="item.LeaseStartTime"></td>
+                                <td class="return" ng-bind="item.LeaseEndTime"></td>
+                                <td class="amount" ng-bind="'$ '+(item.LeaseMount/100).toFixed(2)"></td>
+                                <td class="status" ng-bind="appContext.bookingState[item.LeaseStatus]"></td>
                                 <td class="actions">
                                     <!--<div class="dropdown">-->
                                         <!--<button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1"-->
@@ -53,7 +59,7 @@
                                             <!--<li><a href="#" >postpone</a></li>-->
                                         <!--</ul>-->
                                     <!--</div>-->
-                                    <a href="#/bookingdetails/{{item.ref}}">Details</a>
+                                    <a href="#/bookingdetails/{{item.LeaseNumber}}">Details</a>
                                 </td>
                             </tr>
                             </tbody>

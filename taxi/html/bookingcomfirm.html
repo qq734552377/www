@@ -63,12 +63,37 @@
             </div>
         </div>
     </div>
+
+    <!--等待加载完成gif-->
+    <div ng-if="isWaitting" class="container-fluid margin-top-25">
+        <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
+            <img src="img/waiting.gif">
+        </div>
+    </div>
+    <!--等待加载完成gif结尾-->
+
+
+    <!--信息提示-->
+    <div class="row margin-top-25" ng-if="tishiBox.isShow">
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 style="font-size: 18px">Promotion:</h4>
+                <p ng-bind="tishiBox.msg" style="font-size: 16px">
+                    Comfirm 3 booking per week and get 50% off the 4th booking !
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--信息提示结尾-->
+
     <div class="row">
         <div class="col-md-4">
             <div class="my-box my-box-top-border margin-top-20">
                 <div class="box-header">
-                    <h4 class="box-header-title text-center">Reservation No:123456</h4>
-                    <h4 class="box-header-title text-center">Vehical NO:SHC1234G</h4>
+                    <h4 class="box-header-title text-center">Reservation No:{{lastBookingMsg.list.LeaseNumber}}</h4>
+                    <h4 class="box-header-title text-center">Vehical:{{bookingMsg.list.VehicleModels +'('+lastBookingMsg.list.VehicleName+')'}}</h4>
                 </div>
                 <div class="box-body  my-box-boundary">
                     <div class="row">
@@ -86,7 +111,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        354 Admiralty Dr, Singapore 750354
+                                        {{lastBookingMsg.list.Location}}
                                     </p>
                                 </div>
                             </div>
@@ -99,7 +124,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        2017-08-04 15:00
+                                        {{lastBookingMsg.list.LeaseStartTime}}
                                     </p>
                                 </div>
                             </div>
@@ -117,7 +142,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        354 Admiralty Dr, Singapore 750354
+                                        {{lastBookingMsg.list.Location}}
                                     </p>
                                 </div>
                             </div>
@@ -130,11 +155,49 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        2017-08-14 15:00
+                                        {{lastBookingMsg.list.LeaseEndTime}}
                                     </p>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>
+                                        <i class="glyphicon glyphicon-time"></i>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <p>
+                                        {{lastBookingMsg.duration}} hrs
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>
+                                        <i class="glyphicon glyphicon-time"></i>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <p>
+                                        {{lastBookingMsg.duration}} hrs
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
                         <div class="payPrice">
 
                             <!--个人账户-->
@@ -142,8 +205,7 @@
                                 <div class="wrap">
                                     <div class="my-account-header">
                                         <b>
-                                            <i class="glyphicon glyphicon-piggy-bank"></i>
-                                            E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
+                                            Charges
                                         </b>
                                     </div>
                                     <div class="my-account-body">
@@ -154,7 +216,7 @@
                                                     <b>Available</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    $1333318.00
+                                                   $ {{(lastBookingMsg.list.LastAmount/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -162,7 +224,7 @@
                                                     <b>Booking Total</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    - $118.00
+                                                    - $ {{(lastBookingMsg.list.LeaseMount/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             <tr class="balance">
@@ -170,7 +232,7 @@
                                                     <b>Balance</b>
                                                 </td>
                                                 <td class="right text-right ">
-                                                    $1184234.00
+                                                    $ {{((lastBookingMsg.list.LastAmount-lastBookingMsg.list.LeaseMount)/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -219,13 +281,9 @@
                 <div class="box-body collapse in my-box-boundary" id="isme2">
                     <div class="map-area" style="">
                         <div class="map-area" style="">
-                            <p>354 Admiralty Dr, Singapore 750354</p>
+                            <p>{{lastBookingMsg.list.Location}}</p>
                             <p>
-                                354 Admiralty Dr
-                                <br/>
-                                Proceed to Deck 5B, Lot Any lot withing deck 5B.
-                                <br/>Alternative car park lots if full: Any lot withing deck 5B
-
+                              {{lastBookingMsg.list.Remarks}}
                             </p>
                         </div>
                     </div>
@@ -255,7 +313,7 @@
                     </div>
 
                     <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
-                        <button class="btn btn-block btn-success">
+                        <button class="btn btn-block btn-success" >
                             Sucess<br>
                             <small>Your car has benn booked</small>
                         </button>

@@ -1,5 +1,5 @@
 <!-- 未登录头部-->
-<nav ng-if='!isLogin.isAut&&!isSidemenu.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
+<nav ng-if='!appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                 data-target="#bs-navbar"
@@ -44,7 +44,7 @@
 <!-- 未登录头部结尾-->
 
 <!-- 已登录头部-->
-<nav ng-if='isLogin.isAut&&!isSidemenu.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
+<nav ng-if='appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
 
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
@@ -81,21 +81,21 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownM">
                         <li>
-                            <a href="#">
+                            <a href="#/faq">
                                 <span class="span-left"></span>
                                 FAQ
                                 <span class="span-right"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#/terms">
                                 <span class="span-left"></span>
                                 Terms &Conditions
                                 <span class="span-right"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#/privacypolicy">
                                 <span class="span-left"></span>
                                 Privacy Policy
                                 <span class="span-right"></span>
@@ -118,7 +118,7 @@
                     <a class="dropdown-toggle" id="dropdownM2" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i href="#"><img src="img/affordable.png"></i>
-                        Peng Jing
+                        {{appContext.username}}
                         <span class="glyphicon menu-right"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownM2" aria-haspopup="true">
@@ -144,7 +144,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a ng-click="logOut()">
                                 <span class="span-left"></span>
                                 Log out
                                 <span class="span-right"></span>
@@ -159,7 +159,7 @@
 <!-- 已登录头部结尾-->
 
 <!-- 侧边栏页面头部-->
-<nav ng-if="isSidemenu.isSidemenu" class="navbar navbar-static-top navbar-default navbar-topstyle">
+<nav ng-if="appContext.isSidemenu" class="navbar navbar-static-top navbar-default navbar-topstyle">
     <div class="container">
         <button class="navbar-toggle offcanvas-toggle pull-left" type="button" data-toggle="offcanvas"
                 data-target="#side-menu"
@@ -192,7 +192,7 @@
                 <div class="side-menu-header ">
                     <a id="toggle" >
                         <img src="img/fullyequipped.png">
-                        <span>Hi,xxxx!</span>
+                        <span>Hi,{{appContext.username}}!</span>
                     </a>
                 </div>
 
@@ -237,7 +237,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#/logout">
+                            <a ng-click="logOut()">
                                 <i class="glyphicon glyphicon-log-out"></i>
                                 <span class="span-title">Log Out</span>
                                 <span class="span-right"></span>

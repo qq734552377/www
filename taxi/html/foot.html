@@ -1,6 +1,6 @@
 
 <!--页面脚部-->
-<footer ng-if="!isSidemenu.isSidemenu" class="main-footer hidden-xs">
+<footer ng-if="!appContext.isSidemenu" class="main-footer hidden-xs">
     <div class="container">
         <!--底部链接-->
         <div class="row">
@@ -12,13 +12,13 @@
                         <br>
                         <a href="#">Contact</a>
                         <br>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-envelope"></i>
-                            taxishare-enquiry@smrt.com.sg
+                        <a href="mailto:{{appContext.smartEmail}}" >
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;
+                            {{appContext.smartEmail}}
                         </a>
                         <br>
                         <a href="#">
-                            <i class="glyphicon glyphicon-phone-alt"></i>
+                            <i class="glyphicon glyphicon-phone-alt"></i>&nbsp;
                             +65 6477 5353
                         </a>
                     </div>
@@ -29,14 +29,14 @@
                 <div class="weight">
                     <h4>Learn more</h4>
                     <div class="weight-list">
-                        <a href="#">FAQ</a>
+                        <a href="#/faq">FAQ</a>
                         <br>
-                        <a href="#">Terms &Conditions</a>
+                        <a href="#/terms">Terms &Conditions</a>
                         <br>
-                        <a href="#">Privacy Policy</a>
+                        <a href="#/privacypolicy">Privacy Policy</a>
                         <br>
                         <a href="#">
-                            <i class="glyphicon glyphicon-play-circle"></i>
+                            <i class="glyphicon glyphicon-play-circle"></i>&nbsp;
                             Tutorial Video
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                     <h4>Follow us</h4>
                     <div class="weight-list">
                         <a href="#">
-                            <i class="glyphicon glyphicon-facebook"></i>
+                            <i class="glyphicon glyphicon-facebook"></i>&nbsp;
                             Follow us on Facebook
                         </a>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="weight-list">
                         <a href="#">Home</a>
                         <br>
-                        <a href="#">Our Rates</a>
+                        <a href="#/ourrates">Our Rates</a>
                     </div>
                 </div>
 

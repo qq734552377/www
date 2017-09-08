@@ -1,5 +1,5 @@
 <div class="maincontent-bgc padding-bottom-25 hidden-overflow-x">
-    <!--标签盒子-->
+    <!--搜索框-->
     <div class="hidden-overflow-x ">
         <div class="my-box noborder nopadding search-bgc">
             <div class="box-header">
@@ -13,7 +13,8 @@
             </div>
 
 
-            <div class="box-body container-fluid collapse in my-box-boundary " id="isme" style="padding-bottom: 0;padding-top: 0">
+            <div class="box-body container-fluid collapse in my-box-boundary " id="isme"
+                 style="padding-bottom: 0;padding-top: 0">
 
                 <div id="searchCarForm" class="row">
                     <form>
@@ -131,8 +132,10 @@
                                         <div class="form-group mainsearch-item">
                                             <select ng-model="searchMsg.location" id="pickupLocation"
                                                     class="form-control only-padding-left">
-                                                <option value="">Pickup Location</option>
-                                                <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">{{item.Address}}</option>
+                                                <option value="0">Any Location</option>
+                                                <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">
+                                                    {{item.Address}}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -140,8 +143,10 @@
                                         <div class="form-group mainsearch-item">
                                             <select ng-model="searchMsg.category" id="pickupCategory"
                                                     class="form-control only-padding-left">
-                                                <option value="1">Any Category</option>
-                                                <option value="2">Petrol Hybrid</option>
+                                                <option value="0">Any Category</option>
+                                                <option ng-repeat="item in searchMsg.categorys" value="{{item.ID}}">
+                                                    {{item.VehicleTypeName}}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -149,13 +154,16 @@
                                         <div class="form-group mainsearch-item">
                                             <select ng-model="searchMsg.rentFor" id="pickupRentFor"
                                                     class="form-control only-padding-left">
-                                                <option value="1">Taxi</option>
-                                                <option value="2">Private</option>
+                                                <option value="0">All</option>
+                                                <option ng-repeat="item in searchMsg.rentFors" value="{{item.ID}}">
+                                                    {{item.LeaseTypeName}}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-xs-6">
-                                        <button ng-click="search()" type="submit" class="btn btn-block bg-primary">Search
+                                        <button ng-click="search()" type="submit" class="btn btn-block bg-primary">
+                                            Search
                                         </button>
                                     </div>
                                 </div>
@@ -167,10 +175,10 @@
             </div>
         </div>
     </div>
-    <!--标签盒子结尾-->
+    <!--搜索框结尾-->
 
-
-    <div class="step hidden-xs hidden-sm" >
+    <!--步骤-->
+    <div class="step hidden-xs hidden-sm">
         <div class="row" style="margin-left: 0px;margin-right: 0px">
             <div class="col-md-10 col-md-offset-1">
                 <div class="row">
@@ -233,11 +241,11 @@
             </div>
         </div>
     </div>
-
-
+    <!--步骤结尾-->
 
     <!--ng-if="!isWaitting&&!isNoCar"-->
 
+    <!--车辆信息展示列表-->
     <div class="view-car-list container-fluid margin-top-25">
         <div hidden class="my-box my-box-top-border margin-top-20">
             <div class="box-body row">
@@ -311,7 +319,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div ng-repeat="item in allCarsMsgs" class="col-md-4 col-sm-6 col-xs-12">
                 <div class="my-box my-box-top-border margin-top-20">
                     <div class="box-body row">
                         <div class="col-md-12">
@@ -320,11 +328,11 @@
                                     <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
                                 </div>
                                 <div class="col-md-12 col-xs-12 text-center">
-                                    <h4 class="box-header-title">Petrol Hybrid | 5 Seater</h4>
-                                    <p class="box-header-p">Toyota Prius or similar</p>
+                                    <h4 class="box-header-title">{{item.VehicleTypeName}} | 5 Seater</h4>
+                                    <p class="box-header-p">{{item.VehicleModelName}}</p>
                                     <a href="#">
                                         <i class="glyphicon glyphicon-map-marker"></i>
-                                        Anchorvale Rd Blk 308
+                                        {{item.Address}}
                                     </a>
                                 </div>
                             </div>
@@ -338,10 +346,10 @@
                                             <h5 style="font-size: 16px;font-weight: bold">Pickup</h5>
                                             <p style="font-size: 14px;font-weight: bold">
                                                 <i class="glyphicon glyphicon-time"></i>
-                                                15:00
+                                                {{searchMsg.startTime}}
                                             </p>
                                             <p style="font-size: 14px;">
-                                                2017-08-04
+                                                {{searchMsg.startDate}}
                                             </p>
                                         </div>
                                         <div class="col-md-4 col-xs-4 col-sm-4 pic-center-wrap margin-top-25" style="">
@@ -351,17 +359,18 @@
                                             <h5 style="font-size: 16px;font-weight: bold">Return</h5>
                                             <p style="font-size: 14px;font-weight: bold">
                                                 <i class="glyphicon glyphicon-time"></i>
-                                                15:00
+                                                {{searchMsg.endTime}}
                                             </p>
                                             <p style="font-size: 14px;">
-                                                2017-08-14
+                                                {{searchMsg.endDate}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-xs-12 text-center margin-top-20">
-                                <a href="#/booking/545" class="btn btn-primary btn-block" style="font-size: 18px">$193.4&nbsp;&raquo;</a>
+                                <a href="#/booking/{{item.ID}}" class="btn btn-primary btn-block"
+                                   style="font-size: 18px">{{(item.TotalPrice/100).toFixed(2)}}&nbsp;&raquo;</a>
                             </div>
 
                         </div>
@@ -373,30 +382,38 @@
 
 
     </div>
+    <!--车辆信息展示列表结尾-->
 
 
-    <div ng-if="isNoCar" class="container-fluid margin-top-25 hidden-show-transation ">
-        <div class="col-md-12 my-box-top-border warning-box">
-            <h4>
-                <i class="glyphicon glyphicon-alert"></i>
-                No results found for this location at this time.
-            </h4>
+    <div ng-if="isNoCar" class="row margin-top-25">
+        <div class="col-md-12">
+            <div  class="alert alert-danger alert-dismissible " role="alert"
+                 style="margin-right: 15px;margin-left: 15px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div class="no-car-tishi-msg">
+                    <h4>
+                        <i class="glyphicon glyphicon-alert"></i>
+                        No results found for this location at this time.
+                    </h4>
 
-            <p>
-                There are no cars availabile in based on your selection for
-                <b>Today</b>
-                . You might want to:
-            </p>
-            <ul>
-                <li>Pickup time and return time must be greater than 3 hours</li>
-                <li>Select another location</li>
-                <li>Select another category</li>
-            </ul>
+                    <p>
+                        There are no cars availabile in based on your selection for
+                        <b>Today</b>
+                        . You might want to:
+                    </p>
+                    <ul>
+                        <li>Pickup time and return time must be greater than 3 hours</li>
+                        <li>Select another location</li>
+                        <li>Select another category</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
     </div>
 
-    <div ng-if="isWaitting" class="container-fluid margin-top-25">
+
+    <div ng-if="isWaitting" class="container-fluid margin-top-25" style="margin-bottom: 250px">
         <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
             <img src="img/waiting.gif">
         </div>

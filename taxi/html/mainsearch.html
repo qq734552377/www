@@ -123,8 +123,9 @@
                                 <div class="form-group mainsearch-item">
                                     <select ng-model="searchMsg.location" id="pickupLocation"
                                             class="form-control only-padding-left">
-                                        <option value="">Pickup Location</option>
-                                        <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">{{item.Address}}
+                                        <option value="0">Any Location</option>
+                                        <option ng-repeat="item in searchMsg.locations" value="{{item.ID}}">
+                                            {{item.Address}}
                                         </option>
                                     </select>
                                 </div>
@@ -133,8 +134,10 @@
                                 <div class="form-group mainsearch-item">
                                     <select ng-model="searchMsg.category" id="pickupCategory"
                                             class="form-control only-padding-left">
-                                        <option value="1">Any Category</option>
-                                        <option value="2">Petrol Hybrid</option>
+                                        <option value="0">Any Category</option>
+                                        <option ng-repeat="item in searchMsg.categorys" value="{{item.ID}}">
+                                            {{item.VehicleTypeName}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -142,8 +145,10 @@
                                 <div class="form-group mainsearch-item">
                                     <select ng-model="searchMsg.rentFor" id="pickupRentFor"
                                             class="form-control only-padding-left">
-                                        <option value="1">Taxi</option>
-                                        <option value="2">Private</option>
+                                        <option value="0">All</option>
+                                        <option ng-repeat="item in searchMsg.rentFors" value="{{item.ID}}">
+                                            {{item.LeaseTypeName}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>

@@ -16,6 +16,12 @@
                             entries
                         </div>
                     </div>
+                    <div class="col-md-6 col-xs-6 text-right">
+                        <button class="btn btn-success" ng-click="querry()">
+                            <i class="glyphicon glyphicon-refresh"></i>&nbsp;&nbsp;
+                            Refresh
+                        </button>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 margin-top-25">
@@ -30,9 +36,9 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="item in currentPageBookings">
-                                <td class="date" ng-bind="item.date">2017-08-23 15:52:12</td>
-                                <td class="type" ng-bind="item.type">Top Up</td>
-                                <td class="amount"  ng-bind="item.amount">$35</td>
+                                <td class="date" ng-bind="item.SaveTime">2017-08-23 15:52:12</td>
+                                <td class="type" ng-bind="item.Trardetype">Top Up</td>
+                                <td class="amount"  ng-bind="'$ '+(item.TransactionAmount/100).toFixed(2)">$35</td>
                                 <td class="enteredBy"  ng-bind="item.enteredBy">Alipay</td>
                             </tr>
                             </tbody>

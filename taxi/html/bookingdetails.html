@@ -1,11 +1,36 @@
 <div class="container-fluid   left-right-padding-40 maincontent-bgc hidden-overflow-x"
      style="padding-bottom: 100px">
-    <div class="row">
+
+    <!--等待加载完成gif-->
+    <div ng-if="isWaitting" class="container-fluid margin-top-25">
+        <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
+            <img src="img/waiting.gif">
+        </div>
+    </div>
+    <!--等待加载完成gif结尾-->
+
+
+    <!--信息提示-->
+    <div class="row margin-top-25" style="margin-bottom: 300px" ng-if="tishiBox.isShow">
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 style="font-size: 18px">Promotion:</h4>
+                <p ng-bind="tishiBox.msg" style="font-size: 16px">
+                    Comfirm 3 booking per week and get 50% off the 4th booking !
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--信息提示结尾-->
+
+    <div ng-if="!tishiBox.isShow" class="row">
         <div class="col-md-4">
             <div class="my-box my-box-top-border margin-top-20">
                 <div class="box-header">
-                    <h4 class="box-header-title text-center">Reservation No:123456</h4>
-                    <h4 class="box-header-title text-center">Vehical NO:SHC1234G</h4>
+                    <h4 class="box-header-title text-center">Reservation No:{{bookingMsg.list.LeaseNumber}}</h4>
+                    <h4 class="box-header-title text-center">Vehical:{{ bookingMsg.list.VehicleModels +'('+bookingMsg.list.VehicleName+')'}}</h4>
                 </div>
                 <div class="box-body  my-box-boundary">
                     <div class="row">
@@ -23,7 +48,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        354 Admiralty Dr, Singapore 750354
+                                        {{bookingMsg.list.Location}}
                                     </p>
                                 </div>
                             </div>
@@ -36,7 +61,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        2017-08-04 15:00
+                                        {{bookingMsg.list.LeaseStartTime}}
                                     </p>
                                 </div>
                             </div>
@@ -54,7 +79,7 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        354 Admiralty Dr, Singapore 750354
+                                        {{bookingMsg.list.Location}}
                                     </p>
                                 </div>
                             </div>
@@ -67,20 +92,77 @@
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <p>
-                                        2017-08-14 15:00
+                                        {{bookingMsg.list.LeaseEndTime}}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="payPrice">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>
+                                        <i class="glyphicon glyphicon-time"></i>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <p>
+                                        {{bookingMsg.duration}} hrs
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <p>
+                                        <i class="glyphicon glyphicon-time"></i>
+                                    </p>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <p>
+                                        {{bookingMsg.duration}} hrs
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==1 || bookingMsg.list.LeaseStatus==2">
+                                            <button class="btn btn-block btn-success">
+                                                Extend Trip
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6  col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
+                                            <button class="btn btn-block btn-danger">
+                                                CANCEL
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="payPrice ">
 
                             <!--个人账户-->
-                            <div class="col-md-12 myAccount">
+                            <div class="col-md-12 myAccount margin-top-25">
                                 <div class="wrap">
                                     <div class="my-account-header">
                                         <b>
-                                            <i class="glyphicon glyphicon-piggy-bank"></i>
-                                            E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
+                                           Trip Details
                                         </b>
                                     </div>
                                     <div class="my-account-body">
@@ -88,26 +170,34 @@
                                             <tbody>
                                             <tr>
                                                 <td class="left">
-                                                    <b>Available</b>
+                                                    <b>State</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    $1333318.00
+                                                    {{appContext.bookingState[bookingMsg.list.LeaseStatus]}}
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr ng-if="bookingMsg.list.LeaseMount  ">
                                                 <td class="left">
                                                     <b>Booking Total</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    - $118.00
+                                                    - $ {{(bookingMsg.list.LeaseMount/100).toFixed(2)}}
                                                 </td>
                                             </tr>
-                                            <tr class="balance">
-                                                <td class="left ">
-                                                    <b>Balance</b>
+                                            <tr ng-if="bookingMsg.LastAmount && bookingMsg.LastAmount != 0">
+                                                <td class="left">
+                                                    <b>LastAmount</b>
                                                 </td>
-                                                <td class="right text-right ">
-                                                    $1184234.00
+                                                <td class="right text-right">
+                                                    - $ {{(bookingMsg.LastAmount/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="bookingMsg.cancelFees && bookingMsg.cancelFees!=null">
+                                                <td class="left">
+                                                    <b>CancelFees</b>
+                                                </td>
+                                                <td class="right text-right">
+                                                    - $ {{(bookingMsg.cancelFees)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -118,7 +208,19 @@
                             <!--个人账户End-->
                         </div>
 
+                        <div class="col-md-6 col-xs-6 col-sm-6 text-left "
+                             style="margin-top: 20px ;">
+                            <a style="font-size: 16px;font-weight: bold;" href="#/sidemenu/mybookings">
+                                Back to Bookings
+                            </a>
+                        </div>
 
+                        <div class="col-md-6 col-xs-6 col-sm-6 text-right "
+                             style="margin-top: 20px ;">
+                            <a style="font-size: 16px;font-weight: bold;" href="#/search">
+                                Start a new booking
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -143,6 +245,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="my-box my-box-top-border margin-top-20 ">
                 <div class="box-header">
                     <div class="box-corner">
@@ -156,13 +259,9 @@
                 <div class="box-body collapse in my-box-boundary" id="isme2">
                     <div class="map-area" style="">
                         <div class="map-area" style="">
-                            <p>354 Admiralty Dr, Singapore 750354</p>
+                            <p>{{bookingMsg.list.Location}}</p>
                             <p>
-                                354 Admiralty Dr
-                                <br/>
-                                Proceed to Deck 5B, Lot Any lot withing deck 5B.
-                                <br/>Alternative car park lots if full: Any lot withing deck 5B
-
+                                {{bookingMsg.list.Remarks}}
                             </p>
                         </div>
                     </div>
@@ -170,22 +269,27 @@
 
 
             </div>
-            <div class="timeTable margin-top-25">
 
+            <div hidden class="timeTable margin-top-25">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-3 col-sm-3 col-xs-6 margin-top-20">
-                                <button class="btn btn-block btn-success disabled">
+                            <div class="col-md-3 col-sm-3 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
+                                <button class="btn btn-block btn-success">
                                     START TRIP
                                 </button>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-6 margin-top-20">
-                                <button class="btn btn-block btn-warning disabled">
+                            <div class="col-md-3 col-sm-3 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0 || bookingMsg.list.LeaseStatus==1 || bookingMsg.list.LeaseStatus==2">
+                                <button class="btn btn-block btn-warning">
                                     END TRIP
                                 </button>
                             </div>
-                            <div class="col-md-3  col-sm-3 col-xs-6 margin-top-20">
+                            <div class="col-md-3 col-sm-3 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==1 || bookingMsg.list.LeaseStatus==2">
+                                <button class="btn btn-block btn-warning">
+                                    Extend Trip
+                                </button>
+                            </div>
+                            <div class="col-md-3  col-sm-3 col-xs-6 margin-top-20 " ng-if="bookingMsg.list.LeaseStatus!=3">
                                 <div class=" btn-group btn-group-justified">
                                     <div class=" btn-group ">
                                         <button type="button" class="btn btn-primary btn-block dropdown-toggle"
@@ -200,7 +304,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3  col-sm-3 col-xs-6 margin-top-20">
+                            <div class="col-md-3  col-sm-3 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
                                 <button class="btn btn-block btn-danger">
                                     CANCEL
                                 </button>

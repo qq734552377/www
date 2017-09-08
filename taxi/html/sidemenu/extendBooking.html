@@ -1,0 +1,197 @@
+<div class="container-fluid">
+
+    <div class="margin-top-25 good-margin-bottom-m">
+
+        <div class="row">
+            <div class="col-md-5 col-md-push-7">
+                <div class="my-box my-box-top-border margin-top-20">
+                    <div class="box-header">
+                        <h4 class="box-header-title">Charges Breakdown</h4>
+                    </div>
+                    <div class="box-body  my-box-boundary">
+                        <div class="row">
+                            <div ng-if="isWaitting" class="loadPice col-md-12 text-center">
+                                <img src="img/waiting.gif">
+                            </div>
+
+                            <div class="payPrice" ng-if="!isWaitting">
+                                <!--计算价格-->
+                                <div class="col-md-12 countPrice">
+                                    <div class="top">
+                                        <table class="table table-no-border">
+                                            <tbody>
+                                            <tr ng-repeat="item in carPriceList.Report">
+                                                <td class="left">
+                                                    <strong>Rental Fee</strong> ({{item.RentalFee}})<br/>
+                                                    $ {{(item.Price/item.TotalHour/100).toFixed(2)}} * {{item.TotalHour >1 ?
+                                                    (item.TotalHour+' hrs'):(item.TotalHour+' hr')}}
+                                                </td>
+                                                <td class="right text-right">
+                                                    $ {{(item.Price/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="totalPrice">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td class="left">
+                                                    <b>Booking Total</b>
+                                                </td>
+                                                <td class="right text-right">
+                                                    $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+
+                                </div>
+                                <!--计算价格End-->
+
+                                <div class="col-md-12" ng-if="!appContext.isAut">
+                                    <button ng-click="goToLogin()" class="btn btn-success btn-block">Log In</button>
+                                </div>
+
+
+                                <!--个人账户-->
+                                <div ng-if="appContext.isAut" class="col-md-12 myAccount">
+                                    <div class="promoCode">
+                                        <table class="table table-no-border">
+                                            <tbody>
+                                            <tr>
+                                                <td class="left text-left">
+                                                    <strong>Promo Code</strong>
+                                                </td>
+                                                <td class="right text-right" style="width: 50%">
+                                                    <input type="text" class="form-control "
+                                                           style="padding:0 6px;height:28px;font-size: 18px">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="wrap">
+                                        <div class="my-account-header">
+                                            <b>
+                                                <i class="glyphicon glyphicon-piggy-bank"></i>
+                                                E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
+                                            </b>
+                                        </div>
+                                        <div class="my-account-body">
+                                            <table class="table table-no-border">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Available</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        $ {{appContext.userAccountMoney}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Total Payable</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        - $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                <tr class="balance">
+                                                    <td class="left ">
+                                                        <b>Balance</b>
+                                                    </td>
+                                                    <td class="right text-right ">
+                                                        $ {{(appContext.userAccountMoney - (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr ng-if="!appContext.isEnoughBalance" id="noMoreMoney"
+                                                    class="noMoreMoney">
+                                                    <td colspan="2">
+                                                        * Insufficient Credits in your e-Wallet, <span
+                                                            class="label label-warning"><a href="#/sidemenu/topup">click here</a></span>
+                                                        to top up.
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--个人账户End-->
+
+                                <!--结算-->
+                                <div ng-if="appContext.isAut&&appContext.isEnoughBalance" class="col-md-12 booking">
+                                    <div class="form-group">
+                                        <div class="agreeMe">
+                                            <label>
+                                                <input ng-model="appContext.isAgreeMe" type="checkbox">
+                                                I agree to the <a href="#/bookingcomfirm/123" target="_blank">terms and conditions</a>
+                                                as stated in the website.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <a id="booking" class="btn btn-primary btn-block" ng-click="bookingTheCar()"
+                                       style="color: #fff">Booking the Car</a>
+                                </div>
+                                <!--结算End-->
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-7 col-md-pull-5" >
+                <!--wallet-->
+                <div class="my-box my-box-top-border margin-top-20 ">
+                    <div class="box-header">
+                        <h4 class="box-header-title">Instructions</h4>
+                    </div>
+                    <div class="box-body my-box-boundary no-car-tishi-msg">
+                        <ul style="margin-left: 0px">
+                            <li>Please ensure that you have sufficient credits before extending the booking.</li>
+                            <li>Select the number of hours you wish to extend, confirm the total fees payable before proceeding.</li>
+                            <li>CDW will be charged automatically if you have selected the option during your inital booking.</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="form_issue_type">Extend Duration (hrs)</label>
+                                        <select id="form_issue_type"  class="form-control">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Extend</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!--wallet end-->
+            </div>
+
+
+        </div>
+    </div>
+</div>

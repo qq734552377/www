@@ -76,12 +76,12 @@
 .my-box .box-body .row div p {
   font-size: 16px;
 }
-.my-box .box-body .row div a {
+.my-box .box-body .row div > a {
   font-size: 16px;
   text-decoration: none;
   color: darkorange;
 }
-.my-box .box-body .row div a:hover {
+.my-box .box-body .row div > a:hover {
   color: orange;
 }
 .my-box .box-body .payPrice .countPrice .top {
@@ -148,7 +148,7 @@
   color: #efefef;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td a:hover {
-  color: #cccccc;
+  color: #cfcfcf;
 }
 .my-box .box-footer {
   padding: 15px 0;

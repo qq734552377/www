@@ -80,7 +80,7 @@
                                                 registering for</label>
                                             <select ng-model="signin_s.LicenseType" id="LicenseType" class="form-control">
                                                 <option value="0">All</option>
-                                                <option ng-repeat="item in LicenseTypes" value="{{item.ID}}">{{item.LeaseTypeName}}</option>
+                                                <option ng-repeat="item in appContext.LicenseTypes" value="{{item.ID}}">{{item.LeaseTypeName}}</option>
                                             </select>
                                         </div>
                                         <!--regist for end-->
@@ -118,7 +118,7 @@
                                         <div class="form-group">
                                             <label class="sign-in-label" >Nationality</label>
                                             <select ng-model="signin_s.Nationality" id="Nationality" class="form-control">
-                                                <option ng-repeat="item in Nationalities" value="{{item.ID}}">{{item.Nationality}}</option>
+                                                <option ng-repeat="item in appContext.Nationalities" value="{{item.ID}}">{{item.Nationality}}</option>
                                             </select>
                                         </div>
                                         <!--Nationality end-->
@@ -131,7 +131,7 @@
                                         <div class="form-group">
                                             <label class="sign-in-label">Race</label>
                                             <select ng-model="signin_s.Race" id="Race" class="form-control">
-                                                <option ng-repeat="item in Races" value="{{item.ID}}">{{item.Race}}</option>
+                                                <option ng-repeat="item in appContext.Races" value="{{item.ID}}">{{item.Race}}</option>
                                             </select>
                                         </div>
                                         <!--Race end-->
@@ -156,7 +156,7 @@
                                         <div class="form-group">
                                             <label class="sign-in-label">Education Level</label>
                                             <select ng-model="signin_s.EducationLevel" id="EducationLevel" class="form-control">
-                                                <option ng-repeat="item in EducationLevel" value="{{item.ID}}">{{item.EducationLevel}}</option>
+                                                <option ng-repeat="item in appContext.EducationLevel" value="{{item.ID}}">{{item.EducationLevel}}</option>
                                             </select>
                                         </div>
                                         <!--Education Level end-->
@@ -404,7 +404,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-tribecar" style="background-color: coral; !important;">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="update_title">Before Registration</h4>
                 </div>

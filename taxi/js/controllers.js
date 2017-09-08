@@ -3,25 +3,27 @@
  */
 var appControllers = angular.module('appControllers', ["allservice"]);
 
-appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext,initSometing) {
-    initSometing.initSometing();
+appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext,initSometing,logOut) {
+    initSometing.initSometing();//初始化下拉菜单选项
+    JIANCE.init();//初始化是否已登录和token值
+    appContext.getAll().isSidemenu = path.getResult().isSidemenu;//初始化isSidemenu
+    $scope.appContext = appContext.getAll();
 
-    $scope.isLogin = {
-        isAUT: false,
-        token: ''
-    };
-    $scope.isSidemenu = {
-        path: '',
-        isSidemenu: false
+    $scope.logOut=function () {
+        logOut.logOut();
     }
-    //绑定数据并检测当前是否为已登录状态
-    $scope.isLogin = JIANCE.init();
-    //初始化isSide
-    appContext.getAll().isSidemenu = path.getResult().isSidemenu;
-    $scope.isSidemenu = appContext.getAll();
+    $scope.back=function () {
+        history.back();
+    }
+
+    $scope.$watch('appContext.isAut',function (newValue, oldValue, scope) {
+        console.log('用户是否已登录： '+newValue)
+    });
+
+    $scope.motaiBox=appContext.getAll().motaiTishiBox;
 });
 
-appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
+appControllers.controller('loginCtr', function ($scope, $http, allUrl,JIANCE,appContext) {
     $scope.isRemeberMe = true;
     $scope.errorState = false;
     $scope.errorMsg = 'Incorrect account name or password!';
@@ -34,8 +36,6 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
     };
 
     $scope.login = function () {
-        console.log($scope.loginMsg.email + '------' + $scope.loginMsg.password);
-
         if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != '') {
             $http({
                 method: "POST",
@@ -55,8 +55,17 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
                         sessionStorage.setItem('Token', data.Info);
                         localStorage.removeItem('Token');
                     }
-                    window.location.href = $scope.loginMsg.loginSucessUrl;
-                    // path.path = $scope.loginMsg.loginSucessUrl;
+
+                    appContext.getAll().isAut=true;
+                    appContext.getAll().token=data.Info;
+
+                    JIANCE.init();
+
+                    if(appContext.getAll().fromBookingPage.isFromBooking){
+                        window.location.replace('#/booking/'+appContext.getAll().fromBookingPage.id);
+                    }else{
+                        window.location.replace($scope.loginMsg.loginSucessUrl);
+                    }
                 } else {
                     $scope.errorState = true;
                     $scope.errorMsg = data.Info;
@@ -104,18 +113,8 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
     })
     .controller('signinCtr',function ($scope,$http,$state,allUrl,appContext) {
 
-        if (appContext.signinMsg !=undefined){
-            $scope.signin_f=appContext.signinMsg;
-        }else{
-            $scope.signin_f={
-                Email:'',
-                Password:'',
-                PasswordAgain:'',
-                Name:'',
-                NRIC:'',
-                Phone:''
-            };
-        }
+        $scope.signin_f=appContext.getAll().signinMsg;
+
         $scope.errorMsg={
             emailMsg:'',
             emailSpan:'',
@@ -249,65 +248,25 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
             if($scope.errorMsg.emailSpan != 'success-span' || $scope.errorMsg.NRICSpan != 'success-span'||$scope.errorMsg.PhoneSpan != 'success-span'){
                 return;
             }
-
-            appContext.signinMsg={
-                Email:$scope.signin_f.Email,
-                Password:$scope.signin_f.Password,
-                PasswordAgain:$scope.signin_f.PasswordAgain,
-                Name:$scope.signin_f.Name,
-                NRIC:$scope.signin_f.NRIC,
-                Phone:$scope.signin_f.Phone
-            };
-
+            $scope.signin_f.firstSignUpCompete=true;
             $state.go('signin_second');
         }
 
 
     })
     .controller('signin_secondCtr',function ($scope,$http,$state,appContext,allUrl) {
-        console.log(appContext.signinMsg)
-        if(appContext.signinMsg==undefined){
+        console.log(appContext.getAll().signinMsg)
+        if(!appContext.getAll().signinMsg.firstSignUpCompete ){
             // $state.go('signin_first');
-            return;
+            // return;
         }
-
-        $scope.LicenseTypes=appContext.LicenseTypes;
-        $scope.Nationalities=appContext.Nationalities;
-        $scope.Races=appContext.Races;
-        $scope.EducationLevel=appContext.EducationLevel;
-
         $scope.msgAboutPic='',
         $scope.picSrc='img/tpdvl.jpg';
 
         $scope.errorState=false;
         $scope.errorMsg='';
 
-        $scope.signin_s={
-            Email:appContext.signinMsg.Email,
-            Password:appContext.signinMsg.Password,
-            Name:appContext.signinMsg.Name,
-            NRIC:appContext.signinMsg.NRIC,
-            Phone:appContext.signinMsg.Phone,
-
-            LicenseType:'0',
-            Salutation:'1',
-            Gender:'1',
-            Nationality:'1',
-            Race:'1',
-            MaritalStatus:'1',
-            EducationLevel:'1',
-            BlockNo:'',
-            Storey:'',
-            UnitNo:'',
-            StreetName:'',
-            PostalCode:'',
-            DateOfBirth:'',
-            LicenseIssueDate:'',
-            TVDLIssue:'',
-            TVDLExpiry:'',
-            PVDLIssue:'',
-            PVDLExpiry:''
-        };
+        $scope.signin_s=appContext.getAll().signinMsg;
 
         $scope.$watch('signin_s.LicenseType',function (newValue, oldValue, scope) {
             console.log(newValue)
@@ -401,13 +360,12 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl) {
     });
 
 appControllers.controller('searchCtr', function ($scope, $http, appContext,allCarsMsg) {
-    console.log(appContext.getAll().searchMsg);
 
     $scope.searchMsg = appContext.getAll().searchMsg;
 
     $scope.isWaitting = true;
     $scope.isNoCar = false;
-    $scope.allCarsMsg = allCarsMsg.all();
+    $scope.allCarsMsgs = allCarsMsg.all();
 
 
     if ($scope.searchMsg.startTime==''||compareTimeWithCurrentTime($scope.searchMsg.startDate+" "+$scope.searchMsg.startTime)){
@@ -425,16 +383,13 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
             if (re<3){
                 var endTime=addByhours(new Date(newStartDteTime.replace("-","/")),3);
                 var formatTime=getFormatTime(endTime);
-                console.log(formatTime)
                 scope.searchMsg.endDate=formatTime.Date;
                 scope.searchMsg.endTime=formatTime.Time;
             }
         }
     });
 
-
     $scope.search = function () {
-        console.log($scope.searchMsg);
         $scope.isWaitting = true;
         $scope.isNoCar = false;
 
@@ -444,13 +399,14 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
         if (computeWithHours(startDateTime,endDateTime)<3){
             var endTime=addByhours(new Date(startDateTime.replace("-","/")),3);
             var formatTime=getFormatTime(endTime);
-            console.log(formatTime)
             $scope.searchMsg.endDate=formatTime.Date;
             $scope.searchMsg.endTime=formatTime.Time;
             $scope.isWaitting = false;
             $scope.isNoCar = true;
             return
         }
+
+        $scope.allCarsMsgs=allCarsMsg.clear();
         //请求所有的车辆信息
         $http({
             method: "POST",
@@ -468,7 +424,8 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
             $scope.isWaitting = false;
             if (data.MsgType == 'Success') {
                 $scope.isNoCar = false;
-                allCarsMsg.setAllCars(data.Data);
+                $scope.allCarsMsgs=allCarsMsg.setAllCars(data.Data);
+                console.log($scope.allCarsMsgs )
             } else {
                 $scope.isNoCar = true;
             }
@@ -480,6 +437,9 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
 
     }
 
+
+
+    $scope.search();
 })
     .controller('mainsearchCtr', function ($scope, $http,appContext) {
         $scope.searchMsg = appContext.getAll().searchMsg;
@@ -488,267 +448,101 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
         }
     });
 
-appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $location) {
-    // JIANCE.init()
+appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     if ($location.path() == '/sidemenu') {
         $state.go('sidemenu.account');//默认显示第一个tab
         $scope.curpath = ''
     }
-
     if ($location.path() == '/sidemenu/account') {
         $scope.curpath = ''
     }
-
     $scope.$on('curPath', function (event, data) {
         $scope.curpath = data
     });
-
 })
-    .controller('accountCtr', function ($scope) {
+    .controller('accountCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', '');
+
+        $scope.motaiBox=appContext.getAll().motaiTishiBox;
+
+        getUserDetailMsg();
+        getUserLastBookingMsg();
+
+
+        $scope.showIsEndtrip=function () {
+            // $('#issuerEndTrip').modal({backdrop:false,show:true});
+        }
+
+        $scope.goToEndtrip=function () {
+            $('body').toggleClass('modal-open');
+            $('.modal-backdrop.fade.in');
+            window.location.replace('#/sidemenu/endtrip');
+        };
+
+        function getUserDetailMsg() {
+
+            $http({
+                method : 'POST',
+                url:allUrl.getUserDetailUrl,
+                data:{},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data)
+                if (data.MsgType == 'Success') {
+
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+
+                }
+
+            }).error(function () {
+
+            });
+        }
+
+        function getUserLastBookingMsg() {
+            $http({
+                method : 'POST',
+                url:allUrl.getUserLastBookingUrl,
+                data:{},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data)
+                if (data.MsgType == 'Success') {
+
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+
+                }
+
+            }).error(function () {
+
+            });
+        }
+
+
     })
-    .controller('editprofileCtr', function ($scope) {
+    .controller('editprofileCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', 'Edit Profile');
 
     })
-    .controller('walletCtr', function ($scope) {
+    .controller('walletCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', 'E-wallet History');
-        $scope.sourceBookings = [
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            },
-            {
-                date: '2017-03-05 18:52:54',
-                type: 'top up',
-                amount: '$500.00',
-                enteredBy: 'credit card'
-            }
-        ]
+        $scope.sourceBookings = [];
         $scope.avg = '10';
 
         $scope.currentIndex = 1;
@@ -757,6 +551,8 @@ appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $loca
         $scope.currentPageBookings = [];
 
         initPage($scope);
+
+
 
         $scope.$watch('avg', function (newValue, oldValue, scope) {
             if (newValue != oldValue) {
@@ -773,239 +569,53 @@ appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $loca
             $scope.currentIndex = index;
             $scope.currentPageBookings = $scope.allPageBookings[index - 1].pageItems;
         };
+
+        querryAllWalletMsgs();
+
+
+
+        function querryAllWalletMsgs() {
+            $scope.sourceBookings.splice(0,$scope.sourceBookings.length);
+            initPage($scope);
+            $http({
+                method : 'POST',
+                url:allUrl.getAllWalletMsgsUrl,
+                data:{},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                if (data.MsgType == 'Success') {
+                    $scope.sourceBookings=data.Data;
+                    initPage($scope);
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+
+                }
+
+            }).error(function () {
+
+            });
+        }
+
+
+
+
+
+
     })
     .controller('topupCtr', function ($scope) {
         $scope.$emit('curPath', 'Top Up');
     })
-    .controller('mybookingsCtr', function ($scope) {
+    .controller('mybookingsCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', 'Booking');
-        $scope.sourceBookings = [
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            },
-            {
-                ref: '2017082365455',
-                car: 'Petrol Hybrid | 5 Seater',
-                pickup: '2017-08-21 15:00:00',
-                return: '2017-08-21 20:00:00',
-                amount: '$35.00',
-                status: 'booking',
-                actions: []
-            }
-        ];
+        $scope.sourceBookings = [];
         $scope.avg = '10';
 
         $scope.currentIndex = 1;
@@ -1030,16 +640,67 @@ appControllers.controller('sidemenuCtr', function ($scope, JIANCE, $state, $loca
             $scope.currentIndex = index;
             $scope.currentPageBookings = $scope.allPageBookings[index - 1].pageItems;
         };
+
+
+        $scope.querry=queryAllBookings;
+
+        $scope.querry();
+
+        function queryAllBookings() {
+
+            $scope.sourceBookings.splice(0,$scope.sourceBookings.length);
+            initPage($scope);
+            $http({
+                method : 'POST',
+                url:allUrl.getAllMyBookingMsgsUrl,
+                data:{},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data)
+                if (data.MsgType == 'Success') {
+                    $scope.sourceBookings=data.Data.Data;
+                    initPage($scope);
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+
+                }
+
+            }).error(function () {
+
+            });
+        }
 
     })
     .controller('referCtr', function ($scope) {
         $scope.$emit('curPath', 'Refer a Friend');
     })
-    .controller('bookingdetailsCtr', function ($scope) {
-        $scope.$emit('curPath', 'BookingdetailsCtr');
+    .controller('checkCarCtr', function ($scope,$http,allUrl,appContext) {
+        $scope.$emit('curPath', 'Start Trip');
+    })
+    .controller('reportIssueCtr', function ($scope,$http,allUrl,appContext) {
+        $scope.$emit('curPath', 'Report Issue');
+    })
+    .controller('endtripCtr', function ($scope,$http,allUrl,appContext) {
+        $scope.$emit('curPath', 'End Trip');
+    })
+    .controller('extendBookingCtr', function ($scope,$http,allUrl,appContext) {
+        $scope.$emit('curPath', 'Extend Booking');
+        $scope.isWaitting=false;
+        $scope.tishiBox={
+            isShow:true,
+            msg:'Comfirm 3 booking per week and get 50% off the 4th booking o!'
+        };
+        $scope.carPriceList={};
     });
 
-appControllers.controller('bookingCtr', function ($scope, $http,$stateParams) {
+appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,appContext,noAutGoLoginPage,allUrl,allCarsMsg) {
     $scope.timeTable = {
         times: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
         bgcolors: [{bgcClass: 'can-booking-bgc'},
@@ -1068,41 +729,324 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams) {
             {bgcClass: 'can-booking-bgc'}
         ]
     };
+    var id =$stateParams.id;
+    $scope.carMsg=allCarsMsg.getCarById(id);
+    $scope.searchMsg=appContext.getAll().searchMsg;
+    $scope.isGetCarStateWaitting=true;
+    $scope.carPriceList={};
 
-    console.log($stateParams.id)
+    $scope.isWaitting=true;
+    $scope.tishiBox={
+        isShow:true,
+        msg:'Comfirm 3 booking per week and get 50% off the 4th booking o!'
+    };
+
+    $scope.motaiBox=appContext.getAll().motaiTishiBox;
+    if(!$scope.carMsg || !$scope.carMsg.ID || !$scope.searchMsg.startTime){
+        window.location.replace("#/search");
+        return;
+    }
+
+    $scope.currentDay=0;
+
+    var startDateTime=($scope.searchMsg.startDate + ' ' + $scope.searchMsg.startTime + ':00');
+    var endDateTime=($scope.searchMsg.endDate + ' ' + $scope.searchMsg.endTime + ':00');
+    $scope.currentDate=$scope.searchMsg.startDate;
+
+    $scope.goToLogin=function () {
+        noAutGoLoginPage.init(true,id);
+    }
+    
+    $scope.geToTopup=function () {
+        noAutGoLoginPage.init(true,id,'#/sidemenu/topup');
+    }
+
+    $scope.getPriceList=getPriceList;
+
+    $scope.getPriceList();
+
+    function getPriceList() {
+        $scope.isWaitting=true;
+        $scope.carPriceList={};
+        $http({
+            method : 'POST',
+            url:allUrl.getPriceListUrl,
+            data:{
+                ID:$scope.carMsg.ID,
+                StartTime: startDateTime,
+                EndTime: endDateTime,
+                VehiceType:$scope.carMsg.VehicleType,
+                LeaseType:$scope.carMsg.LeaseType,
+                VehicleModel:$scope.carMsg.VehicleModel
+            }
+        }).success(function (data) {
+            $scope.isWaitting = false;
+            $scope.carPriceList = data;
+
+        }).error(function () {
+            
+        });
+        if(appContext.getAll().isAut){
+            getWalletMsg();
+        }
+
+    }
+
+
+    $scope.jumpDayCarState=getCarAvailableStateWithDays;
+    
+    $scope.bookingTheCar=function () {
+        if(!appContext.getAll().isAgreeMe){
+            $scope.motaiBox.title='Accept Terms and Conditions';
+            $scope.motaiBox.msg='To proceed booking the vehicle, you need to read and accept the Terms and Conditions.';
+            $('#moTaiTishiBox').modal('show');
+            return;
+        }
+        $http({
+            method : 'POST',
+            url:allUrl.bookingTheCarUrl,
+            data:{
+                ID:$scope.carMsg.ID,
+                StartTime: startDateTime,
+                EndTime: endDateTime,
+                VehiceType:$scope.carMsg.VehicleType,
+                LeaseType:$scope.carMsg.LeaseType,
+                VehicleModel:$scope.carMsg.VehicleModel
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Basic " + appContext.getAll().token
+            }
+        }).success(function (data) {
+            console.log(data)
+            if (data.MsgType == 'Success') {
+                var bookingId=data.Info;
+                appContext.getAll().fromBookingPage.isFromBooking=true;
+                window.location.replace('#/bookingcomfirm/'+bookingId);
+            }else {
+                if(data.MsgType == 'TokenError'){
+                    appContext.getAll().isAut=false;
+                    return;
+                }
+                $scope.motaiBox.title='Promotion:';
+                $scope.motaiBox.msg= data.Info;
+                $('#moTaiTishiBox').modal('show');
+            }
+
+        }).error(function () {
+            $scope.motaiBox.title='Promotion:';
+            $scope.motaiBox.msg= "The network may have problems";
+            $('#moTaiTishiBox').modal('show');
+        });
+        
+        
+    }
+
+    function getCarAvailableStateWithDays(days) {
+        if(days < 0 || days > 28){
+            return;
+        }
+
+        $scope.currentDay=days;
+        $scope.currentDate=getFormatTime(getDateByString(addDayWithStringDateReturnFormatStringDate(startDateTime,days))).Date;
+        $scope.isGetCarStateWaitting=true;
+
+        $http({
+            method : 'POST',
+            url:allUrl.getCarAvailableStateUrl,
+            data:{
+                ID:$scope.carMsg.ID,
+                StartTime: addDayWithStringDateReturnFormatStringDate(startDateTime,days),
+                EndTime: addDayWithStringDateReturnFormatStringDate(endDateTime,days),
+                VehiceType:$scope.carMsg.VehicleType,
+                LeaseType:$scope.carMsg.LeaseType,
+                VehicleModel:$scope.carMsg.VehicleModel,
+                Address:$scope.carMsg.Address,
+            }
+        }).success(function (data) {
+            console.log(data)
+            $scope.isGetCarStateWaitting=false;
+        }).error(function () {
+            $scope.isGetCarStateWaitting=false;
+        });
+    }
+
+    function getWalletMsg() {
+        $http({
+            method : 'POST',
+            url:allUrl.getUserWalletUrl,
+            data:{
+                ID:$scope.carMsg.ID,
+                StartTime: startDateTime,
+                EndTime: endDateTime,
+                VehiceType:$scope.carMsg.VehicleType,
+                LeaseType:$scope.carMsg.LeaseType,
+                VehicleModel:$scope.carMsg.VehicleModel
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Basic " + appContext.getAll().token
+            }
+        }).success(function (data) {
+            console.log(data)
+            if (data.MsgType == 'Success') {
+                appContext.getAll().userAccountMoney=(data.Info/100).toFixed(2);
+                appContext.getAll().isEnoughBalance=true;
+            }else {
+                appContext.getAll().isEnoughBalance=false;
+                if(data.MsgType == 'TokenError'){
+                    appContext.getAll().isAut=false;
+                }
+                // $scope.motaiBox.title='Promotion:';
+                // $scope.motaiBox.msg= data.Info;
+                // $('#agreeMeAlert').modal('show');
+            }
+
+        }).error(function () {
+            $scope.motaiBox.title='Promotion:';
+            $scope.motaiBox.msg= "The network may have problems";
+            $('#moTaiTishiBox').modal('show');
+        });
+    }
 
 })
-    .controller('bookingcomfirmCtr', function ($scope, $http,$stateParams) {
-    $scope.timeTable = {
-        times: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-        bgcolors: [{bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'not-booking-bgc'},
-            {bgcClass: 'not-booking-bgc'},
-            {bgcClass: 'not-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'may-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'},
-            {bgcClass: 'can-booking-bgc'}
-        ]
-    };
+    .controller('bookingcomfirmCtr', function ($scope, $http,$stateParams,appContext,allUrl) {
+        $scope.timeTable = {
+            times: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+            bgcolors: [{bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'not-booking-bgc'},
+                {bgcClass: 'not-booking-bgc'},
+                {bgcClass: 'not-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'may-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'},
+                {bgcClass: 'can-booking-bgc'}
+            ]
+        };
+        $scope.lastBookingMsg={};
+        $scope.isWaitting=true;
+        $scope.tishiBox={
+            isShow:true,
+            msg:'Comfirm 3 booking per week and get 50% off the 4th booking !'
+        };
 
-});
+        getLastBookingMsg();
+
+        function getLastBookingMsg() {
+            $scope.isWaitting=true;
+            $scope.tishiBox.isShow=false;
+            $http({
+                method : 'POST',
+                url:allUrl.getBookingMsgByIdUrl,
+                data:{
+                    LeaseNumber:$stateParams.id,
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                $scope.isWaitting=false;
+
+                if (data.MsgType == 'Success') {
+                    $scope.lastBookingMsg=data.Data;
+                    console.log(data.Data)
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    $scope.tishiBox.isShow=true;
+                    $scope.tishiBox.msg=data.Info;
+                }
+
+            }).error(function () {
+                $scope.isWaitting=false;
+                $scope.tishiBox.isShow=true;
+                $scope.tishiBox.msg='The network may have problems !';
+            });
+        }
+
+})
+    .controller('bookingdetailsCtr', function ($scope,$http,$stateParams,appContext,allUrl) {
+        $scope.bookingMsg={};
+        $scope.isWaitting=true;
+        $scope.tishiBox={
+            isShow:true,
+            msg:'Comfirm 3 booking  !'
+        };
+
+        querryBookingMsgById();
+
+        function querryBookingMsgById() {
+
+            $scope.isWaitting=true;
+            $scope.tishiBox.isShow=false;
+            $http({
+                method : 'POST',
+                url:allUrl.getBookingMsgByIdUrl,
+                data:{
+                    LeaseNumber:$stateParams.id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                $scope.isWaitting=false;
+                if (data.MsgType == 'Success') {
+                    $scope.bookingMsg=data.Data;
+                }else {
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    $scope.tishiBox.isShow=true;
+                    $scope.tishiBox.msg=data.Info;
+                }
+
+            }).error(function () {
+                $scope.isWaitting=false;
+                $scope.tishiBox.isShow=true;
+                $scope.tishiBox.msg='The network may have problems !';
+            });
+        }
+    });
+
+appControllers.controller('faqCtr',function ($scope) {
+
+    })
+    .controller('ourratesCtr',function ($scope) {
+
+    })
+    .controller('privacypolicyCtr',function ($scope) {
+
+    })
+    .controller('termsCtr',function ($scope) {
+
+    });
+
+
 
 
 
@@ -1151,8 +1095,8 @@ function initsearchTime($scope) {
     var startDateTime = addHours(1);
     var endDateTime = addHours(4);
 
-    var startDate = startDateTime.getFullYear() + '-' + ((startDateTime.getMonth() + 1) > 9 ? (startDateTime.getMonth() + 1) : ('0' + (startDateTime.getMonth() + 1))) + '-' + startDateTime.getDate();
-    var endDate = endDateTime.getFullYear() + '-' + ((endDateTime.getMonth() + 1) > 9 ? (endDateTime.getMonth() + 1) : ('0' + (endDateTime.getMonth() + 1))) + '-' + endDateTime.getDate();
+    var startDate = startDateTime.getFullYear() + '-' + ((startDateTime.getMonth() + 1) > 9 ? (startDateTime.getMonth() + 1) : ('0' + (startDateTime.getMonth() + 1))) + '-' + (startDateTime.getDate()>9?(startDateTime.getDate()):('0'+startDateTime.getDate()));
+    var endDate = endDateTime.getFullYear() + '-' + ((endDateTime.getMonth() + 1) > 9 ? (endDateTime.getMonth() + 1) : ('0' + (endDateTime.getMonth() + 1))) + '-' + (endDateTime.getDate()>9?(endDateTime.getDate()):('0'+endDateTime.getDate()));
     var startHour = startDateTime.getHours() > 9 ? (startDateTime.getHours() + ":00") : ("0" + startDateTime.getHours() + ":00");
     var endHour = endDateTime.getHours() > 9 ? (endDateTime.getHours() + ":00") : ("0" + endDateTime.getHours() + ":00");
 
@@ -1164,12 +1108,16 @@ function initsearchTime($scope) {
 
 function getFormatTime(date){
     var endDateTime = date;
-    var endDate = endDateTime.getFullYear() + '-' + ((endDateTime.getMonth() + 1) > 9 ? (endDateTime.getMonth() + 1) : ('0' + (endDateTime.getMonth() + 1))) + '-' + endDateTime.getDate();
+    var endDate = endDateTime.getFullYear() + '-' + ((endDateTime.getMonth() + 1) > 9 ? (endDateTime.getMonth() + 1) : ('0' + (endDateTime.getMonth() + 1))) + '-' + (endDateTime.getDate()>9?(endDateTime.getDate()):('0'+endDateTime.getDate()));
     var endHour = endDateTime.getHours() > 9 ? (endDateTime.getHours() + ":00") : ("0" + endDateTime.getHours() + ":00");
     return {
         Date:endDate,
         Time:endHour
     };
+}
+
+function getDateByString(stringDatetime) {
+    return new Date(stringDatetime.replace("-","/"));
 }
 
 function addHours(hours) {
@@ -1195,7 +1143,7 @@ function subtractByhours(date,hours) {
 }
 function compareTimeWithCurrentTime(datetime) {
     var currentDateTime = addHours(0);
-    var storageDateTime=new Date(datetime.replace("-","/"));
+    var storageDateTime=getDateByString(datetime.replace("-","/"));
     if (currentDateTime > storageDateTime){
         return true
     }else {
@@ -1204,9 +1152,16 @@ function compareTimeWithCurrentTime(datetime) {
 }
 
 function computeWithHours(startTime,endTime) {
-    var startDateTime=new Date(startTime.replace("-","/"));
-    var endDateTime=new Date(endTime.replace("-","/"));
+    var startDateTime=getDateByString(startTime.replace("-","/"));
+    var endDateTime=getDateByString(endTime.replace("-","/"));
     var result=endDateTime.getTime()-startDateTime.getTime()
 
     return result/3600/1000;
+}
+
+function addDayWithStringDateReturnFormatStringDate(stringDate,days) {
+    var a=getDateByString(stringDate);
+    var b=addByhours(a,24*days);
+    var c=getFormatTime(b);
+    return c.Date+' '+c.Time+":00";
 }

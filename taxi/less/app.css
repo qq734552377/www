@@ -189,6 +189,21 @@ a {
 .side-menu-content.mini {
   margin-left: 50px;
 }
+.side-menu-content .header a.back {
+  color: darkorange;
+  text-decoration: none;
+  position: absolute;
+  left: 30px;
+  top: 6px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.side-menu-content .header a.back:hover {
+  color: orange;
+}
+.side-menu-content .header a.back:hover img {
+  source: 'img/back_hover.png';
+}
 .side-menu-content .header ol {
   list-style: none;
 }
@@ -272,6 +287,9 @@ a {
   }
   .side-menu-content.mini {
     margin-left: 0;
+  }
+  .side-menu-content .header a.back {
+    left: 30px;
   }
   .offcanvas-stop-scrolling .side-menu-content {
     -webkit-transform: translate(230px, 0);
@@ -441,12 +459,12 @@ a {
 .my-box .box-body .row div p {
   font-size: 16px;
 }
-.my-box .box-body .row div a {
+.my-box .box-body .row div > a {
   font-size: 16px;
   text-decoration: none;
   color: darkorange;
 }
-.my-box .box-body .row div a:hover {
+.my-box .box-body .row div > a:hover {
   color: orange;
 }
 .my-box .box-body .payPrice .countPrice .top {
@@ -513,7 +531,7 @@ a {
   color: #efefef;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td a:hover {
-  color: #cccccc;
+  color: #cfcfcf;
 }
 .my-box .box-footer {
   padding: 15px 0;
@@ -585,7 +603,7 @@ table.profile-ps tbody > tr > td {
   }
 }
 .can-booking-bgc {
-  background-color: #35c538;
+  background-color: #5cb85c;
 }
 .not-booking-bgc {
   background-color: #ee2222;
@@ -697,7 +715,7 @@ table.profile-ps tbody > tr > td {
 .mainsearch .mainsearch-item > div span {
   background-color: transparent;
   border: 0;
-  color: #cccccc;
+  color: #dfdfdf;
 }
 .mainsearch .mainsearch-item > div span i {
   font-size: 32px;
@@ -750,7 +768,8 @@ table.responsive td {
   margin: 0;
 }
 table.responsive th {
-  background-color: #35c538;
+  background-color: #5cb85c;
+  color: #fff;
   text-align: center;
 }
 table.responsive .actions {
@@ -759,7 +778,17 @@ table.responsive .actions {
 table.responsive .actions a {
   text-decoration: none;
   padding: 0 4px;
-  color: #ff5c00;
+  color: darkorange;
+}
+table.responsive .actions a:hover {
+  color: orange;
+}
+.mytable .refresh {
+  cursor: pointer;
+  padding-right: 10px;
+}
+.mytable .refresh:hover {
+  font-weight: bold;
 }
 .mytable .show-counts {
   margin: 20px 0;
@@ -788,7 +817,8 @@ table.responsive .actions a {
     position: relative;
   }
   table.responsive .ref {
-    background-color: #35c538;
+    background-color: #5cb85c;
+    color: #fff;
     text-align: left;
     padding-left: 33%;
   }
@@ -800,7 +830,8 @@ table.responsive .actions a {
     font-weight: bold;
   }
   table.responsive .date {
-    background-color: #35c538;
+    background-color: #5cb85c;
+    color: #fff;
     text-align: left;
     padding-left: 33%;
   }
@@ -893,6 +924,13 @@ table.responsive .actions a {
     right: 0;
     top: 0;
   }
+  table.responsive .actions a {
+    color: #fff;
+    font-weight: bold;
+  }
+  table.responsive .actions a:hover {
+    color: #efe0e0;
+  }
   .mytable .show-counts {
     margin: 0;
     padding: 0;
@@ -975,7 +1013,7 @@ table.responsive .actions a {
   margin-right: 20px;
 }
 .maincontent-bgc {
-  background-color: #efefef;
+  background-color: #f2f2f2;
 }
 .error-tishi {
   color: red;
@@ -993,6 +1031,10 @@ table.responsive .actions a {
 .left-right-padding-40 {
   padding-left: 40px;
   padding-right: 40px;
+}
+.left-right-padding-15 {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .good-padding-bottom-l {
   padding-bottom: 360px;
@@ -1080,6 +1122,78 @@ table.responsive .actions a {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+.step {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.step .media .media-body h4,
+.step .media .media-body p {
+  color: #707070;
+}
+.step .media.active .media-body h4,
+.step .media.active .media-body p {
+  color: #d81e06;
+}
+.faq-style h4 {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+.faq-style .question a {
+  text-decoration: none;
+  color: #e81e06;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 2.2em;
+}
+.faq-style .question a:hover {
+  color: #d80e06;
+}
+.faq-style .question a i:before {
+  content: '\e113';
+}
+.faq-style .question a.collapsed i:before {
+  content: '\e080';
+}
+.faq-style .answer {
+  font-size: 18px;
+  line-height: 1.2em;
+  background-color: rgba(53, 197, 56, 0.2);
+}
+.faq-style .answer ul > li {
+  font-size: 18px;
+  margin-left: 50px;
+  list-style: disc;
+}
+.privacy-style p {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.privacy-style a {
+  text-decoration: none;
+  color: #e81e06;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 2.2em;
+}
+.privacy-style a:hover {
+  color: #d80e06;
+}
+.terms-style p {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.terms-style a {
+  text-decoration: none;
+  color: #e81e06;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 2.2em;
+}
+.terms-style a:hover {
+  color: #d80e06;
 }
 .bg-info {
   background-color: #353535;
@@ -1241,7 +1355,7 @@ a {
 }
 .main-content {
   overflow-x: hidden;
-  background-color: #efefef;
+  background-color: #f2f2f2;
 }
 .main-footer {
   background-color: #353535;
@@ -1290,16 +1404,44 @@ a {
   height: 100%;
   border: 0;
 }
-.step {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding-top: 5px;
-  padding-bottom: 5px;
+.no-car-tishi-msg h4 {
+  font-size: 22px;
+  line-height: 2.0em;
+  font-weight: bold;
 }
-.step .media .media-body h4,
-.step .media .media-body p {
-  color: #707070;
+.no-car-tishi-msg p,
+.no-car-tishi-msg ul > li {
+  line-height: 1.6em;
+  font-size: 16px;
 }
-.step .media.active .media-body h4,
-.step .media.active .media-body p {
-  color: #d81e06;
+.no-car-tishi-msg p {
+  margin-left: 15px;
+}
+.no-car-tishi-msg ul {
+  margin: 10px 15px;
+}
+.no-car-tishi-msg ul > li {
+  margin-left: 50px;
+  list-style: decimal-leading-zero;
+}
+@media (max-width: 767px) {
+  .no-car-tishi-msg h4 {
+    margin-left: 0px;
+    padding-left: 0;
+    font-size: 18px;
+    line-height: 1.8em;
+    font-weight: 400;
+  }
+  .no-car-tishi-msg p {
+    margin-left: 0px;
+    padding-left: 0;
+  }
+  .no-car-tishi-msg ul > li {
+    margin-left: 15px;
+  }
+  .no-car-tishi-msg p,
+  .no-car-tishi-msg ul > li {
+    line-height: 1.4em;
+    font-size: 14px;
+  }
 }
