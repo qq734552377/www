@@ -474,8 +474,9 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         }
 
         $scope.goToEndtrip=function () {
+            $('#issuerEndTrip').modal('hide');
             $('body').toggleClass('modal-open');
-            $('.modal-backdrop.fade.in');
+            $('.modal-backdrop.fade.in').remove();
             window.location.replace('#/sidemenu/endtrip');
         };
 
