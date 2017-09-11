@@ -207,3 +207,26 @@ a {
   height: 100%;
   border: 0;
 }
+.all-waitting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+}
+.box-photo-border {
+  box-shadow: 0px 0px 10px 3px rgba(255, 195, 0, 0.7) inset;
+  -webkit-box-shadow: 0px 0px 8px 3px rgba(255, 195, 0, 0.7) inset;
+  -moz-box-shadow: 0px 0px 10px 3px rgba(255, 195, 0, 0.7) inset;
+  -o-box-shadow: 0px 0px 10px 3px rgba(255, 195, 0, 0.7) inset;
+  -webkit-transition: all 0.8s ease-in;
+  -o-transition: all 0.8s ease-in;
+  -moz-transition: all 0.8s ease-in;
+  transition: all 0.8s ease-in;
+}
+.box-photo-border:hover {
+  border-radius: 0px 0px 10px 10px ;
+  background-color: rgba(255, 195, 0, 0.2);
+}

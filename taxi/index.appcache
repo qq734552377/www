@@ -1,0 +1,24 @@
+CACHE MANIFEST
+
+CACHE:
+components/jquery/jquery-3.1.1.min.js
+components/bootstrap-3.3.7-dist/css/bootstrap.min.css
+components/offcancas/bootstrap.offcanvas.css
+components/datetimepicker/bootstrap-datetimepicker.css
+components/bootstrap-3.3.7-dist/js/bootstrap.min.js
+components/angular/angular.js
+components/angular/angular-ui-router.min.js
+js/md5.js
+index.html
+
+
+
+
+FALLBACK:
+# Defines resources to be used if non-cached
+# resources cannot be downloaded, for example
+# when the browser is offline..
+
+
+NETWORK:
+# Defines resources that will not be cached.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,6 +56,15 @@
     </div>
 </div>
 <!--提示模态框结尾-->
+
+<!--遮罩等待图像-->
+<div ng-if="appContext.isAllWaitting" class="all-waitting">
+    <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top: 100px">
+        <img src="img/waiting.gif">
+    </div>
+</div>
+
+<!--遮罩等待图像结尾-->
 
 <script src="components/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="components/angular/angular.js"></script>

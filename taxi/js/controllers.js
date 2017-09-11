@@ -359,7 +359,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl,JIANCE,app
 
     });
 
-appControllers.controller('searchCtr', function ($scope, $http, appContext,allCarsMsg) {
+appControllers.controller('searchCtr', function ($scope, $http, appContext,allCarsMsg,allUrl) {
 
     $scope.searchMsg = appContext.getAll().searchMsg;
 
@@ -372,51 +372,60 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
         initsearchTime($scope);
     }
 
-    $scope.$watch('searchMsg.startTime',function (newValue, oldValue, scope) {
-        var newStartDteTime=scope.searchMsg.startDate+" " +newValue;
-        var endDateTime=scope.searchMsg.endDate+" " +scope.searchMsg.endTime;
+    $scope.$watch('searchMsg.location',function (newValue, oldValue, scope) {
 
-        if (compareTimeWithCurrentTime(newStartDteTime)){
-            initsearchTime(scope);
-        }else{
-            var re=computeWithHours(newStartDteTime,endDateTime);
-            if (re<3){
-                var endTime=addByhours(new Date(newStartDteTime.replace("-","/")),3);
-                var formatTime=getFormatTime(endTime);
-                scope.searchMsg.endDate=formatTime.Date;
-                scope.searchMsg.endTime=formatTime.Time;
-            }
+        scope.searchMsg.vehicleNumbers=[];
+
+        if(newValue == 0){
+            return;
         }
+
+        $http({
+            method: "POST",
+            url: allUrl.getVehicleNumberBylocationUrl,
+            data:{
+                BindParking:newValue
+            }
+        }).success(function (data) {
+            console.log(data);
+            if (data.MsgType == 'Success') {
+                appContext.getAll().searchMsg.vehicleNumbers = data.Data;
+                if(data.Data.length == 0 || !hasVehicleNumberInArray(data.Data,$scope.searchMsg.vehicleNumber)){
+                    scope.searchMsg.vehicleNumber='0';
+                }
+            } else {
+                scope.searchMsg.vehicleNumber='0';
+            }
+
+        }).error(function () {
+            scope.searchMsg.vehicleNumber='0';
+        });
+
     });
 
     $scope.search = function () {
         $scope.isWaitting = true;
         $scope.isNoCar = false;
+        $scope.allCarsMsgs=allCarsMsg.clear();
 
-        var startDateTime=$scope.searchMsg.startDate+" " +$scope.searchMsg.startTime;
-        var endDateTime=$scope.searchMsg.endDate+" " +$scope.searchMsg.endTime;
-
-        if (computeWithHours(startDateTime,endDateTime)<3){
-            var endTime=addByhours(new Date(startDateTime.replace("-","/")),3);
-            var formatTime=getFormatTime(endTime);
-            $scope.searchMsg.endDate=formatTime.Date;
-            $scope.searchMsg.endTime=formatTime.Time;
+        if ($scope.searchMsg.location == 0){
             $scope.isWaitting = false;
             $scope.isNoCar = true;
-            return
+            return;
         }
 
-        $scope.allCarsMsgs=allCarsMsg.clear();
+
         //请求所有的车辆信息
         $http({
             method: "POST",
             url: $scope.searchMsg.searchUrl,
             data: {
                 StartTime: ($scope.searchMsg.startDate + ' ' + $scope.searchMsg.startTime + ':00'),
-                EndTime: ($scope.searchMsg.endDate + ' ' + $scope.searchMsg.endTime + ':00'),
+                Duration:$scope.searchMsg.duration,
                 LeaseType: $scope.searchMsg.rentFor,
                 VehiceType: $scope.searchMsg.category,
-                Address: $scope.searchMsg.location
+                Address: $scope.searchMsg.location,
+                PlateID:$scope.searchMsg.vehicleNumber
             },
             headers: {'Content-Type': 'application/json'}
         }).success(function (data) {
@@ -441,11 +450,50 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext,allCa
 
     $scope.search();
 })
-    .controller('mainsearchCtr', function ($scope, $http,appContext) {
+    .controller('mainsearchCtr', function ($scope, $http,appContext,allUrl) {
         $scope.searchMsg = appContext.getAll().searchMsg;
         if ($scope.searchMsg.startTime==''||compareTimeWithCurrentTime($scope.searchMsg.startDate+" "+$scope.searchMsg.startTime)){
             initsearchTime($scope);
         }
+        $scope.mainsearch=function () {
+            if ($scope.searchMsg.location == 0){
+                $scope.motaiBox.title='Promotion:';
+                $scope.motaiBox.msg= "Pelease pick a location,thanks!";
+                $('#moTaiTishiBox').modal('show');
+                return;
+            }
+            window.location.replace('#/search');
+        }
+
+        $scope.$watch('searchMsg.location',function (newValue, oldValue, scope) {
+
+            scope.searchMsg.vehicleNumbers=[];
+            if(newValue == 0){
+                return;
+            }
+
+            $http({
+                method: "POST",
+                url: allUrl.getVehicleNumberBylocationUrl,
+                data:{
+                    BindParking:newValue
+                }
+            }).success(function (data) {
+                console.log(data);
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().searchMsg.vehicleNumbers = data.Data;
+                    if(data.Data.length == 0 || !hasVehicleNumberInArray(data.Data,$scope.searchMsg.vehicleNumber)){
+                        scope.searchMsg.vehicleNumber='0';
+                    }
+
+                } else {
+                    scope.searchMsg.vehicleNumber='0';
+                }
+            }).error(function () {
+                scope.searchMsg.vehicleNumber='0';
+            });
+
+        });
     });
 
 appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
@@ -465,19 +513,22 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
         $scope.motaiBox=appContext.getAll().motaiTishiBox;
 
+        $scope.tishiBox={
+            title:'',
+            msg:''
+        };
+
+
+        $scope.remainingTime=0;
         getUserDetailMsg();
         getUserLastBookingMsg();
-
-
-        $scope.showIsEndtrip=function () {
-            // $('#issuerEndTrip').modal({backdrop:false,show:true});
-        }
+        getWalletMsg();
 
         $scope.goToEndtrip=function () {
             $('#issuerEndTrip').modal('hide');
             $('body').toggleClass('modal-open');
             $('.modal-backdrop.fade.in').remove();
-            window.location.replace('#/sidemenu/endtrip');
+            window.location.href='#/sidemenu/endtrip';
         };
 
         function getUserDetailMsg() {
@@ -493,7 +544,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }).success(function (data) {
                 console.log(data)
                 if (data.MsgType == 'Success') {
-
+                    appContext.getAll().userMsg=data.Data;
                 }else {
                     if(data.MsgType == 'TokenError'){
                         appContext.getAll().isAut=false;
@@ -520,6 +571,10 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }).success(function (data) {
                 console.log(data)
                 if (data.MsgType == 'Success') {
+                    appContext.getAll().lastBooking=data.Data;
+                    if(data.Data.list.LeaseStatus==1){
+                        var endtime=data.Data.list.LeaseEndTime;
+                    }
 
                 }else {
                     if(data.MsgType == 'TokenError'){
@@ -527,14 +582,47 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                         window.location.replace("#/login");
                         return;
                     }
-
+                    appContext.getAll().lastBooking=undefined;
                 }
 
             }).error(function () {
-
+                appContext.getAll().lastBooking=undefined;
             });
         }
 
+
+        function getWalletMsg() {
+            $http({
+                method : 'POST',
+                url:allUrl.getUserWalletUrl,
+                data:{},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data)
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().userAccountMoney=(data.Info/100).toFixed(2);
+                }else {
+                    appContext.getAll().isEnoughBalance=false;
+                    appContext.getAll().userAccountMoney=0;
+                    if(data.MsgType == 'TokenError'){
+                        appContext.getAll().isAut=false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    $scope.motaiBox.title='Promotion:';
+                    $scope.motaiBox.msg= data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+
+            }).error(function () {
+                $scope.motaiBox.title='Promotion:';
+                $scope.motaiBox.msg= "The network may have problems";
+                $('#moTaiTishiBox').modal('show');
+            });
+        }
 
     })
     .controller('editprofileCtr', function ($scope,$http,allUrl,appContext) {
@@ -690,6 +778,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('endtripCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', 'End Trip');
+        // appContext.getAll().isAllWaitting=true
     })
     .controller('extendBookingCtr', function ($scope,$http,allUrl,appContext) {
         $scope.$emit('curPath', 'Extend Booking');
@@ -751,7 +840,6 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
     $scope.currentDay=0;
 
     var startDateTime=($scope.searchMsg.startDate + ' ' + $scope.searchMsg.startTime + ':00');
-    var endDateTime=($scope.searchMsg.endDate + ' ' + $scope.searchMsg.endTime + ':00');
     $scope.currentDate=$scope.searchMsg.startDate;
 
     $scope.goToLogin=function () {
@@ -775,12 +863,13 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
             data:{
                 ID:$scope.carMsg.ID,
                 StartTime: startDateTime,
-                EndTime: endDateTime,
+                Duration:$scope.carMsg.Duration,
                 VehiceType:$scope.carMsg.VehicleType,
                 LeaseType:$scope.carMsg.LeaseType,
                 VehicleModel:$scope.carMsg.VehicleModel
             }
         }).success(function (data) {
+            console.log(data)
             $scope.isWaitting = false;
             $scope.carPriceList = data;
 
@@ -809,7 +898,7 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
             data:{
                 ID:$scope.carMsg.ID,
                 StartTime: startDateTime,
-                EndTime: endDateTime,
+                Duration:$scope.carMsg.Duration,
                 VehiceType:$scope.carMsg.VehicleType,
                 LeaseType:$scope.carMsg.LeaseType,
                 VehicleModel:$scope.carMsg.VehicleModel
@@ -858,7 +947,6 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
             data:{
                 ID:$scope.carMsg.ID,
                 StartTime: addDayWithStringDateReturnFormatStringDate(startDateTime,days),
-                EndTime: addDayWithStringDateReturnFormatStringDate(endDateTime,days),
                 VehiceType:$scope.carMsg.VehicleType,
                 LeaseType:$scope.carMsg.LeaseType,
                 VehicleModel:$scope.carMsg.VehicleModel,
@@ -879,7 +967,6 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
             data:{
                 ID:$scope.carMsg.ID,
                 StartTime: startDateTime,
-                EndTime: endDateTime,
                 VehiceType:$scope.carMsg.VehicleType,
                 LeaseType:$scope.carMsg.LeaseType,
                 VehicleModel:$scope.carMsg.VehicleModel
@@ -892,15 +979,15 @@ appControllers.controller('bookingCtr', function ($scope, $http,$stateParams,app
             console.log(data)
             if (data.MsgType == 'Success') {
                 appContext.getAll().userAccountMoney=(data.Info/100).toFixed(2);
-                appContext.getAll().isEnoughBalance=true;
             }else {
                 appContext.getAll().isEnoughBalance=false;
+                appContext.getAll().userAccountMoney=0;
                 if(data.MsgType == 'TokenError'){
                     appContext.getAll().isAut=false;
                 }
-                // $scope.motaiBox.title='Promotion:';
-                // $scope.motaiBox.msg= data.Info;
-                // $('#agreeMeAlert').modal('show');
+                $scope.motaiBox.title='Promotion:';
+                $scope.motaiBox.msg= data.Info;
+                $('#moTaiTishiBox').modal('show');
             }
 
         }).error(function () {
@@ -1165,4 +1252,14 @@ function addDayWithStringDateReturnFormatStringDate(stringDate,days) {
     var b=addByhours(a,24*days);
     var c=getFormatTime(b);
     return c.Date+' '+c.Time+":00";
+}
+
+function hasVehicleNumberInArray(data,vehicleNumber) {
+    var result=false;
+    for (var i=0;i<data.length;i++){
+        if(vehicleNumber == data[i].ID){
+            result=true;
+        }
+    }
+    return result;
 }

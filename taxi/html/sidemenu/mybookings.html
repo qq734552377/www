@@ -32,7 +32,7 @@
                                 <th>Car</th>
                                 <th>Pickup</th>
                                 <th>Return</th>
-                                <th>Amount($)</th>
+                                <th>Amount</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -40,7 +40,7 @@
                             <tbody>
                             <tr ng-repeat="item in currentPageBookings">
                                 <td class="ref" ng-bind="item.LeaseNumber"></td>
-                                <td class="car" ng-bind="item.VehicleType+' | '+ item.VehicleSeats + ' Seater'"></td>
+                                <td class="car" ng-bind="item.VehicleModels+' ( '+ item.VehicleName + ' )'"></td>
                                 <td class="pickup" ng-bind="item.LeaseStartTime"></td>
                                 <td class="return" ng-bind="item.LeaseEndTime"></td>
                                 <td class="amount" ng-bind="'$ '+(item.LeaseMount/100).toFixed(2)"></td>

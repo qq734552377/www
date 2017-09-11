@@ -101,23 +101,17 @@
                             <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Pickup</h5>
                             <p style="font-size: 14px;font-weight: bold">
                                 <i class="glyphicon glyphicon-time"></i>
-                                {{searchMsg.startTime}}
+                                {{carPriceList.StartTimeHour}}
                             </p>
-                            <p style="font-size: 14px;font-weight: bold">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                                {{searchMsg.startDate}}
-                            </p>
+
                         </div>
                         <div class="col-md-6 col-xs-6">
                             <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Return</h5>
                             <p style="font-size: 14px;font-weight: bold">
                                 <i class="glyphicon glyphicon-time"></i>
-                                {{searchMsg.endTime}}
+                                {{carPriceList.EndTimeHour}}
                             </p>
-                            <p style="font-size: 14px;font-weight: bold">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                                {{searchMsg.endDate}}
-                            </p>
+
                         </div>
 
                         <div ng-if="isWaitting" class="loadPice col-md-12 text-center">
@@ -217,11 +211,13 @@
                                                     <b>Balance</b>
                                                 </td>
                                                 <td class="right text-right ">
-                                                    $ {{(appContext.userAccountMoney - (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                    $ {{(appContext.userAccountMoney -
+                                                    (carPriceList.BookingTotal/100)).toFixed(2)}}
                                                 </td>
                                             </tr>
 
-                                            <tr ng-if="!appContext.isEnoughBalance" id="noMoreMoney"
+                                            <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
+                                                id="noMoreMoney"
                                                 class="noMoreMoney">
                                                 <td colspan="2">
                                                     * Insufficient Credits in your e-Wallet, <span
@@ -237,12 +233,13 @@
                             <!--个人账户End-->
 
                             <!--结算-->
-                            <div ng-if="appContext.isAut&&appContext.isEnoughBalance" class="col-md-12 booking">
+                            <div ng-if="appContext.isAut&& (appContext.userAccountMoney - (carPriceList.BookingTotal/100))>0" class="col-md-12 booking">
                                 <div class="form-group">
                                     <div class="agreeMe">
                                         <label>
                                             <input ng-model="appContext.isAgreeMe" type="checkbox">
-                                            I agree to the <a href="#/bookingcomfirm/123" target="_blank">terms and conditions</a>
+                                            I agree to the <a href="#/bookingcomfirm/123" target="_blank">terms and
+                                            conditions</a>
                                             as stated in the website.
                                         </label>
                                     </div>
@@ -291,7 +288,7 @@
                     <div class="map-area" style="">
                         <p>{{carMsg.Address}}</p>
                         <p>
-                          {{carMsg.Remarks}}
+                            {{carMsg.Remarks}}
                         </p>
                     </div>
                 </div>
@@ -302,11 +299,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-center table-title" style="font-size: 18px">
-                            <a ng-if="currentDay!=0" ng-click="jumpDayCarState(currentDay-1)"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a ng-if="currentDay!=0" ng-click="jumpDayCarState(currentDay-1)"><i
+                                    class="glyphicon glyphicon-chevron-left"></i></a>
                             &nbsp;&nbsp;
                             {{currentDate}}
                             &nbsp;&nbsp;
-                            <a ng-if="currentDay!=28" ng-click="jumpDayCarState(currentDay+1)"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <a ng-if="currentDay!=28" ng-click="jumpDayCarState(currentDay+1)"><i
+                                    class="glyphicon glyphicon-chevron-right"></i></a>
                         </div>
                         <div ng-if="isGetCarStateWaitting" class="loadPice col-md-12 text-center margin-top-25">
                             <img src="img/waiting.gif">
