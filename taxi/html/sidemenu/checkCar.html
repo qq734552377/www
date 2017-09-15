@@ -1,6 +1,20 @@
-<div class="col-md-10 good-margin-bottom-l" >
+<div class="col-md-12 good-margin-bottom-l" >
+
+    <div ng-if="waitObj.isShowAll" class="container-fluid margin-top-25" style="margin-bottom: 250px">
+        <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
+            <h3 ng-bind="waitObj.title">Unlocking car, please wait</h3>
+            <img src="img/waiting.gif" class="margin-top-20" ng-if="waitObj.isShowWaitImg">
+            <div class="margin-top-20" ng-if="waitObj.isShowlockBtn">
+                <i class="glyphicon glyphicon-alert" style="font-size: 64px;color: #e81e06"></i><br>
+                <button class="btn btn-danger margin-top-20">Lock Again</button>
+            </div>
+            <h4 class="margin-top-20" ng-bind="waitObj.msg">Please wait while we ending your trip.
+                Do not press the BACK button.</h4>
+        </div>
+    </div>
+
     <!--wallet-->
-    <div class="my-box my-box-top-border margin-top-20 ">
+    <div ng-if="!waitObj.isShowAll" class="my-box my-box-top-border margin-top-20 ">
         <div class="box-header">
             <h4 class="box-header-title">Car unlocked, have you? </h4>
         </div>

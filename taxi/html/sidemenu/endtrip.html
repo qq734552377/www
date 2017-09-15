@@ -1,4 +1,4 @@
-<div class="col-md-10 good-margin-bottom-l" >
+<div class="col-md-12 good-margin-bottom-l" >
     <!--wallet-->
     <div hidden class="my-box my-box-top-border margin-top-20 ">
         <div class="box-header">
@@ -36,62 +36,113 @@
     </div>
     <!--wallet end-->
 
+    <div ng-if="waitObj.isShowAll" class="container-fluid margin-top-25" style="margin-bottom: 250px">
+        <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
+            <h3 ng-bind="waitObj.title">Unlocking car, please wait</h3>
+            <img src="img/waiting.gif" class="margin-top-20" ng-if="waitObj.isShowWaitImg">
+            <div class="margin-top-20" ng-if="waitObj.isShowlockBtn">
+                <i class="glyphicon glyphicon-alert" style="font-size: 64px;color: #e81e06"></i><br>
+                <button class="btn btn-danger margin-top-20" ng-click="lockCar()">Lock Again</button>
+            </div>
+            <h4 class="margin-top-20" ng-bind="waitObj.msg">Please wait while we ending your trip.
+                Do not press the BACK button.</h4>
+        </div>
+    </div>
+
 
     <!--check car-->
-    <div class="my-box my-box-top-border margin-top-20 ">
+    <div class="my-box my-box-top-border margin-top-20 "  ng-if="!waitObj.isShowAll">
         <div class="box-header">
             <h4 class="box-header-title">Before you leave </h4>
         </div>
         <div class="box-body my-box-boundary" >
-            <div class="row">
+            <div class="row" style="margin-left: 0px;margin-right: 0px">
                 <div class="col-md-12 col-xs-12">
                     <form>
                         <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox">
-                                Parked car back into indicated lots/deck given to you
-                            </label>
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.endTrip.endtripSure1">
+                                        Parked car back into indicated lots/deck given to you
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.endTrip.endtripSure1">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.endTrip.endtripSure1"></i>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox" value="">
-                                Leave the car key back into the glove compartment
-                            </label>
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.endTrip.endtripSure2">
+                                        Leave the car key back into the glove compartment
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.endTrip.endtripSure2">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.endTrip.endtripSure2"></i>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox" value="">
-                                Take all your belongings (i.e. cashcard) and clear your own litters
-                            </label>
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.endTrip.endtripSure3">
+                                        Take all your belongings (i.e. cashcard) and clear your own litters
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.endTrip.endtripSure3">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.endTrip.endtripSure3"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox" value="">
-                                Take picture of car condition and dashboard (if you want to protect yourself)
-                            </label>
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.endTrip.endtripSure4">
+                                        Take picture of car condition and dashboard (if you want to protect yourself)
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.endTrip.endtripSure4">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.endTrip.endtripSure4"></i>
+                                </div>
+                            </div>
                         </div>
                         <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox" value="">
-                                Parked car back into indicated lots/deck given to you
-                            </label>
-                        </div>
-                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
-                            <label>
-                                <input type="checkbox" value="">
-                                Please logoff and switch off payment terminal and MDT
-                            </label>
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.endTrip.endtripSure5">
+                                        Please logoff and switch off payment terminal and MDT
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.endTrip.endtripSure5">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.endTrip.endtripSure5"></i>
+                                </div>
+                            </div>
                         </div>
                     </form>
-                    <p style="font-size: 16px;line-height: 1.6em">Note: To not leave the app till you see “Thank You for using SMRT TAXI SHARE".</p>
+                    <p style="font-size: 16px;line-height: 1.6em">Note: To not leave the app till you see “Thank you for using SMRT TAXI SHARE".</p>
                 </div>
             </div>
 
         </div>
 
         <div class="modal-footer" >
-            <button type="button" class="btn btn-success" >Proceed</button>
-            <button type="button" class="btn btn-danger" >Report Issue</button>
+            <button type="button" class="btn btn-success" ng-click="lockCar()">Proceed</button>
+            <a type="button" class="btn btn-danger" href="#/sidemenu/reportIssue">Report Issue</a>
         </div>
 
     </div>

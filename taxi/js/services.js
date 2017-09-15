@@ -83,6 +83,14 @@ serviceModule.factory('allUrl',function () {
         getAllWalletMsgsUrl:'http://58.246.122.118:12305/LogWallet/MobileGetList',
         getUserDetailUrl:'http://58.246.122.118:12305/api/GetUserDetail',
         getUserLastBookingUrl:'http://58.246.122.118:12305/Bookings/QueryUsersBookingsDetail',
+        getExtensionPaiceListUrl:'http://58.246.122.118:12305/api/VehicleShareRenewQuery',
+        ExtendBookingUrl:'http://58.246.122.118:12305/api/UserRenewOrder',
+        getCanStartTripUrl:'http://58.246.122.118:12305/Bookings/FrontAllowOpen',
+        StartTripUrl:'http://58.246.122.118:12305/Bookings/FrontOpen',
+        queryDoorStateUrl:'http://58.246.122.118:12305/Bookings/QueryDoorsCommand',
+        cansleBookingUrl:'http://58.246.122.118:12305/api/UserCancelOrder',
+        getcancleReasonUrl:'http://58.246.122.118:12305/Select/GetCancelReason',
+        endTripUrl:'http://58.246.122.118:12305/Bookings/FrontClose',
 
     }
 })
@@ -98,8 +106,9 @@ serviceModule.factory('allUrl',function () {
             isEnoughBalance:false,
             userAccountMoney:0,
             isAgreeMe:false,
-            bookingState:['Apply','Start','Renew','Cancel','Finish'],
-            walletStates:['','Consume ','Recharge','CancelOrder','SpecialOffer'],
+            bookingState:['Apply','Start','Cancel','Finish'],
+            Type:['','Consume ','Recharge','CancelOrder','SpecialOffer'],
+            EnterBy:['','Consume ','Renew','CancelOrder','Refund','OnlineRecharge','CashRecharge','Punishment','Reward'],
             isSidemenu: false,
             searchMsg:{
                 startDate: '',
@@ -157,6 +166,7 @@ serviceModule.factory('allUrl',function () {
             Nationalities:[],
             Races:[],
             EducationLevel:[],
+            CancleReasons:[],
             signinMsg:{
                 Email:'',
                 Password:'',
@@ -202,7 +212,24 @@ serviceModule.factory('allUrl',function () {
                 title:'',
                 msg:''
             },
-            isAllWaitting:false
+            isAllWaitting:false,
+            startTrip:{
+                startTripSure1:false,
+                startTripSure2:false,
+                startTripSure3:false,
+                startTripSure4:false,
+                startTripSure5:false,
+            },
+            endTrip:{
+                isDesignLocation:true,
+                LeaseCancelReason:'1',
+                Memo:'',
+                endtripSure1:false,
+                endtripSure2:false,
+                endtripSure3:false,
+                endtripSure4:false,
+                endtripSure5:false,
+            }
         };
 
 
@@ -414,6 +441,30 @@ serviceModule.factory('allUrl',function () {
             init:initOptions
         }
     })
+    .factory('initCancleReason',function ($http,appContext,allUrl) {
+        return {
+          init:function () {
+              //获取cancle理由
+              $http({
+                  method: "POST",
+                  url: allUrl.getcancleReasonUrl,
+                  headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: "Basic " + appContext.getAll().token
+                  }
+              }).success(function (data) {
+                  console.log(data);
+                  if (data.MsgType == 'Success') {
+                      appContext.getAll().CancleReasons = data.Data;
+                  } else {
+
+                  }
+              }).error(function () {
+
+              });
+          }
+        };
+    })
     .factory('allCarsMsg',function () {
         var allCars=[];
 
@@ -465,8 +516,8 @@ serviceModule.factory('allUrl',function () {
             init:function (isFromBooking,id,goToUrl) {
                 isFromBooking=isFromBooking || false;
                 id =id || '';
-                appContext.getAll().fromBookingPage.isFromBooking=isFromBooking;
-                appContext.getAll().fromBookingPage.id=id;
+                // appContext.getAll().fromBookingPage.isFromBooking=isFromBooking;
+                // appContext.getAll().fromBookingPage.id=id;
                 var isAut=appContext.getAll().isAut;
                 if(!isAut){
                     window.location.replace('#/login');
@@ -477,6 +528,42 @@ serviceModule.factory('allUrl',function () {
                 }
             }
         }
+    })
+    .factory('getWallet',function ($http,allUrl,appContext) {
+        return {
+            init:function () {
+                $http({
+                    method : 'POST',
+                    url:allUrl.getUserWalletUrl,
+                    data:{},
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Basic " + appContext.getAll().token
+                    }
+                }).success(function (data) {
+                    console.log(data)
+                    if (data.MsgType == 'Success') {
+                        appContext.getAll().userAccountMoney=(data.Info/100).toFixed(2);
+                    }else {
+                        appContext.getAll().isEnoughBalance=false;
+                        appContext.getAll().userAccountMoney=0;
+                        if(data.MsgType == 'TokenError'){
+                            appContext.getAll().isAut=false;
+                            window.location.replace("#/login");
+                            return;
+                        }
+                        appContext.getAll().motaiTishiBox.title='Promotion:';
+                        appContext.getAll().motaiTishiBox.msg= data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    }
+
+                }).error(function () {
+                    appContext.getAll().motaiTishiBox.title='Promotion:';
+                    appContext.getAll().motaiTishiBox.msg= "The network may have problems";
+                    $('#moTaiTishiBox').modal('show');
+                });
+            }
+        };
     });
 
 

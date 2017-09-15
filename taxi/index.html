@@ -59,7 +59,7 @@
 
 <!--遮罩等待图像-->
 <div ng-if="appContext.isAllWaitting" class="all-waitting">
-    <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top: 100px">
+    <div ng-if="appContext.isAllWaitting" class="pic-center-wrap col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top: 100px">
         <img src="img/waiting.gif">
     </div>
 </div>

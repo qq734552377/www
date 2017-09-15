@@ -108,20 +108,53 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         .state("sidemenu.reportIssue",{
             url:"/reportIssue",
             templateUrl:"html/sidemenu/reportIssue.html",
-            controller:'reportIssueCtr'
+            controller:'reportIssueCtr',
+            resolve: {
+                isAutGo:'noAutGoLoginPage',
+                app:'appContext'
+            },
+            onExit: function(app){
+                app.getAll().fromBookingPage.isFromBooking=false;
+            }
         })
-        .state("sidemenu.checkCar",{
-            url:"/checkCar",
-            templateUrl:"html/sidemenu/checkCar.html",
-            controller:'checkCarCtr'
+        .state("sidemenu.startTrip",{
+            url:"/startTrip/:id",
+            templateUrl:"html/sidemenu/startTrip.html",
+            controller:'startTripCtr',
+            resolve: {
+                isAutGo:'noAutGoLoginPage',
+                app:'appContext'
+            },
+            onExit: function(app){
+                app.getAll().fromBookingPage.isFromBooking=false;
+                app.getAll().startTrip.startTripSure1=false;
+                app.getAll().startTrip.startTripSure2=false;
+                app.getAll().startTrip.startTripSure3=false;
+                app.getAll().startTrip.startTripSure4=false;
+                app.getAll().startTrip.startTripSure5=false;
+            }
+
         })
         .state("sidemenu.endtrip",{
-            url:"/endtrip",
+            url:"/endtrip/:id",
             templateUrl:"html/sidemenu/endtrip.html",
-            controller:'endtripCtr'
+            controller:'endtripCtr',
+            resolve: {
+                isAutGo:'noAutGoLoginPage',
+                app:'appContext'
+            },
+            onExit: function(app){
+                app.getAll().fromBookingPage.isFromBooking=false;
+                app.getAll().endTrip.endtripSure1=false;
+                app.getAll().endTrip.endtripSure2=false;
+                app.getAll().endTrip.endtripSure3=false;
+                app.getAll().endTrip.endtripSure4=false;
+                app.getAll().endTrip.endtripSure5=false;
+                app.getAll().endTrip.endtripSure6=false;
+            }
         })
         .state("sidemenu.extendBooking",{
-            url:"/extendBooking",
+            url:"/extendBooking/:id",
             templateUrl:"html/sidemenu/extendBooking.html",
             controller:'extendBookingCtr'
         })
@@ -129,17 +162,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('booking',{
         url:'/booking/:id',
         templateUrl:'html/booking.html',
-        controller:'bookingCtr',
-        resolve: {
-            app:'appContext',
-            isAutGo:'noAutGoLoginPage'
-        },
-        // myIsSide 是解决依赖项注入控制器
-        onEnter: function(app,isAutGo,$stateParams){
-            if(!app.getAll().isAut) {
-                // isAutGo.init(true, $stateParams.id);
-            }
-        }
+        controller:'bookingCtr'
     })
     .state('bookingcomfirm',{
         url:'/bookingcomfirm/:id',
@@ -150,11 +173,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             app:'appContext'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo,app,$state){
-            if(!app.getAll().fromBookingPage.isFromBooking) {
-                $state.go('search');
-                return;
-            }
+        onEnter: function(isAutGo){
             isAutGo.init();
         },
         onExit: function(app){
@@ -166,11 +185,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl:"html/bookingdetails.html",
         controller:'bookingdetailsCtr',
         resolve: {
-            isAutGo:'noAutGoLoginPage'
+            isAutGo:'noAutGoLoginPage',
+            initCancleReason:'initCancleReason'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo){
+        onEnter: function(isAutGo,initCancleReason){
             isAutGo.init();
+            initCancleReason.init();
         }
     }).state('lunbo',{
         url:'/lunbo',

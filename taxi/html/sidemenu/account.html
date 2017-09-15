@@ -117,8 +117,8 @@
                 <!--wallet end-->
             </div>
 
-            <div class="col-md-6">
-                <div class="my-box my-box-top-border margin-top-20" ng-if="appContext.lastBooking">
+            <div class="col-md-6" ng-if="appContext.lastBooking">
+                <div class="my-box my-box-top-border margin-top-20" >
                     <div class="box-header">
                         <div class="box-corner">
                             <button class="btn" data-toggle="collapse" data-target="#isme3" aria-controls="isme3"
@@ -173,8 +173,8 @@
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p ng-bind="remainingTime">
-                                            02 hr 24 min 35 s
+                                        <p ng-class="{'warn-color':remainingTime.isTimeout}" style="font-weight: bold;">
+                                           <i class="glyphicon glyphicon-minus" style="font-size: 8px"  ng-if="remainingTime.isTimeout"></i> {{remainingTime.hour}} hr {{remainingTime.min}} min {{remainingTime.second}} s
                                         </p>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <p>
-                                            {{appContext.lastBooking.duration}} hrs
+                                            {{appContext.lastBooking.duration - appContext.lastBooking.list.RenewalDuration}} hrs
                                         </p>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <p>
-                                            {{appContext.lastBooking.duration}} hrs
+                                            {{appContext.lastBooking.list.RenewalDuration}} {{appContext.lastBooking.list.RenewalDuration > 1 ? 'hrs' : 'hr'}}
                                         </p>
                                     </div>
                                 </div>
@@ -308,29 +308,29 @@
                                     <div ng-if="appContext.lastBooking.list.LeaseStatus==0"
                                          class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
 
-                                        <button class="btn btn-block btn-success " data-toggle="modal"
-                                                data-target="#issuerStartTrip">
-                                            START TRIP
-                                        </button>
+                                        <a class="btn btn-block btn-success " role="button" ng-click="getCanStartTrip()"
+                                           style="color: #fff">
+                                            Start Trip
+                                        </a>
                                     </div>
-                                    <div ng-if="appContext.lastBooking.list.LeaseStatus==1"
+                                    <div ng-if="appContext.lastBooking.list.LeaseStatus==1 "
                                          class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
-                                        <a class="btn btn-block btn-success" href="#/sidemenu/extendBooking"
+                                        <a class="btn btn-block btn-success" href="#/sidemenu/extendBooking/{{appContext.lastBooking.list.LeaseNumber}}"
                                            style="color: #fff">
                                             Extend Trip
                                         </a>
                                     </div>
                                     <div ng-if="appContext.lastBooking.list.LeaseStatus==1"
                                          class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
-                                        <button class="btn btn-block btn-danger " data-toggle="modal"
-                                                href="#issuerEndTrip">
-                                            END TRIP
-                                        </button>
+                                        <a class="btn btn-block btn-danger " data-toggle="modal" data-target="#issuerEndTrip"
+                                                style="color: #fff">
+                                            End Trip
+                                        </a>
                                     </div>
 
                                     <div hidden class="col-md-6 margin-top-20 col-sm-6 col-xs-6">
                                         <button class="btn btn-block btn-danger">
-                                            CANCEL
+                                            Cancle
                                         </button>
                                     </div>
                                 </div>
@@ -396,8 +396,8 @@
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
-                                            02 hr 24 min 35 s
+                                        <p >
+                                            {{remainingTime.hour}} hr {{remainingTime.min}} min {{remainingTime.second}} s
                                         </p>
                                     </div>
                                 </div>
@@ -562,8 +562,8 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
-                <div ng-if="!appContext.lastBooking" class="margin-top-20">
+            <div class="col-xs-12" ng-if="!appContext.lastBooking">
+                <div  class="margin-top-20">
                     <div class="alert alert-info alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
@@ -598,20 +598,20 @@
                     <p style="font-size: 16px">Are you parked at the designated lots @ 5B, Lots Any lot withing deck 5B
                         ?</p>
                     <form style="margin-left: 30px">
-                        <div class="radio" style="font-size: 16px">
+                        <div class="radio" style="font-size: 16px" >
                             <label>
-                                <input type="radio" name="know">
+                                <input type="radio" ng-value=true ng-model="appContext.endTrip.isDesignLocation"  name="know">
                                 Yes
                             </label>
                         </div>
                         <div class="radio" style="font-size: 16px">
                             <label>
-                                <input type="radio" name="know">
+                                <input type="radio"ng-value=false ng-model="appContext.endTrip.isDesignLocation"  name="know">
                                 No
                             </label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-if="!appContext.endTrip.isDesignLocation">
                             <textarea id="form_description" required="required"
                                       placeholder="Please indicate where you parked. (e.g: Deck 4B, Lot 100)"
                                       class="form-control" rows="2"></textarea>

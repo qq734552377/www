@@ -145,7 +145,7 @@ table.responsive .actions a:hover {
     padding-left: 33%;
   }
   table.responsive .amount:before {
-    content: "Amount($)";
+    content: "Amount";
     position: absolute;
     left: .5em;
     top: .5em;

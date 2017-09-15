@@ -1,0 +1,115 @@
+<div class="col-md-12 good-margin-bottom-l" >
+
+    <div ng-if="waitObj.isShowAll" class="container-fluid margin-top-25" style="margin-bottom: 250px">
+        <div class="pic-center-wrap col-md-12 col-sm-12 col-xs-12">
+            <h3 ng-bind="waitObj.title">Unlocking car, please wait</h3>
+            <img src="img/waiting.gif" class="margin-top-20" ng-if="waitObj.isShowWaitImg">
+            <div class="margin-top-20" ng-if="waitObj.isShowlockBtn">
+                <i class="glyphicon glyphicon-alert" style="font-size: 64px;color: #e81e06"></i><br>
+                <button class="btn btn-danger margin-top-20" ng-click="unlockCar()">Unlock Again</button>
+            </div>
+            <h4 class="margin-top-20" ng-bind="waitObj.msg">Please wait while we ending your trip.
+                Do not press the BACK button.</h4>
+        </div>
+    </div>
+
+    <!--wallet-->
+    <div ng-if="!waitObj.isShowAll" class="my-box my-box-top-border margin-top-20 ">
+        <div class="box-header">
+            <h4 class="box-header-title">Car unlocked, have you? </h4>
+        </div>
+        <div class="box-body my-box-boundary" id="isme2">
+            <div class="row" style="margin-left: 0px;margin-right: 0px">
+                <div class="col-md-12 col-xs-12">
+                    <form>
+                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.startTrip.startTripSure1">
+                                        Taken pictures of the four sides of the car? (Safeguard your interest, keep the photos for
+                                        two weeks
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.startTrip.startTripSure1">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.startTrip.startTripSure1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.startTrip.startTripSure2">
+                                        Retrieve car key from glove compartment
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.startTrip.startTripSure2">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.startTrip.startTripSure2"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.startTrip.startTripSure3">
+                                        Check against vehicle inspection list for any ADDITIONAL/NEW dents and scratches
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.startTrip.startTripSure3">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.startTrip.startTripSure3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.startTrip.startTripSure4">
+                                        Report issue within 10 minutes if reserved fuel light turns on when you ignite the engine
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.startTrip.startTripSure4">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.startTrip.startTripSure4"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox" style="font-size: 16px;line-height: 1.6em">
+
+                            <div class="row">
+                                <div class="col-xs-9 col-sm-10 col-md-10">
+                                    <label>
+                                        <input type="checkbox" ng-model="appContext.startTrip.startTripSure5">
+                                        Return car to the SAME LOTS indicated in the pick-up location
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 col-sm-2 col-md-2">
+                                    <i class="glyphicon glyphicon-arrow-left warn-color" ng-if="!appContext.startTrip.startTripSure5">&nbsp;Sure?</i>
+                                    <i class="glyphicon glyphicon-saved success-color" ng-if="appContext.startTrip.startTripSure5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer" style="text-align: center">
+            <h4><b>Any issues with the car?</b></h4>
+            <button type="button" class="btn btn-warning" ng-click="goToAccount()">NO</button>
+            <button type="button" class="btn btn-success" ng-click="goToReportIssue()">YES</button>
+        </div>
+
+    </div>
+    <!--wallet end-->
+</div>

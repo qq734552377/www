@@ -111,7 +111,8 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr ng-if="!appContext.isEnoughBalance" id="noMoreMoney"
+                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
+                                                    id="noMoreMoney"
                                                     class="noMoreMoney">
                                                     <td colspan="2">
                                                         * Insufficient Credits in your e-Wallet, <span
@@ -127,7 +128,7 @@
                                 <!--个人账户End-->
 
                                 <!--结算-->
-                                <div ng-if="appContext.isAut&&appContext.isEnoughBalance" class="col-md-12 booking">
+                                <div ng-if="appContext.isAut&&appContext.isEnoughBalance" hidden class="col-md-12 booking">
                                     <div class="form-group">
                                         <div class="agreeMe">
                                             <label>
@@ -164,22 +165,13 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="form_issue_type">Extend Duration (hrs)</label>
-                                        <select id="form_issue_type"  class="form-control">
+                                        <select ng-model="extensionTimes" id="form_issue_type"  class="form-control">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-success">Extend</button>
+                                    <button ng-click="extend()" ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100)) > 0" class="btn btn-success">Extend</button>
                                 </form>
                             </div>
                         </div>

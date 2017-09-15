@@ -160,42 +160,48 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
 
+                        <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <p>
-                                        <i class="glyphicon glyphicon-time"></i>
-                                    </p>
+                                <div class="col-xs-6  ">
+                                    <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
+
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <p>
+                                                <i class="glyphicon glyphicon-time"></i>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <p>
+                                                {{lastBookingMsg.duration}} hrs
+                                            </p>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
-                                        {{lastBookingMsg.duration}} hrs
-                                    </p>
+                                <div class="col-xs-6  ">
+                                    <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
+
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <p>
+                                                <i class="glyphicon glyphicon-time"></i>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <p>
+                                                {{lastBookingMsg.list.RenewalDuration}} {{lastBookingMsg.list.RenewalDuration > 1 ? 'hrs' : 'hr'}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
-
-
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
 
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <p>
-                                        <i class="glyphicon glyphicon-time"></i>
-                                    </p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
-                                        {{lastBookingMsg.duration}} hrs
-                                    </p>
-                                </div>
-                            </div>
-
-
-                        </div>
 
 
                         <div class="payPrice">

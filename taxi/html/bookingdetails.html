@@ -97,56 +97,62 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
-
+                        <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <p>
-                                        <i class="glyphicon glyphicon-time"></i>
-                                    </p>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
+
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <p>
+                                                <i class="glyphicon glyphicon-time"></i>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <p>
+                                                {{bookingMsg.duration - bookingMsg.list.RenewalDuration}} hrs
+                                            </p>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
-                                        {{bookingMsg.duration}} hrs
-                                    </p>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
+
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <p>
+                                                <i class="glyphicon glyphicon-time"></i>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <p>
+                                                {{bookingMsg.list.RenewalDuration}} {{bookingMsg.list.RenewalDuration > 1 ? 'hrs' : 'hr'}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
-
-
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
-
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <p>
-                                        <i class="glyphicon glyphicon-time"></i>
-                                    </p>
-                                </div>
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
-                                        {{bookingMsg.duration}} hrs
-                                    </p>
-                                </div>
-                            </div>
-
-
                         </div>
 
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==1">
-                                            <button class="btn btn-block btn-success">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==1 || bookingMsg.list.LeaseStatus==0">
+                                            <a class="btn btn-block btn-success" href="#/sidemenu/extendBooking/{{bookingMsg.list.LeaseNumber}}"
+                                            style="color: #fff">
                                                 Extend Trip
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="col-md-6  col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
-                                            <button class="btn btn-block btn-danger">
-                                                CANCEL
-                                            </button>
+                                            <a class="btn btn-block btn-danger" data-toggle="modal" data-target="#issuerCancleTrip"
+                                               style="color: #fff">
+                                                Cancle
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -176,28 +182,40 @@
                                                     {{appContext.bookingState[bookingMsg.list.LeaseStatus]}}
                                                 </td>
                                             </tr>
-                                            <tr ng-if="bookingMsg.list.LeaseMount  ">
+                                            <!--订单费用-->
+                                            <tr ng-if="bookingMsg.fees && bookingMsg.fees != null ">
                                                 <td class="left">
                                                     <b>Booking Total</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    - $ {{(bookingMsg.list.LeaseMount/100).toFixed(2)}}
+                                                    - $ {{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
                                                 </td>
                                             </tr>
-                                            <tr ng-if="bookingMsg.LastAmount && bookingMsg.LastAmount != 0">
+                                            <!--续订费用-->
+                                            <tr ng-if="bookingMsg.renewFees && bookingMsg.renewFees != null">
                                                 <td class="left">
-                                                    <b>LastAmount</b>
+                                                    <b>ExtensionFees</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    - $ {{(bookingMsg.LastAmount/100).toFixed(2)}}
+                                                    - $ {{(bookingMsg.renewFees[0].BookingTotal/100).toFixed(2)}}
                                                 </td>
                                             </tr>
-                                            <tr ng-if="bookingMsg.cancelFees && bookingMsg.cancelFees!=null">
+                                            <!--迟还费用-->
+                                            <tr ng-if="bookingMsg.lateView && bookingMsg.lateView != null && bookingMsg.lateView.Price >0">
                                                 <td class="left">
-                                                    <b>CancelFees</b>
+                                                    <b>LateFees</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    - $ {{(bookingMsg.cancelFees)}}
+                                                    - $ {{(bookingMsg.lateView.Price/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            <!--取消费用-->
+                                            <tr ng-if="bookingMsg.leaseCancelView && bookingMsg.leaseCancelView!= null">
+                                                <td class="left">
+                                                    <b>Cancle Return</b>
+                                                </td>
+                                                <td class="right text-right">
+                                                    + $ {{((bookingMsg.fees.BookingTotal-bookingMsg.leaseCancelView.LeaseCancelMount)/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -335,3 +353,43 @@
 
 
 </div>
+
+
+<!--提示模态框-->
+<div class="example-modal">
+    <div class="modal modal-default fade" id="issuerCancleTrip" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-tribecar" style="background-color: coral; !important;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Are you sure you will cancel the booking ?</h4>
+                </div>
+                <div class="modal-body" style="">
+
+                    <div class="form-group">
+                        <label for="cancle_reason">Cancle Reason</label>
+                        <select ng-model="appContext.endTrip.LeaseCancelReason" id="cancle_reason"  class="form-control">
+                            <option ng-repeat="item in appContext.CancleReasons" value="{{item.ID}}">{{item.LeaseCancelReason}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason_description">Description of the Reason</label>
+                        <textarea id="reason_description" ng-model="appContext.endTrip.Memo" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <p style="font-size: 16px">
+                        <strong>Note:</strong>
+                        If you cancel the order, we will charge a certain fee!If you want to learn more, click <a> here</a>.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-success"  data-dismiss="modal">No</a>
+                    <a type="button" class="btn btn-danger" ng-click="cancleTrip()">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示模态框结尾-->

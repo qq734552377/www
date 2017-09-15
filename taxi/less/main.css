@@ -230,3 +230,10 @@ a {
   border-radius: 0px 0px 10px 10px ;
   background-color: rgba(255, 195, 0, 0.2);
 }
+.warn-color {
+  color: #e81e06;
+  font-size: 14px;
+}
+.success-color {
+  color: #5cb85c;
+}
