@@ -230,6 +230,12 @@ a {
   border-radius: 0px 0px 10px 10px ;
   background-color: rgba(255, 195, 0, 0.2);
 }
+@media (max-width: 767px) {
+  .box-photo-border {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+}
 .warn-color {
   color: #e81e06;
   font-size: 14px;

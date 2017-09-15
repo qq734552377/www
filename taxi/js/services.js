@@ -69,8 +69,8 @@ serviceModule.factory('allUrl',function () {
         signin_fUrl:'',
         getHasEmailUrl:'http://58.246.122.118:12305/api/EmailCheck',
         getHasNRICUrl:'http://58.246.122.118:12305/api/CheckNRIC',
-        signin_sUrl:'http://58.246.122.118:12305/api/Register',
-        getLicenseTypesUrl:'http://58.246.122.118:12305/Select/QueryLeaseType',
+        signin_sUrl:'http://58.246.122.118:12305//api/Register',
+        getLicenseTypesUrl:'http://58.246.122.118:12305/Select/QueryCertificateType',
         getNationalitiesUrl:'http://58.246.122.118:12305/Select/GetNationality',
         getRacesUrl:'http://58.246.122.118:12305/Select/GetRace',
         getEducationLevelUrl:'http://58.246.122.118:12305/Select/GetEducationLevel',
@@ -206,7 +206,7 @@ serviceModule.factory('allUrl',function () {
             smartEmail:'taxishare-enquiry@smrt.com.sg',
             hostName:'http://192.168.0.132/taxi',
             errorMsg:{
-                netError:''
+                netError:'The network may have problems'
             },
             motaiTishiBox:{
                 title:'',

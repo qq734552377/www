@@ -264,27 +264,29 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             // $state.go('signin_first');
             // return;
         }
-        $scope.msgAboutPic = '',
-            $scope.picSrc = 'img/tpdvl.jpg';
+        $('#modalTdvlPhoto').modal('show');
+
+        $scope.msgAboutPic = 'NRIC, Driving License, TDVL',
+            $scope.picSrc = 'img/tpdv.jpg';
 
         $scope.errorState = false;
         $scope.errorMsg = '';
 
         $scope.signin_s = appContext.getAll().signinMsg;
 
-        $scope.$watch('signin_s.LicenseType', function (newValue, oldValue, scope) {
-            console.log(newValue)
-            if (newValue == '2') {
-                scope.msgAboutPic = 'NRIC, Driving License, TDVL';
-                $scope.picSrc = 'img/tdvl.jpg';
-            } else if (newValue == '1') {
-                scope.msgAboutPic = 'NRIC, Driving License, PDVL';
-                $scope.picSrc = 'img/pdvl.jpg';
-            } else {
-                scope.msgAboutPic = 'NRIC, Driving License, TDVL, PDVL';
-                $scope.picSrc = 'img/tpdvl.jpg';
-            }
-        });
+        // $scope.$watch('signin_s.LicenseType', function (newValue, oldValue, scope) {
+        //     console.log(newValue)
+        //     if (newValue == '2') {
+        //         scope.msgAboutPic = 'NRIC, Driving License, TDVL';
+        //         $scope.picSrc = 'img/tdvl.jpg';
+        //     } else if (newValue == '1') {
+        //         scope.msgAboutPic = 'NRIC, Driving License, PDVL';
+        //         $scope.picSrc = 'img/pdvl.jpg';
+        //     } else {
+        //         scope.msgAboutPic = 'NRIC, Driving License, TDVL, PDVL';
+        //         $scope.picSrc = 'img/tpdvl.jpg';
+        //     }
+        // });
         $scope.sub = function () {
             if ($scope.signin_s.BlockNo == undefined || $scope.signin_s.BlockNo == '' ||
                 $scope.signin_s.Storey == undefined || $scope.signin_s.Storey == '' ||
@@ -299,41 +301,39 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 $scope.errorState = true;
                 $scope.errorMsg = 'Please fill out the Date of Birth and Driving License Issue Date,thanks! ';
                 return;
+            }else{
+                $scope.errorState = false;
             }
 
-            if ($scope.signin_s.LicenseType == '2') {
-                if ($scope.signin_s.TVDLIssue == undefined || $scope.signin_s.TVDLIssue == '' ||
-                    $scope.signin_s.TVDLExpiry == undefined || $scope.signin_s.TVDLExpiry == '') {
-                    $scope.errorState = true;
-                    $scope.errorMsg = 'Please fill out the TDVL First Issue Date and TDVL Expiry Date,thanks! ';
-                    return;
-                }
-            } else if ($scope.signin_s.LicenseType == '1') {
-                if ($scope.signin_s.PVDLIssue == undefined || $scope.signin_s.PVDLIssue == '' ||
-                    $scope.signin_s.PVDLExpiry == undefined || $scope.signin_s.PVDLExpiry == '') {
-                    $scope.errorState = true;
-                    $scope.errorMsg = 'Please fill out the PVDL First Issue Date and PVDL Expiry Date,thanks! ';
-                    return;
-                }
-            } else {
-                if ($scope.signin_s.PVDLIssue == undefined || $scope.signin_s.PVDLIssue == '' ||
-                    $scope.signin_s.PVDLExpiry == undefined || $scope.signin_s.PVDLExpiry == '' ||
-                    $scope.signin_s.TVDLIssue == undefined || $scope.signin_s.TVDLIssue == '' ||
-                    $scope.signin_s.TVDLExpiry == undefined || $scope.signin_s.TVDLExpiry == ''
-                ) {
-                    $scope.errorState = true;
-                    $scope.errorMsg = 'Please fill out the TVDL First Issue Date, TVDL Expiry Date, PVDL First Issue Date and PVDL Expiry Date, thanks! ';
+
+            if ($scope.signin_s.TVDLIssue == undefined || $scope.signin_s.TVDLIssue == '' ||
+                $scope.signin_s.TVDLExpiry == undefined || $scope.signin_s.TVDLExpiry == '') {
+                $scope.errorState = true;
+                $scope.errorMsg = 'Please fill out the TDVL First Issue Date and TDVL Expiry Date,thanks! ';
+                return;
+            }else{
+                $scope.errorState = false;
+            }
+
+            var pic1 = document.getElementById("signInFileFront").files[0];
+            var pic2 = document.getElementById("signInFileBack").files[0];
+            var pic3 = document.getElementById("signInMugShot").files[0];
+            var pic4 = undefined;
+
+
+            if($scope.signin_s.LicenseType==0){
+                pic4 = document.getElementById("PDVLLetter").files[0];
+                if (pic4 == undefined) {
                     return;
                 }
             }
-            var pic1 = document.getElementById("signInFileFront").files[0]
-            var pic2 = document.getElementById("signInFileBack").files[0]
-            var pic3 = document.getElementById("signInMugShot").files[0]
+
+
             if (pic1 == undefined || pic2 == undefined || pic3 == undefined) {
                 return;
             }
             // 提交图片
-            postMultipart(allUrl.signin_sUrl, $scope.signin_s, pic1, pic2, pic3).success(function (data) {
+            postMultipart(allUrl.signin_sUrl, $scope.signin_s, pic1, pic2, pic3,pic4).success(function (data) {
                 console.log(data);
                 //todo 注册提交后的操作
 
@@ -342,7 +342,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             });
         }
 
-        function postMultipart(url, data, pic1, pic2, pic3) {
+        function postMultipart(url, data, pic1, pic2, pic3,pic4) {
             var fd = new FormData();
             angular.forEach(data, function (val, key) {
                 fd.append(key, val);
@@ -350,6 +350,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             fd.append('VerifyFront', pic1);
             fd.append('VerifyBack', pic2);
             fd.append('MugShot', pic3);
+            fd.append('PDVLLetter', pic4);
             var args = {
                 method: 'POST',
                 url: url,
@@ -861,7 +862,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }).error(function () {
                 $scope.waitObj.isShowWaitImg=false;
                 $scope.waitObj.title='Promotion:'
-                $scope.waitObj.msg='The network may have problems';
+                $scope.waitObj.msg=appContext.getAll().errorMsg.netError;
             });
         }
     })
@@ -939,8 +940,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
             }).error(function () {
                 $scope.waitObj.isShowWaitImg=false;
-                $scope.waitObj.title='Promotion:'
-                $scope.waitObj.msg='The network may have problems';
+                $scope.waitObj.title='Promotion:';
+                $scope.waitObj.msg=appContext.getAll().errorMsg.netError;
             });
         }
 
@@ -1233,11 +1234,11 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
         $scope.isWaitting = true;
         $scope.tishiBox = {
             isShow: true,
-            msg: 'Comfirm 3 booking per week and get 50% off the 4th booking !'
+            msg: 'Congratulations, your booking has been reserved.You may proceed to unlock the taxi in your account at the pickup time .'
         };
         if(!appContext.getAll().fromBookingPage.isFromBooking){
-            // window.location.replace('#/search');
-            // return;
+            window.location.replace('#/search');
+            return;
         }
 
 
@@ -1262,7 +1263,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
 
                 if (data.MsgType == 'Success') {
                     $scope.lastBookingMsg = data.Data;
-                    console.log(data.Data)
+                    $scope.tishiBox.isShow = true;
                 } else {
                     if (data.MsgType == 'TokenError') {
                         appContext.getAll().isAut = false;

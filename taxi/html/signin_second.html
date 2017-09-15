@@ -79,8 +79,7 @@
                                             <label class="sign-in-label">Whether you are
                                                 registering for</label>
                                             <select ng-model="signin_s.LicenseType" id="LicenseType" class="form-control">
-                                                <option value="0">All</option>
-                                                <option ng-repeat="item in appContext.LicenseTypes" value="{{item.ID}}">{{item.LeaseTypeName}}</option>
+                                                <option ng-repeat="item in appContext.LicenseTypes" value="{{item.ID}}">{{item.CertificateTypeName}}</option>
                                             </select>
                                         </div>
                                         <!--regist for end-->
@@ -250,7 +249,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div ng-show="signin_s.LicenseType=='2'||signin_s.LicenseType=='0'" class="col-md-5 col-md-offset-1 col-xs-12">
+                                    <div class="col-md-5 col-md-offset-1 col-xs-12">
                                         <!--TDVL First Issue Date-->
                                         <div class="form-group">
                                             <label class="sign-in-label" >TDVL First Issue
@@ -268,7 +267,7 @@
                                         </div>
                                         <!--TDVL First Issue Date end-->
                                     </div>
-                                    <div ng-show="signin_s.LicenseType=='2'||signin_s.LicenseType=='0'" class="col-md-5 col-xs-12">
+                                    <div class="col-md-5 col-xs-12">
                                         <!--TDVL Expiry Date-->
                                         <div class="form-group">
                                             <label class="sign-in-label">TDVL Expiry Date</label>
@@ -285,42 +284,42 @@
                                         <!--TDVL Expiry Date end-->
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div ng-show="signin_s.LicenseType=='1'||signin_s.LicenseType=='0'" class="col-md-5 col-md-offset-1 col-xs-12">
-                                        <!--PDVL First Issue Date-->
-                                        <div class="form-group">
-                                            <label class="sign-in-label" >PDVL First Issue
-                                                Date</label>
+                                <!--<div class="row">-->
+                                    <!--<div ng-show="signin_s.LicenseType=='1'||signin_s.LicenseType=='0'" class="col-md-5 col-md-offset-1 col-xs-12">-->
+                                        <!--&lt;!&ndash;PDVL First Issue Date&ndash;&gt;-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="sign-in-label" >PDVL First Issue-->
+                                                <!--Date</label>-->
 
-                                            <div class="input-group controls input-append date form_date" data-date=""
-                                                 data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-calendar"></i>
-                                        </span>
-                                                <input ng-model="signin_s.PVDLIssue" type="text" class="form-control datepicker" id="PVDLIssue"
-                                                       readonly>
-                                            </div>
+                                            <!--<div class="input-group controls input-append date form_date" data-date=""-->
+                                                 <!--data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">-->
+                                        <!--<span class="input-group-addon">-->
+                                            <!--<i class="glyphicon glyphicon-calendar"></i>-->
+                                        <!--</span>-->
+                                                <!--<input ng-model="signin_s.PVDLIssue" type="text" class="form-control datepicker" id="PVDLIssue"-->
+                                                       <!--readonly>-->
+                                            <!--</div>-->
 
-                                        </div>
-                                        <!--PDVL First Issue Date end-->
-                                    </div>
-                                    <div ng-show="signin_s.LicenseType=='1'||signin_s.LicenseType=='0'" class="col-md-5 col-xs-12">
-                                        <!--PDVL Expiry Date-->
-                                        <div class="form-group">
-                                            <label class="sign-in-label" >PDVL Expiry Date</label>
-                                            <div class="input-group controls input-append date form_date" data-date=""
-                                                 data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-calendar"></i>
-                                        </span>
-                                                <input ng-model="signin_s.PVDLExpiry" type="text" class="form-control datepicker" id="PVDLExpiry"
-                                                       readonly>
-                                            </div>
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;PDVL First Issue Date end&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div ng-show="signin_s.LicenseType=='1'||signin_s.LicenseType=='0'" class="col-md-5 col-xs-12">-->
+                                        <!--&lt;!&ndash;PDVL Expiry Date&ndash;&gt;-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="sign-in-label" >PDVL Expiry Date</label>-->
+                                            <!--<div class="input-group controls input-append date form_date" data-date=""-->
+                                                 <!--data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd">-->
+                                        <!--<span class="input-group-addon">-->
+                                            <!--<i class="glyphicon glyphicon-calendar"></i>-->
+                                        <!--</span>-->
+                                                <!--<input ng-model="signin_s.PVDLExpiry" type="text" class="form-control datepicker" id="PVDLExpiry"-->
+                                                       <!--readonly>-->
+                                            <!--</div>-->
 
-                                        </div>
-                                        <!--PDVL Expiry Date end-->
-                                    </div>
-                                </div>
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;PDVL Expiry Date end&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 <div class="row">
                                     <div class="col-md-5 col-md-offset-1 col-xs-12">
                                         <!--NRIC, Driving License, TDVL (Front)-->
@@ -328,10 +327,10 @@
                                             <label class="sign-in-label" >{{msgAboutPic}}
                                                 (Front)</label>
                                             <div class="sign-in-modal">
-                                                <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                                                <a data-toggle="modal" data-target="#modalTdvlPhoto">(Guidelines)</a>
                                             </div>
                                             <div class="sign-in-file">
-                                                <input type="file"  class="btn  btn-block" id="signInFileFront"
+                                                <input type="file"  id="signInFileFront"
                                                        required="required">
                                             </div>
                                         </div>
@@ -343,10 +342,10 @@
                                             <label class="sign-in-label" >{{msgAboutPic}}
                                                 (Back)</label>
                                             <div class="sign-in-modal">
-                                                <a data-toggle="modal" data-target="#modalAlert">(Guidelines)</a>
+                                                <a data-toggle="modal" data-target="#modalTdvlPhoto">(Guidelines)</a>
                                             </div>
                                             <div class="sign-in-file">
-                                                <input type="file" class="btn  btn-block" id="signInFileBack"
+                                                <input type="file" id="signInFileBack"
                                                        required="required">
                                             </div>
                                         </div>
@@ -358,15 +357,25 @@
                                     <div class="col-md-5 col-md-offset-1 col-xs-12">
                                         <!--MugShot-->
                                         <div class="form-group">
-                                            <label class="sign-in-label" >Frontal View</label>
-                                            <div class="sign-in-file">
-                                                <input type="file" class="btn  btn-block" id="signInMugShot"
+                                            <label  for="signInMugShot">Frontal View</label>
+                                            <input type="file"  id="signInMugShot"
                                                        required="required">
-                                            </div>
+
                                         </div>
                                         <!--MugShot End-->
                                     </div>
-                                    <div class="col-md-5 col-xs-12">
+                                    <div class="col-md-5 col-xs-12" ng-if="signin_s.LicenseType==0">
+                                        <!--PDVLLetter-->
+                                        <div class="form-group">
+                                            <label for="PDVLLetter">PDVL Letter</label>
+                                            <input type="file"  id="PDVLLetter"
+                                                       required="required">
+                                        </div>
+                                        <!--PDVLLetter end-->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-md-offset-1 col-xs-12">
                                         <!--Submit-->
                                         <div class="form-group" style="margin-top: 20px">
                                             <button type="submit" ng-click="sub()" class="btn btn-success btn-block" id="signInSubmit" style="font-weight: bold">
@@ -399,7 +408,7 @@
 
 <!--模态框-->
 <div class="example-modal">
-    <div class="modal modal-default fade" id="modalAlert" role="dialog">
+    <div class="modal modal-default fade" id="modalTdvlPhoto" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-tribecar" style="background-color: coral; !important;">
@@ -410,7 +419,7 @@
                 </div>
                 <div class="modal-body" style="text-align:center;">
                     <p>Take photos of the documents both front and back based on the layout below.</p>
-                    <img ng-src="{{picSrc}}" alt="Layout"/>
+                    <img ng-src="img/tdvl.jpg" alt="Layout"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
