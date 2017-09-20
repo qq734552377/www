@@ -59,38 +59,40 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 
 serviceModule.factory('allUrl',function () {
     return {
-        searchUrl: 'http://58.246.122.118:12305/api/VehicleShareQuery',
-        getLocationsUrl: 'http://58.246.122.118:12305/Select/QueryParkingSpace',
-        getCategorysUrl: 'http://58.246.122.118:12305/Select/QueryVehicleType',
-        getVehicleNumberBylocationUrl: 'http://58.246.122.118:12305/Select/QueryVehicleName',
-        getRentForUrl: 'http://58.246.122.118:12305/Select/QueryLeaseType',
-        loginUrl:"http://58.246.122.118:12305/api/Login",
-        isAutUserUrl:'http://58.246.122.118:12305/api/GetUserInfo',
+        searchUrl: 'http://192.168.0.112:12907/api/VehicleShareQuery',
+        getLocationsUrl: 'http://192.168.0.112:12907/Select/QueryParkingSpace',
+        getCategorysUrl: 'http://192.168.0.112:12907/Select/QueryVehicleType',
+        getVehicleNumberBylocationUrl: 'http://192.168.0.112:12907/Select/QueryVehicleName',
+        getRentForUrl: 'http://192.168.0.112:12907/Select/QueryLeaseType',
+        loginUrl:"http://192.168.0.112:12907/api/Login",
+        isAutUserUrl:'http://192.168.0.112:12907/api/GetUserInfo',
         signin_fUrl:'',
-        getHasEmailUrl:'http://58.246.122.118:12305/api/EmailCheck',
-        getHasNRICUrl:'http://58.246.122.118:12305/api/CheckNRIC',
-        signin_sUrl:'http://58.246.122.118:12305//api/Register',
-        getLicenseTypesUrl:'http://58.246.122.118:12305/Select/QueryCertificateType',
-        getNationalitiesUrl:'http://58.246.122.118:12305/Select/GetNationality',
-        getRacesUrl:'http://58.246.122.118:12305/Select/GetRace',
-        getEducationLevelUrl:'http://58.246.122.118:12305/Select/GetEducationLevel',
-        getPriceListUrl:'http://58.246.122.118:12305/api/VehicleLeasePrice',
-        getUserWalletUrl:'http://58.246.122.118:12305/api/GetBookingsWallet',
-        bookingTheCarUrl:'http://58.246.122.118:12305/api/LeaseVehicle ',
-        getCarAvailableStateUrl:'http://58.246.122.118:12305/api/VehicleShareIdleDay',
-        getBookingMsgByIdUrl:'http://58.246.122.118:12305/api/UserDetailByRef',
-        getAllMyBookingMsgsUrl:'http://58.246.122.118:12305/Bookings/QueryUsersBookings',
-        getAllWalletMsgsUrl:'http://58.246.122.118:12305/LogWallet/MobileGetList',
-        getUserDetailUrl:'http://58.246.122.118:12305/api/GetUserDetail',
-        getUserLastBookingUrl:'http://58.246.122.118:12305/Bookings/QueryUsersBookingsDetail',
-        getExtensionPaiceListUrl:'http://58.246.122.118:12305/api/VehicleShareRenewQuery',
-        ExtendBookingUrl:'http://58.246.122.118:12305/api/UserRenewOrder',
-        getCanStartTripUrl:'http://58.246.122.118:12305/Bookings/FrontAllowOpen',
-        StartTripUrl:'http://58.246.122.118:12305/Bookings/FrontOpen',
-        queryDoorStateUrl:'http://58.246.122.118:12305/Bookings/QueryDoorsCommand',
-        cansleBookingUrl:'http://58.246.122.118:12305/api/UserCancelOrder',
-        getcancleReasonUrl:'http://58.246.122.118:12305/Select/GetCancelReason',
-        endTripUrl:'http://58.246.122.118:12305/Bookings/FrontClose',
+        getHasEmailUrl:'http://192.168.0.112:12907/api/EmailCheck',
+        getHasNRICUrl:'http://192.168.0.112:12907/api/CheckNRIC',
+        signin_sUrl:'http://192.168.0.112:12907//api/Register',
+        getLicenseTypesUrl:'http://192.168.0.112:12907/Select/QueryCertificateType',
+        getNationalitiesUrl:'http://192.168.0.112:12907/Select/GetNationality',
+        getRacesUrl:'http://192.168.0.112:12907/Select/GetRace',
+        getEducationLevelUrl:'http://192.168.0.112:12907/Select/GetEducationLevel',
+        getPriceListUrl:'http://192.168.0.112:12907/api/VehicleLeasePrice',
+        getUserWalletUrl:'http://192.168.0.112:12907/api/GetBookingsWallet',
+        bookingTheCarUrl:'http://192.168.0.112:12907/api/LeaseVehicle ',
+        getCarAvailableStateUrl:'http://192.168.0.112:12907/api/VehicleShareIdleDay',
+        getBookingMsgByIdUrl:'http://192.168.0.112:12907/api/UserDetailByRef',
+        getAllMyBookingMsgsUrl:'http://192.168.0.112:12907/Bookings/QueryUsersBookings',
+        getAllWalletMsgsUrl:'http://192.168.0.112:12907/LogWallet/MobileGetList',
+        getUserDetailUrl:'http://192.168.0.112:12907/api/GetUserDetail',
+        getUserLastBookingUrl:'http://192.168.0.112:12907/Bookings/QueryUsersBookingsDetail',
+        getExtensionPaiceListUrl:'http://192.168.0.112:12907/api/VehicleShareRenewQuery',
+        ExtendBookingUrl:'http://192.168.0.112:12907/api/UserRenewOrder',
+        getCanStartTripUrl:'http://192.168.0.112:12907/Bookings/FrontAllowOpen',
+        StartTripUrl:'http://192.168.0.112:12907/Bookings/FrontOpen',
+        queryDoorStateUrl:'http://192.168.0.112:12907/Bookings/QueryDoorsCommand',
+        cansleBookingUrl:'http://192.168.0.112:12907/api/UserCancelOrder',
+        getcancleReasonUrl:'http://192.168.0.112:12907/Select/GetCancelReason',
+        endTripUrl:'http://192.168.0.112:12907/Bookings/FrontClose',
+        reportIssueUrl:'http://192.168.0.112:12907/ReportIssue/Add',
+        reportIssueReasonsUrl:'http://192.168.0.112:12907/Select/IssueType',
 
     }
 })
@@ -167,6 +169,7 @@ serviceModule.factory('allUrl',function () {
             Races:[],
             EducationLevel:[],
             CancleReasons:[],
+            ReportIssueReasons:[],
             signinMsg:{
                 Email:'',
                 Password:'',
@@ -456,6 +459,30 @@ serviceModule.factory('allUrl',function () {
                   console.log(data);
                   if (data.MsgType == 'Success') {
                       appContext.getAll().CancleReasons = data.Data;
+                  } else {
+
+                  }
+              }).error(function () {
+
+              });
+          }
+        };
+    })
+    .factory('initReportIssueReasons',function ($http,appContext,allUrl) {
+        return {
+          init:function () {
+              //获取报修原因
+              $http({
+                  method: "POST",
+                  url: allUrl.reportIssueReasonsUrl,
+                  headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: "Basic " + appContext.getAll().token
+                  }
+              }).success(function (data) {
+                  console.log(data);
+                  if (data.MsgType == 'Success') {
+                      appContext.getAll().ReportIssueReasons = data.Data;
                   } else {
 
                   }

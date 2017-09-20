@@ -3,7 +3,7 @@
     <div class="margin-top-25 good-margin-bottom-l">
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" >
                 <!--Profile-->
                 <div class="my-box my-box-top-border margin-top-20 ">
                     <div class="box-header">
@@ -61,14 +61,13 @@
                             </tbody>
                         </table>
                         <div class="row margin-top-25">
-                            <div class="col-md-12" ng-if="appContext.userAccountMoney<=0">
+                            <div class="col-md-12" ng-if="tishiBox.isShow">
                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
-                                    <h4 style="font-size: 18px">Promotion:</h4>
-                                    <p style="font-size: 16px">
-                                        You will not be able to start any trip or make any bookings until you do a top
-                                        up.
+                                    <h4 style="font-size: 18px" ng-bind="tishiBox.title"></h4>
+                                    <p style="font-size: 16px" ng-bind="tishiBox.msg">
+
                                     </p>
                                 </div>
                             </div>
@@ -117,7 +116,7 @@
                 <!--wallet end-->
             </div>
 
-            <div class="col-md-6" ng-if="appContext.lastBooking">
+            <div class="col-md-6" ng-if="appContext.lastBooking ">
                 <div class="my-box my-box-top-border margin-top-20" >
                     <div class="box-header">
                         <div class="box-corner">
@@ -174,7 +173,7 @@
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <p ng-class="{'warn-color':remainingTime.isTimeout}" style="font-weight: bold;">
-                                           <i class="glyphicon glyphicon-minus" style="font-size: 8px"  ng-if="remainingTime.isTimeout"></i> {{remainingTime.hour}} hr {{remainingTime.min}} min {{remainingTime.second}} s
+                                           <i class="glyphicon glyphicon-minus" style="font-size: 8px"  ng-if="remainingTime.isTimeout"></i>{{ remainingTime.day > 0 ? (remainingTime.day + 'day ') : (' ')}}{{remainingTime.hour}} hr {{remainingTime.min}} min {{remainingTime.second}} s
                                         </p>
                                     </div>
                                 </div>
@@ -192,7 +191,7 @@
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <p>
-                                            {{appContext.lastBooking.list.Remarks}}
+                                            {{appContext.lastBooking.list.Location}}
                                         </p>
                                     </div>
                                 </div>
@@ -223,7 +222,7 @@
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <p>
-                                            {{appContext.lastBooking.list.Remarks}}
+                                            {{appContext.lastBooking.list.Location}}
                                         </p>
                                     </div>
                                 </div>
@@ -295,7 +294,7 @@
                                                     NEED HELP ? &nbsp;&nbsp;&nbsp;<span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="#/sidemenu/reportIssue">Report issue</a></li>
+                                                    <li><a ng-click="goToReportIssue()">Report issue</a></li>
                                                     <li><a href="#">Break down</a></li>
                                                     <li><a href="#">Accident</a></li>
                                                 </ul>
@@ -568,7 +567,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12" ng-if="!appContext.lastBooking">
+            <div class="col-xs-12" ng-if="!appContext.lastBooking && appContext.userMsg.UserStatus=='Success'">
                 <div  class="margin-top-20">
                     <div class="alert alert-info alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

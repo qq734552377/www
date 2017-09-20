@@ -166,6 +166,10 @@ table.profile-ps tbody > tr > td {
 .promoCode table tbody > tr > td {
   font-size: 18px;
 }
+.topup .row div {
+  font-size: 18px;
+  line-height: 36px;
+}
 @media (max-width: 767px) {
   .my-box {
     padding-right: 5px;

@@ -24,7 +24,7 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
     });
 
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
-    $scope.isAllWaitting=appContext.getAll().isAllWaitting;
+    $scope.isAllWaitting = appContext.getAll().isAllWaitting;
 });
 
 appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, appContext) {
@@ -261,8 +261,8 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
     .controller('signin_secondCtr', function ($scope, $http, $state, appContext, allUrl) {
         console.log(appContext.getAll().signinMsg)
         if (!appContext.getAll().signinMsg.firstSignUpCompete) {
-            // $state.go('signin_first');
-            // return;
+            $state.go('signin_first');
+            return;
         }
         $('#modalTdvlPhoto').modal('show');
 
@@ -273,20 +273,6 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         $scope.errorMsg = '';
 
         $scope.signin_s = appContext.getAll().signinMsg;
-
-        // $scope.$watch('signin_s.LicenseType', function (newValue, oldValue, scope) {
-        //     console.log(newValue)
-        //     if (newValue == '2') {
-        //         scope.msgAboutPic = 'NRIC, Driving License, TDVL';
-        //         $scope.picSrc = 'img/tdvl.jpg';
-        //     } else if (newValue == '1') {
-        //         scope.msgAboutPic = 'NRIC, Driving License, PDVL';
-        //         $scope.picSrc = 'img/pdvl.jpg';
-        //     } else {
-        //         scope.msgAboutPic = 'NRIC, Driving License, TDVL, PDVL';
-        //         $scope.picSrc = 'img/tpdvl.jpg';
-        //     }
-        // });
         $scope.sub = function () {
             if ($scope.signin_s.BlockNo == undefined || $scope.signin_s.BlockNo == '' ||
                 $scope.signin_s.Storey == undefined || $scope.signin_s.Storey == '' ||
@@ -301,7 +287,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 $scope.errorState = true;
                 $scope.errorMsg = 'Please fill out the Date of Birth and Driving License Issue Date,thanks! ';
                 return;
-            }else{
+            } else {
                 $scope.errorState = false;
             }
 
@@ -311,7 +297,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 $scope.errorState = true;
                 $scope.errorMsg = 'Please fill out the TDVL First Issue Date and TDVL Expiry Date,thanks! ';
                 return;
-            }else{
+            } else {
                 $scope.errorState = false;
             }
 
@@ -321,7 +307,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             var pic4 = undefined;
 
 
-            if($scope.signin_s.LicenseType==0){
+            if ($scope.signin_s.LicenseType == 0) {
                 pic4 = document.getElementById("PDVLLetter").files[0];
                 if (pic4 == undefined) {
                     return;
@@ -332,17 +318,26 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             if (pic1 == undefined || pic2 == undefined || pic3 == undefined) {
                 return;
             }
+
+            appContext.getAll().isAllWaitting = true;
             // 提交图片
-            postMultipart(allUrl.signin_sUrl, $scope.signin_s, pic1, pic2, pic3,pic4).success(function (data) {
+            postMultipart(allUrl.signin_sUrl, $scope.signin_s, pic1, pic2, pic3, pic4).success(function (data) {
                 console.log(data);
-                //todo 注册提交后的操作
 
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().fromBookingPage.isFromBooking = true;
+                    window.location.replace('#/auditPage');
+                } else {
+                    $scope.errorMsg = data.Info;
+                }
             }).error(function () {
-
+                appContext.getAll().isAllWaitting = false;
+                $scope.errorMsg = appContext.getAll().errorMsg.netError;
             });
         }
 
-        function postMultipart(url, data, pic1, pic2, pic3,pic4) {
+        function postMultipart(url, data, pic1, pic2, pic3, pic4) {
             var fd = new FormData();
             angular.forEach(data, function (val, key) {
                 fd.append(key, val);
@@ -362,6 +357,20 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         }
 
 
+    })
+    .controller('auditPageCtr', function ($scope, $http, $state, appContext, allUrl) {
+        if (!appContext.getAll().fromBookingPage.isFromBooking) {
+            window.location.replace('#/login');
+            return;
+        }
+
+        $scope.waitObj = {
+            isShowAll: true,
+            isShowWaitImg: false,
+            isShowlockBtn: true,
+            title: 'Congratulations,registered successfully !',
+            msg: 'We will review your registration information within 0 to 24 hours. If approved, we will send the email to your email notification.Then you can use the car rental service.'
+        };
     });
 
 appControllers.controller('searchCtr', function ($scope, $http, appContext, allCarsMsg, allUrl) {
@@ -517,37 +526,46 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         // $scope.motaiBox=appContext.getAll().motaiTishiBox;
 
         $scope.tishiBox = {
-            title: '',
-            msg: ''
+            isShow: true,
+            title: 'Promotion:',
+            msg: ' You will not be able to start any trip or make any bookings until you do a top up.'
         };
 
         $scope.remainingTime = {
-            isTimeout:false,
+            isTimeout: false,
             day: '0',
             hour: '0',
             min: '0',
             second: '0'
         };
+
+
         getUserDetailMsg();
         getUserLastBookingMsg();
         getWallet.init();
 
+        $scope.goToReportIssue = function () {
+            appContext.getAll().fromBookingPage.isFromBooking = true;
+            window.location.replace('#sidemenu/reportIssue/' + appContext.getAll().lastBooking.list.LeaseNumber);
+        };
         $scope.goToEndtrip = function () {
             $('#issuerEndTrip').modal('hide');
             $('body').toggleClass('modal-open');
             $('.modal-backdrop.fade.in').remove();
-            appContext.getAll().fromBookingPage.isFromBooking=true;
+            //todo 判断车是否进停车场范围
+
+            appContext.getAll().fromBookingPage.isFromBooking = true;
             window.location.href = '#/sidemenu/endtrip/' + appContext.getAll().lastBooking.list.LeaseNumber;
         };
-        $scope.getCanStartTrip=function () {
-            appContext.getAll().isAllWaitting=true;
+        $scope.getCanStartTrip = function () {
+            appContext.getAll().isAllWaitting = true;
 
             $http({
-                method : 'POST',
-                url:allUrl.getCanStartTripUrl,
-                data:{
-                    OpenClose:'1',
-                    LeaseNumber:appContext.getAll().lastBooking.list.LeaseNumber
+                method: 'POST',
+                url: allUrl.getCanStartTripUrl,
+                data: {
+                    OpenClose: '1',
+                    LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -555,32 +573,30 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
             }).success(function (data) {
                 console.log(data);
-                appContext.getAll().isAllWaitting=false;
+                appContext.getAll().isAllWaitting = false;
                 if (data.MsgType == 'Success') {
-                    appContext.getAll().fromBookingPage.isFromBooking=true;
-                    window.location.replace("#/sidemenu/startTrip/"+appContext.getAll().lastBooking.list.LeaseNumber);
-
-                    // appContext.getAll().fromBookingPage.isFromBooking=true;
-                }else {
-                    if(data.MsgType == 'TokenError'){
-                        appContext.getAll().isAut=false;
+                    appContext.getAll().fromBookingPage.isFromBooking = true;
+                    window.location.replace("#/sidemenu/startTrip/" + appContext.getAll().lastBooking.list.LeaseNumber);
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
                         window.location.replace("#/login");
                         return;
                     }
-                    appContext.getAll().motaiTishiBox.title='Promotion:';
-                    appContext.getAll().motaiTishiBox.msg= data.Info;
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
                     $('#moTaiTishiBox').modal('show');
                 }
             }).error(function () {
-                appContext.getAll().isAllWaitting=false;
-                appContext.getAll().motaiTishiBox.title='Promotion:';
-                appContext.getAll().motaiTishiBox.msg= "The network may have problems";
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = "The network may have problems";
                 $('#moTaiTishiBox').modal('show');
             });
 
         };
         function getUserDetailMsg() {
-
+            $scope.tishiBox.isShow = false;
             $http({
                 method: 'POST',
                 url: allUrl.getUserDetailUrl,
@@ -593,6 +609,14 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data)
                 if (data.MsgType == 'Success') {
                     appContext.getAll().userMsg = data.Data;
+
+                    if(data.Data.UserStatus != 'Success'){
+                        $scope.tishiBox = {
+                            isShow: true,
+                            title: 'Promotion:',
+                            msg: data.Info
+                        };
+                    }
                 } else {
                     if (data.MsgType == 'TokenError') {
                         appContext.getAll().isAut = false;
@@ -603,7 +627,11 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
 
             }).error(function () {
-
+                $scope.tishiBox = {
+                    isShow: true,
+                    title: 'Promotion:',
+                    msg: appContext.getAll().errorMsg.netError
+                };
             });
         }
 
@@ -623,7 +651,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     if (data.Data.list.LeaseStatus == 1) {
                         $scope.remainingTime.endtime = data.Data.list.LeaseEndTime;
                         $scope.remainingTime.timer = $interval(function () {
-                           getRemainTime($scope.remainingTime);
+                            getRemainTime($scope.remainingTime);
                         }, 1000);
                     }
                 } else {
@@ -715,8 +743,14 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
 
     })
-    .controller('topupCtr', function ($scope) {
+    .controller('topupCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Top Up');
+        $scope.tishiBox = {
+            isShow: true,
+            color:'alert-info',
+            title: 'Promotion:',
+            msg: 'Top up $50 and enjoy a 10% off for your next booking. Take advantage now.'
+        };
     })
     .controller('mybookingsCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Booking');
@@ -788,7 +822,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('startTripCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Start Trip');
-        if(!appContext.getAll().fromBookingPage.isFromBooking){
+        if (!appContext.getAll().fromBookingPage.isFromBooking) {
             window.location.replace('#/sidemenu/account');
             return;
         }
@@ -801,26 +835,23 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             msg: 'Kindly inspect the vehicle for exterior damages/defects while we unlock the car for you.'
         };
 
-        $scope.goToAccount=function () {
-            if(!appContext.getAll().startTrip.startTripSure1||
-                !appContext.getAll().startTrip.startTripSure2||
-                !appContext.getAll().startTrip.startTripSure3||
-                !appContext.getAll().startTrip.startTripSure4||
-                !appContext.getAll().startTrip.startTripSure5){
+        $scope.goToAccount = function () {
+            if (!appContext.getAll().startTrip.startTripSure1 || !appContext.getAll().startTrip.startTripSure2 || !appContext.getAll().startTrip.startTripSure3 || !appContext.getAll().startTrip.startTripSure4 || !appContext.getAll().startTrip.startTripSure5) {
                 return;
-            };
+            }
+            ;
 
 
             window.location.replace('#/sidemenu/account');
         };
-        $scope.goToReportIssue=function () {
-            appContext.getAll().fromBookingPage.isFromBooking=true;
+        $scope.goToReportIssue = function () {
+            appContext.getAll().fromBookingPage.isFromBooking = true;
             window.location.replace('#/sidemenu/reportIssue');
         };
-        $scope.unlockCar=function () {
+        $scope.unlockCar = function () {
             startTrip();
         };
-        
+
         startTrip();
         function startTrip() {
 
@@ -832,11 +863,11 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 msg: 'Kindly inspect the vehicle for exterior damages/defects while we unlock the car for you.'
             };
             $http({
-                method : 'POST',
-                url:allUrl.StartTripUrl,
-                data:{
-                    OpenClose:'1',
-                    LeaseNumber:appContext.getAll().lastBooking.list.LeaseNumber
+                method: 'POST',
+                url: allUrl.StartTripUrl,
+                data: {
+                    OpenClose: '1',
+                    LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -846,36 +877,99 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data);
 
                 if (data.MsgType == 'Success') {
-                    $scope.waitObj.isShowAll=false;
+                    $scope.waitObj.isShowAll = false;
 
-                }else {
-                    if(data.MsgType == 'TokenError'){
-                        appContext.getAll().isAut=false;
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
                         window.location.replace("#/login");
                         return;
                     }
-                    $scope.waitObj.isShowWaitImg=false;
-                    $scope.waitObj.isShowlockBtn=true;
-                    $scope.waitObj.title='Unlocking car failed ，please try agian ！'
-                    $scope.waitObj.msg= data.Info;;
+                    $scope.waitObj.isShowWaitImg = false;
+                    $scope.waitObj.isShowlockBtn = true;
+                    $scope.waitObj.title = 'Unlocking car failed ，please try agian ！'
+                    $scope.waitObj.msg = data.Info;
+                    ;
                 }
             }).error(function () {
-                $scope.waitObj.isShowWaitImg=false;
-                $scope.waitObj.title='Promotion:'
-                $scope.waitObj.msg=appContext.getAll().errorMsg.netError;
+                $scope.waitObj.isShowWaitImg = false;
+                $scope.waitObj.title = 'Promotion:'
+                $scope.waitObj.msg = appContext.getAll().errorMsg.netError;
             });
         }
     })
-    .controller('reportIssueCtr', function ($scope, $http, allUrl, appContext) {
+    .controller('reportIssueCtr', function ($scope, $http, $stateParams, allUrl, appContext) {
         $scope.$emit('curPath', 'Report Issue');
 
+        if (!appContext.getAll().fromBookingPage.isFromBooking) {
+            window.location.replace('#/login');
+            return;
+        }
+
+        $scope.reportIssueObj = {
+            LeaseNumber: $stateParams.id,
+            IssueTypeId: '1',
+            Title: '',
+            Remarks: ''
+        };
+
+        $scope.reportIssue = function () {
+
+            var pic1 = document.getElementById("IssuePhoto1").files[0];
+
+            if (pic1 == undefined) {
+                return;
+            }
+            appContext.getAll().isAllWaitting = true;
+            postMultipart(allUrl.reportIssueUrl, $scope.reportIssueObj, pic1).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+                    window.location.replace('#/sidemenu/account');
+                    $scope.motaiBox.title = 'Promotion:';
+                    $scope.motaiBox.msg = 'Report success!If you\'ve found other problems, you can click on Need Help -> Report Issue.';
+                    $('#moTaiTishiBox').modal('show');
+                } else {
+                    $scope.motaiBox.title = 'Promotion:';
+                    $scope.motaiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                $scope.motaiBox.title = 'Promotion:';
+                $scope.motaiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
+
+
+        }
+
+        function postMultipart(url, data, pic1) {
+
+            var fd = new FormData();
+            angular.forEach(data, function (val, key) {
+                fd.append(key, val);
+            });
+            fd.append('IssuePhoto1', pic1);
+            var args = {
+                method: 'POST',
+                url: url,
+                data: fd,
+                headers: {
+                    'Content-Type': undefined,
+                    Authorization: "Basic " + appContext.getAll().token
+                },
+                transformRequest: angular.identity
+            };
+            return $http(args);
+        }
 
     })
     .controller('endtripCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'End Trip');
-        if(!appContext.getAll().fromBookingPage.isFromBooking){
-            // window.location.replace('#/sidemenu/account');
-            // return;
+        if (!appContext.getAll().fromBookingPage.isFromBooking) {
+            window.location.replace('#/sidemenu/account');
+            return;
         }
         $scope.waitObj = {
             isShowAll: false,
@@ -885,14 +979,10 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             msg: 'Please wait while we ending your trip. Do not press the BACK button.'
         };
 
-        $scope.lockCar=lockCarById;
+        $scope.lockCar = lockCarById;
 
         function lockCarById() {
-            if(!appContext.getAll().endTrip.endtripSure1||
-                !appContext.getAll().endTrip.endtripSure2||
-                !appContext.getAll().endTrip.endtripSure3||
-                !appContext.getAll().endTrip.endtripSure4||
-                !appContext.getAll().endTrip.endtripSure5){
+            if (!appContext.getAll().endTrip.endtripSure1 || !appContext.getAll().endTrip.endtripSure2 || !appContext.getAll().endTrip.endtripSure3 || !appContext.getAll().endTrip.endtripSure4 || !appContext.getAll().endTrip.endtripSure5) {
                 return;
             }
 
@@ -905,16 +995,16 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             };
 
             $http({
-                method : 'POST',
-                url:allUrl.endTripUrl,
-                data:{
-                    OpenClose:'2',
-                    DesignatedLocation:appContext.getAll().endTrip.endtripSure1,
-                    CarKeyBacked:appContext.getAll().endTrip.endtripSure2,
-                    NoThingLeave:appContext.getAll().endTrip.endtripSure3,
-                    TakePhotoWithCarCondition:appContext.getAll().endTrip.endtripSure4,
-                    SwitchOffMDT:appContext.getAll().endTrip.endtripSure5,
-                    LeaseNumber:appContext.getAll().lastBooking.list.LeaseNumber
+                method: 'POST',
+                url: allUrl.endTripUrl,
+                data: {
+                    OpenClose: '2',
+                    DesignatedLocation: appContext.getAll().endTrip.endtripSure1,
+                    CarKeyBacked: appContext.getAll().endTrip.endtripSure2,
+                    NoThingLeave: appContext.getAll().endTrip.endtripSure3,
+                    TakePhotoWithCarCondition: appContext.getAll().endTrip.endtripSure4,
+                    SwitchOffMDT: appContext.getAll().endTrip.endtripSure5,
+                    LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -924,24 +1014,25 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data);
 
                 if (data.MsgType == 'Success') {
-                    $scope.waitObj.isShowWaitImg=false;
-                    $scope.waitObj.title='Thank you for using SMRT TAXI SHARE';
-                    $scope.waitObj.msg='Please ensure that the taxi is locked before you leave, thank you.';
-                }else {
-                    if(data.MsgType == 'TokenError'){
-                        appContext.getAll().isAut=false;
+                    $scope.waitObj.isShowWaitImg = false;
+                    $scope.waitObj.title = 'Thank you for using SMRT TAXI SHARE';
+                    $scope.waitObj.msg = 'Please ensure that the taxi is locked before you leave, thank you.';
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
                         window.location.replace("#/login");
                         return;
                     }
-                    $scope.waitObj.isShowWaitImg=false;
-                    $scope.waitObj.isShowlockBtn=true;
-                    $scope.waitObj.title='Locking car failed ，please try agian ！'
-                    $scope.waitObj.msg= data.Info;;
+                    $scope.waitObj.isShowWaitImg = false;
+                    $scope.waitObj.isShowlockBtn = true;
+                    $scope.waitObj.title = 'Locking car failed ，please try agian ！'
+                    $scope.waitObj.msg = data.Info;
+                    ;
                 }
             }).error(function () {
-                $scope.waitObj.isShowWaitImg=false;
-                $scope.waitObj.title='Promotion:';
-                $scope.waitObj.msg=appContext.getAll().errorMsg.netError;
+                $scope.waitObj.isShowWaitImg = false;
+                $scope.waitObj.title = 'Promotion:';
+                $scope.waitObj.msg = appContext.getAll().errorMsg.netError;
             });
         }
 
@@ -975,7 +1066,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data)
                 $scope.carPriceList = data;
 
-                if (data.MsgType == 'Error'){
+                if (data.MsgType == 'Error') {
                     window.location.replace('#/sidemenu/account');
                     $scope.motaiBox.title = 'Promotion:';
                     $scope.motaiBox.msg = data.Info;
@@ -1027,7 +1118,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
     });
 
-appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$timeout, appContext, noAutGoLoginPage, allUrl, allCarsMsg, getWallet) {
+appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $timeout, appContext, allUrl, allCarsMsg, getWallet) {
     $scope.timeTable = {
         times: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
         bgcolors: [{bgcClass: 'can-booking-bgc'},
@@ -1080,11 +1171,15 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
     $scope.currentDate = $scope.searchMsg.startDate;
 
     $scope.goToLogin = function () {
-        noAutGoLoginPage.init(true, id);
+        appContext.getAll().fromBookingPage.isFromBooking = true;
+        appContext.getAll().fromBookingPage.id = id;
+        window.location.replace('#/login');
     }
 
     $scope.geToTopup = function () {
-        noAutGoLoginPage.init(true, id, '#/sidemenu/topup');
+        appContext.getAll().fromBookingPage.isFromBooking = true;
+        appContext.getAll().fromBookingPage.id = id;
+        window.location.replace('#/sidemenu/topup');
     }
 
     $scope.getPriceList = getPriceList;
@@ -1129,7 +1224,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
             $('#moTaiTishiBox').modal('show');
             return;
         }
-        appContext.getAll().isAllWaitting=true;
+        appContext.getAll().isAllWaitting = true;
         $http({
             method: 'POST',
             url: allUrl.bookingTheCarUrl,
@@ -1147,7 +1242,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
             }
         }).success(function (data) {
             console.log(data);
-            appContext.getAll().isAllWaitting=false;
+            appContext.getAll().isAllWaitting = false;
             if (data.MsgType == 'Success') {
                 var bookingId = data.Info;
                 appContext.getAll().fromBookingPage.isFromBooking = true;
@@ -1163,7 +1258,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
             }
 
         }).error(function () {
-            appContext.getAll().isAllWaitting=false;
+            appContext.getAll().isAllWaitting = false;
             $scope.motaiBox.title = 'Promotion:';
             $scope.motaiBox.msg = "The network may have problems";
             $('#moTaiTishiBox').modal('show');
@@ -1236,7 +1331,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
             isShow: true,
             msg: 'Congratulations, your booking has been reserved.You may proceed to unlock the taxi in your account at the pickup time .'
         };
-        if(!appContext.getAll().fromBookingPage.isFromBooking){
+        if (!appContext.getAll().fromBookingPage.isFromBooking) {
             window.location.replace('#/search');
             return;
         }
@@ -1290,19 +1385,19 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
             msg: 'Comfirm 3 booking  !'
         };
 
-        $scope.cancleTrip=function () {
+        $scope.cancleTrip = function () {
             $('#issuerCancleTrip').modal('hide');
             $('body').toggleClass('modal-open');
             $('.modal-backdrop.fade.in').remove();
             //取消订单的api调用
-            appContext.getAll().isAllWaitting=true;
+            appContext.getAll().isAllWaitting = true;
             $http({
                 method: 'POST',
                 url: allUrl.cansleBookingUrl,
                 data: {
-                    OrderNumber : $stateParams.id,
-                    LeaseCancelReason:appContext.getAll().endTrip.LeaseCancelReason,//取消理由
-                    Memo:appContext.getAll().endTrip.Memo//备注
+                    OrderNumber: $stateParams.id,
+                    LeaseCancelReason: appContext.getAll().endTrip.LeaseCancelReason,//取消理由
+                    Memo: appContext.getAll().endTrip.Memo//备注
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -1310,7 +1405,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
                 }
             }).success(function (data) {
                 console.log(data);
-                appContext.getAll().isAllWaitting=false;
+                appContext.getAll().isAllWaitting = false;
                 $scope.isWaitting = false;
                 if (data.MsgType == 'Success') {
                     window.location.replace('#/sidemenu/mybookings');
@@ -1328,7 +1423,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams,$t
                 }
 
             }).error(function () {
-                appContext.getAll().isAllWaitting=false;
+                appContext.getAll().isAllWaitting = false;
                 $scope.isWaitting = false;
                 $scope.tishiBox.isShow = true;
                 $scope.tishiBox.msg = 'The network may have problems !';
@@ -1522,13 +1617,13 @@ function getRemainTime(target) {
         h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
         m = Math.floor(leftTime / 1000 / 60 % 60);
         s = Math.floor(leftTime / 1000 % 60);
-        target.isTimeout=false;
+        target.isTimeout = false;
     } else {
         d = Math.floor(-leftTime / 1000 / 60 / 60 / 24);
         h = Math.floor(-leftTime / 1000 / 60 / 60 % 24);
         m = Math.floor(-leftTime / 1000 / 60 % 60);
         s = Math.floor(-leftTime / 1000 % 60);
-        target.isTimeout=true;
+        target.isTimeout = true;
     }
     target.day = d;
     target.hour = h;

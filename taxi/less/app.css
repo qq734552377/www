@@ -549,6 +549,10 @@ table.profile-ps tbody > tr > td {
 .promoCode table tbody > tr > td {
   font-size: 18px;
 }
+.topup .row div {
+  font-size: 18px;
+  line-height: 36px;
+}
 @media (max-width: 767px) {
   .my-box {
     padding-right: 5px;
@@ -1001,11 +1005,23 @@ table.responsive .actions a:hover {
 .margin-top-20 {
   margin-top: 20px;
 }
+.margin-top-15 {
+  margin-top: 15px;
+}
+.margin-top-10 {
+  margin-top: 10px;
+}
 .margin-bottom-25 {
   margin-bottom: 25px;
 }
 .margin-bottom-20 {
   margin-bottom: 20px;
+}
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
 }
 .margin-left-25 {
   margin-left: 25px;
@@ -1013,11 +1029,23 @@ table.responsive .actions a:hover {
 .margin-left-20 {
   margin-left: 20px;
 }
+.margin-left-15 {
+  margin-left: 15px;
+}
+.margin-left-10 {
+  margin-left: 10px;
+}
 .margin-right-25 {
   margin-right: 25px;
 }
 .margin-right-20 {
   margin-right: 20px;
+}
+.margin-right-15 {
+  margin-right: 15px;
+}
+.margin-right-10 {
+  margin-right: 10px;
 }
 .maincontent-bgc {
   background-color: #f2f2f2;
@@ -1086,7 +1114,7 @@ table.responsive .actions a:hover {
 }
 @media (max-width: 767px) {
   .good-padding-bottom-l {
-    padding-bottom: 60px;
+    padding-bottom: 120px;
   }
   .good-padding-bottom-m {
     padding-bottom: 50px;

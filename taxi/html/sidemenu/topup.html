@@ -1,36 +1,94 @@
 <div class="container-fluid good-padding-bottom-l">
     <div class="row">
         <div class="col-md-12 ">
-            <!--update-->
+            <!--topup-->
             <div class="my-box my-box-top-border margin-top-20 ">
                 <div class="box-header">
-                    <h4 class="box-header-title">Select amount to topup</h4>
+                    <h4 class="box-header-title">Top Up</h4>
                 </div>
-                <div class="box-body my-box-boundary row " style="margin-left: 20px ;margin-right: 20px;">
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">$10</button>
+
+
+                <div class="box-body my-box-boundary topup " style="margin-left: 20px ;margin-right: 20px;">
+                    <div class="row ">
+                        <div class="col-xs-6 col-md-4">
+                            <strong>Your Account</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            Peng jing
+                        </div>
                     </div>
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">$20</button>
+                    <div class="row ">
+                        <div class="col-xs-6 col-md-4">
+                            <strong>Status</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            Active
+                        </div>
                     </div>
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">$50</button>
+                    <div class="row ">
+                        <div class="col-xs-6 col-md-4">
+                            <strong>Deposit</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            $ 100.00
+                        </div>
                     </div>
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">$100</button>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4">
+                            <strong>Balance</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            $ 30.88
+                        </div>
                     </div>
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">$200</button>
-                    </div>
-                    <div class="col-md-4 col-xs-6 margin-bottom-25">
-                        <button class="btn btn-primary btn-block">Other</button>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <strong>Select amount to topup</strong>
+                        </div>
+
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 10</button>
+                        </div>
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 20</button>
+                        </div>
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 50</button>
+                        </div>
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 100</button>
+                        </div>
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 200</button>
+                        </div>
+                        <div class="col-md-2 col-xs-4 margin-top-10">
+                            <button class="btn btn-success btn-block">$ 500</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--topup end-->
+
+
+
 
 
         </div>
 
-        <!--update end-->
+
+    </div>
+
+    <div class="row margin-top-25">
+        <div class="col-md-12" ng-if="tishiBox.isShow">
+            <div class="alert {{tishiBox.color}} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 style="font-size: 18px" ng-bind="tishiBox.title"></h4>
+                <p style="font-size: 16px" ng-bind="tishiBox.msg">
+
+                </p>
+            </div>
+        </div>
     </div>
 </div>

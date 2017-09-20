@@ -44,6 +44,20 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                 app.init();
             }
         })
+        .state('auditPage',{
+            url:'/auditPage',
+            templateUrl:'html/auditPage.html',
+            controller:'auditPageCtr',
+            //注入'isSide'服务
+            resolve: { app:'appContext' },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app){
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+                app.getAll().fromBookingPage.isFromBooking=false;
+            }
+        })
         .state("search",{
         url:'/search',
         templateUrl:'html/search.html',
@@ -106,12 +120,16 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller:'referCtr'
         })
         .state("sidemenu.reportIssue",{
-            url:"/reportIssue",
+            url:"/reportIssue/:id",
             templateUrl:"html/sidemenu/reportIssue.html",
             controller:'reportIssueCtr',
             resolve: {
                 isAutGo:'noAutGoLoginPage',
-                app:'appContext'
+                app:'appContext',
+                reportIssueReasons:'initReportIssueReasons'
+            },
+            onEnter:function (reportIssueReasons) {
+                reportIssueReasons.init();
             },
             onExit: function(app){
                 app.getAll().fromBookingPage.isFromBooking=false;
