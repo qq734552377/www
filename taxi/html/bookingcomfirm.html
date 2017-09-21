@@ -222,7 +222,7 @@
                                                     <b>Available</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                   $ {{(lastBookingMsg.list.LastAmount/100).toFixed(2)}}
+                                                    $ {{((lastBookingMsg.list.LastAmount + lastBookingMsg.list.LeaseMount)/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -238,7 +238,7 @@
                                                     <b>Balance</b>
                                                 </td>
                                                 <td class="right text-right ">
-                                                    $ {{((lastBookingMsg.list.LastAmount-lastBookingMsg.list.LeaseMount)/100).toFixed(2)}}
+                                                    $ {{(lastBookingMsg.list.LastAmount/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -297,7 +297,7 @@
 
 
             </div>
-            <div class="timeTable margin-top-25">
+            <div hidden class="timeTable margin-top-25">
 
                 <div class="row">
                     <div class="col-md-12">
