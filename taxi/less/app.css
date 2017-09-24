@@ -1071,6 +1071,9 @@ table.responsive .actions a:hover {
   padding-left: 15px;
   padding-right: 15px;
 }
+.modal-header-bg-color {
+  background-color: #e81e06 !important;
+}
 .good-padding-bottom-l {
   padding-bottom: 360px;
 }
@@ -1474,6 +1477,25 @@ a {
 }
 .success-color {
   color: #5cb85c;
+}
+.carousel .carousel-inner .item {
+  text-align: center;
+}
+.carousel .carousel-inner .item img {
+  height: 450px;
+  width: 100%;
+}
+.carousel .carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.0001)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+}
+.carousel .carousel-control.right {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0001)), to(rgba(0, 0, 0, 0.0001)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.0001) 100%);
 }
 .no-car-tishi-msg h4 {
   font-size: 22px;

@@ -1217,6 +1217,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
 
     $scope.jumpDayCarState = getCarAvailableStateWithDays;
 
+    $scope.jumpDayCarState(0);
+
     $scope.bookingTheCar = function () {
         if (!appContext.getAll().isAgreeMe) {
             $scope.motaiBox.title = 'Accept Terms and Conditions';
@@ -1290,6 +1292,18 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }).success(function (data) {
             console.log(data)
             $scope.isGetCarStateWaitting = false;
+            angular.forEach(data.Data, function (val, key) {
+                if(val=='Limited Taxis'){
+                    $scope.timeTable.bgcolors[key].bgcClass='may-booking-bgc';
+                }else if(val=='Available'){
+                    $scope.timeTable.bgcolors[key].bgcClass='can-booking-bgc';
+                }else{
+                    $scope.timeTable.bgcolors[key].bgcClass='not-booking-bgc';
+                }
+            });
+
+
+
         }).error(function () {
             $scope.isGetCarStateWaitting = false;
         });

@@ -185,14 +185,14 @@
                                     Details</h5>
                                 <div class="row">
                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                        <p>
+                                        <a data-toggle="modal" data-target="#mapModal">
                                             <i class="glyphicon glyphicon-map-marker"></i>
-                                        </p>
+                                        </a>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
+                                        <a data-toggle="modal" data-target="#mapModal" style="cursor: pointer">
                                             {{appContext.lastBooking.list.Location}}
-                                        </p>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -216,14 +216,14 @@
 
                                 <div class="row">
                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                        <p>
+                                        <a data-toggle="modal" data-target="#mapModal">
                                             <i class="glyphicon glyphicon-map-marker"></i>
-                                        </p>
+                                        </a>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
+                                        <a data-toggle="modal" data-target="#mapModal" style="cursor: pointer">
                                             {{appContext.lastBooking.list.Location}}
-                                        </p>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -419,9 +419,9 @@
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
+                                        <a>
                                             354 Admiralty Dr, Singapore 750354
-                                        </p>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -450,9 +450,9 @@
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
+                                        <a>
                                             354 Admiralty Dr, Singapore 750354
-                                        </p>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -593,14 +593,14 @@
     <div class="modal modal-default fade" id="issuerEndTrip" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header modal-tribecar" style="background-color: coral; !important;">
+                <div class="modal-header modal-tribecar modal-header-bg-color" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">Before you end your trip </h4>
                 </div>
                 <div class="modal-body" style="">
-                    <p style="font-size: 16px">Are you parked at the designated lots @ 5B, Lots Any lot withing deck 5B
+                    <p style="font-size: 16px">Are you parked at the designated lots @ {{appContext.lastBooking.list.Number}}, Lots Any lot withing deck {{appContext.lastBooking.list.Number}}
                         ?</p>
                     <form style="margin-left: 30px">
                         <div class="radio" style="font-size: 16px" >
@@ -618,7 +618,7 @@
 
                         <div class="form-group" ng-if="!appContext.endTrip.isDesignLocation">
                             <textarea id="form_description" required="required"
-                                      placeholder="Please indicate where you parked. (e.g: Deck 4B, Lot 100)"
+                                      placeholder="Please indicate where you parked. (e.g: Deck {{appContext.lastBooking.list.Number}})"
                                       class="form-control" rows="2"></textarea>
                         </div>
                     </form>
@@ -631,3 +631,54 @@
     </div>
 </div>
 <!--提示模态框结尾-->
+
+
+<!--位置提示模态框-->
+<div class="example-modal">
+    <div class="modal modal-default fade" id="mapModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-tribecar modal-header-bg-color">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="update_title">Taxi Location</h4>
+                </div>
+                <div class="modal-body" style="text-align:center;">
+                    <div style="height: 300px; ">
+                        <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d37944258.28744549!2d97.4682468142077!3d54.51703004596788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1505458119396"
+                                width="100%" height="300" frameborder="0" style="border:0;margin: 0;padding: 0" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold;text-align: left">
+                                Address
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="text-align: left">
+                                        {{appContext.lastBooking.list.Location}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold;text-align: left">
+                                Directions to vehicle
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="text-align: left">
+                                        {{appContext.lastBooking.list.Remarks}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--位置提示模态框结尾-->

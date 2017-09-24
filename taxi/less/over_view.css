@@ -118,6 +118,9 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+.modal-header-bg-color {
+  background-color: #e81e06 !important;
+}
 .good-padding-bottom-l {
   padding-bottom: 360px;
 }
