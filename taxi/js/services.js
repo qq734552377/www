@@ -210,7 +210,7 @@ serviceModule.factory('allUrl',function () {
             smartEmail:'taxishare-enquiry@smrt.com.sg',
             hostName:'http://192.168.0.132/taxi',
             errorMsg:{
-                netError:'The network may have problems'
+                netError:'The network just lost a moment,try again! '
             },
             motaiTishiBox:{
                 title:'',
@@ -587,7 +587,7 @@ serviceModule.factory('allUrl',function () {
 
                 }).error(function () {
                     appContext.getAll().motaiTishiBox.title='Promotion:';
-                    appContext.getAll().motaiTishiBox.msg= "The network may have problems";
+                    appContext.getAll().motaiTishiBox.msg=  appContext.getAll().errorMsg.netError;
                     $('#moTaiTishiBox').modal('show');
                 });
             }

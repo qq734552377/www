@@ -77,7 +77,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
 
             }).error(function () {
                 $scope.errorState = true;
-                $scope.errorMsg = "The network may have problems";
+                $scope.errorMsg = appContext.getAll().errorMsg.netError;
             });
         }
 
@@ -590,7 +590,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }).error(function () {
                 appContext.getAll().isAllWaitting = false;
                 appContext.getAll().motaiTishiBox.title = 'Promotion:';
-                appContext.getAll().motaiTishiBox.msg = "The network may have problems";
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
                 $('#moTaiTishiBox').modal('show');
             });
 
@@ -1075,7 +1075,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
             }).error(function () {
                 $scope.motaiBox.title = 'Promotion:';
-                $scope.motaiBox.msg = "The network may have problems";
+                $scope.motaiBox.msg = appContext.getAll().errorMsg.netError;;
                 $('#moTaiTishiBox').modal('show');
             });
         });
@@ -1111,7 +1111,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
             }).error(function () {
                 $scope.motaiBox.title = 'Promotion:';
-                $scope.motaiBox.msg = "The network may have problems";
+                $scope.motaiBox.msg = appContext.getAll().errorMsg.netError;
                 $('#moTaiTishiBox').modal('show');
             });
         };
@@ -1167,7 +1167,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
 
     $scope.currentDay = 0;
 
-    var startDateTime = ($scope.searchMsg.startDate + ' ' + $scope.searchMsg.startTime + ':00');
+    var startDateTime = ($scope.searchMsg.startDate+ ' ' + $scope.searchMsg.startTime + ':00');
     $scope.currentDate = $scope.searchMsg.startDate;
 
     $scope.goToLogin = function () {
@@ -1262,7 +1262,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }).error(function () {
             appContext.getAll().isAllWaitting = false;
             $scope.motaiBox.title = 'Promotion:';
-            $scope.motaiBox.msg = "The network may have problems";
+            $scope.motaiBox.msg = appContext.getAll().errorMsg.netError;
             $('#moTaiTishiBox').modal('show');
         });
 
@@ -1275,7 +1275,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }
 
         $scope.currentDay = days;
-        $scope.currentDate = getFormatTime(getDateByString(addDayWithStringDateReturnFormatStringDate(startDateTime, days))).Date;
+        $scope.currentDate = addDayWithStringDateReturnFormatStringDate(startDateTime, days).split(' ')[0];
+
         $scope.isGetCarStateWaitting = true;
 
         $http({
@@ -1301,9 +1302,6 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                     $scope.timeTable.bgcolors[key].bgcClass='not-booking-bgc';
                 }
             });
-
-
-
         }).error(function () {
             $scope.isGetCarStateWaitting = false;
         });
@@ -1386,7 +1384,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             }).error(function () {
                 $scope.isWaitting = false;
                 $scope.tishiBox.isShow = true;
-                $scope.tishiBox.msg = 'The network may have problems !';
+                $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
             });
         }
 
@@ -1440,7 +1438,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 appContext.getAll().isAllWaitting = false;
                 $scope.isWaitting = false;
                 $scope.tishiBox.isShow = true;
-                $scope.tishiBox.msg = 'The network may have problems !';
+                $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
             });
 
         };
@@ -1479,7 +1477,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             }).error(function () {
                 $scope.isWaitting = false;
                 $scope.tishiBox.isShow = true;
-                $scope.tishiBox.msg = 'The network may have problems !';
+                $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
             });
         }
     });
@@ -1554,7 +1552,8 @@ function getFormatTime(date) {
 }
 
 function getDateByString(stringDatetime) {
-    return new Date(stringDatetime.replace("-", "/"));
+    var d = new Date(Date.parse(stringDatetime.replace(/-/g, "/")));
+    return d;
 }
 
 function addHours(hours) {
@@ -1618,7 +1617,7 @@ function getRemainTime(target) {
     var date = new Date();
     var now = date.getTime();
     //设置截止时间
-    var endDate = new Date(target.endtime);
+    var endDate = getDateByString(target.endtime);
     var end = endDate.getTime();
 
     var leftTime = end - now;

@@ -1074,6 +1074,9 @@ table.responsive .actions a:hover {
 .modal-header-bg-color {
   background-color: #e81e06 !important;
 }
+.modal-header-bg-color > h4 {
+  color: #fff;
+}
 .good-padding-bottom-l {
   padding-bottom: 360px;
 }
