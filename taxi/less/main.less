@@ -283,12 +283,13 @@ a {
 }
 
 .carousel {
+  overflow-y: hidden;
   .carousel-inner{
     .item {
-      text-align: center;
       img {
-        height: 450px;
-        width: 100%;
+        margin-left: 15%;
+        height: 150px;
+        width: 150px;
       }
     }
   }
@@ -304,5 +305,46 @@ a {
     background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .0001) 100%);
     background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .0001)), to(rgba(0, 0, 0, .0001)));
     background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .0001) 100%);
+  }
+}
+
+@media (max-width: @xs-width) {
+
+  .carousel .carousel-inner .item>img{
+    margin-left: 30px;
+    height: 100px;
+    width: 100px;
+  }
+}
+
+
+.carousel-caption {
+  bottom: 0px;
+  left: 140px;
+  right: 0;
+  padding-bottom:0px;
+  padding-top: 0px;
+  color: #000000;
+  text-shadow: 0 0px 0px rgba(0, 0, 0, .6);
+  text-align: left;
+}
+
+
+@media screen and (min-width: 768px) {
+  .carousel-caption {
+    left: 38%;
+    right: 0;
+    padding-bottom:35px;
+  }
+}
+
+.carousel-indicators{
+
+  bottom: -15px;
+  li{
+    border: 1px solid @main-search-bgc;
+  }
+  .active{
+    background-color: @main-search-bgc;
   }
 }
