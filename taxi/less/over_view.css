@@ -124,6 +124,51 @@
 .modal-header-bg-color > h4 {
   color: #fff;
 }
+.move-on-status {
+  -webkit-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  padding: 15px 10px;
+}
+.move-on-status:hover {
+  -webkit-transform: translate(0, 2px);
+  -moz-transform: translate(0, 2px);
+  -ms-transform: translate(0, 2px);
+  -o-transform: translate(0, 2px);
+  transform: translate(0, 2px);
+  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+.move-on-status:hover .media-body h4 {
+  color: #e81e06;
+}
+.move-title {
+  position: relative;
+  animation: move 3s linear infinite;
+  -moz-animation: move 3s linear infinite;
+  /* Firefox */
+  -webkit-animation: move 5 3s linear infinite;
+  /* Safari and Chrome */
+  -o-animation: move 3s linear infinite;
+  /* Opera */
+}
+@keyframes move {
+  0% {
+    top: 0;
+    -webkit-animation-timing-function: ease-in;
+    color: #f2f2f2;
+  }
+  65% {
+    top: 0px;
+    color: #e81e06;
+  }
+  100% {
+    top: 0;
+    color: #f2f2f2;
+  }
+}
 .good-padding-bottom-l {
   padding-bottom: 360px;
 }

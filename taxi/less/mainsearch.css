@@ -1,5 +1,5 @@
 .bg {
-  min-height: 480px;
+  min-height: 440px;
   background-image: url("../img/homepage-banner.jpg");
   background-position: center center;
   -webkit-background-size: cover;
@@ -10,7 +10,7 @@
 }
 .mainsearch {
   border-radius: 3px;
-  background-color: rgba(88, 88, 88, 0.9);
+  background-color: rgba(88, 88, 88, 0.4);
   padding: 20px;
 }
 .mainsearch .mainsearch-item {
@@ -52,11 +52,45 @@
 .mainsearch .mainsearch-item select.only-padding-left {
   padding-left: 56px;
 }
+.search {
+  background-color: #fff;
+  padding: 20px;
+}
+.search .mainsearch-item {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.search .mainsearch-item > div span {
+  background-color: transparent;
+  border: 0;
+}
+.search .mainsearch-item > div span i {
+  font-size: 32px;
+}
+.search .mainsearch-item > div input {
+  background-color: transparent;
+}
+.search .mainsearch-item select.only-padding-left {
+  padding-left: 56px;
+}
 @media (max-width: 767px) {
   .mainsearch {
     padding: 5px 2px;
   }
   .mainsearch .mainsearch-item select.only-padding-left {
     padding-left: 7px;
+  }
+  .search {
+    padding-top: 0;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+  }
+  .search .row .col-xs-6 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .search .mainsearch-item select.only-padding-left {
+    padding-left: 0px;
   }
 }

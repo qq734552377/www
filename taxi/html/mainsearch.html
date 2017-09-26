@@ -141,9 +141,12 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-xs-6">
-                                <button ng-click="mainsearch()" type="button" class="btn btn-block bg-primary"
-                                        style="margin-top: 30px">Search
-                                </button>
+                                <div style="margin-left: 12px">
+                                    <button ng-click="mainsearch()" type="button" class="btn btn-block btn-success"
+                                            style="margin-top: 30px">
+                                        Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -241,13 +244,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center">HOW IT WORKS</h2>
+                    <h2 class="text-center move-title">HOW IT WORKS</h2>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 margin-top-20">
-                    <div class="media ">
+                    <div class="media move-on-status">
                         <div class="media-left media-middle">
                             <a href="">
                                 <img class="media-object" src="img/registered (1).png" alt="q">
@@ -255,12 +258,12 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading" style="padding-top: 15px;">Register</h4>
-                            <p style="font-size: 16px">Register as a SMRT TAXI SHARE Driver.</p>
+                            <p style="">Register as a SMRT TAXI SHARE Driver.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 margin-top-20">
-                    <div class="media ">
+                    <div class="media move-on-status">
                         <div class="media-left media-middle">
                             <a href="">
                                 <img class="media-object" src="img/book.png" alt="q">
@@ -268,7 +271,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading" style="padding-top: 15px;">Book</h4>
-                            <p style="font-size: 16px">Book a taxi based on your preferred time and location.</p>
+                            <p style="">Book a taxi based on your preferred time and location.</p>
                         </div>
                     </div>
                 </div>
@@ -276,7 +279,7 @@
 
             <div class="row">
                 <div class="col-md-6 margin-top-20">
-                    <div class="media ">
+                    <div class="media move-on-status">
                         <div class="media-left media-middle">
                             <a href="">
                                 <img class="media-object" src="img/unlock.png" alt="q">
@@ -284,12 +287,12 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading" style="padding-top: 15px;">Unlock & Drive</h4>
-                            <p style="font-size: 16px">When you are at the taxi, unlock it through our web app and begin your trip.</p>
+                            <p style="">When you find the taxi, unlock it through our web app and begin your trip.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 margin-top-20">
-                    <div class="media ">
+                    <div class="media move-on-status">
                         <div class="media-left media-middle">
                             <a href="">
                                 <img class="media-object" src="img/return.png" alt="q">
@@ -297,7 +300,7 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading" style="padding-top: 15px;">Return</h4>
-                            <p style="font-size: 16px">Park the taxi back at the same location, lock the taxi and end your trip.</p>
+                            <p style="">Park the taxi back at the same location, lock the taxi and end your trip.</p>
                         </div>
                     </div>
                 </div>
@@ -339,6 +342,6 @@
         startDate: new Date()
     });
     $('.carousel').carousel({
-        interval: 5000
+        interval: 3000
     })
 </script>

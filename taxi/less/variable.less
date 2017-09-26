@@ -28,11 +28,14 @@
 @time-table-td-can-bgc:#5cb85c;
 @time-table-td-not-bgc:#ee2222;
 @time-table-td-may-bgc:#ee9011;
-@main-search-bgc:rgba(88,88,88,0.9);
+@main-search-bgc:rgba(88,88,88,0.4);
 @main-search-span-color:#efefef;
 @main-search-input-color:#35f538;
+@search-bgc:#fff;
+@search-span-color:#010101;
+@search-input-color:#111111;
 @table-head-color:#5cb85c;
-
+@carousel-li-bg-color:rgba(88,88,88,0.9);
 @xs-width:767px;
 @sm-width:992px;
 @md-width:1200px;
@@ -64,8 +67,21 @@
   box-shadow: 0 -4px 4px 0px rgba(255,255, 255, 0.5);
 }
 
+.move-on-status(){
+  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
 .no-box-shadow(){
   -webkit-box-shadow: 0 4px 3px rgba(0, 0, 0, 0);
   -moz-box-shadow: 0 4px 3px rgba(0, 0, 0, 0);
   box-shadow: 0 4px 3px rgba(0, 0, 0, 0);
+}
+
+.moving-title-animation(@move,@time,@move-style,@is-loop){
+  animation:@move @time @move-style @is-loop;
+  -moz-animation:@move @time @move-style @is-loop; /* Firefox */
+  -webkit-animation:@move 5@time @move-style @is-loop;/* Safari and Chrome */
+  -o-animation:@move @time @move-style @is-loop;/* Opera */
 }

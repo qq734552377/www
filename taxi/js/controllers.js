@@ -329,10 +329,12 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     appContext.getAll().fromBookingPage.isFromBooking = true;
                     window.location.replace('#/auditPage');
                 } else {
+                    $scope.errorState = true;
                     $scope.errorMsg = data.Info;
                 }
             }).error(function () {
                 appContext.getAll().isAllWaitting = false;
+                $scope.errorState = true;
                 $scope.errorMsg = appContext.getAll().errorMsg.netError;
             });
         }
@@ -1156,7 +1158,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
     $scope.isWaitting = true;
     $scope.tishiBox = {
         isShow: true,
-        msg: 'Comfirm 3 booking per week and get 50% off the 4th booking o!'
+        msg: 'Comfirm 3 booking per week and get 50% off the 4th booking!'
     };
 
     // $scope.motaiBox=appContext.getAll().motaiTishiBox;
