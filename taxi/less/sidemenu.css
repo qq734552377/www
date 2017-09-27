@@ -7,6 +7,7 @@
   background-color: #353535;
   border: 0;
   border-radius: 0;
+  z-index: 1;
   -webkit-transition: all 0.15s ease-in;
   -o-transition: all 0.15s ease-in;
   -moz-transition: all 0.15s ease-in;
@@ -68,7 +69,7 @@
 }
 .navbar .container .side-menu-wrap aside .side-menu-header a span {
   position: absolute;
-  left: 85px;
+  left: 55px;
   top: 15px;
   font-size: 20px;
   font-weight: bold;
@@ -112,7 +113,7 @@
   color: #cccccc;
 }
 .navbar .container .side-menu-wrap aside ul.level-one > li a span {
-  margin-left: 35px;
+  margin-left: 15px;
   font-size: 16px;
   font-weight: bold;
 }

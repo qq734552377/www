@@ -23,8 +23,28 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
         }
     });
 
+    $scope.scrollToTop=function () {
+        $("html, body").animate({
+            scrollTop: $("#bodyHeader").offset().top }, {duration: 500,easing: "swing"});
+    };
+
+
+    $scope.scrollToMap=function () {
+        $("html, body").animate({
+            scrollTop: $("#adressMap").offset().top }, {duration: 500,easing: "swing"});
+    };
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
     $scope.isAllWaitting = appContext.getAll().isAllWaitting;
+
+
+    $(window).scroll(function(){
+        if($(window).scrollTop() >1600){
+            $("#movetoTop").fadeIn(1000);//一秒渐入动画
+        }else{
+            $("#movetoTop").fadeOut(500);//一秒渐隐动画
+        }
+    });
+
 });
 
 appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, appContext) {
@@ -1169,6 +1189,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
 
     $scope.currentDay = 0;
 
+
     var startDateTime = ($scope.searchMsg.startDate+ ' ' + $scope.searchMsg.startTime + ':00');
     $scope.currentDate = $scope.searchMsg.startDate;
 
@@ -1398,6 +1419,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             isShow: true,
             msg: 'Comfirm 3 booking  !'
         };
+
 
         $scope.cancleTrip = function () {
             $('#issuerCancleTrip').modal('hide');

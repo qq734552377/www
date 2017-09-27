@@ -87,7 +87,7 @@
                 <div class="box-header">
                     <h4 class="box-header-title">{{carMsg.VehicleTypeName}} | {{carMsg.Seats}} Seater</h4>
                     <p class="box-header-p">{{carMsg.VehicleModelName}} ( {{carMsg.Plate}} )</p>
-                    <a href="#">
+                    <a ng-click="scrollToMap()">
                         <i class="glyphicon glyphicon-map-marker"></i>
                         {{carMsg.Address}}
                     </a>
@@ -183,7 +183,7 @@
                                 <div class="wrap">
                                     <div class="my-account-header">
                                         <b>
-                                            <i class="glyphicon glyphicon-piggy-bank"></i>
+                                            <i class="fa fa-money" aria-hidden="true"></i>
                                             E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
                                         </b>
                                     </div>
@@ -238,13 +238,13 @@
                                     <div class="agreeMe">
                                         <label>
                                             <input ng-model="appContext.isAgreeMe" type="checkbox">
-                                            I agree to the <a href="#/bookingcomfirm/123" target="_blank">terms and
+                                            I agree to the <a href="#/terms" target="_blank">terms and
                                             conditions</a>
                                             as stated in the website.
                                         </label>
                                     </div>
                                 </div>
-                                <a id="booking" class="btn btn-primary btn-block" ng-click="bookingTheCar()"
+                                <a id="booking" class="btn btn-success btn-block" ng-click="bookingTheCar()"
                                    style="color: #fff">Booking the Car</a>
                             </div>
                             <!--结算End-->
@@ -258,7 +258,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="my-box my-box-top-border margin-top-20">
+            <div class="my-box my-box-top-border margin-top-20" id="adressMap">
                 <div class="box-header">
                     <div class="box-corner">
                         <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"

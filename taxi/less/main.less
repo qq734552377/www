@@ -30,9 +30,11 @@ a {
 }
 
 .navbar .navbar-toggle {
-
-  &:hover, &:active {
-    background-color: @navbar-background-color + #007070;
+  background-color: @navbar-background-color;
+  border: 0;
+  &:hover, &:active ,&:focus {
+    background-color: @navbar-background-color;
+    border: 0;
   }
   .icon-bar {
     background-color: @icon-bar-background-color;
@@ -346,5 +348,38 @@ a {
   }
   .active{
     background-color: @carousel-li-bg-color;
+  }
+}
+
+
+.move-to-top{
+  position: fixed;
+  display: none;
+  width: 60px;
+  height: 60px;
+  padding: 12px;
+  right: 20px;
+  bottom: 100px;
+  background: #ffa000;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 35px;
+  line-height: 35px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 3;
+  .transition(0.5s);
+  a{
+    color: #fff;
+  }
+
+  &:hover{
+    background:@navbar-background-color;
+  }
+}
+
+@media (max-width: @xs-width) {
+  .move-to-top {
+    bottom: 60px;
   }
 }

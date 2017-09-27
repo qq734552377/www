@@ -21,9 +21,15 @@ a {
   background-color: #e81e06;
   text-align: center;
 }
+.navbar .navbar-toggle {
+  background-color: #e81e06;
+  border: 0;
+}
 .navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:active {
-  background-color: #e88e76;
+.navbar .navbar-toggle:active,
+.navbar .navbar-toggle:focus {
+  background-color: #e81e06;
+  border: 0;
 }
 .navbar .navbar-toggle .icon-bar {
   background-color: #ffffff;
@@ -295,4 +301,36 @@ a {
 }
 .carousel-indicators .active {
   background-color: rgba(88, 88, 88, 0.9);
+}
+.move-to-top {
+  position: fixed;
+  display: none;
+  width: 60px;
+  height: 60px;
+  padding: 12px;
+  right: 20px;
+  bottom: 100px;
+  background: #ffa000;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 35px;
+  line-height: 35px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 3;
+  -webkit-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+.move-to-top a {
+  color: #fff;
+}
+.move-to-top:hover {
+  background: #e81e06;
+}
+@media (max-width: 767px) {
+  .move-to-top {
+    bottom: 60px;
+  }
 }

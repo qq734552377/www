@@ -15,6 +15,7 @@
     <link href="components/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="components/offcancas/bootstrap.offcanvas.css"/>
     <link href="components/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="less/app.css" rel="stylesheet">
 
     <link rel="bookmark" type="image/x-icon" href="img/favicon.ico"/>
@@ -31,11 +32,15 @@
 <body class="bg-info" ng-app="app" ng-controller="appCtr" >
 
 
-<myheader></myheader>
+<myheader id="bodyHeader"></myheader>
 
 <div ui-view="" class="no-margin"></div>
 
-
+<div class="move-to-top" id="movetoTop">
+    <a ng-click="scrollToTop()">
+        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+    </a>
+</div>
 
 <myfooter></myfooter>
 

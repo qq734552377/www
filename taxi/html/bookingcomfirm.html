@@ -110,9 +110,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
+                                    <a ng-click="scrollToMap()">
                                         {{lastBookingMsg.list.Location}}
-                                    </p>
+                                    </a>
                                 </div>
                             </div>
 
@@ -141,9 +141,9 @@
                                     </p>
                                 </div>
                                 <div class="col-md-10 col-sm-10 col-xs-10">
-                                    <p>
+                                    <a ng-click="scrollToMap()">
                                         {{lastBookingMsg.list.Location}}
-                                    </p>
+                                    </a>
                                 </div>
                             </div>
 
@@ -258,7 +258,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="my-box my-box-top-border margin-top-20">
+            <div class="my-box my-box-top-border margin-top-20" id="adressMap">
                 <div class="box-header">
                     <div class="box-corner">
                         <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
