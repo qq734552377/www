@@ -28,6 +28,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl:'html/forgetPassword.html',
             controller:'forgetPasswordCtr'
         })
+        .state("main",{
+            url:'/main',
+            templateUrl:'html/main.html',
+            controller:'mainCtr'
+        })
         .state("signin_first",{
             url:'/signup_f',
             templateUrl:'html/signin_first.html',

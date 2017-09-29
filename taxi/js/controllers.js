@@ -412,6 +412,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
         scope.searchMsg.vehicleNumbers = [];
 
         if (newValue == 0) {
+            scope.searchMsg.vehicleNumber = '0';
             return;
         }
 
@@ -504,6 +505,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
 
             scope.searchMsg.vehicleNumbers = [];
             if (newValue == 0) {
+                scope.searchMsg.vehicleNumber = '0';
                 return;
             }
             $http({
@@ -1516,6 +1518,9 @@ appControllers.controller('faqCtr', function ($scope) {
 
     })
     .controller('termsCtr', function ($scope) {
+
+    })
+    .controller('mainCtr', function ($scope) {
 
     });
 

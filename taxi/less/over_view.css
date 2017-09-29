@@ -137,9 +137,9 @@
   -ms-transform: translate(0, 2px);
   -o-transform: translate(0, 2px);
   transform: translate(0, 2px);
-  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 .move-on-status:hover .media-body h4 {
   color: #e81e06;
@@ -149,7 +149,7 @@
   animation: move 3s linear infinite;
   -moz-animation: move 3s linear infinite;
   /* Firefox */
-  -webkit-animation: move 5 3s linear infinite;
+  -webkit-animation: move 3s linear infinite;
   /* Safari and Chrome */
   -o-animation: move 3s linear infinite;
   /* Opera */
@@ -210,6 +210,22 @@
   width: 25px;
   height: 25px;
 }
+.good-padding-top-bottom-l {
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+.good-padding-top-bottom-m {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.good-margin-top-bottom-m {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.good-margin-top-bottom-s {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 @media (max-width: 767px) {
   .good-padding-bottom-l {
     padding-bottom: 120px;
@@ -254,5 +270,17 @@
   .left-right-padding-40 {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .good-padding-top-bottom-l {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .good-padding-top-bottom-m {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .good-margin-top-bottom-m {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }

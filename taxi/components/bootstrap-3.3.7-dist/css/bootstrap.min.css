@@ -4362,11 +4362,13 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 }
 
 .nav-tabs.nav-justified > li {
-    float: none
+    float: none;
+    display: table-cell;
+    width: 1%;
 }
 
 .nav-tabs.nav-justified > li > a {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     text-align: center
 }
 
@@ -4392,7 +4394,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 }
 
 .nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:hover {
-    border: 1px solid #ddd
+    border: 1px solid #fff
 }
 
 @media (min-width: 768px) {
