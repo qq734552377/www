@@ -405,3 +405,22 @@ a {
     border: 1px solid rgba(0, 0, 0, 0.3);
   }
 }
+.show-car {
+  margin: 5px 10px;
+  position: relative;
+}
+.show-car img {
+  height: 200px;
+}
+.show-car .car-location {
+  position: absolute;
+  bottom: 20px;
+  color: #fff;
+  left: 25%;
+}
+.show-car .car-location small {
+  color: #fff;
+}
+.show-car .caption p {
+  margin-top: 9px;
+}
