@@ -59,6 +59,7 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 
 serviceModule.factory('allUrl',function () {
     var host='http://58.246.122.118:12305';
+    // var host='http://192.168.0.112:12907';
     return {
         searchUrl:host + '/api/VehicleShareQuery',
         getLocationsUrl: host + '/Select/QueryParkingSpace',
@@ -94,6 +95,7 @@ serviceModule.factory('allUrl',function () {
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
         reportIssueReasonsUrl:host + '/Select/IssueType',
+        getUserTopupMsgUrl:host + '/Wallet/QueryWallet'
 
     }
 })
@@ -108,6 +110,7 @@ serviceModule.factory('allUrl',function () {
             username:'P J',
             isEnoughBalance:false,
             userAccountMoney:0,
+            userTopupMsg:{},
             isAgreeMe:false,
             bookingState:['Apply','Start','Cancel','Finish'],
             Type:['','Consume ','Recharge','CancelOrder','SpecialOffer'],
@@ -339,20 +342,20 @@ serviceModule.factory('allUrl',function () {
         };
 
         //所有车型
-        $http({
-            method: "POST",
-            url: allUrl.getCategorysUrl,
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (data) {
-            console.log(data);
-            if (data.MsgType == 'Success') {
-                appContext.getAll().searchMsg.categorys = data.Data;
-            } else {
-
-            }
-        }).error(function () {
-
-        });
+        // $http({
+        //     method: "POST",
+        //     url: allUrl.getCategorysUrl,
+        //     headers: {'Content-Type': 'application/json'}
+        // }).success(function (data) {
+        //     console.log(data);
+        //     if (data.MsgType == 'Success') {
+        //         appContext.getAll().searchMsg.categorys = data.Data;
+        //     } else {
+        //
+        //     }
+        // }).error(function () {
+        //
+        // });
 
 
 

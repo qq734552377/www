@@ -17,24 +17,44 @@
                             <span class="tishi-msg col-md-4 col-xs-12"></span>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="Phone">Handphone</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="Phone"
-                                       required="required" placeholder="Your mobile number">
-                            </div>
-                            <span class="tishi-msg col-md-4 col-xs-12"></span>
-                        </div>
-
 
                         <div class="form-group">
                             <label for="Email" class="col-md-2 control-label">Email</label>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="Email"
-                                       required="required" placeholder="As a login account">
+                                <input type="email" class="form-control" id="Email" readonly
+                                       ng-model="appContext.userMsg.Email">
                             </div>
                             <span class="tishi-msg col-md-4 col-xs-12 glyphicon "></span>
                         </div>
+
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="Phone">Handphone</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="Phone"
+                                       required="required" placeholder="Your mobile number"
+                                       ng-model="appContext.userMsg.Phone">
+                            </div>
+                            <span class="tishi-msg col-md-4 col-xs-12"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password" class="col-md-2 control-label">Password</label>
+                            <div class="col-md-6">
+                                <input ng-model="signin_f.Password" type="password" class="form-control" id="Password"
+                                       required="required" placeholder="As a login password">
+                            </div>
+                            <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordSpan}}">&nbsp;{{errorMsg.passwordMsg}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="PasswordAgain" class="col-md-2 control-label">Confirm password</label>
+                            <div class="col-md-6">
+                                <input ng-model="signin_f.PasswordAgain" type="password" class="form-control" id="PasswordAgain"
+                                       required="required" placeholder="Input login password again">
+                            </div>
+                            <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordAgainSpan}}">&nbsp;{{errorMsg.passwordAgainMsg}}</span>
+                        </div>
+
                         <div class="">
                             <button class="btn btn-warning col-md-offset-2" ng-click="back()">Back</button>
                             <button class="btn btn-success ">Update</button>

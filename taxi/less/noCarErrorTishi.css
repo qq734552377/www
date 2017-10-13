@@ -1,0 +1,41 @@
+.no-car-tishi-msg h4 {
+  font-size: 22px;
+  line-height: 2.0em;
+  font-weight: bold;
+}
+.no-car-tishi-msg p,
+.no-car-tishi-msg ul > li {
+  line-height: 1.6em;
+  font-size: 16px;
+}
+.no-car-tishi-msg p {
+  margin-left: 15px;
+}
+.no-car-tishi-msg ul {
+  margin: 10px 15px;
+}
+.no-car-tishi-msg ul > li {
+  margin-left: 50px;
+  list-style: decimal-leading-zero;
+}
+@media (max-width: 767px) {
+  .no-car-tishi-msg h4 {
+    margin-left: 0px;
+    padding-left: 0;
+    font-size: 18px;
+    line-height: 1.8em;
+    font-weight: 400;
+  }
+  .no-car-tishi-msg p {
+    margin-left: 0px;
+    padding-left: 0;
+  }
+  .no-car-tishi-msg ul > li {
+    margin-left: 15px;
+  }
+  .no-car-tishi-msg p,
+  .no-car-tishi-msg ul > li {
+    line-height: 1.4em;
+    font-size: 14px;
+  }
+}

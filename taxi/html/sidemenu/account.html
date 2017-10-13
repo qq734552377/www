@@ -580,6 +580,24 @@
             </div>
 
         </div>
+
+
+        <div class="row time-box-wrap" hidden>
+            <div class="col-md-6 margin-top-20">
+                <div class="row">
+                    <div class="col-xs-1" ng-repeat="item in timeBox.firstBackground">
+                        <div class="time-box-div {{item.bgcClass}}">{{item.string}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 margin-top-20">
+                <div class="row">
+                    <div class="col-xs-1" ng-repeat="item in timeBox.secondBackground">
+                        <div class="time-box-div {{item.bgcClass}}">{{item.string}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

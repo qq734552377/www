@@ -31,6 +31,7 @@
 }
 .navbar .container .side-menu-wrap.mini aside .side-menu-header a span {
   display: none;
+  opacity: 0;
   margin-left: 0;
 }
 .navbar .container .side-menu-wrap.mini aside .side-menu-body ul.level-one li {
@@ -53,6 +54,10 @@
 .navbar .container .side-menu-wrap aside .side-menu-header {
   margin: 10px 0;
   height: 50px;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 .navbar .container .side-menu-wrap aside .side-menu-header a {
   height: 50px;
@@ -70,19 +75,19 @@
 .navbar .container .side-menu-wrap aside .side-menu-header a span {
   position: absolute;
   left: 55px;
-  top: 15px;
-  font-size: 20px;
+  top: 10px;
+  font-size: 18px;
   font-weight: bold;
 }
 .navbar .container .side-menu-wrap aside .side-menu-body {
   margin: 10px 0;
+  -webkit-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 .navbar .container .side-menu-wrap aside .side-menu-body ul.level-one li.header {
   color: #cccccc;
-}
-.navbar .container .side-menu-wrap aside .side-menu-body ul.level-one li.header:hover {
-  background-color: #353535;
-  border: 0;
 }
 .navbar .container .side-menu-wrap aside ul.level-one > li {
   width: 230px;
@@ -793,7 +798,8 @@ table.profile-ps tbody > tr > td {
     padding-right: 20px;
     padding-bottom: 15px;
   }
-  .search .row .col-xs-6 {
+  .search .row .col-xs-6,
+  .search .row .col-xs-12 {
     padding-left: 0;
     padding-right: 0;
   }
@@ -1155,6 +1161,26 @@ table.responsive .actions a:hover {
   100% {
     top: 0;
     color: #f2f2f2;
+  }
+}
+.time-box-wrap .col-xs-1 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.time-box-wrap .time-box-div {
+  width: 100%;
+  height: 0px;
+  padding-bottom: 100%;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+  color: #fff;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .time-box-wrap .col-xs-1 {
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }
 .good-padding-bottom-l {

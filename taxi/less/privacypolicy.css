@@ -1,0 +1,14 @@
+.privacy-style p {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.privacy-style a {
+  text-decoration: none;
+  color: #e81e06;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 2.2em;
+}
+.privacy-style a:hover {
+  color: #d80e06;
+}

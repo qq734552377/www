@@ -1,0 +1,31 @@
+.faq-style h4 {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+.faq-style .question a {
+  text-decoration: none;
+  color: #e81e06;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 2.2em;
+}
+.faq-style .question a:hover {
+  color: #d80e06;
+}
+.faq-style .question a i:before {
+  content: '\e113';
+}
+.faq-style .question a.collapsed i:before {
+  content: '\e080';
+}
+.faq-style .answer {
+  font-size: 18px;
+  line-height: 1.2em;
+  background-color: rgba(53, 197, 56, 0.2);
+}
+.faq-style .answer ul > li {
+  font-size: 18px;
+  margin-left: 50px;
+  list-style: disc;
+}

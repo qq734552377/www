@@ -562,7 +562,36 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             min: '0',
             second: '0'
         };
-
+        $scope.timeBox={
+            firstBackground:[
+                {bgcClass: 'can-booking-bgc',string:'00'},
+                {bgcClass: 'can-booking-bgc',string:'01'},
+                {bgcClass: 'can-booking-bgc',string:'02'},
+                {bgcClass: 'can-booking-bgc',string:'03'},
+                {bgcClass: 'can-booking-bgc',string:'04'},
+                {bgcClass: 'can-booking-bgc',string:'05'},
+                {bgcClass: 'can-booking-bgc',string:'06'},
+                {bgcClass: 'can-booking-bgc',string:'07'},
+                {bgcClass: 'can-booking-bgc',string:'08'},
+                {bgcClass: 'not-booking-bgc',string:'09'},
+                {bgcClass: 'not-booking-bgc',string:'10'},
+                {bgcClass: 'not-booking-bgc',string:'11'}
+            ],
+            secondBackground:[
+                {bgcClass: 'can-booking-bgc',string:'12'},
+                {bgcClass: 'can-booking-bgc',string:'13'},
+                {bgcClass: 'can-booking-bgc',string:'14'},
+                {bgcClass: 'can-booking-bgc',string:'15'},
+                {bgcClass: 'can-booking-bgc',string:'16'},
+                {bgcClass: 'can-booking-bgc',string:'17'},
+                {bgcClass: 'can-booking-bgc',string:'18'},
+                {bgcClass: 'can-booking-bgc',string:'19'},
+                {bgcClass: 'can-booking-bgc',string:'20'},
+                {bgcClass: 'not-booking-bgc',string:'21'},
+                {bgcClass: 'not-booking-bgc',string:'22'},
+                {bgcClass: 'not-booking-bgc',string:'23'}
+            ],
+        };
 
         getUserDetailMsg();
         getUserLastBookingMsg();
@@ -647,7 +676,11 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                         window.location.replace("#/login");
                         return;
                     }
-
+                    $scope.tishiBox = {
+                        isShow: true,
+                        title: 'Promotion:',
+                        msg: data.Info
+                    };
                 }
 
             }).error(function () {
@@ -775,6 +808,55 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             title: 'Promotion:',
             msg: 'Top up $50 and enjoy a 10% off for your next booking. Take advantage now.'
         };
+
+        querryUserTopupMsg();
+
+        function querryUserTopupMsg() {
+            appContext.getAll().isAllWaitting = true;
+
+            $http({
+                method: 'POST',
+                url: allUrl.getUserTopupMsgUrl,
+                data: {},
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().userTopupMsg=data.Data;
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    if(data.Info == 'In the audit, please be patient'){
+                        window.location.replace("#/sidemenu/account");
+                        return;
+                    }
+
+                    if(data.Info == 'Audit failure'){
+                        window.location.replace("#/sidemenu/account");
+                        return;
+                    }
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
+        }
+
+
+
+
     })
     .controller('mybookingsCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Booking');
@@ -913,7 +995,6 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     $scope.waitObj.isShowlockBtn = true;
                     $scope.waitObj.title = 'Unlocking car failed ，please try agian ！'
                     $scope.waitObj.msg = data.Info;
-                    ;
                 }
             }).error(function () {
                 $scope.waitObj.isShowWaitImg = false;

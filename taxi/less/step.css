@@ -1,0 +1,13 @@
+.step {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.step .media .media-body h4,
+.step .media .media-body p {
+  color: #707070;
+}
+.step .media.active .media-body h4,
+.step .media.active .media-body p {
+  color: #d81e06;
+}

@@ -14,7 +14,7 @@
                             <strong>Your Account</strong>
                         </div>
                         <div class="col-xs-6 col-md-8">
-                            Peng jing
+                            {{appContext.userTopupMsg.UserName}}
                         </div>
                     </div>
                     <div class="row ">
@@ -22,7 +22,7 @@
                             <strong>Status</strong>
                         </div>
                         <div class="col-xs-6 col-md-8">
-                            Active
+                            {{appContext.userTopupMsg.Status}}
                         </div>
                     </div>
                     <div class="row ">
@@ -30,7 +30,7 @@
                             <strong>Deposit</strong>
                         </div>
                         <div class="col-xs-6 col-md-8">
-                            $ 100.00
+                            $ {{(appContext.userTopupMsg.Deposit/100).toFixed(2)}}
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                             <strong>Balance</strong>
                         </div>
                         <div class="col-xs-6 col-md-8">
-                            $ 30.88
+                            $ {{(appContext.userTopupMsg.Balance/100).toFixed(2)}}
                         </div>
                     </div>
                     <div class="row">
