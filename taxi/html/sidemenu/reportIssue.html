@@ -2,7 +2,7 @@
     <!--wallet-->
     <div class="my-box my-box-top-border margin-top-20 ">
         <div class="box-header">
-            <h4 class="box-header-title">Report Issue </h4>
+            <h4 class="box-header-title" ng-bind="reportIssueObj.mainTitle">Report Issue </h4>
         </div>
         <div class="box-body my-box-boundary" id="isme2">
             <div class="row">
@@ -11,6 +11,7 @@
                         <div class="form-group">
                             <label for="form_issue_type">Issue Type</label>
                             <select id="form_issue_type" ng-model="reportIssueObj.IssueTypeId" class="form-control">
+                                <option value="0">Please select one reason</option>
                                 <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">{{item.IssueTypeName}}</option>
                             </select>
                         </div>

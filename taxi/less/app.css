@@ -451,8 +451,8 @@ a {
   text-align: center;
 }
 .my-box .box-body .box-body-thumb-wrap .box-body-thumb {
-  max-height: 240px;
-  min-height: 88px;
+  max-height: 160px;
+  min-height: 72px;
   max-width: 100%;
 }
 .my-box .box-body .bottom-border {
@@ -1606,7 +1606,6 @@ a {
 }
 .box-photo-border:hover {
   border-radius: 0px 0px 10px 10px ;
-  background-color: rgba(255, 195, 0, 0.2);
 }
 @media (max-width: 767px) {
   .box-photo-border {

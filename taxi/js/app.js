@@ -125,9 +125,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller:'referCtr'
         })
         .state("sidemenu.reportIssue",{
-            url:"/reportIssue/:id",
+            url:"/reportIssue",
             templateUrl:"html/sidemenu/reportIssue.html",
             controller:'reportIssueCtr',
+            params:{
+                id:'',
+                url:'',
+                title:''
+            },
             resolve: {
                 isAutGo:'noAutGoLoginPage',
                 app:'appContext',
@@ -137,7 +142,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                 reportIssueReasons.init();
             },
             onExit: function(app){
-                app.getAll().fromBookingPage.isFromBooking=false;
+                app.getAll().fromBookingPage.goToReportIssue=false;
             }
         })
         .state("sidemenu.startTrip",{

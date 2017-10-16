@@ -94,6 +94,7 @@ serviceModule.factory('allUrl',function () {
         getcancleReasonUrl:host + '/Select/GetCancelReason',
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
+        breakDownUrl:host + '/ReportIssue/Add',
         reportIssueReasonsUrl:host + '/Select/IssueType',
         getUserTopupMsgUrl:host + '/Wallet/QueryWallet'
 
@@ -208,12 +209,14 @@ serviceModule.factory('allUrl',function () {
             currentSearchCarMsg:{},
             fromBookingPage:{
                 id:'',
-                isFromBooking:false
+                isFromBooking:false,
+                goToReportIssue:false
             },
             smartEmail:'taxishare-enquiry@smrt.com.sg',
             hostName:'http://192.168.0.132/taxi',
             errorMsg:{
-                netError:'The network just lost a moment,try again! '
+                netError:'The network just lost a moment,try again! ',
+                uncompleteError:'Please fill in the complete information!'
             },
             motaiTishiBox:{
                 title:'',
@@ -531,6 +534,7 @@ serviceModule.factory('allUrl',function () {
     .factory('logOut',function (JIANCE,appContext) {
        return {
            logOut:function () {
+               appContext.getAll().isAllWaitting = true;
                localStorage.removeItem('isRemeberMe');
                localStorage.removeItem('Username');
                localStorage.removeItem('Token');
@@ -538,7 +542,8 @@ serviceModule.factory('allUrl',function () {
                appContext.getAll().isAut=false;
                appContext.getAll().token='';
                JIANCE.init();
-               window.location.replace("#/login")
+               window.location.replace("#/login");
+               appContext.getAll().isAllWaitting = false;
            }
        }
     })

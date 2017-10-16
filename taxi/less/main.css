@@ -234,7 +234,6 @@ a {
 }
 .box-photo-border:hover {
   border-radius: 0px 0px 10px 10px ;
-  background-color: rgba(255, 195, 0, 0.2);
 }
 @media (max-width: 767px) {
   .box-photo-border {

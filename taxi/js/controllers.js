@@ -61,6 +61,8 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
 
     $scope.login = function () {
         if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != '') {
+            appContext.getAll().isAllWaitting = true;
+            $scope.errorState = false;
             $http({
                 method: "POST",
                 url: $scope.loginMsg.url,
@@ -68,6 +70,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 headers: {'Content-Type': 'application/json'}
             }).success(function (data) {
                 console.log(data);
+                appContext.getAll().isAllWaitting = false;
                 if (data.MsgType == 'Success') {
                     $scope.errorState = false;
                     $scope.errorMsg = 'Incorrect account name or password!';
@@ -96,9 +99,13 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 }
 
             }).error(function () {
+                appContext.getAll().isAllWaitting = false;
                 $scope.errorState = true;
                 $scope.errorMsg = appContext.getAll().errorMsg.netError;
             });
+        }else{
+            $scope.errorState = true;
+            $scope.errorMsg = appContext.getAll().errorMsg.uncompleteError;
         }
 
     }
@@ -544,7 +551,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         $scope.curpath = data
     });
 })
-    .controller('accountCtr', function ($scope, $http, $interval, allUrl, appContext, getWallet) {
+    .controller('accountCtr', function ($scope, $http, $interval, $state ,allUrl, appContext, getWallet) {
         $scope.$emit('curPath', '');
 
         // $scope.motaiBox=appContext.getAll().motaiTishiBox;
@@ -598,9 +605,22 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         getWallet.init();
 
         $scope.goToReportIssue = function () {
-            appContext.getAll().fromBookingPage.isFromBooking = true;
-            window.location.replace('#sidemenu/reportIssue/' + appContext.getAll().lastBooking.list.LeaseNumber);
+            appContext.getAll().fromBookingPage.goToReportIssue = true;
+            $state.go('sidemenu.reportIssue', {
+                id: appContext.getAll().lastBooking.list.LeaseNumber,
+                url:allUrl.reportIssueUrl,
+                title:'Report Issue'
+            });
         };
+        $scope.goToBreakDown=function (title) {
+            appContext.getAll().fromBookingPage.goToReportIssue = true;
+            $state.go('sidemenu.reportIssue', {
+                id: appContext.getAll().lastBooking.list.LeaseNumber,
+                url:allUrl.breakDownUrl,
+                title:title
+            });
+        }
+        
         $scope.goToEndtrip = function () {
             $('#issuerEndTrip').modal('hide');
             $('body').toggleClass('modal-open');
@@ -734,7 +754,85 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('editprofileCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Edit Profile');
+        $scope.errorMsg = {
+            emailMsg: '',
+            emailSpan: '',
+            oldPasswordMsg: '',
+            oldPasswordSpan: '',
+            passwordMsg: '',
+            passwordSpan: '',
+            passwordAgainMsg: '',
+            passwordAgainSpan: '',
+            PhoneMsg: '',
+            PhoneSpan: ''
+        };
 
+        $scope.$watch('signin_f.oldPassword', function (newValue, oldValue, scope) {
+            if (newValue == undefined || newValue.length == 0) {
+                scope.errorMsg.oldPasswordSpan = '';
+                scope.errorMsg.oldPasswordMsg = '';
+                return;
+            }
+            if (newValue.length < 8) {
+                scope.errorMsg.oldPasswordSpan = 'error-span';
+                scope.errorMsg.oldPasswordMsg = 'At least 8';
+            } else {
+                scope.errorMsg.oldPasswordSpan = 'success-span';
+                scope.errorMsg.oldPasswordMsg = '';
+            }
+        });
+
+        $scope.$watch('signin_f.Password', function (newValue, oldValue, scope) {
+            if (newValue == undefined || newValue.length == 0) {
+                scope.errorMsg.passwordSpan = '';
+                scope.errorMsg.passwordMsg = '';
+                return;
+            }
+            if (newValue.length < 8) {
+                scope.errorMsg.passwordSpan = 'error-span';
+                scope.errorMsg.passwordMsg = 'At least 8';
+            } else {
+                scope.errorMsg.passwordSpan = 'success-span';
+                scope.errorMsg.passwordMsg = 'OK';
+            }
+        });
+
+        $scope.$watch('signin_f.PasswordAgain', function (newValue, oldValue, scope) {
+            if (scope.signin_f.Password.length < 8) {
+                return;
+            }
+            if (newValue == scope.signin_f.Password) {
+                if (scope.signin_f.Password != '') {
+                    scope.errorMsg.passwordAgainSpan = 'success-span';
+                    scope.errorMsg.passwordAgainMsg = 'OK';
+                } else {
+                    scope.errorMsg.passwordAgainSpan = '';
+                    scope.errorMsg.passwordAgainMsg = '';
+                }
+            } else {
+                scope.errorMsg.passwordAgainSpan = 'error-span';
+                scope.errorMsg.passwordAgainMsg = 'Mismatch';
+            }
+        });
+
+        $scope.$watch('signin_f.Phone', function (newValue, oldValue, scope) {
+            if (newValue == undefined || newValue.length == 0) {
+                scope.errorMsg.PhoneSpan = '';
+                scope.errorMsg.PhoneMsg = '';
+                return;
+            }
+            if (newValue.length < 8) {
+                scope.errorMsg.PhoneSpan = 'error-span';
+                scope.errorMsg.PhoneMsg = 'At least 8';
+            } else {
+                scope.errorMsg.PhoneSpan = 'success-span';
+                scope.errorMsg.PhoneMsg = 'OK';
+            }
+        });
+
+        $scope.showModal=function () {
+            $('#isUpdateProfiles').modal('show')
+        };
     })
     .controller('walletCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'E-wallet History');
@@ -763,6 +861,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }
             $scope.currentIndex = index;
             $scope.currentPageBookings = $scope.allPageBookings[index - 1].pageItems;
+            $scope.scrollToTop();
         };
 
         querryAllWalletMsgs();
@@ -884,6 +983,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }
             $scope.currentIndex = index;
             $scope.currentPageBookings = $scope.allPageBookings[index - 1].pageItems;
+            $scope.scrollToTop();
         };
 
 
@@ -926,7 +1026,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     .controller('referCtr', function ($scope) {
         $scope.$emit('curPath', 'Refer a Friend');
     })
-    .controller('startTripCtr', function ($scope, $http, allUrl, appContext) {
+    .controller('startTripCtr', function ($scope, $http,$tate, allUrl, appContext) {
         $scope.$emit('curPath', 'Start Trip');
         if (!appContext.getAll().fromBookingPage.isFromBooking) {
             window.location.replace('#/sidemenu/account');
@@ -945,14 +1045,15 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             if (!appContext.getAll().startTrip.startTripSure1 || !appContext.getAll().startTrip.startTripSure2 || !appContext.getAll().startTrip.startTripSure3 || !appContext.getAll().startTrip.startTripSure4 || !appContext.getAll().startTrip.startTripSure5) {
                 return;
             }
-            ;
-
-
             window.location.replace('#/sidemenu/account');
         };
         $scope.goToReportIssue = function () {
-            appContext.getAll().fromBookingPage.isFromBooking = true;
-            window.location.replace('#/sidemenu/reportIssue');
+            appContext.getAll().fromBookingPage.goToReportIssue = true;
+            $state.go('sidemenu.reportIssue', {
+                id: appContext.getAll().lastBooking.list.LeaseNumber,
+                url:allUrl.reportIssueUrl,
+                title:'Report Issue'
+            });
         };
         $scope.unlockCar = function () {
             startTrip();
@@ -1005,28 +1106,27 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('reportIssueCtr', function ($scope, $http, $stateParams, allUrl, appContext) {
         $scope.$emit('curPath', 'Report Issue');
-
-        if (!appContext.getAll().fromBookingPage.isFromBooking) {
+        if (!appContext.getAll().fromBookingPage.goToReportIssue) {
             window.location.replace('#/login');
             return;
         }
-
         $scope.reportIssueObj = {
             LeaseNumber: $stateParams.id,
-            IssueTypeId: '1',
+            IssueTypeId: '0',
             Title: '',
-            Remarks: ''
+            Remarks: '',
+            mainTitle:$stateParams.title
         };
 
         $scope.reportIssue = function () {
 
             var pic1 = document.getElementById("IssuePhoto1").files[0];
 
-            if (pic1 == undefined) {
+            if (pic1 == undefined  || $scope.reportIssueObj.IssueTypeId == 0) {
                 return;
             }
             appContext.getAll().isAllWaitting = true;
-            postMultipart(allUrl.reportIssueUrl, $scope.reportIssueObj, pic1).success(function (data) {
+            postMultipart($stateParams.url, $scope.reportIssueObj, pic1).success(function (data) {
                 console.log(data);
                 appContext.getAll().isAllWaitting = false;
                 if (data.MsgType == 'Success') {
@@ -1070,7 +1170,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         }
 
     })
-    .controller('endtripCtr', function ($scope, $http, allUrl, appContext) {
+    .controller('endtripCtr', function ($scope, $http,$state, allUrl, appContext) {
         $scope.$emit('curPath', 'End Trip');
         if (!appContext.getAll().fromBookingPage.isFromBooking) {
             window.location.replace('#/sidemenu/account');
@@ -1082,6 +1182,15 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             isShowlockBtn: false,
             title: 'Locking car, please wait',
             msg: 'Please wait while we ending your trip. Do not press the BACK button.'
+        };
+
+        $scope.goToReportIssue = function () {
+            appContext.getAll().fromBookingPage.goToReportIssue = true;
+            $state.go('sidemenu.reportIssue', {
+                id: appContext.getAll().lastBooking.list.LeaseNumber,
+                url:allUrl.reportIssueUrl,
+                title:'Report Issue'
+            });
         };
 
         $scope.lockCar = lockCarById;
@@ -1130,9 +1239,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     }
                     $scope.waitObj.isShowWaitImg = false;
                     $scope.waitObj.isShowlockBtn = true;
-                    $scope.waitObj.title = 'Locking car failed ，please try agian ！'
+                    $scope.waitObj.title = 'Locking car failed ，please try agian ！';
                     $scope.waitObj.msg = data.Info;
-                    ;
                 }
             }).error(function () {
                 $scope.waitObj.isShowWaitImg = false;

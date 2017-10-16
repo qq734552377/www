@@ -32,17 +32,26 @@
                             <label class="col-md-2 control-label" for="Phone">Handphone</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="Phone"
-                                       required="required" placeholder="Your mobile number"
-                                       ng-model="appContext.userMsg.Phone">
+                                       ng-model="signin_f.Phone"
+                                       placeholder="{{appContext.userMsg.Phone}}">
                             </div>
-                            <span class="tishi-msg col-md-4 col-xs-12"></span>
+                            <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.PhoneSpan}}">&nbsp;{{errorMsg.PhoneMsg}}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="Password" class="col-md-2 control-label">Password</label>
+                            <label for="oldPassword" class="col-md-2 control-label">Old Password</label>
+                            <div class="col-md-6">
+                                <input ng-model="signin_f.oldPassword" type="password" class="form-control" id="oldPassword"
+                                        placeholder="Your login password">
+                            </div>
+                            <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.oldPasswordSpan}}">&nbsp;{{errorMsg.oldPasswordMsg}}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password" class="col-md-2 control-label">Reset Password</label>
                             <div class="col-md-6">
                                 <input ng-model="signin_f.Password" type="password" class="form-control" id="Password"
-                                       required="required" placeholder="As a login password">
+                                        placeholder="A new login password">
                             </div>
                             <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordSpan}}">&nbsp;{{errorMsg.passwordMsg}}</span>
                         </div>
@@ -50,14 +59,14 @@
                             <label for="PasswordAgain" class="col-md-2 control-label">Confirm password</label>
                             <div class="col-md-6">
                                 <input ng-model="signin_f.PasswordAgain" type="password" class="form-control" id="PasswordAgain"
-                                       required="required" placeholder="Input login password again">
+                                        placeholder="Input new login password again">
                             </div>
                             <span class="tishi-msg col-md-3 col-xs-12 glyphicon {{errorMsg.passwordAgainSpan}}">&nbsp;{{errorMsg.passwordAgainMsg}}</span>
                         </div>
 
                         <div class="">
                             <button class="btn btn-warning col-md-offset-2" ng-click="back()">Back</button>
-                            <button class="btn btn-success ">Update</button>
+                            <button class="btn btn-success " ng-click="showModal()">Update</button>
                         </div>
 
                     </form>
@@ -71,3 +80,47 @@
         <!--update end-->
     </div>
 </div>
+
+<!--提示模态框-->
+<div class="example-modal">
+    <div class="modal modal-default fade" id="isUpdateProfiles" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-tribecar modal-header-bg-color" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Promotion:</h4>
+                </div>
+                <div  class="modal-body" style="">
+                    <p style="font-size: 16px">Are you sure you will change the account information ?</p>
+                    <form hidden style="margin-left: 30px">
+                        <div class="radio" style="font-size: 16px" >
+                            <label>
+                                <input type="radio" ng-value=true ng-model="appContext.endTrip.isDesignLocation"  name="know">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio" style="font-size: 16px">
+                            <label>
+                                <input type="radio"ng-value=false ng-model="appContext.endTrip.isDesignLocation"  name="know">
+                                No
+                            </label>
+                        </div>
+
+                        <div class="form-group" ng-if="!appContext.endTrip.isDesignLocation">
+                            <textarea id="form_description" required="required"
+                                      placeholder="Please indicate where you parked. (e.g: Deck {{appContext.lastBooking.list.Number}})"
+                                      class="form-control" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-success" data-dismiss="modal">NO</a>
+                    <a type="button" class="btn btn-danger" ng-click="goToEndtrip()">YES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示模态框结尾-->

@@ -60,8 +60,10 @@
                                         <span aria-hidden="true">&laquo;</span>
                                     </span>
                                 </li>
-                                <li ng-repeat="item in allPageBookings" ng-class="{active:currentIndex==item.index}" ng-click="jumpPage(item.index)"><span  ng-bind="item.index"></span></li>
-                                <li ng-class="{disabled:currentIndex==pageCount}"   ng-click="jumpPage(currentIndex+1)">
+                                <li ng-repeat="item in allPageBookings" ng-class="{active:currentIndex==item.index}" ng-if="item.index < 7"  ng-click="jumpPage(item.index)"><span  ng-bind="item.index"></span></li>
+                                <li ng-if="allPageBookings.length >= 7"  ><span >...</span></li>
+
+                                <li ng-class="{disabled:currentIndex==pageCount}"  ng-click="jumpPage(currentIndex+1)">
                                     <span aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </span>
