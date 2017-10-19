@@ -1,4 +1,3 @@
-
 <div class="some-thing-to-show main-content" style="">
     <div class="container" style="padding: 0">
         <div class="row">
@@ -44,14 +43,14 @@
                         </div>
                     </div>
 
-                     <!--Controls-->
+                    <!--Controls-->
                     <a class="left carousel-control" data-target="#mylunbo" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
                     </a>
                     <a class="right carousel-control" data-target="#mylunbo" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
             </div>
@@ -60,42 +59,52 @@
         <div class="row good-padding-top-bottom-m">
             <div class="col-md-3 col-sm-6 col-xs-6 ">
                 <div class="icon-btn animate-box">
-                    <div class="icon text-center">
-                        <i class="fa fa-table" aria-hidden="true"></i>
-                    </div>
-                    <div class="title text-center">
-                        Booking
-                    </div>
+                    <a href="#/search">
+                        <div class="icon text-center">
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                        </div>
+                        <div class="title text-center">
+                            Booking
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 ">
                 <div class="icon-btn animate-box">
-                    <div class="icon text-center">
-                        <i class="fa fa-envira" aria-hidden="true"></i>
-                    </div>
-                    <div class="title text-center">
-                        Account
-                    </div>
+                    <a href="#/sidemenu/account">
+                        <div class="icon text-center">
+                            <i class="fa fa-envira" aria-hidden="true"></i>
+                        </div>
+                        <div class="title text-center">
+                            Account
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6 ">
+                <div class="icon-btn animate-box">
+                    <a ng-click="scrollToDivWithID('video01')">
+                        <div class="icon text-center">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        </div>
+                        <div class="title text-center">
+                            Tutorial
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-6 ">
                 <div class="icon-btn animate-box">
-                    <div class="icon text-center">
-                        <i class="fa fa-youtube-play" aria-hidden="true"></i>
-                    </div>
-                    <div class="title text-center">
-                        Tutorial
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-6 ">
-                <div class="icon-btn animate-box">
-                    <div class="icon text-center">
-                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="title text-center">
-                        Help
-                    </div>
+                    <a href="#/faq">
+                        <div class="icon text-center">
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="title text-center">
+                            Help
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -122,7 +131,7 @@
                 <div class="tab-content ">
                     <div class="tab-pane fade" id="taxi" style="">
                         <div class="row">
-                            <div class="col-md-4 col-sm-6 ">
+                            <div hidden class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
                                     <img src="img/t1.jpg" alt="1">
                                     <div class="caption">
@@ -154,7 +163,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 ">
+                            <div hidden class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
                                     <img src="img/t2.jpg" alt="2">
                                     <div class="caption">
@@ -185,7 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 ">
+                            <div hidden class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
                                     <img src="img/t3.jpg" alt="3">
                                     <div class="caption">
@@ -216,7 +225,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 ">
+                            <div hidden class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
                                     <img src="img/t4.jpg" alt="4">
                                     <div class="caption">
@@ -249,36 +258,39 @@
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/t5.jpg" alt="5">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('1')">
+                                        <img src="img/t5.jpg" alt="5">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
+
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 ">
+                            <div hidden class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
                                     <img src="img/t1.jpg" alt="1">
                                     <div class="caption">
@@ -315,189 +327,201 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p1.jpg" alt="1">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p1.jpg" alt="1">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
+
+                                                </div>
                                             </div>
+
+
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p2.jpg" alt="2">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p2.jpg" alt="2">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p3.jpg" alt="3">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p3.jpg" alt="3">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p4.jpg" alt="4">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p4.jpg" alt="4">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p5.jpg" alt="5">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p5.jpg" alt="5">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 ">
                                 <div class="thumbnail show-car">
-                                    <img src="img/p1.jpg" alt="1">
-                                    <div class="caption">
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h4>
-                                                    Petrol Hybrid | 5 Seater
-                                                </h4>
+                                    <a ng-click="goToSearchWithCarType('2')">
+                                        <img src="img/p1.jpg" alt="1">
+                                        <div class="caption">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h4>
+                                                        Petrol Hybrid | 5 Seater
+                                                    </h4>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <p class="text-right">
+                                                        $ 2.50 / hr
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                <p class="text-right">
-                                                    $ 2.50 / hr
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-8">
-                                                <h5>
-                                                    <i class="fa fa-empire" aria-hidden="true"></i>
-                                                    Toyoto
-                                                </h5>
-                                            </div>
-                                            <div class="col-xs-4">
+                                            <div class="row">
+                                                <div class="col-xs-8">
+                                                    <h5>
+                                                        <i class="fa fa-empire" aria-hidden="true"></i>
+                                                        Toyoto
+                                                    </h5>
+                                                </div>
+                                                <div class="col-xs-4">
 
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -508,10 +532,11 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 embed-responsive embed-responsive-16by9">
+            <div class="col-md-12 embed-responsive embed-responsive-16by9" id="video01">
 
                 <iframe src="https://www.youtube.com/embed/N7D5U1lT3iA"
-                        width="100%" height="100%" frameborder="0" style="border:0;margin-top: 20px;padding: 0" allowfullscreen>
+                        width="100%" height="100%" frameborder="0" style="border:0;margin-top: 20px;padding: 0"
+                        allowfullscreen>
 
                 </iframe>
             </div>
@@ -594,7 +619,7 @@
                 <ul id="tab2" class="nav nav-pills nav-stacked" role="tablist">
                     <li role="presentation">
                         <a data-target="#more">
-                            <strong style="font-size: 14px">Free Location</strong>
+                            <strong style="font-size: 14px">Recommend Location</strong>
                         </a>
                     </li>
                     <li role="presentation">
@@ -614,14 +639,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12 ">
-                                                <h4 class="car-location animate-box">
-                                                    217A Petir Road 671217
-                                                    <br>
-                                                    <small>
-                                                        4 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        217A Petir Road 671217
+                                                        <br>
+                                                        <small>
+                                                            4 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -635,14 +662,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    North Bridge Rd Blk 13
-                                                    <br>
-                                                    <small>
-                                                        5 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        North Bridge Rd Blk 13
+                                                        <br>
+                                                        <small>
+                                                            5 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -656,14 +685,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    Jurong West St 61
-                                                    <br>
-                                                    <small>
-                                                        4 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        Jurong West St 61
+                                                        <br>
+                                                        <small>
+                                                            4 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -677,14 +708,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    Yishun Ave 4 Blk 506
-                                                    <br>
-                                                    <small>
-                                                        7 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        Yishun Ave 4 Blk 506
+                                                        <br>
+                                                        <small>
+                                                            7 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -702,14 +735,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    North Bridge Rd Blk 13
-                                                    <br>
-                                                    <small>
-                                                        5 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        North Bridge Rd Blk 13
+                                                        <br>
+                                                        <small>
+                                                            5 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -723,14 +758,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    Jurong West St 61
-                                                    <br>
-                                                    <small>
-                                                        4 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        Jurong West St 61
+                                                        <br>
+                                                        <small>
+                                                            4 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -744,14 +781,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    217A Petir Road 671217
-                                                    <br>
-                                                    <small>
-                                                        4 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        217A Petir Road 671217
+                                                        <br>
+                                                        <small>
+                                                            4 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -765,14 +804,16 @@
                                     <div class="caption">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <h4 class="car-location animate-box">
-                                                    Yishun Ave 4 Blk 506
-                                                    <br>
-                                                    <small>
-                                                        7 cars at this location
-                                                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                                                    </small>
-                                                </h4>
+                                                <a ng-click="goToSearchWithLocation('7')">
+                                                    <h4 class="car-location animate-box">
+                                                        Yishun Ave 4 Blk 506
+                                                        <br>
+                                                        <small>
+                                                            7 cars at this location
+                                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                                        </small>
+                                                    </h4>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -818,9 +859,7 @@
     });
 
 
-
-
-    var contentWayPoint = function() {
+    var contentWayPoint = function () {
         var i = 0;
         $('.animate-box').waypoint(function (direction) {
             if (direction === 'down' && !$(this.element).hasClass('animated')) {
@@ -841,27 +880,27 @@
     }
 
 
-        var contentWayPointLeft = function() {
-            var i = 0;
-            $('.animate-box-left').waypoint( function( direction ) {
-                if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-                    i++;
-                    $(this.element).addClass('item-animate');
-                    setTimeout(function(){
-                        $('body .animate-box-left.item-animate').each(function(k){
-                            var el = $(this);
-                            setTimeout( function () {
-                                el.addClass('fadeInLeft animated');
-                                el.removeClass('item-animate');
-                            },  k * 200, 'easeInOutExpo' );
-                        });
-                    }, 100);
-                }
-            } , { offset: '85%' } );
+    var contentWayPointLeft = function () {
+        var i = 0;
+        $('.animate-box-left').waypoint(function (direction) {
+            if (direction === 'down' && !$(this.element).hasClass('animated')) {
+                i++;
+                $(this.element).addClass('item-animate');
+                setTimeout(function () {
+                    $('body .animate-box-left.item-animate').each(function (k) {
+                        var el = $(this);
+                        setTimeout(function () {
+                            el.addClass('fadeInLeft animated');
+                            el.removeClass('item-animate');
+                        }, k * 200, 'easeInOutExpo');
+                    });
+                }, 100);
+            }
+        }, {offset: '85%'});
 
     };
 
-    var contentWayPointRight = function() {
+    var contentWayPointRight = function () {
         var i = 0;
         $('.animate-box-right').waypoint(function (direction) {
             if (direction === 'down' && !$(this.element).hasClass('animated')) {
@@ -879,7 +918,7 @@
             }
         }, {offset: '85%'});
     }
-    var contentWayPointPulse = function() {
+    var contentWayPointPulse = function () {
         var i = 0;
         $('.animate-box-pulse').waypoint(function (direction) {
             if (direction === 'down' && !$(this.element).hasClass('animated')) {

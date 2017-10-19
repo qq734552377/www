@@ -59,6 +59,7 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 
 serviceModule.factory('allUrl',function () {
     var host='http://58.246.122.118:12305';
+    // var host='http://192.168.0.103:12907';
     // var host='http://192.168.0.112:12907';
     return {
         searchUrl:host + '/api/VehicleShareQuery',
@@ -92,6 +93,7 @@ serviceModule.factory('allUrl',function () {
         queryDoorStateUrl:host + '/Bookings/QueryDoorsCommand',
         cansleBookingUrl:host + '/api/UserCancelOrder',
         getcancleReasonUrl:host + '/Select/GetCancelReason',
+        getCanEndTripUrl:host + '/Bookings/FrontCloseLocation',
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
         breakDownUrl:host + '/ReportIssue/Add',

@@ -15,6 +15,9 @@ li {
 
 a {
   text-decoration: none;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 #notification {
@@ -404,6 +407,9 @@ a {
   padding: 20px 15px;
   border: 1px solid rgba(0, 0, 0, 0);
   height: 180px;
+  a {
+    text-decoration: none;
+  }
   .transition(0.8s);
   &:hover{
     .icon-btn-move-on-status();
@@ -482,6 +488,13 @@ a {
   margin: 5px 10px;
   position: relative;
 
+  a{
+    &:hover{
+      color: @navbar-background-color;
+      cursor: pointer;
+    }
+  }
+
   img{
     height: 200px;
   }
@@ -490,6 +503,12 @@ a {
     bottom: 20px;
     color: #fff;
     left: 25%;
+    &:hover{
+      color: @navbar-background-color;
+      small{
+        color: @navbar-background-color;
+      }
+    }
     small{
       color: #fff;
     }

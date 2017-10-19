@@ -33,6 +33,11 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
         $("html, body").animate({
             scrollTop: $("#adressMap").offset().top }, {duration: 500,easing: "swing"});
     };
+
+    $scope.scrollToDivWithID=function (id) {
+        $("html, body").animate({
+            scrollTop: $("#"+id).offset().top }, {duration: 500,easing: "swing"});
+    };
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
     $scope.isAllWaitting = appContext.getAll().isAllWaitting;
 
@@ -199,7 +204,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         });
 
         $scope.$watch('signin_f.PasswordAgain', function (newValue, oldValue, scope) {
-            if (scope.signin_f.Password.length < 8) {
+            if (newValue == undefined ||scope.signin_f.Password.length < 8) {
                 return;
             }
             if (newValue == scope.signin_f.Password) {
@@ -222,7 +227,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 scope.errorMsg.NRICMsg = '';
                 return;
             }
-            if (newValue.length < 8) {
+            if (newValue.length < 9) {
                 scope.errorMsg.NRICSpan = 'error-span';
                 scope.errorMsg.NRICMsg = 'Not available';
                 return;
@@ -355,6 +360,34 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 if (data.MsgType == 'Success') {
                     appContext.getAll().fromBookingPage.isFromBooking = true;
                     window.location.replace('#/auditPage');
+                    appContext.getAll().signinMsg=signinMsg={
+                            Email:'',
+                            Password:'',
+                            PasswordAgain:'',
+                            Name:'',
+                            NRIC:'',
+                            Phone:'',
+                            firstSignUpCompete:false,
+
+                            LicenseType:'0',
+                            Salutation:'1',
+                            Gender:'1',
+                            Nationality:'1',
+                            Race:'1',
+                            MaritalStatus:'1',
+                            EducationLevel:'1',
+                            BlockNo:'',
+                            Storey:'',
+                            UnitNo:'',
+                            StreetName:'',
+                            PostalCode:'',
+                            DateOfBirth:'',
+                            LicenseIssueDate:'',
+                            TVDLIssue:'',
+                            TVDLExpiry:'',
+                            PVDLIssue:'',
+                            PVDLExpiry:''
+                    };
                 } else {
                     $scope.errorState = true;
                     $scope.errorMsg = data.Info;
@@ -398,7 +431,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             isShowWaitImg: false,
             isShowlockBtn: true,
             title: 'Congratulations,registered successfully !',
-            msg: 'We will review your registration information within 0 to 24 hours. If approved, we will send the email to your email notification.Then you can use the car rental service.'
+            msg: 'We will review your registration information within 0 to 24 hours. If approved, we will send the email to your email notification.Then you can use the car rental service.Of course,you can also log in and select the account page to see the progress of the audit! '
         };
     });
 
@@ -625,10 +658,41 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             $('#issuerEndTrip').modal('hide');
             $('body').toggleClass('modal-open');
             $('.modal-backdrop.fade.in').remove();
-            //todo 判断车是否进停车场范围
+            appContext.getAll().isAllWaitting = true;
+            $http({
+                method: 'POST',
+                url: allUrl.getCanEndTripUrl,
+                data: {
+                    OpenClose: '2',
+                    LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().fromBookingPage.isFromBooking = true;
+                    window.location.href = '#/sidemenu/endtrip/' + appContext.getAll().lastBooking.list.LeaseNumber;
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
 
-            appContext.getAll().fromBookingPage.isFromBooking = true;
-            window.location.href = '#/sidemenu/endtrip/' + appContext.getAll().lastBooking.list.LeaseNumber;
         };
         $scope.getCanStartTrip = function () {
             appContext.getAll().isAllWaitting = true;
@@ -689,6 +753,16 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                             title: 'Promotion:',
                             msg: data.Info
                         };
+                        if(data.Data.UserStatus == 'Fail'){
+                            appContext.getAll().signinMsg=data.Data;
+                            appContext.getAll().signinMsg.LicenseType=data.Data.LicenseType + '';
+                            appContext.getAll().signinMsg.Salutation=data.Data.Salutation + '';
+                            appContext.getAll().signinMsg.Gender=data.Data.Gender + '';
+                            appContext.getAll().signinMsg.Nationality=data.Data.Nationality + '';
+                            appContext.getAll().signinMsg.Race=data.Data.Race + '';
+                            appContext.getAll().signinMsg.MaritalStatus=data.Data.MaritalStatus + '';
+                            appContext.getAll().signinMsg.MaritalStatus=data.Data.MaritalStatus + '';
+                        }
                     }
                 } else {
                     if (data.MsgType == 'TokenError') {
@@ -798,7 +872,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         });
 
         $scope.$watch('signin_f.PasswordAgain', function (newValue, oldValue, scope) {
-            if (scope.signin_f.Password.length < 8) {
+            if (newValue == undefined ||scope.signin_f.Password.length < 8) {
                 return;
             }
             if (newValue == scope.signin_f.Password) {
@@ -1026,7 +1100,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     .controller('referCtr', function ($scope) {
         $scope.$emit('curPath', 'Refer a Friend');
     })
-    .controller('startTripCtr', function ($scope, $http,$tate, allUrl, appContext) {
+    .controller('startTripCtr', function ($scope, $http,$state, allUrl, appContext) {
         $scope.$emit('curPath', 'Start Trip');
         if (!appContext.getAll().fromBookingPage.isFromBooking) {
             window.location.replace('#/sidemenu/account');
@@ -1709,8 +1783,21 @@ appControllers.controller('faqCtr', function ($scope) {
     .controller('termsCtr', function ($scope) {
 
     })
-    .controller('mainCtr', function ($scope) {
-
+    .controller('mainCtr', function ($scope,appContext) {
+        $scope.searchMsg = appContext.getAll().searchMsg;
+        
+        
+        $scope.goToSearchWithCarType=function (rentFor) {
+            $scope.searchMsg.rentFor=rentFor;
+            // $scope.searchMsg.rentFor=id;
+            window.location='#/search';
+        }
+        $scope.goToSearchWithLocation=function (location) {
+            $scope.searchMsg.location=location;
+            $scope.searchMsg.rentFor='0';
+            // $scope.searchMsg.rentFor=id;
+            window.location='#/search';
+        }
     });
 
 

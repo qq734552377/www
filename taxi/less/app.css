@@ -1383,6 +1383,9 @@ li {
 a {
   text-decoration: none;
 }
+a:hover {
+  cursor: pointer;
+}
 #notification {
   background-color: #efefef;
   color: #232323;
@@ -1724,6 +1727,9 @@ a {
   -moz-transition: all 0.8s ease-in;
   transition: all 0.8s ease-in;
 }
+.icon-btn a {
+  text-decoration: none;
+}
 .icon-btn:hover {
   box-shadow: 0px 0px 15px 3px #e81e06 inset;
   -webkit-box-shadow: 0px 0px 15px 3px #e81e06 inset;
@@ -1780,6 +1786,10 @@ a {
   margin: 5px 10px;
   position: relative;
 }
+.show-car a:hover {
+  color: #e81e06;
+  cursor: pointer;
+}
 .show-car img {
   height: 200px;
 }
@@ -1788,6 +1798,12 @@ a {
   bottom: 20px;
   color: #fff;
   left: 25%;
+}
+.show-car .car-location:hover {
+  color: #e81e06;
+}
+.show-car .car-location:hover small {
+  color: #e81e06;
 }
 .show-car .car-location small {
   color: #fff;
