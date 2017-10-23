@@ -418,6 +418,9 @@ a:hover {
   color: #e81e06;
   cursor: pointer;
 }
+.show-car a img {
+  height: 200px;
+}
 .show-car img {
   height: 200px;
 }
@@ -438,4 +441,26 @@ a:hover {
 }
 .show-car .caption p {
   margin-top: 9px;
+}
+.no-left-right-padding-col-sm-4 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-left-right-padding-col-sm-4 .col-sm-4 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.rate-ul {
+  background-color: #e81e06 !important;
+  border-color: #e81e06 !important;
+}
+.rate-ul ul {
+  padding: 10px 0;
+}
+.rate-ul ul li {
+  line-height: 1.4em;
+  color: #fff;
+  margin-top: 5px;
+  margin-left: 50px;
+  list-style: disc;
 }

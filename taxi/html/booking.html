@@ -1,11 +1,11 @@
 <!--标签盒子-->
 
-<div class="container-fluid  padding-bottom-25 left-right-padding-40 maincontent-bgc hidden-overflow-x">
+<div class="  padding-bottom-25  maincontent-bgc hidden-overflow-x">
 
 
-    <div class="step hidden-xs hidden-sm" style="margin-left: -40px;margin-right: -40px">
+    <div class="step container hidden-xs hidden-sm">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-11 col-md-offset-1">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="media active">
@@ -68,400 +68,405 @@
     </div>
 
     <!--信息提示-->
-    <div class="row margin-top-25" ng-if="tishiBox.isShow">
-        <div class="col-md-12">
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 style="font-size: 18px">Promotion:</h4>
-                <p style="font-size: 16px" ng-bind="tishiBox.msg">
-                </p>
+    <div class=" container margin-top-25" ng-if="tishiBox.isShow">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 style="font-size: 18px">Promotion:</h4>
+                    <p style="font-size: 16px" ng-bind="tishiBox.msg">
+                    </p>
+                </div>
             </div>
         </div>
+
     </div>
     <!--信息提示结尾-->
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="my-box my-box-top-border margin-top-20">
-                <div class="box-header">
-                    <h4 class="box-header-title">{{carMsg.VehicleTypeName}} | {{carMsg.Seats}} Seater</h4>
-                    <p class="box-header-p">{{carMsg.VehicleModelName}} ( {{carMsg.Plate}} )</p>
-                    <a ng-click="scrollToMap()">
-                        <i class="glyphicon glyphicon-map-marker"></i>
-                        {{carMsg.Address}}
-                    </a>
-                </div>
-                <div class="box-body  my-box-boundary">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-xs-12 box-body-thumb-wrap">
-                            <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
-                        </div>
-                        <div class="col-md-6 col-xs-6">
-                            <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Pickup</h5>
-                            <p style="font-size: 14px;font-weight: bold">
-                                <i class="glyphicon glyphicon-time"></i>
-                                {{carPriceList.StartTimeHour}}
-                            </p>
 
-                        </div>
-                        <div class="col-md-6 col-xs-6">
-                            <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Return</h5>
-                            <p style="font-size: 14px;font-weight: bold">
-                                <i class="glyphicon glyphicon-time"></i>
-                                {{carPriceList.EndTimeHour}}
-                            </p>
-
-                        </div>
-
-                        <div ng-if="isWaitting" class="loadPice col-md-12 text-center">
-                            <img src="img/waiting.gif">
-                        </div>
-
-                        <div class="payPrice" ng-if="!isWaitting">
-                            <!--计算价格-->
-                            <div class="col-md-12 countPrice">
-                                <div class="top">
-                                    <table class="table table-no-border">
-                                        <tbody>
-                                        <tr ng-repeat="item in carPriceList.Report">
-                                            <td class="left">
-                                                <strong>Rental Fee</strong> ({{item.RentalFee}})<br/>
-                                                $ {{(item.Price/item.TotalHour/100).toFixed(2)}} * {{item.TotalHour >1 ?
-                                                (item.TotalHour+' hrs'):(item.TotalHour+' hr')}}
-                                            </td>
-                                            <td class="right text-right">
-                                                $ {{(item.Price/100).toFixed(2)}}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="totalPrice">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td class="left">
-                                                <b>Booking Total</b>
-                                            </td>
-                                            <td class="right text-right">
-                                                $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="my-box my-box-top-border margin-top-20">
+                    <div class="box-header">
+                        <h4 class="box-header-title">{{carMsg.VehicleTypeName}} | {{carMsg.Seats}} Seater</h4>
+                        <p class="box-header-p">{{carMsg.VehicleModelName}} ( {{carMsg.Plate}} )</p>
+                        <a ng-click="scrollToMap()">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            {{carMsg.Address}}
+                        </a>
+                    </div>
+                    <div class="box-body  my-box-boundary">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 box-body-thumb-wrap">
+                                <img src="img/list-pic.jpg" alt="thumb" class="box-body-thumb"/>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Pickup</h5>
+                                <p style="font-size: 14px;font-weight: bold">
+                                    <i class="glyphicon glyphicon-time"></i>
+                                    {{carPriceList.StartTimeHour}}
+                                </p>
 
                             </div>
-                            <!--计算价格End-->
+                            <div class="col-md-6 col-xs-6">
+                                <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Return</h5>
+                                <p style="font-size: 14px;font-weight: bold">
+                                    <i class="glyphicon glyphicon-time"></i>
+                                    {{carPriceList.EndTimeHour}}
+                                </p>
 
-                            <div class="col-md-12" ng-if="!appContext.isAut">
-                                <button ng-click="goToLogin()" class="btn btn-success btn-block">Log In</button>
                             </div>
 
+                            <div ng-if="isWaitting" class="loadPice col-md-12 text-center">
+                                <img src="img/waiting.gif">
+                            </div>
 
-                            <!--个人账户-->
-                            <div ng-if="appContext.isAut" class="col-md-12 myAccount">
-                                <div class="promoCode">
-                                    <table class="table table-no-border">
-                                        <tbody>
-                                        <tr>
-                                            <td class="left text-left">
-                                                <strong>Promo Code</strong>
-                                            </td>
-                                            <td class="right text-right" style="width: 50%">
-                                                <input type="text" class="form-control "
-                                                       style="padding:0 6px;height:28px;font-size: 18px">
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="wrap">
-                                    <div class="my-account-header">
-                                        <b>
-                                            <i class="fa fa-money" aria-hidden="true"></i>
-                                            E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
-                                        </b>
-                                    </div>
-                                    <div class="my-account-body">
+                            <div class="payPrice" ng-if="!isWaitting">
+                                <!--计算价格-->
+                                <div class="col-md-12 countPrice">
+                                    <div class="top">
                                         <table class="table table-no-border">
                                             <tbody>
-                                            <tr>
+                                            <tr ng-repeat="item in carPriceList.Report">
                                                 <td class="left">
-                                                    <b>Available</b>
+                                                    <strong>Rental Fee</strong> ({{item.RentalFee}})<br/>
+                                                    $ {{(item.Price/item.TotalHour/100).toFixed(2)}} * {{item.TotalHour >1 ?
+                                                    (item.TotalHour+' hrs'):(item.TotalHour+' hr')}}
                                                 </td>
                                                 <td class="right text-right">
-                                                    $ {{appContext.userAccountMoney}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">
-                                                    <b>Booking Total</b>
-                                                </td>
-                                                <td class="right text-right">
-                                                    - $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
-                                                </td>
-                                            </tr>
-                                            <tr class="balance">
-                                                <td class="left ">
-                                                    <b>Balance</b>
-                                                </td>
-                                                <td class="right text-right ">
-                                                    $ {{(appContext.userAccountMoney -
-                                                    (carPriceList.BookingTotal/100)).toFixed(2)}}
-                                                </td>
-                                            </tr>
-
-                                            <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
-                                                id="noMoreMoney"
-                                                class="noMoreMoney">
-                                                <td colspan="2">
-                                                    * Insufficient Credits in your e-Wallet, <span
-                                                        class="label label-warning"><a href="#/sidemenu/topup">click here</a></span>
-                                                    to top up.
+                                                    $ {{(item.Price/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                            <!--个人账户End-->
+                                    <div class="totalPrice">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td class="left">
+                                                    <b>Booking Total</b>
+                                                </td>
+                                                <td class="right text-right">
+                                                    $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
-                            <!--结算-->
-                            <div ng-if="appContext.isAut&& (appContext.userAccountMoney - (carPriceList.BookingTotal/100))>0" class="col-md-12 booking">
-                                <div class="form-group">
-                                    <div class="agreeMe">
-                                        <label>
-                                            <input ng-model="appContext.isAgreeMe" type="checkbox">
-                                            I agree to the <a href="#/terms" target="_blank">terms and
-                                            conditions</a>
-                                            as stated in the website.
-                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <!--计算价格End-->
+
+                                <div class="col-md-12" ng-if="!appContext.isAut">
+                                    <button ng-click="goToLogin()" class="btn btn-success btn-block">Log In</button>
+                                </div>
+
+
+                                <!--个人账户-->
+                                <div ng-if="appContext.isAut" class="col-md-12 myAccount">
+                                    <div class="promoCode">
+                                        <table class="table table-no-border">
+                                            <tbody>
+                                            <tr>
+                                                <td class="left text-left">
+                                                    <strong>Promo Code</strong>
+                                                </td>
+                                                <td class="right text-right" style="width: 50%">
+                                                    <input type="text" class="form-control "
+                                                           style="padding:0 6px;height:28px;font-size: 18px">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="wrap">
+                                        <div class="my-account-header">
+                                            <b>
+                                                <i class="fa fa-money" aria-hidden="true"></i>
+                                                E-Wallet Credits <a href="#/sidemenu/topup" class="topup-link">(Top Up)</a>
+                                            </b>
+                                        </div>
+                                        <div class="my-account-body">
+                                            <table class="table table-no-border">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Available</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        $ {{appContext.userAccountMoney}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Booking Total</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        - $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                <tr class="balance">
+                                                    <td class="left ">
+                                                        <b>Balance</b>
+                                                    </td>
+                                                    <td class="right text-right ">
+                                                        $ {{(appContext.userAccountMoney -
+                                                        (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
+                                                    id="noMoreMoney"
+                                                    class="noMoreMoney">
+                                                    <td colspan="2">
+                                                        * Insufficient Credits in your e-Wallet, <span
+                                                            class="label label-warning"><a href="#/sidemenu/topup">click here</a></span>
+                                                        to top up.
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                                <a id="booking" class="btn btn-success btn-block" ng-click="bookingTheCar()"
-                                   style="color: #fff">Booking the Car</a>
+                                <!--个人账户End-->
+
+                                <!--结算-->
+                                <div ng-if="appContext.isAut&& (appContext.userAccountMoney - (carPriceList.BookingTotal/100))>0" class="col-md-12 booking">
+                                    <div class="form-group">
+                                        <div class="agreeMe">
+                                            <label>
+                                                <input ng-model="appContext.isAgreeMe" type="checkbox">
+                                                I agree to the <a href="#/terms" target="_blank">terms and
+                                                conditions</a>
+                                                as stated in the website.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <a id="booking" class="btn btn-success btn-block" ng-click="bookingTheCar()"
+                                       style="color: #fff">Booking the Car</a>
+                                </div>
+                                <!--结算End-->
+
                             </div>
-                            <!--结算End-->
-
                         </div>
                     </div>
+
                 </div>
 
             </div>
 
+            <div class="col-md-8">
+                <div class="my-box my-box-top-border margin-top-20" id="adressMap">
+                    <div class="box-header">
+                        <div class="box-corner">
+                            <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
+                                    aria-expanded="true">
+                                <i class="glyphicon"></i>
+                            </button>
+                        </div>
+                        <h4 class="box-header-title">Map</h4>
+                    </div>
+                    <div class="box-body collapse in my-box-boundary" id="isme">
+                        <div class="map-area" style="width:100%; min-height:300px; max-height:400px;">
+                            <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d37944258.28744549!2d97.4682468142077!3d54.51703004596788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1505458119396"
+                                    width="100%" height="300" frameborder="0" style="border:0;margin: 0;padding: 0" allowfullscreen></iframe>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="my-box my-box-top-border margin-top-20">
+                    <div class="box-header">
+                        <div class="box-corner">
+                            <button class="btn" data-toggle="collapse" data-target="#isme2" aria-controls="isme2"
+                                    aria-expanded="true">
+                                <i class="glyphicon"></i>
+                            </button>
+                        </div>
+                        <h4 class="box-header-title">Address, Directions to vehicle</h4>
+                    </div>
+                    <div class="box-body collapse in my-box-boundary" id="isme2">
+                        <div class="map-area" style="">
+                            <p>{{carMsg.Address}}</p>
+                            <p>
+                                {{carMsg.Remarks}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeTable margin-top-25">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center table-title" style="font-size: 18px">
+                                <a ng-if="currentDay!=0" ng-click="jumpDayCarState(currentDay-1)"><i
+                                        class="glyphicon glyphicon-chevron-left"></i></a>
+                                &nbsp;&nbsp;
+                                {{currentDate}}
+                                &nbsp;&nbsp;
+                                <a ng-if="currentDay!=28" ng-click="jumpDayCarState(currentDay+1)"><i
+                                        class="glyphicon glyphicon-chevron-right"></i></a>
+                            </div>
+                            <div ng-if="isGetCarStateWaitting" class="loadPice col-md-12 text-center margin-top-25">
+                                <img src="img/waiting.gif">
+                            </div>
+
+                            <table ng-if='!isGetCarStateWaitting' class="table-time margin-top-25">
+                                <thead>
+                                <tr>
+                                    <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-12">
+                            <table class="table-time" style="margin-left: 0">
+                                <thead>
+                                <tr>
+                                    <th ng-repeat="item in timeTable.times" ng-bind=""></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="can-booking-bgc"></td>
+                                    <td colspan="3" class="">Available</td>
+                                    <td class="not-booking-bgc"></td>
+                                    <td colspan="3" class="">Unavailable</td>
+                                    <td class="may-booking-bgc"></td>
+                                    <td colspan="15" class="">Limited Cars &nbsp;&nbsp;<a href="#/search"></a></td>
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div hidden class="timeTable margin-top-25">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center table-title">
+                                <h4 style="font-weight: bold">Optimise Your Booking </h4>
+                            </div>
+                            <table class="table-time">
+                                <thead>
+                                <tr>
+                                    <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
+                            <button ng-click="getPriceList()" class="btn btn-block btn-danger">
+                                Confirm
+                            </button>
+                            <b>3 people looking at this Taxis now</b>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div hidden class="timeTable margin-top-25">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center table-title">
+                                <h4 style="font-weight: bold"></h4>
+                            </div>
+                            <table class="table-time">
+                                <thead>
+                                <tr>
+                                    <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
+                            <button class="btn btn-block btn-success">
+                                Sucess<br>
+                                <small>Your car has benn booked</small>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div hidden class="timeTable margin-top-25">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center table-title">
+                                <h4 style="font-weight: bold"></h4>
+                            </div>
+                            <table class="table-time">
+                                <thead>
+                                <tr>
+                                    <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
+                            <button class="btn btn-block btn-danger">
+                                Car Not Available<br>
+                                <small>start time error</small>
+                            </button>
+                        </div>
+                        <div class="col-md-4 col-md-offset-2 col-xs-5 col-xs-offset-1 margin-top-20">
+                            <button class="btn btn-block btn-success">
+                                Recommended<br>
+                                <small>Nearby Car</small>
+                            </button>
+                        </div>
+                        <div class="col-md-4  col-xs-5 ">
+                            <button class="btn btn-block btn-success margin-top-20" style="font-size: 28px">
+                                Rebooking
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="my-box my-box-top-border margin-top-20" id="adressMap">
-                <div class="box-header">
-                    <div class="box-corner">
-                        <button class="btn" data-toggle="collapse" data-target="#isme" aria-controls="isme"
-                                aria-expanded="true">
-                            <i class="glyphicon"></i>
-                        </button>
-                    </div>
-                    <h4 class="box-header-title">Map</h4>
-                </div>
-                <div class="box-body collapse in my-box-boundary" id="isme">
-                    <div class="map-area" style="width:100%; min-height:300px; max-height:400px;">
-                        <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d37944258.28744549!2d97.4682468142077!3d54.51703004596788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1505458119396"
-                                width="100%" height="300" frameborder="0" style="border:0;margin: 0;padding: 0" allowfullscreen></iframe>
-
-                    </div>
-                </div>
-            </div>
-            <div class="my-box my-box-top-border margin-top-20">
-                <div class="box-header">
-                    <div class="box-corner">
-                        <button class="btn" data-toggle="collapse" data-target="#isme2" aria-controls="isme2"
-                                aria-expanded="true">
-                            <i class="glyphicon"></i>
-                        </button>
-                    </div>
-                    <h4 class="box-header-title">Address, Directions to vehicle</h4>
-                </div>
-                <div class="box-body collapse in my-box-boundary" id="isme2">
-                    <div class="map-area" style="">
-                        <p>{{carMsg.Address}}</p>
-                        <p>
-                            {{carMsg.Remarks}}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeTable margin-top-25">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center table-title" style="font-size: 18px">
-                            <a ng-if="currentDay!=0" ng-click="jumpDayCarState(currentDay-1)"><i
-                                    class="glyphicon glyphicon-chevron-left"></i></a>
-                            &nbsp;&nbsp;
-                            {{currentDate}}
-                            &nbsp;&nbsp;
-                            <a ng-if="currentDay!=28" ng-click="jumpDayCarState(currentDay+1)"><i
-                                    class="glyphicon glyphicon-chevron-right"></i></a>
-                        </div>
-                        <div ng-if="isGetCarStateWaitting" class="loadPice col-md-12 text-center margin-top-25">
-                            <img src="img/waiting.gif">
-                        </div>
-
-                        <table ng-if='!isGetCarStateWaitting' class="table-time margin-top-25">
-                            <thead>
-                            <tr>
-                                <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-md-12">
-                        <table class="table-time" style="margin-left: 0">
-                            <thead>
-                            <tr>
-                                <th ng-repeat="item in timeTable.times" ng-bind=""></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="can-booking-bgc"></td>
-                                <td colspan="3" class="">Available</td>
-                                <td class="not-booking-bgc"></td>
-                                <td colspan="3" class="">Unavailable</td>
-                                <td class="may-booking-bgc"></td>
-                                <td colspan="15" class="">Limited Cars &nbsp;&nbsp;<a>(What is?)</a></td>
-                            </tr>
-                            <tr>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-            </div>
-            <div hidden class="timeTable margin-top-25">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center table-title">
-                            <h4 style="font-weight: bold">Optimise Your Booking </h4>
-                        </div>
-                        <table class="table-time">
-                            <thead>
-                            <tr>
-                                <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
-                        <button ng-click="getPriceList()" class="btn btn-block btn-danger">
-                            Confirm
-                        </button>
-                        <b>3 people looking at this Taxis now</b>
-                    </div>
-                </div>
-
-
-            </div>
-            <div hidden class="timeTable margin-top-25">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center table-title">
-                            <h4 style="font-weight: bold"></h4>
-                        </div>
-                        <table class="table-time">
-                            <thead>
-                            <tr>
-                                <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
-                        <button class="btn btn-block btn-success">
-                            Sucess<br>
-                            <small>Your car has benn booked</small>
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
-            <div hidden class="timeTable margin-top-25">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-center table-title">
-                            <h4 style="font-weight: bold"></h4>
-                        </div>
-                        <table class="table-time">
-                            <thead>
-                            <tr>
-                                <th ng-repeat="item in timeTable.times" ng-bind="item"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td ng-repeat="item in timeTable.bgcolors" class="{{item.bgcClass}}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-md-8 col-md-offset-2 margin-top-20 col-xs-10 col-xs-offset-1">
-                        <button class="btn btn-block btn-danger">
-                            Car Not Available<br>
-                            <small>start time error</small>
-                        </button>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-xs-5 col-xs-offset-1 margin-top-20">
-                        <button class="btn btn-block btn-success">
-                            Recommended<br>
-                            <small>Nearby Car</small>
-                        </button>
-                    </div>
-                    <div class="col-md-4  col-xs-5 ">
-                        <button class="btn btn-block btn-success margin-top-20" style="font-size: 28px">
-                            Rebooking
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-
-
     </div>
+
 </div>
 
 <!--标签盒子结尾-->

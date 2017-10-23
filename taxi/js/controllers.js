@@ -38,6 +38,7 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
         $("html, body").animate({
             scrollTop: $("#"+id).offset().top }, {duration: 500,easing: "swing"});
     };
+    
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
     $scope.isAllWaitting = appContext.getAll().isAllWaitting;
 
@@ -64,7 +65,20 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         loginSucessUrl: '#/search'
     };
 
+    function initLoginMsg() {
+        if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != ''){
+        }else {
+            if($("#loginEmail").val()== '' || $("#loginPwd").val() == ''){
+            }else {
+                $scope.loginMsg.email = $("#loginEmail").val();
+                $scope.loginMsg.password = $("#loginPwd").val();
+            }
+        }
+    }
+    
+    
     $scope.login = function () {
+        initLoginMsg();
         if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != '') {
             appContext.getAll().isAllWaitting = true;
             $scope.errorState = false;
@@ -180,7 +194,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 if (data.MsgType == 'Success') {
                     //邮箱已注册过了
                     scope.errorMsg.emailSpan = 'error-span';
-                    scope.errorMsg.emailMsg = 'Already exists!';
+                    scope.errorMsg.emailMsg = 'Existing';
                 } else {
                     //没有注册过
                     scope.errorMsg.emailSpan = 'success-span';
@@ -196,7 +210,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             }
             if (newValue.length < 8) {
                 scope.errorMsg.passwordSpan = 'error-span';
-                scope.errorMsg.passwordMsg = 'At least 8';
+                scope.errorMsg.passwordMsg = 'At Least 8';
             } else {
                 scope.errorMsg.passwordSpan = 'success-span';
                 scope.errorMsg.passwordMsg = 'OK';
@@ -227,9 +241,9 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 scope.errorMsg.NRICMsg = '';
                 return;
             }
-            if (newValue.length < 9) {
+            if (newValue.length != 9) {
                 scope.errorMsg.NRICSpan = 'error-span';
-                scope.errorMsg.NRICMsg = 'Not available';
+                scope.errorMsg.NRICMsg = 'Unavailable';
                 return;
             }
             $http({
@@ -246,7 +260,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 } else {
                     //Nric不可用
                     scope.errorMsg.NRICSpan = 'error-span';
-                    scope.errorMsg.NRICMsg = 'Not available';
+                    scope.errorMsg.NRICMsg = 'Unavailable';
                 }
             });
         });
@@ -259,10 +273,15 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             }
             if (newValue.length < 8) {
                 scope.errorMsg.PhoneSpan = 'error-span';
-                scope.errorMsg.PhoneMsg = 'At least 8';
+                scope.errorMsg.PhoneMsg = 'At Least 8';
             } else {
-                scope.errorMsg.PhoneSpan = 'success-span';
-                scope.errorMsg.PhoneMsg = 'OK';
+                if(/^[8|9]\d{7}$/.test(newValue)) {
+                    scope.errorMsg.PhoneSpan = 'success-span';
+                    scope.errorMsg.PhoneMsg = 'OK';
+                }else {
+                    scope.errorMsg.PhoneSpan = 'error-span';
+                    scope.errorMsg.PhoneMsg = 'Rong Number';
+                }
             }
         });
         $scope.signIn = function () {
@@ -444,7 +463,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
     $scope.allCarsMsgs = allCarsMsg.all();
 
     if ($scope.searchMsg.startTime == '' || compareTimeWithCurrentTime($scope.searchMsg.startDate + " " + $scope.searchMsg.startTime)) {
-        initsearchTime($scope);
+        initsearchTime($scope.searchMsg);
     }
 
     $scope.$watch('searchMsg.location', function (newValue, oldValue, scope) {
@@ -528,7 +547,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
     .controller('mainsearchCtr', function ($scope, $http, appContext, allUrl) {
         $scope.searchMsg = appContext.getAll().searchMsg;
         if ($scope.searchMsg.startTime == '' || compareTimeWithCurrentTime($scope.searchMsg.startDate + " " + $scope.searchMsg.startTime)) {
-            initsearchTime($scope);
+            initsearchTime($scope.searchMsg);
         }
 
         $scope.mainsearch = function () {
@@ -584,7 +603,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         $scope.curpath = data
     });
 })
-    .controller('accountCtr', function ($scope, $http, $interval, $state ,allUrl, appContext, getWallet) {
+    .controller('accountCtr', function ($scope, $http, $interval,$timeout, $state ,allUrl, appContext, getWallet) {
         $scope.$emit('curPath', '');
 
         // $scope.motaiBox=appContext.getAll().motaiTishiBox;
@@ -653,44 +672,45 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 title:title
             });
         }
-        
+
         $scope.goToEndtrip = function () {
             $('#issuerEndTrip').modal('hide');
-            $('body').toggleClass('modal-open');
-            $('.modal-backdrop.fade.in').remove();
             appContext.getAll().isAllWaitting = true;
-            $http({
-                method: 'POST',
-                url: allUrl.getCanEndTripUrl,
-                data: {
-                    OpenClose: '2',
-                    LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
-                },
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: "Basic " + appContext.getAll().token
-                }
-            }).success(function (data) {
-                console.log(data);
-                appContext.getAll().isAllWaitting = false;
-                if (data.MsgType == 'Success') {
-                    appContext.getAll().fromBookingPage.isFromBooking = true;
-                    window.location.href = '#/sidemenu/endtrip/' + appContext.getAll().lastBooking.list.LeaseNumber;
-                } else {
-                    if (data.MsgType == 'TokenError') {
-                        appContext.getAll().isAut = false;
-                        window.location.replace("#/login");
-                        return;
+            $('#issuerEndTrip').on('hidden.bs.modal', function (e) {
+                $http({
+                    method: 'POST',
+                    url: allUrl.getCanEndTripUrl,
+                    data: {
+                        OpenClose: '2',
+                        LeaseNumber: appContext.getAll().lastBooking.list.LeaseNumber
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Basic " + appContext.getAll().token
                     }
+                }).success(function (data) {
+                    console.log(data);
+                    appContext.getAll().isAllWaitting = false;
+                    if (data.MsgType == 'Success') {
+                        appContext.getAll().fromBookingPage.isFromBooking = true;
+                        window.location.href = '#/sidemenu/endtrip/' + appContext.getAll().lastBooking.list.LeaseNumber;
+                    } else {
+                        if (data.MsgType == 'TokenError') {
+                            appContext.getAll().isAut = false;
+                            window.location.replace("#/login");
+                            return;
+                        }
+
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    }
+                }).error(function () {
+                    appContext.getAll().isAllWaitting = false;
                     appContext.getAll().motaiTishiBox.title = 'Promotion:';
-                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
                     $('#moTaiTishiBox').modal('show');
-                }
-            }).error(function () {
-                appContext.getAll().isAllWaitting = false;
-                appContext.getAll().motaiTishiBox.title = 'Promotion:';
-                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
-                $('#moTaiTishiBox').modal('show');
+                });
             });
 
         };
@@ -849,9 +869,9 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }
             if (newValue.length < 8) {
                 scope.errorMsg.oldPasswordSpan = 'error-span';
-                scope.errorMsg.oldPasswordMsg = 'At least 8';
+                scope.errorMsg.oldPasswordMsg = 'At Least 8';
             } else {
-                scope.errorMsg.oldPasswordSpan = 'success-span';
+                scope.errorMsg.oldPasswordSpan = '';
                 scope.errorMsg.oldPasswordMsg = '';
             }
         });
@@ -864,7 +884,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }
             if (newValue.length < 8) {
                 scope.errorMsg.passwordSpan = 'error-span';
-                scope.errorMsg.passwordMsg = 'At least 8';
+                scope.errorMsg.passwordMsg = 'At Least 8';
             } else {
                 scope.errorMsg.passwordSpan = 'success-span';
                 scope.errorMsg.passwordMsg = 'OK';
@@ -897,16 +917,102 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             }
             if (newValue.length < 8) {
                 scope.errorMsg.PhoneSpan = 'error-span';
-                scope.errorMsg.PhoneMsg = 'At least 8';
+                scope.errorMsg.PhoneMsg = 'At Least 8';
             } else {
-                scope.errorMsg.PhoneSpan = 'success-span';
-                scope.errorMsg.PhoneMsg = 'OK';
+                if(/^[8|9]\d{7}$/.test(newValue)) {
+                    scope.errorMsg.PhoneSpan = 'success-span';
+                    scope.errorMsg.PhoneMsg = 'OK';
+                }else {
+                    scope.errorMsg.PhoneSpan = 'error-span';
+                    scope.errorMsg.PhoneMsg = 'Rong Number';
+                }
             }
         });
 
         $scope.showModal=function () {
+            if($scope.errorMsg.oldPasswordSpan == 'error-span' ||
+                $scope.errorMsg.passwordSpan == 'error-span' ||
+                $scope.errorMsg.passwordAgainSpan == 'error-span'||
+                $scope.errorMsg.PhoneSpan == 'error-span'){
+                    return;
+            }
+
+            if($scope.errorMsg.oldPasswordSpan == '' &&
+                $scope.errorMsg.passwordSpan == '' &&
+                $scope.errorMsg.passwordAgainSpan == ''&&
+                $scope.errorMsg.PhoneSpan == ''){
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.noChange;
+                $('#moTaiTishiBox').modal('show');
+                return;
+            }
+
+            if($scope.signin_f.Password != $scope.signin_f.PasswordAgain){
+                if($scope.signin_f.oldPassword ==undefined || $scope.signin_f.oldPassword.length < 8 ) {
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.noOldPawordError;
+                    $('#moTaiTishiBox').modal('show');
+                    return;
+                }
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.dismatchError;
+                $('#moTaiTishiBox').modal('show');
+                return;
+            }
+
             $('#isUpdateProfiles').modal('show')
         };
+
+        $scope.editPro=function () {
+            $('#isUpdateProfiles').modal('hide');
+            appContext.getAll().isAllWaitting = true;
+            $('#isUpdateProfiles').on('hidden.bs.modal', function (e) {
+                $http({
+                    method: 'POST',
+                    url: allUrl.editProfileUrl,
+                    data: {
+                        Contact : $scope.signin_f.Phone,
+                        OldPassword  : $scope.signin_f.oldPassword,
+                        Password   : $scope.signin_f.Password,
+                        ConfimPassword    : $scope.signin_f.PasswordAgain
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Basic " + appContext.getAll().token
+                    }
+                }).success(function (data) {
+                    console.log(data);
+                    appContext.getAll().isAllWaitting = false;
+                    if (data.MsgType == 'Success') {
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                        appContext.getAll().userMsg.Phone=$scope.signin_f.Phone;
+                        $scope.signin_f.Phone='';
+                        $scope.signin_f.oldPassword='';
+                        $scope.signin_f.Password='';
+                        $scope.signin_f.PasswordAgain='';
+                    } else {
+                        if (data.MsgType == 'TokenError') {
+                            appContext.getAll().isAut = false;
+                            window.location.replace("#/login");
+                            return;
+                        }
+
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    }
+                }).error(function () {
+                    appContext.getAll().isAllWaitting = false;
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                    $('#moTaiTishiBox').modal('show');
+                });
+            });
+        }
+
+
     })
     .controller('walletCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'E-wallet History');
@@ -1677,7 +1783,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }
 
     })
-    .controller('bookingdetailsCtr', function ($scope, $http, $stateParams, appContext, allUrl) {
+    .controller('bookingdetailsCtr', function ($scope, $http, $stateParams, $timeout,appContext, allUrl) {
         $scope.bookingMsg = {};
         $scope.isWaitting = true;
         $scope.tishiBox = {
@@ -1688,48 +1794,49 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
 
         $scope.cancleTrip = function () {
             $('#issuerCancleTrip').modal('hide');
-            $('body').toggleClass('modal-open');
-            $('.modal-backdrop.fade.in').remove();
+            // $('body').toggleClass('modal-open');
+            // $('.modal-backdrop.fade.in').remove();
             //取消订单的api调用
             appContext.getAll().isAllWaitting = true;
-            $http({
-                method: 'POST',
-                url: allUrl.cansleBookingUrl,
-                data: {
-                    OrderNumber: $stateParams.id,
-                    LeaseCancelReason: appContext.getAll().endTrip.LeaseCancelReason,//取消理由
-                    Memo: appContext.getAll().endTrip.Memo//备注
-                },
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: "Basic " + appContext.getAll().token
-                }
-            }).success(function (data) {
-                console.log(data);
-                appContext.getAll().isAllWaitting = false;
-                $scope.isWaitting = false;
-                if (data.MsgType == 'Success') {
-                    window.location.replace('#/sidemenu/mybookings');
-                    $scope.motaiBox.title = 'Promotion:';
-                    $scope.motaiBox.msg = data.Info;
-                    $('#moTaiTishiBox').modal('show');
-                } else {
-                    if (data.MsgType == 'TokenError') {
-                        appContext.getAll().isAut = false;
-                        window.location.replace("#/login");
-                        return;
+            $('#issuerCancleTrip').on('hidden.bs.modal', function (e) {
+                $http({
+                    method: 'POST',
+                    url: allUrl.cansleBookingUrl,
+                    data: {
+                        OrderNumber: $stateParams.id,
+                        LeaseCancelReason: appContext.getAll().endTrip.LeaseCancelReason,//取消理由
+                        Memo: appContext.getAll().endTrip.Memo//备注
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: "Basic " + appContext.getAll().token
                     }
+                }).success(function (data) {
+                    console.log(data);
+                    appContext.getAll().isAllWaitting = false;
+                    $scope.isWaitting = false;
+                    if (data.MsgType == 'Success') {
+                        window.location.replace('#/sidemenu/mybookings');
+                        $scope.motaiBox.title = 'Promotion:';
+                        $scope.motaiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    } else {
+                        if (data.MsgType == 'TokenError') {
+                            appContext.getAll().isAut = false;
+                            window.location.replace("#/login");
+                            return;
+                        }
+                        $scope.tishiBox.isShow = true;
+                        $scope.tishiBox.msg = data.Info;
+                    }
+
+                }).error(function () {
+                    appContext.getAll().isAllWaitting = false;
+                    $scope.isWaitting = false;
                     $scope.tishiBox.isShow = true;
-                    $scope.tishiBox.msg = data.Info;
-                }
-
-            }).error(function () {
-                appContext.getAll().isAllWaitting = false;
-                $scope.isWaitting = false;
-                $scope.tishiBox.isShow = true;
-                $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
+                    $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
+                });
             });
-
         };
 
         querryBookingMsgById();
@@ -1774,8 +1881,11 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
 appControllers.controller('faqCtr', function ($scope) {
 
 })
-    .controller('ourratesCtr', function ($scope) {
+    .controller('ourratesCtr', function ($scope, $http, $stateParams, appContext, allUrl) {
+        $scope.rateSearch= appContext.getAll().rateSearch;
 
+
+        initsearchTime($scope.rateSearch);
     })
     .controller('privacypolicyCtr', function ($scope) {
 
@@ -1831,7 +1941,7 @@ function paging(allItems, space) {
     return pages;
 }
 
-function initsearchTime($scope) {
+function initsearchTime(searchObj) {
     var startDateTime = addHours(1);
     var endDateTime = addHours(4);
 
@@ -1840,10 +1950,10 @@ function initsearchTime($scope) {
     var startHour = startDateTime.getHours() > 9 ? (startDateTime.getHours() + ":00") : ("0" + startDateTime.getHours() + ":00");
     var endHour = endDateTime.getHours() > 9 ? (endDateTime.getHours() + ":00") : ("0" + endDateTime.getHours() + ":00");
 
-    $scope.searchMsg.startDate = startDate;
-    $scope.searchMsg.startTime = startHour;
-    $scope.searchMsg.endDate = endDate;
-    $scope.searchMsg.endTime = endHour;
+    searchObj.startDate = startDate;
+    searchObj.startTime = startHour;
+    searchObj.endDate = endDate;
+    searchObj.endTime = endHour;
 }
 
 function getFormatTime(date) {

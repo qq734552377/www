@@ -636,7 +636,7 @@ table.profile-ps tbody > tr > td {
   padding-bottom: 80px;
 }
 .signin-first .sign-in-background {
-  margin: 25px -10px;
+  margin: 25px 0px ;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 15px 10px;
   border-top: 3px solid coral;
@@ -1299,9 +1299,11 @@ table.responsive .actions a:hover {
   }
 }
 .step {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 0;
+  padding-right: 0;
 }
 .step .media .media-body h4,
 .step .media .media-body p {
@@ -1790,6 +1792,9 @@ a:hover {
   color: #e81e06;
   cursor: pointer;
 }
+.show-car a img {
+  height: 200px;
+}
 .show-car img {
   height: 200px;
 }
@@ -1810,6 +1815,28 @@ a:hover {
 }
 .show-car .caption p {
   margin-top: 9px;
+}
+.no-left-right-padding-col-sm-4 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-left-right-padding-col-sm-4 .col-sm-4 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.rate-ul {
+  background-color: #e81e06 !important;
+  border-color: #e81e06 !important;
+}
+.rate-ul ul {
+  padding: 10px 0;
+}
+.rate-ul ul li {
+  line-height: 1.4em;
+  color: #fff;
+  margin-top: 5px;
+  margin-left: 50px;
+  list-style: disc;
 }
 .no-car-tishi-msg h4 {
   font-size: 22px;

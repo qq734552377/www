@@ -98,7 +98,10 @@ serviceModule.factory('allUrl',function () {
         reportIssueUrl:host + '/ReportIssue/Add',
         breakDownUrl:host + '/ReportIssue/Add',
         reportIssueReasonsUrl:host + '/Select/IssueType',
-        getUserTopupMsgUrl:host + '/Wallet/QueryWallet'
+        getUserTopupMsgUrl:host + '/Wallet/QueryWallet',
+        editProfileUrl:host + '/api/EditPassword',
+        getPriceList:host + '/PlanLeasePriceTable/ShowPlanLeasePriceTable',
+        getRatesByTime:host + '/'
 
     }
 })
@@ -171,6 +174,11 @@ serviceModule.factory('allUrl',function () {
                 ],
                 vehicleNumbers:[]
             },
+            rateSearch:{
+                startDate: '',
+                startTime: '0',
+                duration: '3'
+            },
             LicenseTypes:[],
             Nationalities:[],
             Races:[],
@@ -218,7 +226,10 @@ serviceModule.factory('allUrl',function () {
             hostName:'http://192.168.0.132/taxi',
             errorMsg:{
                 netError:'The network just lost a moment,try again! ',
-                uncompleteError:'Please fill in the complete information!'
+                uncompleteError:'Please fill in the complete information!',
+                noChange:'Nothing has changed!',
+                dismatchError:'Reset passwords is different!',
+                noOldPawordError:'The original password cannot be empty!',
             },
             motaiTishiBox:{
                 title:'',

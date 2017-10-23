@@ -493,6 +493,10 @@ a {
       color: @navbar-background-color;
       cursor: pointer;
     }
+
+    img{
+      height: 200px;
+    }
   }
 
   img{
@@ -517,6 +521,32 @@ a {
   .caption{
     p{
       margin-top: 9px;
+    }
+  }
+}
+
+
+.no-left-right-padding-col-sm-4 > {
+  margin-left: 0;
+  margin-right: 0;
+  .col-sm-4 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+.rate-ul{
+  background-color: @navbar-background-color !important;
+  border-color: @navbar-background-color !important;
+  ul{
+    padding: 10px 0;
+    li{
+      line-height: 1.4em;
+      color: #fff;
+      margin-top: 5px;
+      margin-left: 50px;
+      list-style: disc;
     }
   }
 }
