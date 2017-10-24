@@ -1,14 +1,14 @@
 .faq-style h4 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  padding: 15px 0;
+  padding: 8px 0;
 }
 .faq-style .question a {
   text-decoration: none;
   color: #e81e06;
   cursor: pointer;
-  font-size: 18px;
-  line-height: 2.2em;
+  font-size: 16px;
+  line-height: 1.8em;
 }
 .faq-style .question a:hover {
   color: #d80e06;
@@ -20,12 +20,13 @@
   content: '\e080';
 }
 .faq-style .answer {
-  font-size: 18px;
-  line-height: 1.2em;
-  background-color: rgba(53, 197, 56, 0.2);
+  font-size: 16px;
+  line-height: 1.8em;
+  background-color: rgba(53, 197, 56, 0.1);
+  padding-left: 20px;
 }
 .faq-style .answer ul > li {
-  font-size: 18px;
-  margin-left: 50px;
+  font-size: 15px;
+  margin-left: 30px;
   list-style: disc;
 }

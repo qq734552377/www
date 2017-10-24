@@ -449,8 +449,8 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             isShowAll: true,
             isShowWaitImg: false,
             isShowlockBtn: true,
-            title: 'Congratulations,registered successfully !',
-            msg: 'We will review your registration information within 0 to 24 hours. If approved, we will send the email to your email notification.Then you can use the car rental service.Of course,you can also log in and select the account page to see the progress of the audit! '
+            title: appContext.getAll().tishiMsg.registSucess,
+            msg: appContext.getAll().tishiMsg.registedMsg
         };
     });
 
@@ -893,6 +893,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
         $scope.$watch('signin_f.PasswordAgain', function (newValue, oldValue, scope) {
             if (newValue == undefined ||scope.signin_f.Password.length < 8) {
+                scope.errorMsg.passwordAgainSpan = '';
+                scope.errorMsg.passwordAgainMsg = '';
                 return;
             }
             if (newValue == scope.signin_f.Password) {
@@ -1133,8 +1135,105 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             });
         }
 
+        $scope.isCanTopUp=function (price,type) {
+            $http({
+                method: 'POST',
+                url: allUrl.isCanTopUpUrl,
+                data: {
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
 
+                    topup(price,"2");
 
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    if(data.Data.IsNeed == true){
+                        appContext.getAll().depositMsg=data.Data;
+                        $('#isCanTopUp').modal('show');
+                        return;
+                    }
+
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
+        }
+
+        $scope.topUpDeposite=function () {
+            $('#isCanTopUp').modal('hide');
+            $('#isCanTopUp').on('hidden.bs.modal', function (e) {
+                topup(appContext.getAll().depositMsg.Amount,"1");
+            })
+        }
+
+        function topup(price,type) {
+            $http({
+                method: 'POST',
+                url: allUrl.topUpUrl,
+                data: {
+                    Amount: price,
+                    Redirect_Url:allUrl.host+'/',
+                    Whereabouts:type,
+                    Current_Url:window.location.href
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+                    var requestedData = {
+                        merchant_account_id: data.Data.MerchantAccountId,
+                        request_id: data.Data.RequestId,
+                        request_time_stamp: data.Data.UtcTime,
+                        transaction_type: data.Data.TransactionType,
+                        requested_amount: data.Data.RequestedAmount,
+                        requested_amount_currency: data.Data.Currency,
+                        redirect_url: data.Data.RedirectUrl,
+                        ip_address: data.Data.IpAddress,
+                        request_signature: data.Data.Key,
+                        attempt_three_d:true,
+                        cancel_redirect_url: data.Data.TopUpOnLineCanecl,
+                        fail_redirect_url: data.Data.TopUpOnLineFail,
+                    }
+                    WirecardPaymentPage.embeddedPay(requestedData);
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
+        }
 
     })
     .controller('mybookingsCtr', function ($scope, $http, allUrl, appContext) {

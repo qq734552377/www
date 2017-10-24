@@ -1,6 +1,12 @@
 .privacy-style p {
   font-size: 16px;
-  line-height: 1.5em;
+  line-height: 1.3em;
+}
+.privacy-style ol {
+  padding-left: 0;
+}
+.privacy-style ol li {
+  padding-left: 20px;
 }
 .privacy-style a {
   text-decoration: none;

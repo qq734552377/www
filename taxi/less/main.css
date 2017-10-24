@@ -464,3 +464,8 @@ a:hover {
   margin-left: 50px;
   list-style: disc;
 }
+@media (max-width: 767px) {
+  .rate-ul ul li {
+    margin-left: 20px;
+  }
+}

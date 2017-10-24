@@ -48,22 +48,22 @@
                         </div>
 
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 10</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('1000','2')">$ 10</button>
                         </div>
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 20</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('2000','2')">$ 20</button>
                         </div>
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 50</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('5000','2')">$ 50</button>
                         </div>
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 100</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('10000','2')">$ 100</button>
                         </div>
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 200</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('20000','2')">$ 200</button>
                         </div>
                         <div class="col-md-2 col-xs-4 margin-top-10">
-                            <button class="btn btn-success btn-block">$ 500</button>
+                            <button class="btn btn-success btn-block" ng-click="isCanTopUp('50000','2')">$ 500</button>
                         </div>
                     </div>
                 </div>
@@ -92,3 +92,30 @@
         </div>
     </div>
 </div>
+
+
+<!--提示模态框-->
+<div class="example-modal">
+    <div class="modal modal-default fade" id="isCanTopUp" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-tribecar modal-header-bg-color" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Promotion:</h4>
+                </div>
+                <div  class="modal-body" style="">
+                    <p style="font-size: 16px">Your deposit is insufficient and you need to charge up to $ {{appContext.depositMsg.Amount}}, are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-success" data-dismiss="modal">NO</a>
+                    <a type="button" class="btn btn-danger" ng-click="topUpDeposite()">YES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示模态框结尾-->
+
+<script src="https://secure-test.wirecard.com.sg/engine/hpp/paymentPageLoader.js" type="text/javascript"></script>

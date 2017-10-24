@@ -1314,16 +1314,16 @@ table.responsive .actions a:hover {
   color: #d81e06;
 }
 .faq-style h4 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  padding: 15px 0;
+  padding: 8px 0;
 }
 .faq-style .question a {
   text-decoration: none;
   color: #e81e06;
   cursor: pointer;
-  font-size: 18px;
-  line-height: 2.2em;
+  font-size: 16px;
+  line-height: 1.8em;
 }
 .faq-style .question a:hover {
   color: #d80e06;
@@ -1335,18 +1335,25 @@ table.responsive .actions a:hover {
   content: '\e080';
 }
 .faq-style .answer {
-  font-size: 18px;
-  line-height: 1.2em;
-  background-color: rgba(53, 197, 56, 0.2);
+  font-size: 16px;
+  line-height: 1.8em;
+  background-color: rgba(53, 197, 56, 0.1);
+  padding-left: 20px;
 }
 .faq-style .answer ul > li {
-  font-size: 18px;
-  margin-left: 50px;
+  font-size: 15px;
+  margin-left: 30px;
   list-style: disc;
 }
 .privacy-style p {
   font-size: 16px;
-  line-height: 1.5em;
+  line-height: 1.3em;
+}
+.privacy-style ol {
+  padding-left: 0;
+}
+.privacy-style ol li {
+  padding-left: 20px;
 }
 .privacy-style a {
   text-decoration: none;
@@ -1361,6 +1368,12 @@ table.responsive .actions a:hover {
 .terms-style p {
   font-size: 16px;
   line-height: 1.5em;
+}
+.terms-style ol {
+  padding-left: 0;
+}
+.terms-style ol li {
+  padding-left: 10px;
 }
 .terms-style a {
   text-decoration: none;
@@ -1837,6 +1850,11 @@ a:hover {
   margin-top: 5px;
   margin-left: 50px;
   list-style: disc;
+}
+@media (max-width: 767px) {
+  .rate-ul ul li {
+    margin-left: 20px;
+  }
 }
 .no-car-tishi-msg h4 {
   font-size: 22px;

@@ -60,8 +60,10 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 serviceModule.factory('allUrl',function () {
     var host='http://58.246.122.118:12305';
     // var host='http://192.168.0.103:12907';
+    // var host='http://192.168.0.56:12907';
     // var host='http://192.168.0.112:12907';
     return {
+        host:host,
         searchUrl:host + '/api/VehicleShareQuery',
         getLocationsUrl: host + '/Select/QueryParkingSpace',
         getCategorysUrl: host + '/Select/QueryVehicleType',
@@ -101,7 +103,9 @@ serviceModule.factory('allUrl',function () {
         getUserTopupMsgUrl:host + '/Wallet/QueryWallet',
         editProfileUrl:host + '/api/EditPassword',
         getPriceList:host + '/PlanLeasePriceTable/ShowPlanLeasePriceTable',
-        getRatesByTime:host + '/'
+        getRatesByTime:host + '/',
+        topUpUrl:host + '/Wallet/CrateOnLineTopUp',
+        isCanTopUpUrl:host + '/Deposit/ForeVerifyDeposit',
 
     }
 })
@@ -231,6 +235,10 @@ serviceModule.factory('allUrl',function () {
                 dismatchError:'Reset passwords is different!',
                 noOldPawordError:'The original password cannot be empty!',
             },
+            tishiMsg:{
+                registSucess:'Congratulations,registered successfully !',
+                registedMsg:'We will verify the information in 24 hours after recieved. If verification is successful you will recieve an email, then you can enjoy the rental service. During the verification proccess, you can log in and view the progress of the verification.'
+            },
             motaiTishiBox:{
                 title:'',
                 msg:''
@@ -252,7 +260,8 @@ serviceModule.factory('allUrl',function () {
                 endtripSure3:false,
                 endtripSure4:false,
                 endtripSure5:false,
-            }
+            },
+            depositMsg:{}
         };
 
 
