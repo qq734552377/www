@@ -622,6 +622,15 @@ serviceModule.factory('allUrl',function () {
                 });
             }
         };
+    })
+    .factory('scrollToTop',function () {
+
+        return {
+            go: function () {
+                $("html, body").animate({
+                    scrollTop: $("#bodyHeader").offset().top }, {duration: 500,easing: "swing"});
+            }
+        }
     });
 
 

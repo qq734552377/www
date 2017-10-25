@@ -338,7 +338,7 @@
                                         <div class="col-md-5 col-xs-5 col-sm-5">
                                             <h5 style="font-size: 16px;font-weight: bold">Pickup</h5>
                                             <p style="font-size: 14px;font-weight: bold">
-                                                <i class="glyphicon glyphicon-time"></i>
+                                                <i class="fa" ng-class="isDayOrNight(item.StartTime)"></i>
                                                  {{item.StartTime}}
                                             </p>
                                             <p style="font-size: 14px;">
@@ -351,7 +351,7 @@
                                         <div class="col-md-5 col-xs-5 col-sm-5">
                                             <h5 style="font-size: 16px;font-weight: bold">Return</h5>
                                             <p style="font-size: 14px;font-weight: bold">
-                                                <i class="glyphicon glyphicon-time"></i>
+                                                <i class="fa" ng-class="isDayOrNight(item.EndTime)"></i>
                                                  {{item.EndTime}}
                                             </p>
                                             <p style="font-size: 14px;">

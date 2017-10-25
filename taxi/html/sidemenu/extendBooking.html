@@ -23,11 +23,11 @@
                                             <tr ng-repeat="item in carPriceList.Report">
                                                 <td class="left">
                                                     <strong>Rental Fee</strong> ({{item.RentalFee}})<br/>
-                                                    $ {{(item.Price/item.TotalHour/100).toFixed(2)}} * {{item.TotalHour >1 ?
+                                                    ${{(item.Price/item.TotalHour/100).toFixed(2)}} * {{item.TotalHour >1 ?
                                                     (item.TotalHour+' hrs'):(item.TotalHour+' hr')}}
                                                 </td>
                                                 <td class="right text-right">
-                                                    $ {{(item.Price/100).toFixed(2)}}
+                                                    ${{(item.Price/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -41,7 +41,7 @@
                                                     <b>Booking Total</b>
                                                 </td>
                                                 <td class="right text-right">
-                                                    $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                    ${{(carPriceList.BookingTotal/100).toFixed(2)}}
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -91,7 +91,7 @@
                                                         <b>Available</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        $ {{appContext.userAccountMoney}}
+                                                        ${{appContext.userAccountMoney}}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -99,7 +99,7 @@
                                                         <b>Total Payable</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - $ {{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                        - ${{(carPriceList.BookingTotal/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <tr class="balance">
@@ -107,7 +107,7 @@
                                                         <b>Balance</b>
                                                     </td>
                                                     <td class="right text-right ">
-                                                        $ {{(appContext.userAccountMoney - (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                        ${{(appContext.userAccountMoney - (carPriceList.BookingTotal/100)).toFixed(2)}}
                                                     </td>
                                                 </tr>
 

@@ -44,7 +44,7 @@
                                 <h5 class="bottom-border" style="font-size: 18px;font-weight: bold">Pickup Details</h5>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
                                         <p>
                                             <i class="glyphicon glyphicon-map-marker"></i>
                                         </p>
@@ -57,9 +57,9 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
                                         <p>
-                                            <i class="glyphicon glyphicon-time"></i>
+                                            <i class="fa" ng-class="isDayOrNight(bookingMsg.list.LeaseStartTime)"></i>
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
@@ -75,7 +75,7 @@
                                     Details</h5>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
                                         <p>
                                             <i class="glyphicon glyphicon-map-marker"></i>
                                         </p>
@@ -88,9 +88,9 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
                                         <p>
-                                            <i class="glyphicon glyphicon-time"></i>
+                                            <i class="fa" ng-class="isDayOrNight(bookingMsg.list.LeaseEndTime)"></i>
                                         </p>
                                     </div>
                                     <div class="col-md-10 col-sm-10 col-xs-10">
@@ -106,12 +106,12 @@
                                         <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Duration</h5>
 
                                         <div class="row">
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <div class="col-xs-3 text-center">
                                                 <p>
                                                     <i class="glyphicon glyphicon-time"></i>
                                                 </p>
                                             </div>
-                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class="col-xs-9">
                                                 <p>
                                                     {{bookingMsg.duration - bookingMsg.list.RenewalDuration}} hrs
                                                 </p>
@@ -124,12 +124,12 @@
                                         <h5 class="bottom-border margin-top-20" style="font-size: 18px;font-weight: bold">Extension</h5>
 
                                         <div class="row">
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <div class="col-xs-3 text-center">
                                                 <p>
                                                     <i class="glyphicon glyphicon-time"></i>
                                                 </p>
                                             </div>
-                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class=" col-xs-9">
                                                 <p>
                                                     {{bookingMsg.list.RenewalDuration}} {{bookingMsg.list.RenewalDuration > 1 ? 'hrs' : 'hr'}}
                                                 </p>
@@ -191,7 +191,7 @@
                                                         <b>Booking Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - $ {{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
+                                                        - ${{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--续订费用-->
@@ -200,7 +200,7 @@
                                                         <b>ExtensionFees</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - $ {{(bookingMsg.list.RenewalMount/100).toFixed(2)}}
+                                                        - ${{(bookingMsg.list.RenewalMount/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--迟还费用-->
@@ -209,7 +209,7 @@
                                                         <b>LateFees</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - $ {{(bookingMsg.lateView.Price/100).toFixed(2)}}
+                                                        - ${{(bookingMsg.lateView.Price/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--取消费用-->
@@ -218,7 +218,7 @@
                                                         <b>Cancle Return</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        + $ {{((bookingMsg.fees.BookingTotal-bookingMsg.leaseCancelView.LeaseCancelMount)/100).toFixed(2)}}
+                                                        + ${{((bookingMsg.fees.BookingTotal-bookingMsg.leaseCancelView.LeaseCancelMount)/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 </tbody>

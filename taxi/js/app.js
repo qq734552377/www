@@ -14,9 +14,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "html/login.html",//这里是html的路径，这是跟标识符相对应的html页面
             controller:'loginCtr',
             //注入'isSide'服务
-            resolve: { app:'appContext' },
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
             // myIsSide 是解决依赖项注入控制器
-            onEnter: function(app){
+            onEnter: function(app,goTop){
+                goTop.go();
             },
             // myIsSide 是解决依赖项注入控制器
             onExit: function(app){
@@ -26,27 +30,67 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         .state("forgetPassword",{
             url:'/forgetPassword',
             templateUrl:'html/forgetPassword.html',
-            controller:'forgetPasswordCtr'
+            controller:'forgetPasswordCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("main",{
             url:'/main',
             templateUrl:'html/main.html',
-            controller:'mainCtr'
+            controller:'mainCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("signin_first",{
             url:'/signup_f',
             templateUrl:'html/signin_first.html',
-            controller:'signinCtr'
+            controller:'signinCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state('signin_second',{
             url:'/signup_s',
             templateUrl:'html/signin_second.html',
             controller:'signin_secondCtr',
             //注入'isSide'服务
-            resolve: { app:'initSignupSelectOptions' },
+            resolve: {
+                app:'initSignupSelectOptions',
+                goTop:'scrollToTop'
+            },
             // myIsSide 是解决依赖项注入控制器
-            onEnter: function(app){
+            onEnter: function(app,goTop){
                 app.init();
+                goTop.go();
             }
         })
         .state('auditPage',{
@@ -54,9 +98,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl:'html/auditPage.html',
             controller:'auditPageCtr',
             //注入'isSide'服务
-            resolve: { app:'appContext' },
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
             // myIsSide 是解决依赖项注入控制器
-            onEnter: function(app){
+            onEnter: function(app,goTop){
+                goTop.go();
             },
             // myIsSide 是解决依赖项注入控制器
             onExit: function(app){
@@ -64,9 +112,21 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state("search",{
-        url:'/search',
-        templateUrl:'html/search.html',
-        controller:'searchCtr'
+            url:'/search',
+            templateUrl:'html/search.html',
+            controller:'searchCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         }).state('sidemenu',{
         url:'/sidemenu',
         templateUrl:'html/sidemenu.html',
@@ -74,12 +134,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         //注入'isSide'服务
         resolve: {
             app:'appContext' ,
-            isAutGo:'noAutGoLoginPage'
+            isAutGo:'noAutGoLoginPage',
+            goTop:'scrollToTop'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(app,isAutGo){
+        onEnter: function(app,isAutGo,goTop){
             isAutGo.init();
             app.getAll().isSidemenu=true;
+            goTop.go();
         },
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
@@ -88,26 +150,66 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     }).state("sidemenu.account",{
             url:"/account",
             templateUrl:"html/sidemenu/account.html",
-            controller:'accountCtr'
+            controller:'accountCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("sidemenu.editprofile",{
-        url:"/editprofile",
-        templateUrl:"html/sidemenu/editprofile.html",
-        controller:'editprofileCtr'
+            url:"/editprofile",
+            templateUrl:"html/sidemenu/editprofile.html",
+            controller:'editprofileCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("sidemenu.wallet",{
-        url:"/wallet",
-        templateUrl:"html/sidemenu/wallet.html",
-        controller:'walletCtr'
+            url:"/wallet",
+            templateUrl:"html/sidemenu/wallet.html",
+            controller:'walletCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("sidemenu.topup",{
             url:"/topup",
             templateUrl:"html/sidemenu/topup.html",
             controller:'topupCtr',
             //注入'isSide'服务
-            resolve: { app:'appContext' },
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
             // myIsSide 是解决依赖项注入控制器
-            onEnter: function(app){
+            onEnter: function(app,goTop){
+                goTop.go();
             },
             // myIsSide 是解决依赖项注入控制器
             onExit: function(app){
@@ -117,12 +219,36 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         .state("sidemenu.mybookings",{
             url:"/mybookings",
             templateUrl:"html/sidemenu/mybookings.html",
-            controller:'mybookingsCtr'
+            controller:'mybookingsCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("sidemenu.refer",{
             url:"/refer",
             templateUrl:"html/sidemenu/refer.html",
-            controller:'referCtr'
+            controller:'referCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
         .state("sidemenu.reportIssue",{
             url:"/reportIssue",
@@ -136,9 +262,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 isAutGo:'noAutGoLoginPage',
                 app:'appContext',
-                reportIssueReasons:'initReportIssueReasons'
+                reportIssueReasons:'initReportIssueReasons',
+                goTop:'scrollToTop'
             },
-            onEnter:function (reportIssueReasons) {
+            onEnter:function (reportIssueReasons,goTop) {
+                goTop.go();
                 reportIssueReasons.init();
             },
             onExit: function(app){
@@ -151,15 +279,17 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller:'startTripCtr',
             resolve: {
                 isAutGo:'noAutGoLoginPage',
-                app:'appContext'
+                app:'appContext',
+                goTop:'scrollToTop'
             },
-            onExit: function(app){
+            onExit: function(app,goTop){
                 app.getAll().fromBookingPage.isFromBooking=false;
                 app.getAll().startTrip.startTripSure1=false;
                 app.getAll().startTrip.startTripSure2=false;
                 app.getAll().startTrip.startTripSure3=false;
                 app.getAll().startTrip.startTripSure4=false;
                 app.getAll().startTrip.startTripSure5=false;
+                goTop.go();
             }
 
         })
@@ -169,9 +299,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller:'endtripCtr',
             resolve: {
                 isAutGo:'noAutGoLoginPage',
-                app:'appContext'
+                app:'appContext',
+                goTop:'scrollToTop'
             },
-            onExit: function(app){
+            onExit: function(app,goTop){
                 app.getAll().fromBookingPage.isFromBooking=false;
                 app.getAll().endTrip.endtripSure1=false;
                 app.getAll().endTrip.endtripSure2=false;
@@ -179,18 +310,43 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                 app.getAll().endTrip.endtripSure4=false;
                 app.getAll().endTrip.endtripSure5=false;
                 app.getAll().endTrip.endtripSure6=false;
+                goTop.go();
             }
         })
         .state("sidemenu.extendBooking",{
             url:"/extendBooking/:id",
             templateUrl:"html/sidemenu/extendBooking.html",
-            controller:'extendBookingCtr'
+            controller:'extendBookingCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,goTop){
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+            }
         })
 
     .state('booking',{
         url:'/booking/:id',
         templateUrl:'html/booking.html',
-        controller:'bookingCtr'
+        controller:'bookingCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     })
     .state('bookingcomfirm',{
         url:'/bookingcomfirm/:id',
@@ -198,11 +354,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         controller:'bookingcomfirmCtr',
         resolve: {
             isAutGo:'noAutGoLoginPage',
-            app:'appContext'
+            app:'appContext',
+            goTop:'scrollToTop'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo){
+        onEnter: function(isAutGo,goTop){
             isAutGo.init();
+            goTop.go();
         },
         onExit: function(app){
             app.getAll().fromBookingPage.isFromBooking=false;
@@ -214,37 +372,111 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         controller:'bookingdetailsCtr',
         resolve: {
             isAutGo:'noAutGoLoginPage',
-            initCancleReason:'initCancleReason'
+            initCancleReason:'initCancleReason',
+            goTop:'scrollToTop'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo,initCancleReason){
+        onEnter: function(isAutGo,initCancleReason,goTop){
             isAutGo.init();
             initCancleReason.init();
+            goTop.go();
         }
     }).state('lunbo',{
         url:'/lunbo',
         templateUrl:'html/lunbo.html',
-        controller:'lunboCtr'
+        controller:'lunboCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     }).state('mainsearch',{
         url:'/mainsearch',
         templateUrl:'html/mainsearch.html',
-        controller:'mainsearchCtr'
+        controller:'mainsearchCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     }).state('faq',{
         url:'/faq',
         templateUrl:'html/faq.html',
-        controller:'faqCtr'
+        controller:'faqCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     }).state('ourrates',{
         url:'/ourrates',
         templateUrl:'html/ourrates.html',
-        controller:'ourratesCtr'
+        controller:'ourratesCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     }).state('privacypolicy',{
         url:'/privacypolicy',
         templateUrl:'html/privacypolicy.html',
-        controller:'privacypolicyCtr'
+        controller:'privacypolicyCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     }).state('terms',{
         url:'/terms',
         templateUrl:'html/terms.html',
-        controller:'termsCtr'
+        controller:'termsCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     });
 
 

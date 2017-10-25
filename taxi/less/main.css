@@ -469,3 +469,11 @@ a:hover {
     margin-left: 20px;
   }
 }
+.sun:before {
+  content: "\f185";
+  color: #e81e06;
+}
+.moon:before {
+  content: "\f186";
+  color: #0e90d2;
+}

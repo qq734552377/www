@@ -42,6 +42,15 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
     $scope.isAllWaitting = appContext.getAll().isAllWaitting;
 
+    
+    $scope.isDayOrNight=function (time) {
+        var date = getDateByString(time);
+        if(date.getHours() > 5 && date.getHours() < 18){
+            return 'sun';
+        }else{
+            return 'moon';
+        }
+    }
 
     $(window).scroll(function(){
         if($(window).scrollTop() >1600){
@@ -50,6 +59,8 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
             $("#movetoTop").fadeOut(500);//一秒渐隐动画
         }
     });
+    
+    
 
 });
 
@@ -503,11 +514,11 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
         $scope.isNoCar = false;
         $scope.allCarsMsgs = allCarsMsg.clear();
 
-        if ($scope.searchMsg.location == 0) {
-            $scope.isWaitting = false;
-            $scope.isNoCar = true;
-            return;
-        }
+        // if ($scope.searchMsg.location == 0) {
+        //     $scope.isWaitting = false;
+        //     $scope.isNoCar = true;
+        //     return;
+        // }
 
 
         //请求所有的车辆信息
@@ -1136,6 +1147,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         }
 
         $scope.isCanTopUp=function (price,type) {
+            appContext.getAll().isAllWaitting = true;
             $http({
                 method: 'POST',
                 url: allUrl.isCanTopUpUrl,
@@ -1184,6 +1196,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         }
 
         function topup(price,type) {
+            appContext.getAll().isAllWaitting = true;
             $http({
                 method: 'POST',
                 url: allUrl.topUpUrl,
@@ -1213,7 +1226,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                         request_signature: data.Data.Key,
                         attempt_three_d:true,
                         cancel_redirect_url: data.Data.TopUpOnLineCanecl,
-                        fail_redirect_url: data.Data.TopUpOnLineFail,
+                        // fail_redirect_url: data.Data.TopUpOnLineFail,
                     }
                     WirecardPaymentPage.embeddedPay(requestedData);
                 } else {
@@ -2065,8 +2078,8 @@ function getFormatTime(date) {
     };
 }
 
-function getDateByString(stringDatetime) {
-    var d = new Date(Date.parse(stringDatetime.replace(/-/g, "/")));
+function getDateByString(a) {
+    var d = new Date(Date.parse((a+'').replace(/-/g, "/")));
     return d;
 }
 
