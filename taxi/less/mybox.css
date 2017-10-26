@@ -135,7 +135,6 @@
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.balance {
   border-top: 1px solid #e81e06;
-  color: red;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney {
   color: darkorange;

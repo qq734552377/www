@@ -152,9 +152,9 @@
                                                 </a>
                                             </div>
                                             <div class="col-md-6  col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
-                                                <a class="btn btn-block btn-danger" data-toggle="modal" data-target="#issuerCancleTrip"
+                                                <a class="btn btn-block btn-danger" data-toggle="modal" data-target="#issuerCancelTrip"
                                                    style="color: #fff">
-                                                    Cancle
+                                                    Cancel
                                                 </a>
                                             </div>
                                         </div>
@@ -191,7 +191,7 @@
                                                         <b>Booking Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - ${{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
+                                                        $-{{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--续订费用-->
@@ -200,7 +200,7 @@
                                                         <b>ExtensionFees</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - ${{(bookingMsg.list.RenewalMount/100).toFixed(2)}}
+                                                        $-{{(bookingMsg.list.RenewalMount/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--迟还费用-->
@@ -209,16 +209,16 @@
                                                         <b>LateFees</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - ${{(bookingMsg.lateView.Price/100).toFixed(2)}}
+                                                        $-{{(bookingMsg.lateView.Price/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--取消费用-->
                                                 <tr ng-if="bookingMsg.leaseCancelView && bookingMsg.leaseCancelView!= null">
                                                     <td class="left">
-                                                        <b>Cancle Return</b>
+                                                        <b>Cancel Return</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        + ${{((bookingMsg.fees.BookingTotal-bookingMsg.leaseCancelView.LeaseCancelMount)/100).toFixed(2)}}
+                                                         $+{{((bookingMsg.fees.BookingTotal-bookingMsg.leaseCancelView.LeaseCancelMount)/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -262,7 +262,7 @@
                     </div>
                     <div class="box-body collapse in my-box-boundary" id="isme">
                         <div class="map-area" style="height: 300px;">
-                            <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d37944258.28744549!2d97.4682468142077!3d54.51703004596788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1505458119396"
+                            <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d127638.8064627345!2d103.82576233731994!3d1.3488812724637005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1508915499018"
                                     width="100%" height="300" frameborder="0" style="border:0;margin: 0;padding: 0" allowfullscreen></iframe>
                         </div>
                     </div>
@@ -361,7 +361,7 @@
 
 <!--提示模态框-->
 <div class="example-modal">
-    <div class="modal modal-default fade" id="issuerCancleTrip" role="dialog">
+    <div class="modal modal-default fade" id="issuerCancelTrip" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-tribecar modal-header-bg-color" >
@@ -373,9 +373,10 @@
                 <div class="modal-body" style="">
 
                     <div class="form-group">
-                        <label for="cancle_reason">Cancle Reason</label>
-                        <select ng-model="appContext.endTrip.LeaseCancelReason" id="cancle_reason"  class="form-control">
-                            <option ng-repeat="item in appContext.CancleReasons" value="{{item.ID}}">{{item.LeaseCancelReason}}</option>
+                        <label for="cancel_reason">Cancel Reason</label>
+                        <select ng-model="appContext.endTrip.LeaseCancelReason" id="cancel_reason"  class="form-control">
+                            <option value="0">I just want to cancel!</option>
+                            <option ng-repeat="item in appContext.CancelReasons" value="{{item.ID}}">{{item.LeaseCancelReason}}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -385,12 +386,12 @@
 
                     <p style="font-size: 16px">
                         <strong>Note:</strong>
-                        If you cancel the order, we will charge a certain fee!If you want to learn more, click <a> here</a>.
+                        If you cancel the order, we will charge a certain fee!If you want to learn more, click <a ng-click="goToFaqCancelAq()"> here</a>.
                     </p>
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-success"  data-dismiss="modal">No</a>
-                    <a type="button" class="btn btn-danger" ng-click="cancleTrip()">Yes</a>
+                    <a type="button" class="btn btn-danger" ng-click="cancelTrip()">Yes</a>
                 </div>
             </div>
         </div>

@@ -99,10 +99,10 @@
                                                         <b>Total Payable</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - ${{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                        $-{{(carPriceList.BookingTotal/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
-                                                <tr class="balance">
+                                                <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney - (carPriceList.BookingTotal/100)) <= 0}">
                                                     <td class="left ">
                                                         <b>Balance</b>
                                                     </td>

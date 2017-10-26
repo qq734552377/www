@@ -26,7 +26,7 @@
                     <div class="col-md-4 ">
                         <div class="media active">
                             <div class="media-left">
-                                <a href="#/booking/545">
+                                <a>
                                     <img class="media-object" src="img/2_red.png" alt="2">
                                 </a>
                             </div>
@@ -233,10 +233,10 @@
                                                         <b>Booking Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        - ${{(lastBookingMsg.list.LeaseMount/100).toFixed(2)}}
+                                                         $-{{(lastBookingMsg.list.LeaseMount/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
-                                                <tr class="balance">
+                                                <tr class="balance" ng-class="{'red-font':(lastBookingMsg.list.LastAmount/100) <= 0}">
                                                     <td class="left ">
                                                         <b>Balance</b>
                                                     </td>
@@ -285,7 +285,7 @@
                     </div>
                     <div class="box-body collapse in my-box-boundary" id="isme">
                         <div class="map-area" style="height: 300px;">
-                            <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d37944258.28744549!2d97.4682468142077!3d54.51703004596788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1505458119396"
+                            <iframe src="http://www.google.cn/maps/embed?pb=!1m14!1m12!1m3!1d127638.8064627345!2d103.82576233731994!3d1.3488812724637005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-CN!2scn!4v1508915499018"
                                     width="100%" height="300" frameborder="0" style="border:0;margin: 0;padding: 0" allowfullscreen></iframe>
                         </div>
                     </div>

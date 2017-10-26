@@ -3,7 +3,7 @@
  */
 var myApp = angular.module("app", ["ui.router","allservice","appControllers"]);
 //这里叫做App模块，这将告诉HTML页面这是一个AngularJS作用的页面，并把ui-router注入AngularJS主模块，它的内容由AngularJS引擎来解释。
-myApp.config(function ($stateProvider, $urlRouterProvider) {
+myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
     //这一行声明了把 $stateProvider 和 $urlRouteProvider 路由引擎作为函数参数传入，这样我们就可以为这个应用程序配置路由了.
 
     //如果没有路由引擎能匹配当前的导航状态，默认将路径路由至 PageTab.html, 那它就像switch case语句中的default选项.就是一个默认的视图选项
@@ -127,7 +127,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             // myIsSide 是解决依赖项注入控制器
             onExit: function(app){
             }
-        }).state('sidemenu',{
+        })
+        .state('sidemenu',{
         url:'/sidemenu',
         templateUrl:'html/sidemenu.html',
         controller:'sidemenuCtr',
@@ -372,13 +373,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         controller:'bookingdetailsCtr',
         resolve: {
             isAutGo:'noAutGoLoginPage',
-            initCancleReason:'initCancleReason',
+            initCancelReason:'initCancelReason',
             goTop:'scrollToTop'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo,initCancleReason,goTop){
+        onEnter: function(isAutGo,initCancelReason,goTop){
             isAutGo.init();
-            initCancleReason.init();
+            initCancelReason.init();
             goTop.go();
         }
     }).state('lunbo',{
@@ -422,9 +423,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             app:'appContext',
             goTop:'scrollToTop'
         },
+        params:{
+            id:''
+        },
         // myIsSide 是解决依赖项注入控制器
         onEnter: function(app,goTop){
-            goTop.go();
+            // goTop.go();
         },
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
@@ -481,6 +485,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
 
 
-
+    // $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/mainsearch');
 });

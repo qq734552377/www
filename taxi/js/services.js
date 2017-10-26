@@ -94,7 +94,7 @@ serviceModule.factory('allUrl',function () {
         StartTripUrl:host + '/Bookings/FrontOpen',
         queryDoorStateUrl:host + '/Bookings/QueryDoorsCommand',
         cansleBookingUrl:host + '/api/UserCancelOrder',
-        getcancleReasonUrl:host + '/Select/GetCancelReason',
+        getcancelReasonUrl:host + '/Select/GetCancelReason',
         getCanEndTripUrl:host + '/Bookings/FrontCloseLocation',
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
@@ -124,7 +124,7 @@ serviceModule.factory('allUrl',function () {
             isAgreeMe:false,
             bookingState:['Apply','Start','Cancel','Finish'],
             Type:['','Consume ','Recharge','CancelOrder','SpecialOffer'],
-            EnterBy:['','Consume ','Renew','CancelOrder','Refund','OnlineRecharge','CashRecharge','Punishment','Reward'],
+            EnterBy:['','Consume ','Renew','CancelOrder','Refund','OnlineRecharge','CashRecharge','Deposit', 'Punishment','Reward'],
             isSidemenu: false,
             searchMsg:{
                 startDate: '',
@@ -187,7 +187,7 @@ serviceModule.factory('allUrl',function () {
             Nationalities:[],
             Races:[],
             EducationLevel:[],
-            CancleReasons:[],
+            CancelReasons:[],
             ReportIssueReasons:[],
             signinMsg:{
                 Email:'',
@@ -253,7 +253,7 @@ serviceModule.factory('allUrl',function () {
             },
             endTrip:{
                 isDesignLocation:true,
-                LeaseCancelReason:'1',
+                LeaseCancelReason:'0',
                 Memo:'',
                 endtripSure1:false,
                 endtripSure2:false,
@@ -473,13 +473,13 @@ serviceModule.factory('allUrl',function () {
             init:initOptions
         }
     })
-    .factory('initCancleReason',function ($http,appContext,allUrl) {
+    .factory('initCancelReason',function ($http,appContext,allUrl) {
         return {
           init:function () {
-              //获取cancle理由
+              //获取cancel理由
               $http({
                   method: "POST",
-                  url: allUrl.getcancleReasonUrl,
+                  url: allUrl.getcancelReasonUrl,
                   headers: {
                       'Content-Type': 'application/json',
                       Authorization: "Basic " + appContext.getAll().token
@@ -487,7 +487,7 @@ serviceModule.factory('allUrl',function () {
               }).success(function (data) {
                   console.log(data);
                   if (data.MsgType == 'Success') {
-                      appContext.getAll().CancleReasons = data.Data;
+                      appContext.getAll().CancelReasons = data.Data;
                   } else {
 
                   }
@@ -628,7 +628,7 @@ serviceModule.factory('allUrl',function () {
         return {
             go: function () {
                 $("html, body").animate({
-                    scrollTop: $("#bodyHeader").offset().top }, {duration: 500,easing: "swing"});
+                    scrollTop: $("#bodyHeader").offset().top }, {duration: 1000,easing: "easeInBack"});
             }
         }
     });

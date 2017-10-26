@@ -524,7 +524,6 @@ a {
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.balance {
   border-top: 1px solid #e81e06;
-  color: red;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney {
   color: darkorange;
@@ -1863,6 +1862,9 @@ a:hover {
 .moon:before {
   content: "\f186";
   color: #0e90d2;
+}
+.red-font {
+  color: #e81e06;
 }
 .no-car-tishi-msg h4 {
   font-size: 22px;

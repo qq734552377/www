@@ -3,7 +3,7 @@
  */
 var appControllers = angular.module('appControllers', ["allservice"]);
 
-appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, initSometing, logOut) {
+appControllers.controller('appCtr', function ($scope,$state, JIANCE, path, appContext, initSometing, logOut) {
     initSometing.initSometing();//初始化下拉菜单选项
     JIANCE.init();//初始化是否已登录和token值
     appContext.getAll().isSidemenu = path.getResult().isSidemenu;//初始化isSidemenu
@@ -38,11 +38,11 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
         $("html, body").animate({
             scrollTop: $("#"+id).offset().top }, {duration: 500,easing: "swing"});
     };
-    
+
     $scope.motaiBox = appContext.getAll().motaiTishiBox;
     $scope.isAllWaitting = appContext.getAll().isAllWaitting;
 
-    
+
     $scope.isDayOrNight=function (time) {
         var date = getDateByString(time);
         if(date.getHours() > 5 && date.getHours() < 18){
@@ -50,7 +50,15 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
         }else{
             return 'moon';
         }
-    }
+    };
+
+
+    $scope.goToFaqWithId=function (id) {
+        $state.go('faq', {
+            id: id+''
+        });
+    };
+
 
     $(window).scroll(function(){
         if($(window).scrollTop() >1600){
@@ -59,8 +67,8 @@ appControllers.controller('appCtr', function ($scope, JIANCE, path, appContext, 
             $("#movetoTop").fadeOut(500);//一秒渐隐动画
         }
     });
-    
-    
+
+
 
 });
 
@@ -86,8 +94,8 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             }
         }
     }
-    
-    
+
+
     $scope.login = function () {
         initLoginMsg();
         if (angular.isDefined($scope.loginMsg.email) && $scope.loginMsg.email != '' && angular.isDefined($scope.loginMsg.password) && $scope.loginMsg.password != '') {
@@ -252,10 +260,19 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 scope.errorMsg.NRICMsg = '';
                 return;
             }
-            if (newValue.length != 9) {
+            if (newValue.length < 9) {
                 scope.errorMsg.NRICSpan = 'error-span';
                 scope.errorMsg.NRICMsg = 'Unavailable';
                 return;
+            }else{
+                if(/^[S|T]\d{7}\w{1}$/.test(newValue)) {
+                    // scope.errorMsg.NRICSpan = 'success-span';
+                    // scope.errorMsg.NRICMsg = 'OK';
+                }else {
+                    scope.errorMsg.NRICSpan = 'error-span';
+                    scope.errorMsg.NRICMsg = 'Unavailable';
+                    return;
+                }
             }
             $http({
                 method: "POST",
@@ -271,8 +288,11 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 } else {
                     //Nric不可用
                     scope.errorMsg.NRICSpan = 'error-span';
-                    scope.errorMsg.NRICMsg = 'Unavailable';
+                    scope.errorMsg.NRICMsg = data.Info;
                 }
+            }).error(function () {
+                scope.errorMsg.NRICSpan = 'success-span';
+                scope.errorMsg.NRICMsg = 'OK?';
             });
         });
 
@@ -1061,6 +1081,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
 
         function querryAllWalletMsgs() {
+            appContext.getAll().isAllWaitting=true;
             $scope.sourceBookings.splice(0, $scope.sourceBookings.length);
             initPage($scope);
             $http({
@@ -1073,6 +1094,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
             }).success(function (data) {
                 console.log(data);
+                appContext.getAll().isAllWaitting=false;
                 if (data.MsgType == 'Success') {
                     $scope.sourceBookings = data.Data;
                     initPage($scope);
@@ -1086,7 +1108,10 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
 
             }).error(function () {
-
+                appContext.getAll().isAllWaitting=false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
             });
         }
 
@@ -1284,7 +1309,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         $scope.querry();
 
         function queryAllBookings() {
-
+            appContext.getAll().isAllWaitting=true;
             $scope.sourceBookings.splice(0, $scope.sourceBookings.length);
             initPage($scope);
             $http({
@@ -1296,6 +1321,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     Authorization: "Basic " + appContext.getAll().token
                 }
             }).success(function (data) {
+                appContext.getAll().isAllWaitting=false;
                 console.log(data)
                 if (data.MsgType == 'Success') {
                     $scope.sourceBookings = data.Data.Data;
@@ -1310,7 +1336,10 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 }
 
             }).error(function () {
-
+                appContext.getAll().isAllWaitting=false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
             });
         }
 
@@ -1895,7 +1924,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }
 
     })
-    .controller('bookingdetailsCtr', function ($scope, $http, $stateParams, $timeout,appContext, allUrl) {
+    .controller('bookingdetailsCtr', function ($scope, $http, $stateParams,$state, $timeout,appContext, allUrl) {
         $scope.bookingMsg = {};
         $scope.isWaitting = true;
         $scope.tishiBox = {
@@ -1904,13 +1933,13 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         };
 
 
-        $scope.cancleTrip = function () {
-            $('#issuerCancleTrip').modal('hide');
+        $scope.cancelTrip = function () {
+            $('#issuerCancelTrip').modal('hide');
             // $('body').toggleClass('modal-open');
             // $('.modal-backdrop.fade.in').remove();
             //取消订单的api调用
             appContext.getAll().isAllWaitting = true;
-            $('#issuerCancleTrip').on('hidden.bs.modal', function (e) {
+            $('#issuerCancelTrip').on('hidden.bs.modal', function (e) {
                 $http({
                     method: 'POST',
                     url: allUrl.cansleBookingUrl,
@@ -1947,6 +1976,15 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                     $scope.isWaitting = false;
                     $scope.tishiBox.isShow = true;
                     $scope.tishiBox.msg = appContext.getAll().errorMsg.netError;
+                });
+            });
+        };
+
+        $scope.goToFaqCancelAq=function () {
+            $('#issuerCancelTrip').modal('hide');
+            $('#issuerCancelTrip').on('hidden.bs.modal', function (e) {
+                $state.go('faq', {
+                    id: 'data-target_t3_q7'
                 });
             });
         };
@@ -1990,8 +2028,23 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }
     });
 
-appControllers.controller('faqCtr', function ($scope) {
-
+appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
+    
+    if($stateParams.id){
+        scrollAndOpen($stateParams.id);
+    }else{
+        scrollToTop.go();
+    }
+    
+    
+    function scrollAndOpen(id) {
+        if ($("#" + id)) {
+            $("#" + id).addClass("in");
+            $("html, body").animate({
+                scrollTop: $("#" + id).offset().top
+            }, {duration: 1000, easing: "easeOutBounce"});
+        }
+    }
 })
     .controller('ourratesCtr', function ($scope, $http, $stateParams, appContext, allUrl) {
         $scope.rateSearch= appContext.getAll().rateSearch;
@@ -2007,8 +2060,8 @@ appControllers.controller('faqCtr', function ($scope) {
     })
     .controller('mainCtr', function ($scope,appContext) {
         $scope.searchMsg = appContext.getAll().searchMsg;
-        
-        
+
+
         $scope.goToSearchWithCarType=function (rentFor) {
             $scope.searchMsg.rentFor=rentFor;
             // $scope.searchMsg.rentFor=id;
