@@ -12,7 +12,7 @@
                             <label for="form_issue_type">Issue Type</label>
                             <select id="form_issue_type" ng-model="reportIssueObj.IssueTypeId" class="form-control">
                                 <option value="0">Please select one reason</option>
-                                <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">{{item.IssueTypeName}}</option>
+                                <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">{{item.LeaseCancelReason}}</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -58,14 +58,14 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 }]);
 
 serviceModule.factory('allUrl',function () {
-    var host='http://58.246.122.118:12305';
+    // var host='http://58.246.122.118:12305';
     // var host='http://192.168.0.103:12907';
     // var host='http://192.168.0.56:12907';
-    // var host='http://192.168.0.112:12907';
+    var host='http://192.168.0.112:12907';
     return {
         host:host,
         searchUrl:host + '/api/VehicleShareQuery',
-        getLocationsUrl: host + '/Select/QueryParkingSpace',
+        getLocationsUrl: host + '/Select/FrontQueryParkingSpace',
         getCategorysUrl: host + '/Select/QueryVehicleType',
         getVehicleNumberBylocationUrl: host + '/Select/QueryVehicleName',
         getRentForUrl: host + '/Select/QueryLeaseType',
@@ -98,14 +98,17 @@ serviceModule.factory('allUrl',function () {
         getCanEndTripUrl:host + '/Bookings/FrontCloseLocation',
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
-        breakDownUrl:host + '/ReportIssue/Add',
-        reportIssueReasonsUrl:host + '/Select/IssueType',
+        breakDownUrl:host + '/ReportIssue/CancelAdd',
+        reportIssueReasonsUrl:host + '/Select/GetIssueName',
+        reportBreakDownOrAccdientReasonsUrl:host + '/Select/GetCancelReason',
         getUserTopupMsgUrl:host + '/Wallet/QueryWallet',
         editProfileUrl:host + '/api/EditPassword',
         getPriceList:host + '/PlanLeasePriceTable/ShowPlanLeasePriceTable',
         getRatesByTime:host + '/',
         topUpUrl:host + '/Wallet/CrateOnLineTopUp',
         isCanTopUpUrl:host + '/Deposit/ForeVerifyDeposit',
+        getVerificationUrl:host + '/api/EmailCheck',
+        getPasswordBackUrl:host + '/Deposit/ForeVerifyDeposit',
 
     }
 })
@@ -497,13 +500,13 @@ serviceModule.factory('allUrl',function () {
           }
         };
     })
-    .factory('initReportIssueReasons',function ($http,appContext,allUrl) {
+    .factory('initReportIssueReasons',function ($http,appContext) {
         return {
-          init:function () {
+          init:function (url) {
               //获取报修原因
               $http({
                   method: "POST",
-                  url: allUrl.reportIssueReasonsUrl,
+                  url: url,
                   headers: {
                       'Content-Type': 'application/json',
                       Authorization: "Basic " + appContext.getAll().token

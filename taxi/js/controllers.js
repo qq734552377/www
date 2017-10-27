@@ -148,8 +148,14 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
 
     }
 })
-    .controller('forgetPasswordCtr', function ($scope, $http, allUrl) {
+    .controller('forgetPasswordCtr', function ($scope, $http,$timeout, allUrl, appContext) {
         $scope.Email = '';
+        $scope.getVerificationBtn = {
+            title:'Get the verification code',
+            disable:'',
+            msg:'Code cannot be empty'
+        };
+        $scope.verificationCode = '';
         $scope.errorMsg = {
             emailMsg: '',
             emailSpan: ''
@@ -173,11 +179,96 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     scope.errorMsg.emailSpan = 'error-span';
                     scope.errorMsg.emailMsg = data.Info;
                 }
+            }).error(function () {
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
             });
         });
 
+        $scope.getVerification=function () {
+            if($scope.errorMsg.emailSpan == 'success-span' && $scope.getVerificationBtn.disable != 'disabled'){
+                appContext.getAll().isAllWaitting = true;
+                $scope.getVerificationBtn = {
+                    title:'Getting...',
+                    disable:'disabled'
+                };
+                $http({
+                    method: "POST",
+                    url: allUrl.getVerificationUrl,
+                    data: {Email: $scope.Email},
+                    headers: {'Content-Type': 'application/json'}
+                }).success(function (data) {
+                    appContext.getAll().isAllWaitting = false;
+                    if (data.MsgType == 'Success') {
+                        $scope.getVerificationBtn.title = 'Verification code'
+                    } else {
+                        $scope.getVerificationBtn = {
+                            title:'Get the verification code',
+                            disable:''
+                        };
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    }
+                }).error(function () {
+                    $scope.getVerificationBtn = {
+                        title:'Get the verification code',
+                        disable:''
+                    };
+                    appContext.getAll().isAllWaitting = false;
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                    $('#moTaiTishiBox').modal('show');
+                });
+            }
+        }
+
         $scope.sub = function () {
 
+
+            if($scope.errorMsg.emailSpan != 'success-span'){
+                return;
+            }
+
+            if(!$scope.verificationCode){
+                $('#verificationCode').popover('show');
+                return;
+            }
+            if($scope.errorMsg.emailSpan == 'success-span' && $scope.verificationCode && $scope.verificationCode.length == 6){
+                appContext.getAll().isAllWaitting = true;
+                $http({
+                    method: "POST",
+                    url: allUrl.getPasswordBackUrl,
+                    data: {
+                        Email: $scope.Email,
+                        VerificationCode:$scope.verificationCode
+                    },
+                    headers: {'Content-Type': 'application/json'}
+                }).success(function (data) {
+                    appContext.getAll().isAllWaitting = false;
+                    if (data.MsgType == 'Success') {
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                        $timeout(function () {
+                            $('#moTaiTishiBox').modal('hide');
+                            $('#issuerEndTrip').on('hidden.bs.modal', function (e) {
+                                window.location.replace('#/login');
+                            });
+                        },5000);
+                    } else {
+                        appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                        appContext.getAll().motaiTishiBox.msg = data.Info;
+                        $('#moTaiTishiBox').modal('show');
+                    }
+                }).error(function () {
+                    appContext.getAll().isAllWaitting = false;
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                    $('#moTaiTishiBox').modal('show');
+                });
+            }
         }
     })
     .controller('signinCtr', function ($scope, $http, $state, allUrl, appContext) {
@@ -692,7 +783,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             $state.go('sidemenu.reportIssue', {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
-                title:'Report Issue'
+                title:'Report Issue',
+                getReasonsUrl:allUrl.reportIssueReasonsUrl
             });
         };
         $scope.goToBreakDown=function (title) {
@@ -700,7 +792,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             $state.go('sidemenu.reportIssue', {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.breakDownUrl,
-                title:title
+                title:title,
+                getReasonsUrl:allUrl.reportBreakDownOrAccdientReasonsUrl
             });
         }
 
@@ -1373,7 +1466,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             $state.go('sidemenu.reportIssue', {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
-                title:'Report Issue'
+                title:'Report Issue',
+                getReasonsUrl:allUrl.reportIssueReasonsUrl
             });
         };
         $scope.unlockCar = function () {
@@ -1425,12 +1519,13 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             });
         }
     })
-    .controller('reportIssueCtr', function ($scope, $http, $stateParams, allUrl, appContext) {
+    .controller('reportIssueCtr', function ($scope, $http, $stateParams, allUrl, appContext,initReportIssueReasons) {
         $scope.$emit('curPath', 'Report Issue');
         if (!appContext.getAll().fromBookingPage.goToReportIssue) {
             window.location.replace('#/login');
             return;
         }
+        initReportIssueReasons.init($stateParams.getReasonsUrl);
         $scope.reportIssueObj = {
             LeaseNumber: $stateParams.id,
             IssueTypeId: '0',
@@ -1510,7 +1605,8 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             $state.go('sidemenu.reportIssue', {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
-                title:'Report Issue'
+                title:'Report Issue',
+                getReasonsUrl:allUrl.reportIssueReasonsUrl
             });
         };
 

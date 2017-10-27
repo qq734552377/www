@@ -258,17 +258,16 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
             params:{
                 id:'',
                 url:'',
-                title:''
+                title:'',
+                getReasonsUrl:''
             },
             resolve: {
                 isAutGo:'noAutGoLoginPage',
                 app:'appContext',
-                reportIssueReasons:'initReportIssueReasons',
                 goTop:'scrollToTop'
             },
-            onEnter:function (reportIssueReasons,goTop) {
+            onEnter:function (goTop) {
                 goTop.go();
-                reportIssueReasons.init();
             },
             onExit: function(app){
                 app.getAll().fromBookingPage.goToReportIssue=false;
@@ -373,13 +372,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         controller:'bookingdetailsCtr',
         resolve: {
             isAutGo:'noAutGoLoginPage',
-            initCancelReason:'initCancelReason',
             goTop:'scrollToTop'
         },
         // myIsSide 是解决依赖项注入控制器
-        onEnter: function(isAutGo,initCancelReason,goTop){
+        onEnter: function(isAutGo,goTop){
             isAutGo.init();
-            initCancelReason.init();
             goTop.go();
         }
     }).state('lunbo',{
