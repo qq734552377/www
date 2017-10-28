@@ -58,10 +58,10 @@ serviceModule.factory('fileReader', ["$q", "$log", function($q, $log){
 }]);
 
 serviceModule.factory('allUrl',function () {
-    // var host='http://58.246.122.118:12305';
+    var host='http://58.246.122.118:12305';
     // var host='http://192.168.0.103:12907';
     // var host='http://192.168.0.56:12907';
-    var host='http://192.168.0.112:12907';
+    // var host='http://192.168.0.112:12907';
     return {
         host:host,
         searchUrl:host + '/api/VehicleShareQuery',
@@ -109,6 +109,7 @@ serviceModule.factory('allUrl',function () {
         isCanTopUpUrl:host + '/Deposit/ForeVerifyDeposit',
         getVerificationUrl:host + '/api/EmailCheck',
         getPasswordBackUrl:host + '/Deposit/ForeVerifyDeposit',
+        getPromotionCodeUrl:host + '/Deposit/ForeVerifyDeposit',
 
     }
 })

@@ -271,10 +271,9 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
             }
         }
     })
-    .controller('signinCtr', function ($scope, $http, $state, allUrl, appContext) {
+    .controller('signinCtr', function ($scope, $http, $state,$stateParams, allUrl, appContext) {
 
         $scope.signin_f = appContext.getAll().signinMsg;
-
         $scope.errorMsg = {
             emailMsg: '',
             emailSpan: '',
@@ -426,12 +425,14 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 return;
             }
             $scope.signin_f.firstSignUpCompete = true;
-            $state.go('signin_second');
+            $state.go('signin_second',{
+                id : $stateParams.id
+            });
         }
 
 
     })
-    .controller('signin_secondCtr', function ($scope, $http, $state, appContext, allUrl) {
+    .controller('signin_secondCtr', function ($scope, $http, $state,$stateParams, appContext, allUrl) {
         console.log(appContext.getAll().signinMsg)
         if (!appContext.getAll().signinMsg.firstSignUpCompete) {
             $state.go('signin_first');
@@ -440,12 +441,14 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         $('#modalTdvlPhoto').modal('show');
 
         $scope.msgAboutPic = 'NRIC, Driving License, TDVL',
-            $scope.picSrc = 'img/tpdv.jpg';
+        $scope.picSrc = 'img/tpdv.jpg';
 
         $scope.errorState = false;
         $scope.errorMsg = '';
 
         $scope.signin_s = appContext.getAll().signinMsg;
+        $scope.signin_s.PromotionCode = $stateParams.id;
+
         $scope.sub = function () {
             if ($scope.signin_s.BlockNo == undefined || $scope.signin_s.BlockNo == '' ||
                 $scope.signin_s.Storey == undefined || $scope.signin_s.Storey == '' ||
@@ -1437,8 +1440,48 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         }
 
     })
-    .controller('referCtr', function ($scope) {
+    .controller('referCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Refer a Friend');
+        $scope.baseUrl=allUrl.host+'/taxi/#/signup_f/';
+        $scope.promoUrl=$scope.baseUrl;
+        $scope.promoPrice='50';
+        
+        function getPromotionCode() {
+            appContext.getAll().isAllWaitting = true;
+
+            $http({
+                method: 'POST',
+                url: allUrl.getPromotionCodeUrl,
+                data: {
+
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data);
+                appContext.getAll().isAllWaitting = false;
+                if (data.MsgType == 'Success') {
+
+                } else {
+                    if (data.MsgType == 'TokenError') {
+                        appContext.getAll().isAut = false;
+                        window.location.replace("#/login");
+                        return;
+                    }
+                    appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                    appContext.getAll().motaiTishiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                }
+            }).error(function () {
+                appContext.getAll().isAllWaitting = false;
+                appContext.getAll().motaiTishiBox.title = 'Promotion:';
+                appContext.getAll().motaiTishiBox.msg = appContext.getAll().errorMsg.netError;
+                $('#moTaiTishiBox').modal('show');
+            });
+        }
+
     })
     .controller('startTripCtr', function ($scope, $http,$state, allUrl, appContext) {
         $scope.$emit('curPath', 'Start Trip');

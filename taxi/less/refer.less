@@ -1,0 +1,133 @@
+.arrow_box, .last_box{
+  position: relative;
+  background: #fff;
+  border: 4px solid #c2e1f5;
+}
+.referral_content {
+  padding:20px;
+  margin-top:-20px;
+  margin-left:0px;
+  height:290px;
+}
+@media (max-width:1199px){
+  .arrow_box:after, .arrow_box:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .arrow_box:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #fff;
+    border-width: 22px;
+    margin-left: -22px;
+  }
+  .arrow_box:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-top-color: #c2e1f5;
+    border-width: 32px;
+    margin-left: -32px;
+  }
+}
+
+@media (min-width:1200px){
+  .arrow_box:after, .arrow_box:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .arrow_box:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: #fff;
+    border-width: 22px;
+    margin-top: -22px;
+  }
+  .arrow_box:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-left-color: #c2e1f5;
+    border-width: 32px;
+    margin-top: -32px;
+  }
+}
+
+/** sharing **/
+ul.share_links {
+  padding-left:0px;
+  margin-top:10px;
+  overflow: auto;
+}
+ul.share_links li {
+  list-style-type: none;
+  float: left;
+}
+ul.share_links li a i {
+  background: #205D7A;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 25px;
+  text-align: center;
+  margin-right: 10px;
+  padding-top: 15%;
+  transition: all 0.2s ease-in-out;
+}
+ul.share_links li a i.fa-facebook {
+  background:#3b5998
+}
+ul.share_links li a i.fa-linkedin {
+  background:#007bb6
+}
+ul.share_links li a i.fa-twitter {
+  background:#00aced
+}
+ul.share_links li a i.fa-google-plus {
+  background:#dd4b39
+}
+ul.share_links li a i.fa-whatsapp {
+  background:#43d854;
+  font-size: 35px;
+  padding-top: 3px;
+}
+ul.share_links li a i:hover {
+  opacity: .7;
+}
+.instruction_header, .instruction_text,.referral_code{
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  display:block;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+.referral_code{
+  font-weight: 900;
+  text-align:center;
+  font-size :30px;
+}
+.instruction_header{
+  font-size: 30px;
+  margin: 20px 0;
+}
+.instruction_text{
+  font-size: 14px;
+}
+tfoot tr td{
+  font-weight:bold;
+  font-size:16px;
+}

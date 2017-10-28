@@ -62,7 +62,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
             }
         })
         .state("signin_first",{
-            url:'/signup_f',
+            url:'/signup_f/:id',
             templateUrl:'html/signin_first.html',
             controller:'signinCtr',
             //注入'isSide'服务
@@ -82,6 +82,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
             url:'/signup_s',
             templateUrl:'html/signin_second.html',
             controller:'signin_secondCtr',
+            params: {
+                id: ''
+            },
             //注入'isSide'服务
             resolve: {
                 app:'initSignupSelectOptions',
@@ -129,26 +132,27 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
             }
         })
         .state('sidemenu',{
-        url:'/sidemenu',
-        templateUrl:'html/sidemenu.html',
-        controller:'sidemenuCtr',
-        //注入'isSide'服务
-        resolve: {
-            app:'appContext' ,
-            isAutGo:'noAutGoLoginPage',
-            goTop:'scrollToTop'
-        },
-        // myIsSide 是解决依赖项注入控制器
-        onEnter: function(app,isAutGo,goTop){
-            isAutGo.init();
-            app.getAll().isSidemenu=true;
-            goTop.go();
-        },
-        // myIsSide 是解决依赖项注入控制器
-        onExit: function(app){
-            app.getAll().isSidemenu=false;
-        }
-    }).state("sidemenu.account",{
+            url:'/sidemenu',
+            templateUrl:'html/sidemenu.html',
+            controller:'sidemenuCtr',
+            //注入'isSide'服务
+            resolve: {
+                app:'appContext' ,
+                isAutGo:'noAutGoLoginPage',
+                goTop:'scrollToTop'
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onEnter: function(app,isAutGo,goTop){
+                isAutGo.init();
+                app.getAll().isSidemenu=true;
+                goTop.go();
+            },
+            // myIsSide 是解决依赖项注入控制器
+            onExit: function(app){
+                app.getAll().isSidemenu=false;
+            }
+        })
+        .state("sidemenu.account",{
             url:"/account",
             templateUrl:"html/sidemenu/account.html",
             controller:'accountCtr',
@@ -379,7 +383,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
             isAutGo.init();
             goTop.go();
         }
-    }).state('lunbo',{
+    })
+    .state('lunbo',{
         url:'/lunbo',
         templateUrl:'html/lunbo.html',
         controller:'lunboCtr',
@@ -395,7 +400,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
-    }).state('mainsearch',{
+    })
+    .state('mainsearch',{
         url:'/mainsearch',
         templateUrl:'html/mainsearch.html',
         controller:'mainsearchCtr',
@@ -411,7 +417,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
-    }).state('faq',{
+    })
+    .state('faq',{
         url:'/faq',
         templateUrl:'html/faq.html',
         controller:'faqCtr',
@@ -430,7 +437,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
-    }).state('ourrates',{
+    })
+    .state('ourrates',{
         url:'/ourrates',
         templateUrl:'html/ourrates.html',
         controller:'ourratesCtr',
@@ -446,7 +454,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
-    }).state('privacypolicy',{
+    })
+    .state('privacypolicy',{
         url:'/privacypolicy',
         templateUrl:'html/privacypolicy.html',
         controller:'privacypolicyCtr',
@@ -462,7 +471,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
-    }).state('terms',{
+    })
+    .state('terms',{
         url:'/terms',
         templateUrl:'html/terms.html',
         controller:'termsCtr',
