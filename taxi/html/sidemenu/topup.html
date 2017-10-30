@@ -106,7 +106,7 @@
                     <h4 class="modal-title">Promotion:</h4>
                 </div>
                 <div  class="modal-body" style="">
-                    <p style="font-size: 16px">Your deposit is insufficient and you need to charge up to $ {{appContext.depositMsg.Amount}}, are you sure?</p>
+                    <p style="font-size: 16px">Your deposit is insufficient and you need to charge up to $ {{(appContext.depositMsg.Amount/100).toFixed(2)}}, are you sure?</p>
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-success" data-dismiss="modal">NO</a>

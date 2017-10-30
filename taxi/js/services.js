@@ -64,6 +64,7 @@ serviceModule.factory('allUrl',function () {
     // var host='http://192.168.0.112:12907';
     return {
         host:host,
+        referHost:'http://58.246.122.118:8800',
         searchUrl:host + '/api/VehicleShareQuery',
         getLocationsUrl: host + '/Select/FrontQueryParkingSpace',
         getCategorysUrl: host + '/Select/QueryVehicleType',
@@ -107,9 +108,9 @@ serviceModule.factory('allUrl',function () {
         getRatesByTime:host + '/',
         topUpUrl:host + '/Wallet/CrateOnLineTopUp',
         isCanTopUpUrl:host + '/Deposit/ForeVerifyDeposit',
-        getVerificationUrl:host + '/api/EmailCheck',
-        getPasswordBackUrl:host + '/Deposit/ForeVerifyDeposit',
-        getPromotionCodeUrl:host + '/Deposit/ForeVerifyDeposit',
+        getVerificationUrl:host + '/api/SendEmail',
+        getPasswordBackUrl:host + '/api/ResetPassword',
+        getPromotionCodeUrl:host + '/api/ReturnPromotionCodeAndMoney',
 
     }
 })
@@ -127,7 +128,7 @@ serviceModule.factory('allUrl',function () {
             userTopupMsg:{},
             isAgreeMe:false,
             bookingState:['Apply','Start','Cancel','Finish'],
-            Type:['','Consume ','Recharge','CancelOrder','SpecialOffer'],
+            Type:['','Consume ','Recharge','SpecialOffer','RewardOrPunishment '],
             EnterBy:['','Consume ','Renew','CancelOrder','Refund','OnlineRecharge','CashRecharge','Deposit', 'Punishment','Reward'],
             isSidemenu: false,
             searchMsg:{

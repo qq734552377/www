@@ -149,19 +149,39 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
     }
 })
     .controller('forgetPasswordCtr', function ($scope, $http,$timeout, allUrl, appContext) {
-        $scope.Email = '';
-        $scope.getVerificationBtn = {
-            title:'Get the verification code',
-            disable:'',
-            msg:'Code cannot be empty'
-        };
-        $scope.verificationCode = '';
-        $scope.errorMsg = {
-            emailMsg: '',
-            emailSpan: ''
-        };
+        initForgetPasswordCtr();
+
+        function initForgetPasswordCtr() {
+            $scope.Email = '';
+            $scope.getVerificationBtn = {
+                title:'Get verification',
+                disable:'',
+                msg:'Code cannot be empty'
+            };
+            $scope.verificationCode = '';
+            $scope.newPassword = {
+                password:'',
+                msg:''
+            };
+            $scope.errorMsg = {
+                emailMsg: '',
+                emailSpan: ''
+            };
+            $scope.subBtnState = 'disabled';
+        }
+
+
+
         $scope.$watch('Email', function (newValue, oldValue, scope) {
             if (newValue == undefined || newValue.length < 8) {
+                $scope.errorMsg = {
+                    emailMsg: '',
+                    emailSpan: ''
+                };
+                $scope.getVerificationBtn = {
+                    title:'Get verification',
+                    disable:'disabled'
+                };
                 return;
             }
             $http({
@@ -174,10 +194,25 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     //邮箱已注册过了
                     scope.errorMsg.emailSpan = 'success-span';
                     scope.errorMsg.emailMsg = 'Available';
+                    $scope.getVerificationBtn = {
+                        title:'Get verification',
+                        disable:''
+                    };
+                    $('#verificationCode').val('');
+                    $('#newPassword').val('');
+                    $scope.verificationCode = '';
+                    $scope.newPassword = {
+                        password:'',
+                        msg:''
+                    };
                 } else {
                     //没有注册过
                     scope.errorMsg.emailSpan = 'error-span';
                     scope.errorMsg.emailMsg = data.Info;
+                    $scope.getVerificationBtn = {
+                        title:'Get verification',
+                        disable:'disabled'
+                    };
                 }
             }).error(function () {
                 appContext.getAll().motaiTishiBox.title = 'Promotion:';
@@ -199,12 +234,13 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     data: {Email: $scope.Email},
                     headers: {'Content-Type': 'application/json'}
                 }).success(function (data) {
+                    console.log(data);
                     appContext.getAll().isAllWaitting = false;
                     if (data.MsgType == 'Success') {
-                        $scope.getVerificationBtn.title = 'Verification code'
+                        $scope.getVerificationBtn.title = 'Input verification'
                     } else {
                         $scope.getVerificationBtn = {
-                            title:'Get the verification code',
+                            title:'Get verification',
                             disable:''
                         };
                         appContext.getAll().motaiTishiBox.title = 'Promotion:';
@@ -213,7 +249,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     }
                 }).error(function () {
                     $scope.getVerificationBtn = {
-                        title:'Get the verification code',
+                        title:'Get verification',
                         disable:''
                     };
                     appContext.getAll().isAllWaitting = false;
@@ -231,10 +267,40 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                 return;
             }
 
-            if(!$scope.verificationCode){
+            if(!$scope.verificationCode || $scope.verificationCode == ''){
+                $scope.getVerificationBtn.msg='Code cannot be empty!';
                 $('#verificationCode').popover('show');
+                $timeout(function () {
+                    $('#verificationCode').popover('hide');
+                },5000);
                 return;
             }
+            if($scope.verificationCode.length != 6){
+                $scope.getVerificationBtn.msg='Code is 6 bit!';
+                $('#verificationCode').popover('show');
+                $timeout(function () {
+                    $('#verificationCode').popover('hide');
+                },5000);
+                return;
+            }
+            if(!$scope.newPassword.password || $scope.newPassword.password == ''){
+                $scope.newPassword.msg='New password cannot be empty!';
+                $('#newPassword').popover('show');
+                $timeout(function () {
+                    $('#newPassword').popover('hide');
+                },5000);
+                return;
+            }
+
+            if($scope.newPassword.password.length < 8){
+                $scope.newPassword.msg='New password at least 8 bit!';
+                $('#newPassword').popover('show');
+                $timeout(function () {
+                    $('#newPassword').popover('hide');
+                },5000);
+                return;
+            }
+
             if($scope.errorMsg.emailSpan == 'success-span' && $scope.verificationCode && $scope.verificationCode.length == 6){
                 appContext.getAll().isAllWaitting = true;
                 $http({
@@ -242,18 +308,20 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     url: allUrl.getPasswordBackUrl,
                     data: {
                         Email: $scope.Email,
-                        VerificationCode:$scope.verificationCode
+                        VerificationCode:$scope.verificationCode,
+                        Password:$scope.newPassword.password
                     },
                     headers: {'Content-Type': 'application/json'}
                 }).success(function (data) {
                     appContext.getAll().isAllWaitting = false;
                     if (data.MsgType == 'Success') {
+                        initForgetPasswordCtr();
                         appContext.getAll().motaiTishiBox.title = 'Promotion:';
                         appContext.getAll().motaiTishiBox.msg = data.Info;
                         $('#moTaiTishiBox').modal('show');
                         $timeout(function () {
                             $('#moTaiTishiBox').modal('hide');
-                            $('#issuerEndTrip').on('hidden.bs.modal', function (e) {
+                            $('#moTaiTishiBox').on('hidden.bs.modal', function (e) {
                                 window.location.replace('#/login');
                             });
                         },5000);
@@ -1442,10 +1510,12 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('referCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Refer a Friend');
-        $scope.baseUrl=allUrl.host+'/taxi/#/signup_f/';
+        $scope.baseUrl=allUrl.referHost+'/taxisharing/#/signup_f/';
         $scope.promoUrl=$scope.baseUrl;
         $scope.promoPrice='50';
-        
+
+        getPromotionCode();
+
         function getPromotionCode() {
             appContext.getAll().isAllWaitting = true;
 
@@ -1463,12 +1533,16 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data);
                 appContext.getAll().isAllWaitting = false;
                 if (data.MsgType == 'Success') {
-
+                    $scope.promoUrl=$scope.baseUrl+data.Data.PromotionCode;
+                    $scope.promoPrice=data.Data.Money/100;
                 } else {
                     if (data.MsgType == 'TokenError') {
                         appContext.getAll().isAut = false;
                         window.location.replace("#/login");
                         return;
+                    }
+                    if( data.MsgType == 'Error'){
+                        window.location.replace("#/sidemenu/account");
                     }
                     appContext.getAll().motaiTishiBox.title = 'Promotion:';
                     appContext.getAll().motaiTishiBox.msg = data.Info;
