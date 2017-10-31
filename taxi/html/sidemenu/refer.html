@@ -11,7 +11,7 @@
             <div class="my-box my-box-top-border margin-top-20 ">
                 <div class="box-header">
                     <h4 class="box-header-title">
-                        <div class="referral_code"><span class="instruction_text"> Your Unique Referral Code </span>QXp1P
+                        <div class="referral_code"><span class="instruction_text"> Your Unique Referral Code </span>{{promoCode}}
                         </div>
                     </h4>
                 </div>
@@ -27,10 +27,12 @@
                                     <label for="refferallink">Your invite link</label>
                                     <div class="input-group">
                                         <input id="refferallink" class="form-control" type="text" readonly
-                                               value="{{promoUrl}}"/>
-<span class="input-group-btn">
-<button id="copybtn" class="btn btn-secondary" type="button"><span class="fa fa-link"></span> Copy</button>
-</span>
+                                               value="{{copyUrl}}"/>
+                                        <span class="input-group-btn">
+                                            <button id="copybtn" class="btn btn-default" type="button">
+                                                <span class="fa fa-link"></span> Copy
+                                            </button>
+                                        </span>
                                     </div>
                                 </div>
                             </form>
@@ -83,7 +85,7 @@
 <script>
     $(document).ready(function () {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/i)) {
-            $('#copybtn').hide();
+//            $('#copybtn').hide();
         }
 
         $("#copybtn").click(function () {

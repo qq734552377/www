@@ -44,7 +44,7 @@
                                 <td class="pickup" ng-bind="item.LeaseStartTime"></td>
                                 <td class="return" ng-bind="item.LeaseEndTime"></td>
                                 <td class="amount" ng-bind="'$ '+(item.LeaseMount/100).toFixed(2)"></td>
-                                <td class="status" ng-bind="appContext.bookingState[item.LeaseStatus]"></td>
+                                <td class="status" ng-bind="item.LeaseStatusName"></td>
                                 <td class="actions">
                                     <a href="#/bookingdetails/{{item.LeaseNumber}}">Details</a>
                                 </td>

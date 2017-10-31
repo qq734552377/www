@@ -64,7 +64,8 @@ serviceModule.factory('allUrl',function () {
     // var host='http://192.168.0.112:12907';
     return {
         host:host,
-        referHost:'http://58.246.122.118:8800',
+        referHost:'http://www.ucastcomputer.com:8800',
+
         searchUrl:host + '/api/VehicleShareQuery',
         getLocationsUrl: host + '/Select/FrontQueryParkingSpace',
         getCategorysUrl: host + '/Select/QueryVehicleType',
@@ -116,6 +117,8 @@ serviceModule.factory('allUrl',function () {
 })
     .factory('appContext',function (allUrl) {
         var appMsg= {
+            key:'AIzaSyAmZApCirzCpPnToCfTm3_2pDxUNMQJy94',
+            zoom:'18',
             allCarsMsg: [],
             bookingDetailMsgs: [],
             userMsg: {},

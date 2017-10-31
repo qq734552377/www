@@ -469,7 +469,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
                     scope.errorMsg.PhoneMsg = 'OK';
                 }else {
                     scope.errorMsg.PhoneSpan = 'error-span';
-                    scope.errorMsg.PhoneMsg = 'Rong Number';
+                    scope.errorMsg.PhoneMsg = 'Miss Spelled';
                 }
             }
         });
@@ -1014,6 +1014,10 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data)
                 if (data.MsgType == 'Success') {
                     appContext.getAll().lastBooking = data.Data;
+
+                    var mapUrl='https://www.google.com/maps/embed/v1/place?key='+appContext.getAll().key+'&q='+data.Data.list.Latitude+','+data.Data.list.Longitude+'&zoom='+appContext.getAll().zoom;
+                    $('#mapFrame').attr('src',mapUrl);
+
                     if (data.Data.list.LeaseStatus == 1) {
                         $scope.remainingTime.endtime = data.Data.list.LeaseEndTime;
                         $scope.remainingTime.timer = $interval(function () {
@@ -1121,7 +1125,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     scope.errorMsg.PhoneMsg = 'OK';
                 }else {
                     scope.errorMsg.PhoneSpan = 'error-span';
-                    scope.errorMsg.PhoneMsg = 'Rong Number';
+                    scope.errorMsg.PhoneMsg = 'Miss Spelled';
                 }
             }
         });
@@ -1510,9 +1514,11 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     })
     .controller('referCtr', function ($scope, $http, allUrl, appContext) {
         $scope.$emit('curPath', 'Refer a Friend');
-        $scope.baseUrl=allUrl.referHost+'/taxisharing/#/signup_f/';
+        $scope.baseUrl=allUrl.referHost+'/taxisharing/%23/signup_f/';
+        $scope.promoCode='';
+        $scope.copyUrl=allUrl.referHost+'/taxisharing/#/signup_f/'+$scope.promoCode;
         $scope.promoUrl=$scope.baseUrl;
-        $scope.promoPrice='50';
+        $scope.promoPrice='49';
 
         getPromotionCode();
 
@@ -1533,6 +1539,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 console.log(data);
                 appContext.getAll().isAllWaitting = false;
                 if (data.MsgType == 'Success') {
+                    $scope.promoCode = data.Data.PromotionCode;
                     $scope.promoUrl=$scope.baseUrl+data.Data.PromotionCode;
                     $scope.promoPrice=data.Data.Money/100;
                 } else {
@@ -1900,6 +1907,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
     $scope.isGetCarStateWaitting = true;
     $scope.carPriceList = {};
 
+
+
     $scope.isWaitting = true;
     $scope.tishiBox = {
         isShow: true,
@@ -1912,6 +1921,9 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         return;
     }
 
+    //地图的url
+    $scope.mapUrl='https://www.google.com/maps/embed/v1/place?key='+appContext.getAll().key+'&q='+$scope.carMsg.Latitude+','+$scope.carMsg.Longitude+'&zoom='+appContext.getAll().zoom;
+    $('#mapFrame').attr('src',$scope.mapUrl);
     $scope.currentDay = 0;
 
 
@@ -2055,6 +2067,32 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         });
     }
 
+    // initMapLaction();
+    function initMapLaction() {
+        var myCenter=new google.maps.LatLng($scope.carMsg.Latitude,$scope.carMsg.Longitude);
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+            var marker=new google.maps.Marker({
+                position:myCenter,
+            });
+
+            marker.setMap(map);
+        }
+
+
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    }
+
 })
     .controller('bookingcomfirmCtr', function ($scope, $http, $stateParams, appContext, allUrl) {
         $scope.timeTable = {
@@ -2119,6 +2157,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 if (data.MsgType == 'Success') {
                     $scope.lastBookingMsg = data.Data;
                     $scope.tishiBox.isShow = true;
+                    var mapUrl='https://www.google.com/maps/embed/v1/place?key='+appContext.getAll().key+'&q='+data.Data.list.Latitude+','+data.Data.list.Longitude+'&zoom='+appContext.getAll().zoom;
+                    $('#mapFrame').attr('src',mapUrl);
                 } else {
                     if (data.MsgType == 'TokenError') {
                         appContext.getAll().isAut = false;
@@ -2223,6 +2263,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 $scope.isWaitting = false;
                 if (data.MsgType == 'Success') {
                     $scope.bookingMsg = data.Data;
+                    var mapUrl='https://www.google.com/maps/embed/v1/place?key='+appContext.getAll().key+'&q='+data.Data.list.Latitude+','+data.Data.list.Longitude+'&zoom='+appContext.getAll().zoom;
+                    $('#mapFrame').attr('src',mapUrl);
                 } else {
                     if (data.MsgType == 'TokenError') {
                         appContext.getAll().isAut = false;
