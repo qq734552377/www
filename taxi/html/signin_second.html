@@ -334,6 +334,7 @@
                                                 <div class="sign-in-file">
                                                     <input type="file"  id="signInFileFront"
                                                            required="required">
+                                                    <img height="140px" id="signInFileFrontImg" class="margin-top-10" style="display: none"/>
                                                 </div>
                                             </div>
                                             <!--NRIC, Driving License, TDVL (Front) end-->
@@ -349,6 +350,7 @@
                                                 <div class="sign-in-file">
                                                     <input type="file" id="signInFileBack"
                                                            required="required">
+                                                    <img height="140px" id="signInFileBackImg" class="margin-top-10" style="display: none"/>
                                                 </div>
                                             </div>
                                             <!--NRIC, Driving License, TDVL (Back) end-->
@@ -362,16 +364,17 @@
                                                 <label  for="signInMugShot">Frontal View</label>
                                                 <input type="file"  id="signInMugShot"
                                                        required="required">
-
+                                                <img height="140px" id="signInMugShotImg" class="margin-top-10" style="display: none"/>
                                             </div>
                                             <!--MugShot End-->
                                         </div>
-                                        <div class="col-md-5 col-xs-12" ng-if="signin_s.LicenseType==0">
+                                        <div class="col-md-5 col-xs-12" ng-show="signin_s.LicenseType==0">
                                             <!--PDVLLetter-->
                                             <div class="form-group">
                                                 <label for="PDVLLetter">PDVL Letter</label>
                                                 <input type="file"  id="PDVLLetter"
-                                                       required="required">
+                                                       required>
+                                                <img height="140px" id="PDVLLetterImg" class="margin-top-10" style="display: none"/>
                                             </div>
                                             <!--PDVLLetter end-->
                                         </div>
@@ -446,4 +449,39 @@
         minView: 2,
         forceParse: 0
     });
+
+
+
+    bindImgShow('signInFileFront');
+    bindImgShow('signInFileBack');
+    bindImgShow('signInMugShot');
+    bindImgShow('PDVLLetter');
+
+    function bindImgShow(name) {
+        $("#"+name).bind('change',function(){
+            var file=$("#"+name).get(0).files[0];
+            var url=getObjectURL(file);
+            if(url != null){
+                $('#'+name+'Img').attr('src',url);
+                $('#'+name+'Img').css('display','block');
+            }else{
+                $('#'+name+'Img').css('display','none');
+            }
+        });
+    }
+
+
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null ;
+        // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
 </script>

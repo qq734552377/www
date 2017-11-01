@@ -84,7 +84,7 @@ serviceModule.factory('allUrl',function () {
         getPriceListUrl:host + '/api/VehicleLeasePrice',
         getUserWalletUrl:host + '/api/GetBookingsWallet',
         bookingTheCarUrl:host + '/api/LeaseVehicle ',
-        getCarAvailableStateUrl:host + '/api/VehicleShareIdleDay',
+        getCarAvailableStateUrl:host + '/api/OnewVehicleShareIdleDay',
         getBookingMsgByIdUrl:host + '/api/UserDetailByRef',
         getAllMyBookingMsgsUrl:host + '/Bookings/QueryUsersBookings',
         getAllWalletMsgsUrl:host + '/LogWallet/MobileGetList',

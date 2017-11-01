@@ -1541,6 +1541,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 if (data.MsgType == 'Success') {
                     $scope.promoCode = data.Data.PromotionCode;
                     $scope.promoUrl=$scope.baseUrl+data.Data.PromotionCode;
+                    $scope.copyUrl=allUrl.referHost+'/taxisharing/#/signup_f/'+$scope.promoCode;
                     $scope.promoPrice=data.Data.Money/100;
                 } else {
                     if (data.MsgType == 'TokenError') {

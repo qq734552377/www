@@ -1,4 +1,4 @@
-<div class="col-md-12 good-margin-bottom-m" >
+<div class="col-md-12 good-margin-bottom-m">
     <!--wallet-->
     <div class="my-box my-box-top-border margin-top-20 ">
         <div class="box-header">
@@ -12,20 +12,26 @@
                             <label for="form_issue_type">Issue Type</label>
                             <select id="form_issue_type" ng-model="reportIssueObj.IssueTypeId" class="form-control">
                                 <option value="0">Please select one reason</option>
-                                <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">{{item.LeaseCancelReason}}</option>
+                                <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">
+                                    {{item.LeaseCancelReason}}
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" ng-model="reportIssueObj.Title" id="title" placeholder="">
+                            <input type="text" class="form-control" ng-model="reportIssueObj.Title" id="title"
+                                   placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="form_description">Description of the Issue</label>
-                            <textarea id="form_description" required="required" ng-model="reportIssueObj.Remarks" placeholder="e.g. light scratch on front bumper" class="form-control" rows="5"></textarea>
+                            <textarea id="form_description" required="required" ng-model="reportIssueObj.Remarks"
+                                      placeholder="e.g. light scratch on front bumper" class="form-control"
+                                      rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="IssuePhoto1">Photographic evidence if any</label>
                             <input type="file" id="IssuePhoto1" required>
+                            <img height="140px" id="IssuePhoto1Img" class="margin-top-10" style="display: none"/>
                         </div>
                         <button type="submit" ng-click="reportIssue()" class="btn btn-success btn-block">Send</button>
                     </form>
@@ -38,3 +44,35 @@
     </div>
     <!--wallet end-->
 </div>
+<script>
+
+    bindImgShow('IssuePhoto1');
+
+    function bindImgShow(name) {
+        $("#" + name).bind('change', function () {
+            var file = $("#" + name).get(0).files[0];
+            var url = getObjectURL(file);
+            if (url!= null) {
+                $('#' + name + 'Img').attr('src', url);
+                $('#' + name + 'Img').css('display', 'block');
+            } else {
+                $('#' + name + 'Img').css('display', 'none');
+            }
+        });
+    }
+
+
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null;
+        // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+</script>
