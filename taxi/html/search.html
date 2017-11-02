@@ -236,8 +236,32 @@
 
     <!--ng-if="!isWaitting&&!isNoCar"-->
 
+
+    <div ng-if="isOtherLocationCarViews" class=" margin-top-25 container" style="padding-right: 0;padding-left: 0">
+        <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-success alert-dismissible " role="alert"
+                 style="margin-right: 15px;margin-left: 15px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div class="no-car-tishi-msg">
+                    <h4>
+                        <i class="glyphicon glyphicon-alert"></i>
+                        No results found for this location at this time.
+                    </h4>
+
+                    <p>
+                        There are other cars availabile near the selected location.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <!--车辆信息展示列表-->
-    <div class="view-car-list container margin-top-25">
+    <div class="view-car-list container">
         <div hidden class="my-box my-box-top-border margin-top-20">
             <div class="box-body row">
                 <div class="col-md-12">
@@ -309,6 +333,8 @@
             </div>
 
         </div>
+
+
         <div class="row">
             <div ng-repeat="item in allCarsMsgs" class="col-md-4 col-sm-6 col-xs-12">
                 <div class="my-box  margin-top-20" style="padding-top: 0">
@@ -378,7 +404,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
 

@@ -653,6 +653,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
 
     $scope.isWaitting = true;
     $scope.isNoCar = false;
+    $scope.isOtherLocationCarViews = false;
     $scope.allCarsMsgs = allCarsMsg.all();
 
     if ($scope.searchMsg.startTime == '' || compareTimeWithCurrentTime($scope.searchMsg.startDate + " " + $scope.searchMsg.startTime)) {
@@ -694,6 +695,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
     $scope.search = function () {
         $scope.isWaitting = true;
         $scope.isNoCar = false;
+        $scope.isOtherLocationCarViews = false;
         $scope.allCarsMsgs = allCarsMsg.clear();
 
         // if ($scope.searchMsg.location == 0) {
@@ -701,7 +703,6 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
         //     $scope.isNoCar = true;
         //     return;
         // }
-
 
         //请求所有的车辆信息
         $http({
@@ -722,7 +723,11 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
             if (data.MsgType == 'Success') {
                 $scope.isNoCar = false;
                 $scope.allCarsMsgs = allCarsMsg.setAllCars(data.Data);
-                console.log($scope.allCarsMsgs)
+
+                if($scope.allCarsMsgs[0].AddressID != $scope.searchMsg.location){
+                    $scope.isOtherLocationCarViews = true;
+                }
+
             } else {
                 $scope.isNoCar = true;
             }
