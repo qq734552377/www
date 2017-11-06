@@ -1969,11 +1969,20 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         }).success(function (data) {
             console.log(data)
             $scope.isWaitting = false;
+            if(data.MsgType == 'Error'){
+                if (data.Info == 'Start time less than current time'){
+                    window.location.replace('#/search');
+                    $scope.motaiBox.title = 'Promotion:';
+                    $scope.motaiBox.msg = data.Info;
+                    $('#moTaiTishiBox').modal('show');
+                    return;
+                }
+            }
             $scope.carPriceList = data;
-
         }).error(function () {
 
         });
+
         if (appContext.getAll().isAut) {
             getWallet.init();
         }

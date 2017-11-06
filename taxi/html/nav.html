@@ -1,5 +1,5 @@
 <!-- 未登录头部-->
-<nav ng-if='!appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
+<nav ng-show='!appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                 data-target="#bs-navbar"
@@ -26,13 +26,13 @@
         <nav id="bs-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#/signup_f/">
+                    <a href="#/signup_f/" id="signUp">
                         <i class="glyphicon glyphicon-user"></i>
                         Sign Up
                     </a>
                 </li>
                 <li>
-                    <a href="#/login">
+                    <a href="#/login" id="logIn">
                         <i class="glyphicon glyphicon-log-out"></i>
                         Log In
                     </a>
@@ -44,7 +44,7 @@
 <!-- 未登录头部结尾-->
 
 <!-- 已登录头部-->
-<nav ng-if='appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
+<nav ng-show='appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
 
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
@@ -255,3 +255,26 @@
 </nav>
 <!-- 侧边栏页面头部结尾-->
 
+<script>
+    $(function () {
+        $('#signUp').on('click', function () {
+            collapseNavbar();
+        });
+        $('#logIn').on('click', function () {
+            collapseNavbar();
+        });
+        $('.navbar .navbar-collapse ul.navbar-nav  li.dropdown ul.dropdown-menu li a').each(function () {
+            $(this).on('click', function () {
+              collapseNavbar();
+            })
+        });
+
+        function collapseNavbar() {
+            if($('.navbar .navbar-collapse').hasClass('in')){
+                $('.navbar .navbar-collapse').collapse('toggle');
+                $('.navbar .navbar-toggle').toggleClass('collapsed').attr('aria-expanded', false);
+            }
+        }
+    });
+
+</script>
