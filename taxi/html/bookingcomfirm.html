@@ -233,7 +233,15 @@
                                                         <b>Booking Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                         $-{{(lastBookingMsg.list.LeaseMount/100).toFixed(2)}}
+                                                         $-{{((lastBookingMsg.list.LeaseMount/100)+(lastBookingMsg.fees.TotalPreferential/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Preferential Price</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                         $+{{(lastBookingMsg.fees.TotalPreferential/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <tr class="balance" ng-class="{'red-font':(lastBookingMsg.list.LastAmount/100) <= 0}">

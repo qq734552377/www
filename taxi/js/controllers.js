@@ -1913,7 +1913,10 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
     $scope.isGetCarStateWaitting = true;
     $scope.carPriceList = {};
 
-
+    $scope.errorMsg={
+        PromoCodeSpan:'',
+        PromoCodeMsg:''
+    };
 
     $scope.isWaitting = true;
     $scope.tishiBox = {
@@ -1921,7 +1924,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         msg: 'Comfirm 3 booking per week and get 50% off the 4th booking!'
     };
 
-    // $scope.motaiBox=appContext.getAll().motaiTishiBox;
+    console.log($scope.carMsg);
+
     if (!$scope.carMsg || !$scope.carMsg.ID || !$scope.searchMsg.startTime) {
         window.location.replace("#/search");
         return;
@@ -1948,6 +1952,53 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
         window.location.replace('#/sidemenu/topup');
     }
 
+
+    $scope.$watch('carMsg.PromoCode', function (newValue, oldValue, scope) {
+        appContext.getAll().promoData={};
+        if (newValue == undefined || newValue.length == 0) {
+            scope.errorMsg.PromoCodeSpan = '';
+            scope.errorMsg.PromoCodeMsg = '';
+            return;
+        }
+        if (newValue.length != 6) {
+            scope.errorMsg.PromoCodeSpan = 'error-span';
+            scope.errorMsg.PromoCodeMsg = 'Unavailable';
+            return;
+        }
+        $http({
+            method: "POST",
+            url: allUrl.getPromoCodeCanUseUrl,
+            data: {
+                ID: $scope.carMsg.ID,
+                StartTime: startDateTime,
+                Duration: $scope.carMsg.Duration,
+                VehiceType: $scope.carMsg.VehicleType,
+                LeaseType: $scope.carMsg.LeaseType,
+                VehicleModel: $scope.carMsg.VehicleModel,
+                PromoCode: $scope.carMsg.PromoCode
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Basic " + appContext.getAll().token
+            }
+        }).success(function (data) {
+            console.log(data)
+            if (data.MsgType == 'Success') {
+                //Nric可用
+                scope.errorMsg.PromoCodeSpan = 'success-span';
+                scope.errorMsg.PromoCodeMsg = 'Available';
+                appContext.getAll().promoData=data.Data;
+            } else {
+                //Nric不可用
+                scope.errorMsg.PromoCodeSpan = 'error-span';
+                scope.errorMsg.PromoCodeMsg = data.Info;
+            }
+        }).error(function () {
+            scope.errorMsg.PromoCodeSpan = 'error-span';
+            scope.errorMsg.PromoCodeMsg = 'available?';
+        });
+    });
+
     $scope.getPriceList = getPriceList;
 
     $scope.getPriceList();
@@ -1964,7 +2015,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 Duration: $scope.carMsg.Duration,
                 VehiceType: $scope.carMsg.VehicleType,
                 LeaseType: $scope.carMsg.LeaseType,
-                VehicleModel: $scope.carMsg.VehicleModel
+                VehicleModel: $scope.carMsg.VehicleModel,
             }
         }).success(function (data) {
             console.log(data)
@@ -2001,6 +2052,13 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             $('#moTaiTishiBox').modal('show');
             return;
         }
+        if($scope.errorMsg.PromoCodeSpan == 'error-span'){
+            $scope.motaiBox.title = 'Promotion';
+            $scope.motaiBox.msg = 'Your promo code is not correct, please re-enter or empty!';
+            $('#moTaiTishiBox').modal('show');
+            return;
+        }
+
         appContext.getAll().isAllWaitting = true;
         $http({
             method: 'POST',
@@ -2011,7 +2069,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 Duration: $scope.carMsg.Duration,
                 VehiceType: $scope.carMsg.VehicleType,
                 LeaseType: $scope.carMsg.LeaseType,
-                VehicleModel: $scope.carMsg.VehicleModel
+                VehicleModel: $scope.carMsg.VehicleModel,
+                PromoCode: $scope.carMsg.PromoCode
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -2027,6 +2086,7 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             } else {
                 if (data.MsgType == 'TokenError') {
                     appContext.getAll().isAut = false;
+                    window.location.replace('#/login');
                     return;
                 }
                 $scope.motaiBox.title = 'Promotion:';

@@ -191,7 +191,16 @@
                                                         <b>Booking Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        $-{{(bookingMsg.fees.BookingTotal/100).toFixed(2)}}
+                                                        $-{{((bookingMsg.fees.BookingTotal/100)+(bookingMsg.fees.TotalPreferential/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                <!--优惠的价格-->
+                                                <tr ng-if="bookingMsg.fees && bookingMsg.fees != null ">
+                                                    <td class="left">
+                                                        <b>Preferential Price</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        $+{{(bookingMsg.fees.TotalPreferential/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--续订费用-->

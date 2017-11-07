@@ -177,8 +177,13 @@
                                                     <strong>Promo Code</strong>
                                                 </td>
                                                 <td class="right text-right" style="width: 50%">
-                                                    <input type="text" class="form-control "
+                                                    <input type="text" class="form-control " ng-model="carMsg.PromoCode"
                                                            style="padding:0 6px;height:28px;font-size: 18px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <span class="tishi-msg col-xs-12 glyphicon {{errorMsg.PromoCodeSpan}}">&nbsp;{{errorMsg.PromoCodeMsg}}</span>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -211,13 +216,24 @@
                                                         $-{{(carPriceList.BookingTotal/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
+
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Preferential Price</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        $+{{((appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
                                                 <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney -(carPriceList.BookingTotal/100)) <= 0}">
                                                     <td class="left ">
                                                         <b>Balance</b>
                                                     </td>
                                                     <td class="right text-right ">
                                                         ${{(appContext.userAccountMoney -
-                                                        (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                        (carPriceList.BookingTotal/100) +
+                                                        (appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0)
+                                                        ).toFixed(2)}}
                                                     </td>
                                                 </tr>
 

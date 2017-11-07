@@ -65,7 +65,6 @@ serviceModule.factory('allUrl',function () {
     return {
         host:host,
         referHost:'http://www.ucastcomputer.com:8800',
-
         searchUrl:host + '/api/VehicleShareQuery',
         getLocationsUrl: host + '/Select/FrontQueryParkingSpace',
         getCategorysUrl: host + '/Select/QueryVehicleType',
@@ -112,6 +111,7 @@ serviceModule.factory('allUrl',function () {
         getVerificationUrl:host + '/api/SendEmail',
         getPasswordBackUrl:host + '/api/ResetPassword',
         getPromotionCodeUrl:host + '/api/ReturnPromotionCodeAndMoney',
+        getPromoCodeCanUseUrl:host + '/api/IsCheckPromo',
 
     }
 })
@@ -269,7 +269,8 @@ serviceModule.factory('allUrl',function () {
                 endtripSure4:false,
                 endtripSure5:false,
             },
-            depositMsg:{}
+            depositMsg:{},
+            promoData:{}
         };
 
 
