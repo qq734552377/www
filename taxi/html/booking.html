@@ -219,13 +219,13 @@
 
                                                 <tr>
                                                     <td class="left">
-                                                        <b>Preferential Price</b>
+                                                        <b>Discount</b>
                                                     </td>
                                                     <td class="right text-right">
                                                         $+{{((appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0)).toFixed(2)}}
                                                     </td>
                                                 </tr>
-                                                <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney -(carPriceList.BookingTotal/100)) <= 0}">
+                                                <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney - (carPriceList.BookingTotal/100) +(appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0)) <= 0}">
                                                     <td class="left ">
                                                         <b>Balance</b>
                                                     </td>
@@ -237,7 +237,7 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
+                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100) +(appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0))<=0"
                                                     id="noMoreMoney"
                                                     class="noMoreMoney">
                                                     <td colspan="2">
@@ -254,7 +254,7 @@
                                 <!--个人账户End-->
 
                                 <!--结算-->
-                                <div ng-if="appContext.isAut&& (appContext.userAccountMoney - (carPriceList.BookingTotal/100))>0" class="col-md-12 booking">
+                                <div ng-if="appContext.isAut&& (appContext.userAccountMoney - (carPriceList.BookingTotal/100) +(appContext.promoData.TotalPreferential?(appContext.promoData.TotalPreferential/100):0))>0" class="col-md-12 booking">
                                     <div class="form-group">
                                         <div class="agreeMe">
                                             <label>

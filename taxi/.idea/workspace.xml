@@ -17,9 +17,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/booking.html" afterPath="$PROJECT_DIR$/html/booking.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/bookingcomfirm.html" afterPath="$PROJECT_DIR$/html/bookingcomfirm.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/bookingdetails.html" afterPath="$PROJECT_DIR$/html/bookingdetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/sidemenu/extendBooking.html" afterPath="$PROJECT_DIR$/html/sidemenu/extendBooking.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers.js" afterPath="$PROJECT_DIR$/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services.js" afterPath="$PROJECT_DIR$/js/services.js" />
     </list>
     <ignored path="taxi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-610">
-              <caret line="66" column="54" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
+            <state relative-caret-position="1575">
+              <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
               <folding>
                 <element signature="e#6003#7493#0" expanded="false" />
               </folding>
@@ -55,7 +52,7 @@
       <file leaf-file-name="nav.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
+            <state relative-caret-position="1925">
               <caret line="89" column="28" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#nav#0;n#!!top" expanded="false" />
@@ -90,7 +87,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
+            <state relative-caret-position="8600">
               <caret line="1996" column="54" selection-start-line="1996" selection-start-column="54" selection-end-line="1996" selection-end-column="54" />
               <folding>
                 <element signature="e#2055#5061#0" expanded="false" />
@@ -128,10 +125,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="extendBooking.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="extendBooking.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/sidemenu/extendBooking.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
+            <state relative-caret-position="1550">
               <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
               <folding />
             </state>
@@ -141,8 +138,8 @@
       <file leaf-file-name="bookingcomfirm.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/bookingcomfirm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1312">
-              <caret line="272" column="20" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="20" />
+            <state relative-caret-position="537">
+              <caret line="238" column="52" selection-start-line="238" selection-start-column="52" selection-end-line="238" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -151,8 +148,8 @@
       <file leaf-file-name="bookingdetails.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/bookingdetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="195" column="53" selection-start-line="195" selection-start-column="53" selection-end-line="195" selection-end-column="53" />
+            <state relative-caret-position="787">
+              <caret line="199" column="67" selection-start-line="199" selection-start-column="67" selection-end-line="199" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -161,18 +158,18 @@
       <file leaf-file-name="signin_first.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/signin_first.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="2475">
               <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="148" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="booking.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="booking.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/booking.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+            <state relative-caret-position="400">
+              <caret line="256" column="214" selection-start-line="256" selection-start-column="214" selection-end-line="256" selection-end-column="214" />
               <folding />
             </state>
           </provider>
@@ -217,12 +214,12 @@
         <option value="$PROJECT_DIR$/html/search.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/html/nav.html" />
-        <option value="$PROJECT_DIR$/html/bookingcomfirm.html" />
         <option value="$PROJECT_DIR$/js/services.js" />
         <option value="$PROJECT_DIR$/js/controllers.js" />
+        <option value="$PROJECT_DIR$/html/sidemenu/extendBooking.html" />
+        <option value="$PROJECT_DIR$/html/bookingcomfirm.html" />
         <option value="$PROJECT_DIR$/html/bookingdetails.html" />
         <option value="$PROJECT_DIR$/html/booking.html" />
-        <option value="$PROJECT_DIR$/html/sidemenu/extendBooking.html" />
       </list>
     </option>
   </component>
@@ -262,6 +259,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -414,7 +412,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -516,7 +513,8 @@
       <workItem from="1509585381359" duration="4819000" />
       <workItem from="1509786804510" duration="874000" />
       <workItem from="1509929962517" duration="9366000" />
-      <workItem from="1510016871634" duration="10659000" />
+      <workItem from="1510016871634" duration="12882000" />
+      <workItem from="1510296402010" duration="625000" />
     </task>
     <task id="LOCAL-00001" summary="阻止了滑动事件&#10;">
       <created>1503814165383</created>
@@ -581,11 +579,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509960991348</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="加入优惠码功能">
+      <created>1510043357098</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1510043357099</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158936000" />
+    <option name="totallyTimeSpent" value="161784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1284" height="1010" extended-state="0" />
@@ -595,18 +600,18 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6755555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -630,7 +635,9 @@
     <MESSAGE value="添加了拖欠回显功能" />
     <MESSAGE value="搜索提示附近车辆" />
     <MESSAGE value="手机显示的navbar的点击后回弹处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="手机显示的navbar的点击后回弹处理" />
+    <MESSAGE value="加入优惠码功能" />
+    <MESSAGE value="加入优惠码功能2" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入优惠码功能2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -902,12 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3225">
           <caret line="129" column="83" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="102" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#3;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#3;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#4;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -915,7 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5675">
           <caret line="227" column="34" selection-start-line="227" selection-start-column="28" selection-end-line="227" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -923,9 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16075">
           <caret line="647" column="6" selection-start-line="647" selection-start-column="6" selection-end-line="647" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -933,7 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
           <caret line="78" column="6" selection-start-line="78" selection-start-column="6" selection-end-line="86" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,7 +951,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/nav.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
+        <state relative-caret-position="1925">
           <caret line="89" column="28" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
           <folding>
             <element signature="n#div#0;n#div#0;n#nav#0;n#!!top" expanded="false" />
@@ -966,51 +962,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/signin_first.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="148" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-610">
-          <caret line="66" column="54" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="54" />
-          <folding>
-            <element signature="e#6003#7493#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/bookingdetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="195" column="53" selection-start-line="195" selection-start-column="53" selection-end-line="195" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/bookingcomfirm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1312">
-          <caret line="272" column="20" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/booking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
+        <state relative-caret-position="8600">
           <caret line="1996" column="54" selection-start-line="1996" selection-start-column="54" selection-end-line="1996" selection-end-column="54" />
           <folding>
             <element signature="e#2055#5061#0" expanded="false" />
@@ -1049,8 +1003,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/sidemenu/extendBooking.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
+        <state relative-caret-position="1550">
           <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
+          <folding>
+            <element signature="e#6003#7493#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/signin_first.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2475">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/bookingcomfirm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="238" column="52" selection-start-line="238" selection-start-column="52" selection-end-line="238" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/bookingdetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="787">
+          <caret line="199" column="67" selection-start-line="199" selection-start-column="67" selection-end-line="199" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/booking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="256" column="214" selection-start-line="256" selection-start-column="214" selection-end-line="256" selection-end-column="214" />
           <folding />
         </state>
       </provider>
