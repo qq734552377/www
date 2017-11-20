@@ -230,12 +230,21 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="left">
-                                                        <b>Booking Total</b>
+                                                        <b>Rental Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                         $-{{((lastBookingMsg.list.LeaseMount/100)+(lastBookingMsg.fees.TotalPreferential/100)).toFixed(2)}}
+                                                         $-{{((lastBookingMsg.list.LeaseMount/100)+(lastBookingMsg.fees.TotalPreferential/100)-(lastBookingMsg.list.TotalPremium/100)).toFixed(2)}}
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Insurance Total</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                         $-{{((lastBookingMsg.list.TotalPremium/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+
                                                 <tr>
                                                     <td class="left">
                                                         <b>Discount</b>

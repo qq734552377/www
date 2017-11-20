@@ -69,6 +69,43 @@ appControllers.controller('appCtr', function ($scope,$state, JIANCE, path, appCo
     });
 
 
+    getLocation();
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition,showError);
+        }
+        else{
+            var msg="Geolocation is not supported by this browser.";
+            console.log(msg);
+        }
+    }
+    function showPosition(position)
+    {
+        var ll="Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude;
+        console.log(ll);
+        // alert(ll)
+    }
+    function showError(error)
+    {
+        console.log(error);
+        switch(error.code)
+        {
+            case error.PERMISSION_DENIED:
+                console.log("User denied the request for Geolocation.")
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.")
+                break;
+            case error.TIMEOUT:
+                console.log("The request to get user location timed out.")
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log("An unknown error occurred.")
+                break;
+        }
+    }
 
 });
 
@@ -1808,6 +1845,11 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
         };
         $scope.carPriceList = {};
         $scope.extensionTimes = '1';
+        $scope.insuranceList = [];
+        $scope.insuranceMsg={
+            totalPriceEveryHour:0,
+            sendValue:''
+        };
 
         getWallet.init();
         $scope.$watch('extensionTimes', function (newValue, oldValue, scope) {
@@ -1875,7 +1917,37 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 $('#moTaiTishiBox').modal('show');
             });
         };
+        getDidHaveInsurance();
+        
+        function getDidHaveInsurance() {
+            $scope.insuranceMsg.totalPriceEveryHour=0;
+            $http({
+                method: 'POST',
+                url: allUrl.getInsuranceDetialByLeaseNumberUrl,
+                data: {
+                    LeaseNumber: $stateParams.id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                }
+            }).success(function (data) {
+                console.log(data)
+                if (data.MsgType == 'Success') {
+                    $scope.insuranceList =data.Data;
 
+                    for(var i=0;i< $scope.insuranceList.length;i++){
+                        $scope.insuranceMsg.totalPriceEveryHour += $scope.insuranceList[i].Premium;
+                    }
+                }else{
+                    $scope.insuranceList={};
+                    $scope.insuranceMsg.totalPriceEveryHour=0;
+                }
+
+            }).error(function () {
+                
+            });
+        }
     });
 
 appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $timeout, appContext, allUrl, allCarsMsg, getWallet) {
@@ -1912,7 +1984,12 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
     $scope.searchMsg = appContext.getAll().searchMsg;
     $scope.isGetCarStateWaitting = true;
     $scope.carPriceList = {};
-
+    $scope.insuranceList = {};
+    $scope.insuranceMsg={
+        totalPrice:0,
+        sendValue:''
+    };
+    $scope.totalFees=0;
     $scope.errorMsg={
         PromoCodeSpan:'',
         PromoCodeMsg:''
@@ -2070,7 +2147,8 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
                 VehiceType: $scope.carMsg.VehicleType,
                 LeaseType: $scope.carMsg.LeaseType,
                 VehicleModel: $scope.carMsg.VehicleModel,
-                PromoCode: $scope.carMsg.PromoCode
+                PromoCode: $scope.carMsg.PromoCode,
+                Insurance:getInsuranceSendString($scope.insuranceList)
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -2141,32 +2219,63 @@ appControllers.controller('bookingCtr', function ($scope, $http, $stateParams, $
             $scope.isGetCarStateWaitting = false;
         });
     }
+    getInsurance();
+    function getInsurance() {
+        $scope.isWaitting = true;
+        $scope.carPriceList = {};
+        $http({
+            method: 'POST',
+            url: allUrl.getInsuranceDetialUrl,
+            data: {
 
-    // initMapLaction();
-    function initMapLaction() {
-        var myCenter=new google.maps.LatLng($scope.carMsg.Latitude,$scope.carMsg.Longitude);
+            }
+        }).success(function (data) {
+            console.log(data)
+            $scope.isWaitting = false;
+            if(data.MsgType == 'Success'){
+                $scope.insuranceList=data.Data;
+            }
+        }).error(function () {
 
-        function initialize()
-        {
-            var mapProp = {
-                center:myCenter,
-                zoom:5,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-            var marker=new google.maps.Marker({
-                position:myCenter,
-            });
-
-            marker.setMap(map);
-        }
-
-
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+        });
     }
+
+
+    $scope.$watch('insuranceList', function (newValue, oldValue, scope) {
+        $timeout(function () {
+            checkBoxJianTing(newValue)
+        },1000);
+    });
+
+
+    //监听checkBox
+    function checkBoxJianTing(insuranceList) {
+        if(insuranceList.length <= 0){
+            return;
+        }
+        for(var total=0;total < insuranceList.length;total++){
+            $scope.insuranceMsg.totalPrice +=insuranceList[total].Premium;
+            $scope.totalFees=$scope.insuranceMsg.totalPrice*$scope.carMsg.Duration +$scope.carPriceList.BookingTotal;
+            $("#insuranceCheck"+insuranceList[total].ID).change(function(){
+                if($(this).get(0).checked){
+                    $scope.insuranceMsg.totalPrice += getPriceByID($(this).val());
+                }else{
+                    $scope.insuranceMsg.totalPrice -= getPriceByID($(this).val());
+                }
+                $scope.totalFees=$scope.insuranceMsg.totalPrice*$scope.carMsg.Duration +$scope.carPriceList.BookingTotal;
+                $scope.$apply();
+            });
+        }
+        $scope.$apply();
+    }
+    function getPriceByID(id) {
+        for (var start=0;start < $scope.insuranceList.length;start++){
+            if($scope.insuranceList[start].ID == id){
+                return $scope.insuranceList[start].Premium;
+            }
+        }
+    }
+
 
 })
     .controller('bookingcomfirmCtr', function ($scope, $http, $stateParams, appContext, allUrl) {
@@ -2405,7 +2514,24 @@ appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
         }
     });
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+//获取保险的checkbox的值并用-拼接
+function getInsuranceSendString(insuranceList) {
+    if(insuranceList.length <= 0){
+        return;
+    }
+    var arrSend=[];
+    for(var total=0;total < insuranceList.length;total++) {
+        if($("#insuranceCheck" + insuranceList[total].ID).get(0).checked){
+            arrSend[total]=$("#insuranceCheck" + insuranceList[total].ID).val();
+        }
+    }
+    return arrSend.join('-');
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 function initPage(scope) {
     scope.pageCount = Math.ceil(scope.sourceBookings.length / scope.avg);
     if (scope.pageCount > 0) {

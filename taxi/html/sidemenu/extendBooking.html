@@ -14,7 +14,46 @@
                                 <img src="img/waiting.gif">
                             </div>
 
+
+
+
                             <div class="payPrice" ng-if="!isWaitting">
+
+                                <!--保险费率-->
+                                <div class="countPrice" ng-if="!isWaitting">
+                                    <div class="col-xs-12">
+                                        <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Optional Add-Ons</h5>
+                                    </div>
+                                    <div class="form-group row" ng-repeat="item2 in insuranceList">
+                                        <div class="col-xs-11 col-xs-offset-1" >
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="insuranceType" type="checkbox" value="{{item2.ID}}" id="insuranceCheck{{item2.ID}}" checked disabled>
+                                                    {{item2.Remarks}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="totalPrice">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="left">
+                                                        <b>Insurance Fees</b>
+                                                    </td>
+                                                    <td class="right text-right" id="totalInsurance">
+                                                        ${{(insuranceMsg.totalPriceEveryHour*extensionTimes/100).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--保险费率END-->
+
                                 <!--计算价格-->
                                 <div class="col-md-12 countPrice">
                                     <div class="top">
@@ -38,7 +77,7 @@
                                             <tbody>
                                             <tr>
                                                 <td class="left">
-                                                    <b>Booking Total</b>
+                                                    <b>Extension Fees</b>
                                                 </td>
                                                 <td class="right text-right">
                                                     ${{(carPriceList.BookingTotal/100).toFixed(2)}}
@@ -52,6 +91,27 @@
 
                                 </div>
                                 <!--计算价格End-->
+
+                                <!--总价格-->
+                                <div class="col-xs-12 countPrice">
+                                    <div class="totalPrice">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td class="left">
+                                                    <b>Total Payable</b>
+                                                </td>
+                                                <td class="right text-right" id="totalFees">
+                                                    ${{((carPriceList.BookingTotal+insuranceMsg.totalPriceEveryHour*extensionTimes)/100).toFixed(2)}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <!--总价格END-->
+
 
                                 <div class="col-md-12" ng-if="!appContext.isAut">
                                     <button ng-click="goToLogin()" class="btn btn-success btn-block">Log In</button>
@@ -99,19 +159,19 @@
                                                         <b>Total Payable</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        $-{{(carPriceList.BookingTotal/100).toFixed(2)}}
+                                                        $-{{((carPriceList.BookingTotal+insuranceMsg.totalPriceEveryHour*extensionTimes)/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
-                                                <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney - (carPriceList.BookingTotal/100)) <= 0}">
+                                                <tr class="balance" ng-class="{'red-font':(appContext.userAccountMoney - (carPriceList.BookingTotal+insuranceMsg.totalPriceEveryHour*extensionTimes)/100) <= 0}">
                                                     <td class="left ">
                                                         <b>Balance</b>
                                                     </td>
                                                     <td class="right text-right ">
-                                                        ${{(appContext.userAccountMoney - (carPriceList.BookingTotal/100)).toFixed(2)}}
+                                                        ${{(appContext.userAccountMoney - (carPriceList.BookingTotal+insuranceMsg.totalPriceEveryHour*extensionTimes)/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
 
-                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal/100))<=0"
+                                                <tr ng-if="(appContext.userAccountMoney - (carPriceList.BookingTotal+insuranceMsg.totalPriceEveryHour*extensionTimes)/100)<=0"
                                                     id="noMoreMoney"
                                                     class="noMoreMoney">
                                                     <td colspan="2">

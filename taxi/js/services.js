@@ -112,6 +112,8 @@ serviceModule.factory('allUrl',function () {
         getPasswordBackUrl:host + '/api/ResetPassword',
         getPromotionCodeUrl:host + '/api/ReturnPromotionCodeAndMoney',
         getPromoCodeCanUseUrl:host + '/api/IsCheckPromo',
+        getInsuranceDetialUrl:host + '/Insurance/GetInsurance',
+        getInsuranceDetialByLeaseNumberUrl:host + '/Insurance/GetInsuranceByLeaseNumber',
 
     }
 })
@@ -270,7 +272,8 @@ serviceModule.factory('allUrl',function () {
                 endtripSure5:false,
             },
             depositMsg:{},
-            promoData:{}
+            promoData:{},
+            totalFees:{}
         };
 
 

@@ -154,7 +154,7 @@
                                             <div class="col-md-6  col-sm-6 col-xs-6 margin-top-20" ng-if="bookingMsg.list.LeaseStatus==0">
                                                 <a class="btn btn-block btn-danger" data-toggle="modal" data-target="#issuerCancelTrip"
                                                    style="color: #fff">
-                                                    Cancel
+                                                    Cancel Trip
                                                 </a>
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <td class="left">
-                                                        <b>State</b>
+                                                        <b>Status</b>
                                                     </td>
                                                     <td class="right text-right">
                                                         {{bookingMsg.list.LeaseStatusName}}
@@ -188,10 +188,19 @@
                                                 <!--订单费用-->
                                                 <tr ng-if="bookingMsg.fees && bookingMsg.fees != null ">
                                                     <td class="left">
-                                                        <b>Booking Total</b>
+                                                        <b>Rental Total</b>
                                                     </td>
                                                     <td class="right text-right">
-                                                        $-{{((bookingMsg.fees.BookingTotal/100)+(bookingMsg.fees.TotalPreferential/100)).toFixed(2)}}
+                                                        $-{{((bookingMsg.fees.BookingTotal/100)+(bookingMsg.fees.TotalPreferential/100)-(bookingMsg.list.TotalPremium/100)).toFixed(2)}}
+                                                    </td>
+                                                </tr>
+                                                <!--保险费用-->
+                                                <tr ng-if="bookingMsg.fees && bookingMsg.fees != null ">
+                                                    <td class="left">
+                                                        <b>Insurance Total</b>
+                                                    </td>
+                                                    <td class="right text-right">
+                                                        $-{{(bookingMsg.list.TotalPremium/100).toFixed(2)}}
                                                     </td>
                                                 </tr>
                                                 <!--优惠的价格-->
