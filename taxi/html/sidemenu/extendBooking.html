@@ -21,20 +21,20 @@
 
                                 <!--保险费率-->
                                 <div class="countPrice" ng-if="!isWaitting">
-                                    <div class="col-xs-12">
+                                    <div class="col-md-12">
                                         <h5 class="bottom-border" style="font-size: 16px;font-weight: bold">Optional Add-Ons</h5>
                                     </div>
                                     <div class="form-group row" ng-repeat="item2 in insuranceList">
                                         <div class="col-xs-11 col-xs-offset-1" >
-                                            <div class="checkbox">
-                                                <label>
+                                            <div class="checkbox" >
+                                                <label style="padding-right: 20px">
                                                     <input name="insuranceType" type="checkbox" value="{{item2.ID}}" id="insuranceCheck{{item2.ID}}" checked disabled>
                                                     {{item2.Remarks}}
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                    <div class="col-md-12">
                                         <div class="totalPrice">
                                             <table class="table">
                                                 <tbody>
@@ -93,7 +93,7 @@
                                 <!--计算价格End-->
 
                                 <!--总价格-->
-                                <div class="col-xs-12 countPrice">
+                                <div class="col-md-12 countPrice">
                                     <div class="totalPrice">
                                         <table class="table">
                                             <tbody>

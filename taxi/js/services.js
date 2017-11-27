@@ -100,6 +100,8 @@ serviceModule.factory('allUrl',function () {
         endTripUrl:host + '/Bookings/FrontClose',
         reportIssueUrl:host + '/ReportIssue/Add',
         breakDownUrl:host + '/ReportIssue/CancelAdd',
+        reportMainIssueReasonsUrl:host + '/Select/QueryFeedBackCategory',
+        reportSubIssueReasonsUrl:host + '/IssueType/GetIssueType',
         reportIssueReasonsUrl:host + '/Select/GetIssueName',
         reportBreakDownOrAccdientReasonsUrl:host + '/Select/GetCancelReason',
         getUserTopupMsgUrl:host + '/Wallet/QueryWallet',
@@ -199,6 +201,7 @@ serviceModule.factory('allUrl',function () {
             EducationLevel:[],
             CancelReasons:[],
             ReportIssueReasons:[],
+            ReportIssueSubTitles:[],
             signinMsg:{
                 Email:'',
                 Password:'',

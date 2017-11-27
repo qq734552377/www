@@ -897,7 +897,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
                 title:'Report Issue',
-                getReasonsUrl:allUrl.reportIssueReasonsUrl
+                getReasonsUrl:allUrl.reportMainIssueReasonsUrl
             });
         };
         $scope.goToBreakDown=function (title) {
@@ -906,7 +906,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.breakDownUrl,
                 title:title,
-                getReasonsUrl:allUrl.reportBreakDownOrAccdientReasonsUrl
+                getReasonsUrl:allUrl.reportMainIssueReasonsUrl
             });
         }
 
@@ -1634,7 +1634,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
                 title:'Report Issue',
-                getReasonsUrl:allUrl.reportIssueReasonsUrl
+                getReasonsUrl:allUrl.reportMainIssueReasonsUrl
             });
         };
         $scope.unlockCar = function () {
@@ -1689,17 +1689,52 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
     .controller('reportIssueCtr', function ($scope, $http, $stateParams, allUrl, appContext,initReportIssueReasons) {
         $scope.$emit('curPath', 'Report Issue');
         if (!appContext.getAll().fromBookingPage.goToReportIssue) {
-            window.location.replace('#/login');
+            window.location.replace('#/sidemenu/account');
             return;
         }
         initReportIssueReasons.init($stateParams.getReasonsUrl);
         $scope.reportIssueObj = {
             LeaseNumber: $stateParams.id,
+            CategoryID:'0',
             IssueTypeId: '0',
             Title: '',
             Remarks: '',
             mainTitle:$stateParams.title
         };
+
+        $scope.$watch('reportIssueObj.CategoryID', function (newValue, oldValue, scope) {
+            appContext.getAll().ReportIssueSubTitles = [];
+
+            if (newValue == 0) {
+                scope.reportIssueObj.IssueTypeId = '0';
+                return;
+            }
+
+            $http({
+                method: "POST",
+                url: allUrl.reportSubIssueReasonsUrl,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: "Basic " + appContext.getAll().token
+                },
+                data: {
+                    ID: newValue
+                }
+            }).success(function (data) {
+                console.log(data);
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().ReportIssueSubTitles = data.Data;
+                    if (data.Data.length == 0 || !hasVehicleNumberInArray(data.Data, scope.reportIssueObj.IssueTypeId )) {
+                        scope.reportIssueObj.IssueTypeId = '0';
+                    }
+                } else {
+                    scope.reportIssueObj.IssueTypeId = '0';
+                }
+
+            }).error(function () {
+                scope.reportIssueObj.IssueTypeId = '0';
+            });
+        });
 
         $scope.reportIssue = function () {
 
@@ -1773,7 +1808,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                 id: appContext.getAll().lastBooking.list.LeaseNumber,
                 url:allUrl.reportIssueUrl,
                 title:'Report Issue',
-                getReasonsUrl:allUrl.reportIssueReasonsUrl
+                getReasonsUrl:allUrl.reportMainIssueReasonsUrl
             });
         };
 

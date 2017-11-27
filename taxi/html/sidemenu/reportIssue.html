@@ -10,17 +10,21 @@
                     <form>
                         <div class="form-group">
                             <label for="form_issue_type">Issue Type</label>
-                            <select id="form_issue_type" ng-model="reportIssueObj.IssueTypeId" class="form-control">
+                            <select id="form_issue_type" ng-model="reportIssueObj.CategoryID" class="form-control">
                                 <option value="0">Please select one reason</option>
                                 <option ng-repeat="item in appContext.ReportIssueReasons" value="{{item.ID}}">
-                                    {{item.LeaseCancelReason}}
+                                    {{item.FeedBackCategoryName}}
                                 </option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" ng-model="reportIssueObj.Title" id="title"
-                                   placeholder="">
+                            <label for="subtitle">SubTitle</label>
+                            <select class="form-control" ng-model="reportIssueObj.IssueTypeId" id="subtitle">
+                                <option value="0">Please select one reason</option>
+                                <option ng-repeat="item in appContext.ReportIssueSubTitles" value="{{item.ID}}">
+                                    {{item.LeaseCancelReason}}
+                                </option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="form_description">Description of the Issue</label>
