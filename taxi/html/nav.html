@@ -1,5 +1,5 @@
 <!-- 未登录头部-->
-<nav ng-show='!appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
+<nav ng-show='!appContext.isAut&&!appContext.isSidemenu' hidden class="navbar navbar-static-top navbar-default navbar-topstyle" >
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
                 data-target="#bs-navbar"
@@ -43,8 +43,95 @@
 </nav>
 <!-- 未登录头部结尾-->
 
+<!-- 未登录头部-->
+<nav ng-show='!appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle" >
+    <div class="container">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                data-target="#bs-navbar2"
+                aria-controls="bs-navbar2" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header">
+            <div class="navbar-brand ">
+                <a href="#/" style="">
+                    <img src="img/logo.png" alt="logo" style="margin: -15px auto;height:50px;width: 148px;">
+                </a>
+            </div>
+            <div class="navbar-brand " hidden>
+                <a href="#/" style="display: inline-block;">
+                    <img src="img/logo-long.png" alt="logo"
+                         style="margin: -15px auto;height:50px;vertical-align: middle;">
+                </a>
+            </div>
+        </div>
+        <nav id="bs-navbar2" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="dropdownM5" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Learn more
+                        <span class="glyphicon menu-right"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM5" style="width: 100%">
+                        <li>
+                            <a href="#/faq">
+                                <span class="span-left"></span>
+                                FAQ
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/terms">
+                                <span class="span-left"></span>
+                                Terms &Conditions
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/privacypolicy">
+                                <span class="span-left"></span>
+                                Privacy Policy
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                <i class="glyphicon glyphicon-play-circle"></i>
+                                Tutorial Video
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/signup_f/" id="signUp2">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <li>
+                    <a href="#/login" id="logIn2">
+                        <i class="glyphicon glyphicon-log-out"></i>
+                        Log In
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+<!-- 未登录头部结尾-->
+
+
 <!-- 已登录头部-->
-<nav ng-show='appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
+<nav ng-show='appContext.isAut&&!appContext.isSidemenu' hidden class="navbar navbar-static-top navbar-default navbar-topstyle">
 
     <div class="container">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
@@ -158,6 +245,131 @@
 </nav>
 <!-- 已登录头部结尾-->
 
+<!-- 已登录头部-->
+<nav ng-show='appContext.isAut&&!appContext.isSidemenu' class="navbar navbar-static-top navbar-default navbar-topstyle">
+
+    <div class="container">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                data-target="#bs-navbar-yidenglu3"
+                aria-controls="bs-navbar-yidenglu3" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="#/" style="">
+                    <img src="img/logo.png" alt="logo" style="margin: -15px auto;height:50px;width: 148px;">
+                </a>
+            </div>
+            <div class="navbar-brand hidden">
+                <a href="#/" style="display: inline-block;">
+                    <img src="img/logo-long.png" alt="logo"
+                         style="margin: -15px auto;height:50px;vertical-align: middle;">
+                </a>
+            </div>
+        </div>
+        <nav id="bs-navbar-yidenglu3" class="collapse navbar-collapse">
+
+
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="dropdownM11" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Learn more
+                        <span class="glyphicon menu-right"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM11">
+                        <li>
+                            <a href="#/faq">
+                                <span class="span-left"></span>
+                                FAQ
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/terms">
+                                <span class="span-left"></span>
+                                Terms &Conditions
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/privacypolicy">
+                                <span class="span-left"></span>
+                                Privacy Policy
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="span-left"></span>
+                                <i class="glyphicon glyphicon-play-circle"></i>
+                                Tutorial Video
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown with-left-icon">
+                    <!--<i href="#" class="user-icon"><img src="img/layout.jpg"></i>-->
+                    <a class="dropdown-toggle" id="dropdownM12" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i href="#"><img src="img/logo-small.png"></i>
+                        {{appContext.username}}
+                        <span class="glyphicon menu-right"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownM12" aria-haspopup="true">
+                        <li>
+                            <a href="#/sidemenu/account">
+                                <span class="span-left"></span>
+                                My account
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/sidemenu/topup">
+                                <span class="span-left"></span>
+                                Top up
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/sidemenu/mybookings">
+                                <span class="span-left"></span>
+                                My bookings
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="logOut()">
+                                <span class="span-left"></span>
+                                Log Out
+                                <span class="span-right"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/signup_f/" id="signUp3">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Sign Up
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+<!-- 已登录头部结尾-->
+
 <!-- 侧边栏页面头部-->
 <nav ng-if="appContext.isSidemenu" class="navbar navbar-static-top navbar-default navbar-topstyle">
     <div class="container">
@@ -174,10 +386,18 @@
             <div class=" visible-xs">
                 <a href="#/" style="">
                     <img src="img/logo.png" alt="logo"
-                         style="margin: 0 auto;height:50px;width: 148px;transform:translate(-25%);">
+                         style="margin: 0 auto;height:50px;width: 150px;transform:translate(-25%);">
                 </a>
             </div>
-            <div class=" hidden-xs">
+
+            <button class="hidden-xs toggle-btn-md" type="button" id="toggle" >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class=" hidden">
                 <a href="#/" style="">
                     <img src="img/logo-long.png" alt="logo"
                          style="margin: 0px auto;height:50px;">
@@ -188,9 +408,16 @@
         <nav class="side-menu-wrap navbar-offcanvas   navbar-offcanvas-fade"
              role="navigation"
              id="side-menu">
+            <div class="hidden-xs" style="height: 50px; background-color: #e81e06;width: 230px">
+                <a href="#/" style="display: block">
+                    <img src="img/logo.png" alt="logo"
+                         style="margin:0 auto;height:50px;width: 150px;">
+                </a>
+            </div>
             <aside>
+
                 <div class="side-menu-header ">
-                    <a id="toggle" >
+                    <a >
                         <img src="img/logo-small.png">
                         <span>Hi,{{appContext.username}}!</span>
                     </a>
@@ -254,6 +481,9 @@
     </div>
 </nav>
 <!-- 侧边栏页面头部结尾-->
+
+
+
 
 <script>
     $(function () {

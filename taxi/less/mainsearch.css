@@ -67,9 +67,6 @@
 .search .mainsearch-item > div span i {
   font-size: 32px;
 }
-.search .mainsearch-item > div input {
-  background-color: transparent;
-}
 .search .mainsearch-item select.only-padding-left {
   padding-left: 56px;
 }

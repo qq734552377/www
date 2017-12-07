@@ -129,7 +129,7 @@ serviceModule.factory('allUrl',function () {
             lastBooking: undefined,
             isAut:false,
             token:'',
-            username:'P J',
+            username:'Personal',
             isEnoughBalance:false,
             userAccountMoney:0,
             userTopupMsg:{},
@@ -341,18 +341,18 @@ serviceModule.factory('allUrl',function () {
                     } else {
                         appContext.getAll().isAut = false;
                         appContext.getAll().token = '';
-                        appContext.getAll().username='P J';
+                        appContext.getAll().username='Personal';
                     }
                 }).error(function () {
                     appContext.getAll().isAut = false;
                     appContext.getAll().token = '';
-                    appContext.getAll().username='P J';
+                    appContext.getAll().username='Personal';
                 })
             } else {
                 //本地没有token
                 appContext.getAll().isAut = false;
                 appContext.getAll().token = '';
-                appContext.getAll().username='P J';
+                appContext.getAll().username='Personal  ';
             }
 
 

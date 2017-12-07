@@ -246,6 +246,9 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.good-margin-top-50-0 {
+  margin-top: 50px;
+}
 @media (max-width: 767px) {
   .good-padding-bottom-l {
     padding-bottom: 120px;
@@ -302,5 +305,8 @@
   .good-margin-top-bottom-m {
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+  .good-margin-top-50-0 {
+    margin-top: 0px;
   }
 }

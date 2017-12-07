@@ -3,7 +3,7 @@
 .navbar .container .side-menu-wrap {
   position: absolute;
   left: 0;
-  top: 50px;
+  top: 0px;
   width: @side-menu-width;
   height: 100%;
   background-color: @side-menu-backfround-color;
@@ -280,6 +280,7 @@ a {
 @media (max-width: @xs-width) {
   .navbar .container .side-menu-wrap {
     left: -230px;
+    top:50px;
   }
 
   .navbar .container .side-menu-wrap.mini {
@@ -355,5 +356,59 @@ a {
   .offcanvas-stop-scrolling .main-footer-side-menu {
     .transform-translate(@side-menu-width, 0);
   }
+
+}
+.mini.toggle-btn-md{
+
+   .icon-bar:nth-child(2) {
+    -webkit-transform: rotate(45deg) scaleX(.8) translateX(7px) translateY(-5px);
+    -ms-transform: rotate(45deg) scaleX(.8) translateX(7px) translateY(-5px);
+    -o-transform: rotate(45deg) scaleX(.8) translateX(7px) translateY(-5px);
+    -moz-transform: rotate(45deg) scaleX(.8) translateX(7px) translateY(-5px);
+    transform: rotate(45deg) scaleX(.8) translateX(7px) translateY(-5px);
+  }
+
+   .icon-bar:nth-child(3) {
+    -webkit-transform: translateX(1px);
+    -ms-transform: translateX(1px);
+    -o-transform: translateX(1px);
+    -moz-transform: translateX(1px);
+    transform: translateX(1px)
+  }
+
+   .icon-bar:nth-child(4) {
+    -webkit-transform: rotate(-45deg) scaleX(.8) translateX(7px) translateY(5px);
+    -ms-transform: rotate(-45deg) scaleX(.8) translateX(7px) translateY(5px);
+    -o-transform: rotate(-45deg) scaleX(.8) translateX(7px) translateY(5px);
+    -moz-transform: rotate(-45deg) scaleX(.8) translateX(7px) translateY(5px);
+    transform: rotate(-45deg) scaleX(.8) translateX(7px) translateY(5px)
+  }
+}
+
+
+.toggle-btn-md{
+  position: absolute;
+  left: 230px;
+  padding: 9px 10px;
+  top:0px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  border: 0;
+  background-color: #e81e06;
+  border-radius: 4px;
+  outline: 0;
+  .icon-bar {
+    display: block;
+    width: 22px;
+    margin-top: 4px;
+    height: 2px;
+    border-radius: 1px;
+    background: #fff;
+    -webkit-transition: all .25s ease-in-out;
+    -moz-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+  }
+
 
 }

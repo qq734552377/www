@@ -59,7 +59,11 @@ appControllers.controller('appCtr', function ($scope,$state, JIANCE, path, appCo
         });
     };
 
-
+    $scope.goToTopupWithHref =function () {
+        $state.go('sidemenu.topup', {
+            href: window.location.href
+        });
+    };
     $(window).scroll(function(){
         if($(window).scrollTop() >1600){
             $("#movetoTop").fadeIn(1000);//一秒渐入动画
@@ -118,7 +122,7 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         url: allUrl.loginUrl,
         email: '',
         password: '',
-        loginSucessUrl: '#/search'
+        loginSucessUrl: '#/main1'
     };
 
     function initLoginMsg() {
@@ -792,7 +796,7 @@ appControllers.controller('searchCtr', function ($scope, $http, appContext, allC
                 $('#moTaiTishiBox').modal('show');
                 return;
             }
-            window.location.replace('#/search');
+            window.location.href = '#/search';
         }
 
         $scope.$watch('searchMsg.location', function (newValue, oldValue, scope) {
@@ -1327,7 +1331,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
 
 
     })
-    .controller('topupCtr', function ($scope, $http, allUrl, appContext) {
+    .controller('topupCtr', function ($scope, $http,$stateParams, allUrl, appContext) {
         $scope.$emit('curPath', 'Top Up');
         $scope.tishiBox = {
             isShow: true,
@@ -1335,7 +1339,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
             title: 'Promotion:',
             msg: 'Top up $50 and enjoy a 10% off for your next booking. Take advantage now.'
         };
-
+        // alert($stateParams.href);
         querryUserTopupMsg();
 
         function querryUserTopupMsg() {
@@ -1439,7 +1443,7 @@ appControllers.controller('sidemenuCtr', function ($scope, $state, $location) {
                     Amount: price,
                     Redirect_Url:allUrl.host+'/',
                     Whereabouts:type,
-                    Current_Url:window.location.href
+                    Current_Url:$stateParams.href =='' ? window.location.href : $stateParams.href
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -2534,7 +2538,9 @@ appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
     })
     .controller('mainCtr', function ($scope,appContext) {
         $scope.searchMsg = appContext.getAll().searchMsg;
-
+        if(appContext.getAll().isAut){
+            window.location.replace('#/main1')
+        }
 
         $scope.goToSearchWithCarType=function (rentFor) {
             $scope.searchMsg.rentFor=rentFor;
@@ -2546,6 +2552,71 @@ appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
             $scope.searchMsg.rentFor='0';
             // $scope.searchMsg.rentFor=id;
             window.location='#/search';
+        }
+    })
+    .controller('main1Ctr', function ($scope,$http,appContext,allUrl) {
+        $scope.searchMsg = appContext.getAll().searchMsg;
+        if(!appContext.getAll().isAut){
+            window.location.replace('#/main')
+        }
+
+        $scope.goToSearchWithCarType=function (rentFor) {
+            $scope.searchMsg.rentFor=rentFor;
+            // $scope.searchMsg.rentFor=id;
+            window.location='#/search';
+        }
+        $scope.goToSearchWithLocation=function (location) {
+            $scope.searchMsg.location=location;
+            $scope.searchMsg.rentFor='0';
+            // $scope.searchMsg.rentFor=id;
+            window.location='#/search';
+        }
+
+        if ($scope.searchMsg.startTime == '' || compareTimeWithCurrentTime($scope.searchMsg.startDate + " " + $scope.searchMsg.startTime)) {
+            initsearchTime($scope.searchMsg);
+        }
+
+        $scope.$watch('searchMsg.location', function (newValue, oldValue, scope) {
+
+            scope.searchMsg.vehicleNumbers = [];
+
+            if (newValue == 0) {
+                scope.searchMsg.vehicleNumber = '0';
+                return;
+            }
+
+            $http({
+                method: "POST",
+                url: allUrl.getVehicleNumberBylocationUrl,
+                data: {
+                    BindParking: newValue
+                }
+            }).success(function (data) {
+                console.log(data);
+                if (data.MsgType == 'Success') {
+                    appContext.getAll().searchMsg.vehicleNumbers = data.Data;
+                    if (data.Data.length == 0 || !hasVehicleNumberInArray(data.Data, $scope.searchMsg.vehicleNumber)) {
+                        scope.searchMsg.vehicleNumber = '0';
+                    }
+                } else {
+                    scope.searchMsg.vehicleNumber = '0';
+                }
+
+            }).error(function () {
+                scope.searchMsg.vehicleNumber = '0';
+            });
+
+        });
+
+
+        $scope.mainsearch = function () {
+            if ($scope.searchMsg.location == 0) {
+                $scope.motaiBox.title = 'Promotion:';
+                $scope.motaiBox.msg = "Pelease select a location,thanks!";
+                $('#moTaiTishiBox').modal('show');
+                return;
+            }
+            window.location.replace('#/search');
         }
     });
 

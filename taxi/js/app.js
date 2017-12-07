@@ -212,6 +212,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
                 app:'appContext',
                 goTop:'scrollToTop'
             },
+            params:{
+                href:''
+            },
             // myIsSide 是解决依赖项注入控制器
             onEnter: function(app,goTop){
                 goTop.go();
@@ -476,6 +479,23 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         url:'/terms',
         templateUrl:'html/terms.html',
         controller:'termsCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
+    })
+    .state('main1',{
+        url:'/main1',
+        templateUrl:'html/main1.html',
+        controller:'main1Ctr',
         //注入'isSide'服务
         resolve: {
             app:'appContext',
