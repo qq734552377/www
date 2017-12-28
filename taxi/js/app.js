@@ -508,10 +508,95 @@ myApp.config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         // myIsSide 是解决依赖项注入控制器
         onExit: function(app){
         }
+    })
+    .state('main2',{
+        url:'/main2',
+        templateUrl:'html/main2.html',
+        controller:'main2Ctr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
+    })
+    .state('contact_us',{
+        url:'/contact_us',
+        templateUrl:'html/contact_us.html',
+        controller:'contact_usCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
+    })
+    .state('fleet_rates',{
+        url:'/fleet_rates',
+        templateUrl:'html/fleet_rates.html',
+        controller:'fleet_ratesCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
+    })
+    .state('our_services',{
+        url:'/our_services',
+        templateUrl:'html/our_services.html',
+        controller:'our_servicesCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
+    })
+    .state('promotions',{
+        url:'/promotions',
+        templateUrl:'html/promotions.html',
+        controller:'promotionsCtr',
+        //注入'isSide'服务
+        resolve: {
+            app:'appContext',
+            goTop:'scrollToTop'
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onEnter: function(app,goTop){
+            goTop.go();
+        },
+        // myIsSide 是解决依赖项注入控制器
+        onExit: function(app){
+        }
     });
 
 
 
     // $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/main2');
 });

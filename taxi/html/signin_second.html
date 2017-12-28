@@ -2,14 +2,14 @@
 
 <div class="sign-in">
     <div class="">
-        <div class="step hidden-xs hidden-sm container" >
+        <div class="step hidden-xs hidden-sm container" style="background-color: rgba(255,255,255,0.9);">
             <div class="row">
                 <div class="col-md-11 col-md-offset-1 ">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="media active">
                                 <div class="media-left">
-                                    <a href="#/signup_f">
+                                    <a href="#/signup_f/">
                                         <img class="media-object" src="img/1_red.png" alt="1">
                                     </a>
                                 </div>
@@ -68,11 +68,14 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                <div class="col-md-4">
+                    <div class="sign-first-big-title"><h2>Perfect Personal Information</h2></div>
+                </div>
+                <div class="col-md-8">
                     <div class="" id="sign-in-background">
                         <div class="sign-in-body">
                             <div class="sign-in-content">
-                                <div class="text-center margin-bottom-25 margin-top-25"><h2>Perfect Personal Information</h2></div>
+
                                 <form name="signup_s" class="margin-top-25">
                                     <div class="row">
                                         <div class="col-md-5 col-md-offset-1 col-xs-12">
@@ -162,47 +165,56 @@
                                             </div>
                                             <!--Education Level end-->
                                         </div>
+                                        <!--<div class="col-md-5 col-xs-12">-->
+                                            <!--&lt;!&ndash;Block No.&ndash;&gt;-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="sign-in-label">Block No.</label>-->
+                                                <!--<input ng-model="signin_s.BlockNo" type="text" class="form-control" id="BlockNo"-->
+                                                       <!--required="required" placeholder="">-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;Block No. end&ndash;&gt;-->
+                                        <!--</div>-->
                                         <div class="col-md-5 col-xs-12">
-                                            <!--Block No.-->
+                                            <!--Address-->
                                             <div class="form-group">
-                                                <label class="sign-in-label">Block No.</label>
-                                                <input ng-model="signin_s.BlockNo" type="text" class="form-control" id="BlockNo"
+                                                <label class="sign-in-label">Address</label>
+                                                <input ng-model="signin_s.Address" type="text" class="form-control" id="Address"
                                                        required="required" placeholder="">
                                             </div>
-                                            <!--Block No. end-->
+                                            <!--Address-->
                                         </div>
                                     </div>
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-5 col-md-offset-1 col-xs-12">-->
+                                            <!--&lt;!&ndash;Storey&ndash;&gt;-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="sign-in-label">Storey</label>-->
+                                                <!--<input ng-model="signin_s.Storey" type="text" class="form-control" id="Storey"-->
+                                                       <!--required="required" placeholder="">-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;Storey end&ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--<div class="col-md-5 col-xs-12">-->
+                                            <!--&lt;!&ndash;Unit No.&ndash;&gt;-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="sign-in-label" >Unit No.</label>-->
+                                                <!--<input ng-model="signin_s.UnitNo" type="text" class="form-control" id="UnitNo"-->
+                                                       <!--required="required" placeholder="">-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;Unit No. end&ndash;&gt;-->
+                                        <!--</div>-->
+                                    <!--</div>-->
                                     <div class="row">
+                                        <!--<div class="col-md-5 col-md-offset-1 col-xs-12">-->
+                                            <!--&lt;!&ndash;Street Name&ndash;&gt;-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="sign-in-label" >Street Name</label>-->
+                                                <!--<input ng-model="signin_s.StreetName" type="text" class="form-control" id="StreetName"-->
+                                                       <!--required="required" placeholder="">-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash;Street Name end&ndash;&gt;-->
+                                        <!--</div>-->
                                         <div class="col-md-5 col-md-offset-1 col-xs-12">
-                                            <!--Storey-->
-                                            <div class="form-group">
-                                                <label class="sign-in-label">Storey</label>
-                                                <input ng-model="signin_s.Storey" type="text" class="form-control" id="Storey"
-                                                       required="required" placeholder="">
-                                            </div>
-                                            <!--Storey end-->
-                                        </div>
-                                        <div class="col-md-5 col-xs-12">
-                                            <!--Unit No.-->
-                                            <div class="form-group">
-                                                <label class="sign-in-label" >Unit No.</label>
-                                                <input ng-model="signin_s.UnitNo" type="text" class="form-control" id="UnitNo"
-                                                       required="required" placeholder="">
-                                            </div>
-                                            <!--Unit No. end-->
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 col-md-offset-1 col-xs-12">
-                                            <!--Street Name-->
-                                            <div class="form-group">
-                                                <label class="sign-in-label" >Street Name</label>
-                                                <input ng-model="signin_s.StreetName" type="text" class="form-control" id="StreetName"
-                                                       required="required" placeholder="">
-                                            </div>
-                                            <!--Street Name end-->
-                                        </div>
-                                        <div class="col-md-5 col-xs-12">
                                             <!--Postal Code-->
                                             <div class="form-group">
                                                 <label class="sign-in-label" >Postal Code</label>
@@ -211,9 +223,7 @@
                                             </div>
                                             <!--Postal Code end-->
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                        <div class="col-md-5 col-xs-12">
                                             <!--Date of Birth-->
                                             <div class="form-group">
                                                 <label class="sign-in-label">Date of Birth</label>
@@ -230,7 +240,9 @@
                                             </div>
                                             <!--Date of Birth end-->
                                         </div>
-                                        <div  class="col-md-5 col-xs-12">
+                                    </div>
+                                    <div class="row">
+                                        <div  class="col-md-5 col-md-offset-1 col-xs-12">
                                             <!--Driving License Issue Date-->
                                             <div class="form-group">
                                                 <label class="sign-in-label" >Driving License
@@ -249,9 +261,7 @@
                                             </div>
                                             <!--Driving License Issue Date end-->
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 col-md-offset-1 col-xs-12">
+                                        <div class="col-md-5 col-xs-12">
                                             <!--TDVL First Issue Date-->
                                             <div class="form-group">
                                                 <label class="sign-in-label" >TDVL First Issue
@@ -269,7 +279,9 @@
                                             </div>
                                             <!--TDVL First Issue Date end-->
                                         </div>
-                                        <div class="col-md-5 col-xs-12">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-md-offset-1 col-xs-12">
                                             <!--TDVL Expiry Date-->
                                             <div class="form-group">
                                                 <label class="sign-in-label">TDVL Expiry Date</label>
@@ -285,6 +297,7 @@
                                             </div>
                                             <!--TDVL Expiry Date end-->
                                         </div>
+
                                     </div>
                                     <!--<div class="row">-->
                                     <!--<div ng-show="signin_s.LicenseType=='1'||signin_s.LicenseType=='0'" class="col-md-5 col-md-offset-1 col-xs-12">-->
@@ -383,7 +396,7 @@
                                         <div class="col-md-5 col-md-offset-1 col-xs-12">
                                             <!--Submit-->
                                             <div class="form-group" style="margin-top: 20px">
-                                                <button type="submit" ng-click="sub()" class="btn btn-success btn-block" id="signInSubmit" style="font-weight: bold">
+                                                <button type="submit" ng-click="sub()" class="btn btn-yellow btn-block" id="signInSubmit" style="font-weight: bold">
                                                     Register
                                                 </button>
                                             </div>

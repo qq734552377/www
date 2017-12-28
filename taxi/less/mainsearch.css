@@ -53,7 +53,7 @@
   padding-left: 56px;
 }
 .search {
-  background-color: #fff;
+  background-color: #e81e06;
   padding: 20px;
 }
 .search .mainsearch-item {
@@ -63,9 +63,13 @@
 .search .mainsearch-item > div span {
   background-color: transparent;
   border: 0;
+  color: #efefef;
 }
 .search .mainsearch-item > div span i {
   font-size: 32px;
+}
+.search .mainsearch-item > div label {
+  color: #fff;
 }
 .search .mainsearch-item select.only-padding-left {
   padding-left: 56px;

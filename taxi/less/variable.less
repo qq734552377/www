@@ -1,7 +1,7 @@
 @notification-background-color:#efefef;
 @notification-color:#232323;
 @navbar-background-color:#e81e06;
-@border-right-color:coral;
+@border-right-color:@navbar-background-color;
 @xiala-border-right-color:rgba(255, 255, 255, 0.8);
 @icon-bar-background-color:#ffffff;
 @a-color:#cccccc;
@@ -18,8 +18,8 @@
 @side-menu-width:230px;
 @mini-side-menu-width:50px;
 @main-content-background-color:#f2f2f2;
-@location-a-color:darkorange;
-@location-a-color-hover:orange;
+@location-a-color:@navbar-background-color;
+@location-a-color-hover:darken(@navbar-background-color,10%);
 @warning-box-bgc:chocolate;
 @warning-box-color:#efefef;
 @time-table-bgc:#fff;
@@ -31,15 +31,29 @@
 @main-search-bgc:rgba(88,88,88,0.4);
 @main-search-span-color:#efefef;
 @main-search-input-color:#35f538;
-@search-bgc:#fff;
-@search-span-color:#010101;
+@search-bgc:@navbar-background-color;
+@search-span-color:#fff;
 @search-input-color:#111111;
 @table-head-color:#5cb85c;
-@carousel-li-bg-color:rgba(88,88,88,0.9);
+@carousel-li-bg-color:#fff;
 @xs-width:767px;
 @sm-width:992px;
 @md-width:1200px;
 @table-xs-td-padding-left:33%;
+
+//btn color
+@dark-bg-color:#123221;
+@dark-color:#fff;
+@dark-border-color:darken(@dark-bg-color,5%);
+
+@yellow-bg-color:#f4e218;
+@yellow-color:#2d2d2d;
+@yellow-border-color:darken(@yellow-bg-color,5%);
+
+@orange-bg-color:#eebc10;
+@orange-color:#2d2d2d;
+@orange-border-color:darken(@orange-bg-color,5%);
+
 
 .transition(@time:0.15s){
   -webkit-transition: all @time ease-in;
@@ -91,4 +105,21 @@
   -webkit-box-shadow: 0px 0px  15px 3px @navbar-background-color inset;
   -moz-box-shadow:0px 0px  15px 3px @navbar-background-color inset;
   -o-box-shadow:0px 0px  15px 3px @navbar-background-color inset;
+}
+
+
+.set-header-bg(@img-url){
+  & {
+    background-image: url(@img-url);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    .content-level-nav {
+      height: 300px;
+    }
+  }
 }

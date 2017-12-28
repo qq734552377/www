@@ -44,6 +44,10 @@ a {
   }
 }
 
+
+
+
+
 .navbar-topstyle .container .collapse .nav li a {
   color: @a-hover-color;
   &:hover {
@@ -194,7 +198,7 @@ a {
 
 .main-footer {
   background-color: @footer-backfround-color;
-  border-top: 2px solid @border-right-color;
+  border-top: 2px solid @navbar-background-color;
   .my-footer-shadow();
 }
 
@@ -203,7 +207,7 @@ a {
 }
 
 .main-footer .weight h4 {
-  color: @a-hover-color;
+  color: @a-color;
 }
 
 .main-footer .weight .weight-list {
@@ -212,18 +216,29 @@ a {
 
 .main-footer .weight .weight-list a {
   text-decoration: none;
-  color: @a-color;
+  color: @a-hover-color;
   line-height: 2.4em;
+  font-weight: bold;
   &:hover {
-    color: @a-hover-color;
+    color: @a-color;
   }
 }
 
-.main-footer .copyright .content {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 35px;
-  color: @a-color;
+.main-footer .copyright {
+  .content {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    margin-bottom: 35px;
+    color: @a-color;
+  }
+  .img-container{
+    text-align: center;
+    .img-foot-logo{
+      max-width: 90%;
+    }
+  }
+
 }
 
 .iframe-item-wrap {
@@ -269,9 +284,24 @@ a {
     //background-color:rgba(255,195,0,0.2) ;
   }
 }
+@media (max-width: @sm-width){
+  .main-footer .copyright{
+    .content{
+      margin-top: 20px;
+      //padding-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .img-foot-logo{
 
+    }
+  }
+}
 
 @media (max-width: @xs-width) {
+
+
+
   .box-photo-border{
     margin-left: -5px;
     margin-right: -5px;
@@ -330,7 +360,7 @@ a {
   .carousel.main .carousel-inner .item>img{
       margin-left:0;
       width: 100%;
-      height: auto;
+      height: 180px;
   }
 
 }
@@ -347,6 +377,26 @@ a {
   text-align: left;
 }
 
+.carousel-caption.link-btn{
+  left: 15%;
+  bottom: 5%;
+  top: auto;
+  right: auto;
+  text-align: left;
+  h2{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  p{
+    font-size: 14px;
+  }
+  a{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
+
 
 @media screen and (min-width: 768px) {
   .carousel-caption.slide {
@@ -354,11 +404,28 @@ a {
     right: 0;
     padding-bottom:35px;
   }
+
+  .carousel-caption.link-btn{
+    bottom: 20%;
+    left: 20%;
+    h2{
+      font-size: 32px;
+    }
+    p{
+      font-size: 16px;
+      line-height: 24px;
+    }
+    a{
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+
 }
 
 .carousel-indicators.slide{
 
-  bottom: -15px;
+  bottom: -5px;
   li{
     border: 1px solid @carousel-li-bg-color;
   }
@@ -573,4 +640,19 @@ a {
 
 .red-font{
   color: @navbar-background-color;
+}
+
+.audit-page-bgi{
+  background-image: url("../img/how_it_works_bg.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.audit-page-msg{
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px 40px;
 }

@@ -171,7 +171,7 @@ a:hover {
 }
 .main-footer {
   background-color: #353535;
-  border-top: 2px solid coral;
+  border-top: 2px solid #e81e06;
   -webkit-box-shadow: 0 -4px 4px 0px rgba(255, 255, 255, 0.5);
   -moz-box-shadow: 0 -4px 4px 0px rgba(255, 255, 255, 0.5);
   box-shadow: 0 -4px 4px 0px rgba(255, 255, 255, 0.5);
@@ -180,24 +180,32 @@ a:hover {
   margin-top: 45px;
 }
 .main-footer .weight h4 {
-  color: #efefef;
+  color: #cccccc;
 }
 .main-footer .weight .weight-list {
   margin: 15px 0;
 }
 .main-footer .weight .weight-list a {
   text-decoration: none;
-  color: #cccccc;
+  color: #efefef;
   line-height: 2.4em;
+  font-weight: bold;
 }
 .main-footer .weight .weight-list a:hover {
-  color: #efefef;
+  color: #cccccc;
 }
 .main-footer .copyright .content {
   text-align: center;
   margin-top: 20px;
+  padding-top: 10px;
   margin-bottom: 35px;
   color: #cccccc;
+}
+.main-footer .copyright .img-container {
+  text-align: center;
+}
+.main-footer .copyright .img-container .img-foot-logo {
+  max-width: 90%;
 }
 .iframe-item-wrap {
   position: relative;
@@ -237,6 +245,13 @@ a:hover {
 }
 .box-photo-border:hover {
   border-radius: 0px 0px 10px 10px ;
+}
+@media (max-width: 992px) {
+  .main-footer .copyright .content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 }
 @media (max-width: 767px) {
   .box-photo-border {
@@ -285,7 +300,7 @@ a:hover {
   .carousel.main .carousel-inner .item > img {
     margin-left: 0;
     width: 100%;
-    height: auto;
+    height: 180px;
   }
 }
 .carousel-caption.slide {
@@ -298,21 +313,55 @@ a:hover {
   text-shadow: 0 0px 0px rgba(0, 0, 0, 0.6);
   text-align: left;
 }
+.carousel-caption.link-btn {
+  left: 15%;
+  bottom: 5%;
+  top: auto;
+  right: auto;
+  text-align: left;
+}
+.carousel-caption.link-btn h2 {
+  font-weight: bold;
+  font-size: 18px;
+}
+.carousel-caption.link-btn p {
+  font-size: 14px;
+}
+.carousel-caption.link-btn a {
+  padding: 5px;
+  font-weight: bold;
+  font-size: 12px;
+}
 @media screen and (min-width: 768px) {
   .carousel-caption.slide {
     left: 38%;
     right: 0;
     padding-bottom: 35px;
   }
+  .carousel-caption.link-btn {
+    bottom: 20%;
+    left: 20%;
+  }
+  .carousel-caption.link-btn h2 {
+    font-size: 32px;
+  }
+  .carousel-caption.link-btn p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .carousel-caption.link-btn a {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }
 .carousel-indicators.slide {
-  bottom: -15px;
+  bottom: -5px;
 }
 .carousel-indicators.slide li {
-  border: 1px solid rgba(88, 88, 88, 0.9);
+  border: 1px solid #fff;
 }
 .carousel-indicators.slide .active {
-  background-color: rgba(88, 88, 88, 0.9);
+  background-color: #fff;
 }
 .move-to-top {
   position: fixed;
@@ -479,4 +528,17 @@ a:hover {
 }
 .red-font {
   color: #e81e06;
+}
+.audit-page-bgi {
+  background-image: url("../img/how_it_works_bg.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.audit-page-msg {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px 40px;
 }

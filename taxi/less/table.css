@@ -21,10 +21,10 @@ table.responsive .actions {
 table.responsive .actions a {
   text-decoration: none;
   padding: 0 4px;
-  color: darkorange;
+  color: #e81e06;
 }
 table.responsive .actions a:hover {
-  color: orange;
+  color: #b61805;
 }
 .mytable .refresh {
   cursor: pointer;

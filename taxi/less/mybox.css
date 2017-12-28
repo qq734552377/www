@@ -8,10 +8,10 @@
   box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
 }
 .search-bgc {
-  background-color: #fff;
+  background-color: #e81e06;
 }
 .my-box-top-border {
-  border-top: 3px solid coral;
+  border-top: 3px solid #e81e06;
 }
 .my-box .box-header {
   margin: 0 10px;
@@ -28,13 +28,16 @@
 .my-box .box-header > a {
   font-size: 16px;
   text-decoration: none;
-  color: darkorange;
+  color: #e81e06;
 }
 .my-box .box-header > a:hover {
-  color: orange;
+  color: #b61805;
 }
 .my-box .box-header .box-corner {
   float: right;
+}
+.my-box .box-header .box-corner button {
+  outline: none;
 }
 .my-box .box-header .box-corner button {
   background-color: transparent;
@@ -79,10 +82,10 @@
 .my-box .box-body .row div > a {
   font-size: 16px;
   text-decoration: none;
-  color: darkorange;
+  color: #e81e06;
 }
 .my-box .box-body .row div > a:hover {
-  color: orange;
+  color: #b61805;
 }
 .my-box .box-body .payPrice .countPrice .top {
   margin-top: 20px;
@@ -137,7 +140,7 @@
   border-top: 1px solid #e81e06;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney {
-  color: darkorange;
+  color: #e81e06;
 }
 .my-box .box-body .myAccount .wrap .my-account-body table tbody tr.noMoreMoney td {
   font-size: 14px;

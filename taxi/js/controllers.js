@@ -73,6 +73,19 @@ appControllers.controller('appCtr', function ($scope,$state, JIANCE, path, appCo
     });
 
 
+    $scope.getHour = function (dateString) {
+        var d = getDateByString(dateString);
+        return d.getHours();
+    };
+
+    $scope.islevelSelect = function(item){
+      var url = window.location.href;
+      if (url.indexOf(item) >= 0) {
+          return "on";
+      }
+      return '';
+    };
+
     getLocation();
     function getLocation()
     {
@@ -559,10 +572,11 @@ appControllers.controller('loginCtr', function ($scope, $http, allUrl, JIANCE, a
         $scope.signin_s.PromotionCode = $stateParams.id;
 
         $scope.sub = function () {
-            if ($scope.signin_s.BlockNo == undefined || $scope.signin_s.BlockNo == '' ||
-                $scope.signin_s.Storey == undefined || $scope.signin_s.Storey == '' ||
-                $scope.signin_s.UnitNo == undefined || $scope.signin_s.UnitNo == '' ||
-                $scope.signin_s.StreetName == undefined || $scope.signin_s.StreetName == '' ||
+             if (//$scope.signin_s.BlockNo == undefined || $scope.signin_s.BlockNo == '' ||
+            //     $scope.signin_s.Storey == undefined || $scope.signin_s.Storey == '' ||
+            //     $scope.signin_s.UnitNo == undefined || $scope.signin_s.UnitNo == '' ||
+            //     $scope.signin_s.StreetName == undefined || $scope.signin_s.StreetName == '' ||
+                $scope.signin_s.Address == undefined || $scope.signin_s.Address == '' ||
                 $scope.signin_s.PostalCode == undefined || $scope.signin_s.PostalCode == ''
             ) {
                 return;
@@ -2557,7 +2571,7 @@ appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
     .controller('main1Ctr', function ($scope,$http,appContext,allUrl) {
         $scope.searchMsg = appContext.getAll().searchMsg;
         if(!appContext.getAll().isAut){
-            window.location.replace('#/main')
+            window.location.replace('#/main2')
         }
 
         $scope.goToSearchWithCarType=function (rentFor) {
@@ -2618,7 +2632,29 @@ appControllers.controller('faqCtr', function ($scope,$stateParams,scrollToTop) {
             }
             window.location.replace('#/search');
         }
+    })
+    .controller('main2Ctr', function ($scope,$http,appContext,allUrl) {
+        $scope.searchMsg = appContext.getAll().searchMsg;
+        if(appContext.getAll().isAut){
+            window.location.replace('#/main1')
+        }
+        $scope.rateSearch= appContext.getAll().rateSearch;
+        initsearchTime($scope.rateSearch);
+    })
+    .controller('contact_usCtr', function ($scope,$http,appContext,allUrl) {
+
+    })
+    .controller('fleet_ratesCtr', function ($scope,$http,appContext,allUrl) {
+
+    })
+    .controller('our_servicesCtr', function ($scope,$http,appContext,allUrl) {
+
+    })
+    .controller('promotionsCtr', function ($scope,$http,appContext,allUrl) {
+
     });
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,9 +1,25 @@
 @import "variable";
 
+.sign-first-big-title{
+  margin-top: 150px;
+  text-align: center;
+  h2{
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 1.5em;
+    color: #fff;
+  }
 
+}
 
 .signin-first-bg {
-  background-color: #efefef;
+  background-image: url("../img/main_introduce_1.png");
+  background-repeat: no-repeat;
+  background-position: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .signin-first {
@@ -12,9 +28,9 @@
   padding-bottom: 80px;
   .sign-in-background{
     margin: 25px 0px ;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(230,230,230,0.9);
     padding: 15px 10px;
-    border-top: 3px solid coral;
+    border-top: 3px solid @navbar-background-color;
     border-radius: 5px;
   }
 
@@ -51,6 +67,12 @@
     padding-bottom: 0px;
     .sign-in-background {
       margin-top: 25px;
+    }
+  }
+  .sign-first-big-title{
+    margin-top: 20px;
+    h2 {
+      font-size: 36px;
     }
   }
 }

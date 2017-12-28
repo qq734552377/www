@@ -196,7 +196,7 @@ a {
   margin-left: 50px;
 }
 .side-menu-content .header a.back {
-  color: darkorange;
+  color: #e81e06;
   text-decoration: none;
   position: absolute;
   left: 30px;
@@ -205,7 +205,7 @@ a {
   cursor: pointer;
 }
 .side-menu-content .header a.back:hover {
-  color: orange;
+  color: #b61805;
 }
 .side-menu-content .header a.back:hover img {
   source: 'img/back_hover.png';
@@ -214,16 +214,16 @@ a {
   list-style: none;
 }
 .side-menu-content .header ol li a {
-  color: darkorange;
+  color: #e81e06;
   text-decoration: none;
 }
 .side-menu-content .header ol li a:hover {
-  color: orange;
+  color: #b61805;
 }
 .main-footer-side-menu {
   overflow-x: hidden;
   margin-left: 230px;
-  border-top: 2px solid coral;
+  border-top: 2px solid #e81e06;
   padding: 25px;
   -webkit-transition: all 0.15s ease-in;
   -o-transition: all 0.15s ease-in;

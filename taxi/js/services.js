@@ -222,6 +222,7 @@ serviceModule.factory('allUrl',function () {
                 Storey:'',
                 UnitNo:'',
                 StreetName:'',
+                Address:'',
                 PostalCode:'',
                 DateOfBirth:'',
                 LicenseIssueDate:'',

@@ -1,0 +1,835 @@
+
+@import "variable";
+
+.img-container{
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+
+  .img-show{
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    height: 100%;
+    img{
+      width: 90% ;
+      max-height: 140px
+    }
+ }
+
+}
+
+.msg-container{
+  height: 100%;
+  .msg-show{
+    vertical-align: middle;
+    display: table-cell;
+    text-align: left;
+    height:100%;
+
+    .location{
+      font-size: 16px;
+      font-weight: bold;
+      a.location-a , a{
+        color: @navbar-background-color;
+        text-decoration: none;
+        &:hover{
+          color: red;
+        }
+      }
+    }
+
+    .vehicle{
+      margin-top: 15px;
+    }
+
+    .time{
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .car-type{
+      margin-top: 5px;
+      font-size: 12px;
+    }
+    .car-seats{
+      margin-top: 5px;
+      font-size: 12px;
+    }
+    .price{
+      font-size: 20px;
+      font-weight: bold;
+      color: darkgoldenrod;
+      text-align: right;
+    }
+    .book-btn{
+      a.btn{
+        font-size: 12px;
+        margin-top: 30px;
+        color: #fff;
+      }
+    }
+    .search-big-text{
+      color: #fff;
+      font-weight: bold;
+    }
+    .next-trip-text{
+      color: goldenrod;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 36px;
+    }
+    a{
+
+    }
+
+  }
+}
+
+.car-pic-zhanshi{
+  height: 150px ;
+  background-color: #fff;
+  &:hover{
+
+  }
+}
+
+.nav_level {
+
+  width:100%;
+  height: 40px;
+  margin-bottom: 10px;
+  //margin-top: 5px;
+  //margin-left: 30%;
+  background: transparent;
+  .list{
+    //width: 1000px;
+    height: 40px;
+    margin: 0 auto;
+    li{
+      float: right;
+      list-style: none;
+      a{
+        color: #000;
+        padding:0 10px;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        &.home-icon{
+          color: @navbar-background-color;
+          &:hover{
+            color: red;
+          }
+        }
+        &:hover{
+          //background-color: #111;
+          color: @navbar-background-color;
+        }
+        &.on{
+          //background-color: #111;
+          color: @navbar-background-color;
+        }
+      }
+
+    }
+
+  }
+}
+
+.login-class-new{
+  li {
+    a{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      color: #fff;
+    }
+
+    a.sign-up-new{
+      color: @navbar-background-color;
+    }
+
+    a.login-new{
+      color: #fff;
+      &:hover{
+        color: @navbar-background-color;
+      }
+    }
+  }
+}
+
+
+.navbar .container .collapse .nav .dropdown a span.menu-right:before {
+  content: '\e259'; //'\f078';
+}
+
+.navbar .container .collapse .nav .open a span.menu-right:before {
+  content: '\e260'; //'\f077';
+}
+.navbar .container .collapse .nav .open.my-account-dropdown{
+  a.btn{
+    color: @navbar-background-color;
+    background-color: #fff;
+  }
+}
+
+.navbar .container .collapse .nav > li.my-account-dropdown{
+  a{
+    color: #fff;
+    &:hover{
+      color: @navbar-background-color;
+    }
+  }
+
+  .dropdown-menu{
+    padding-top: 0;
+    padding-bottom: 0;
+    > li {
+      text-align: left;
+      margin-top: 0;
+      height: 30px;
+      background-color: @navbar-background-color;
+      a{
+        margin: 0;
+      }
+
+      &:hover ,&:focus ,&:active{
+        background-color:darken(@navbar-background-color,5%);
+        a {
+          background-color: darken(@navbar-background-color,5%);
+          color: #ffff00;
+
+        }
+      }
+
+    }
+  }
+}
+
+@media(max-width: @xs-width){
+
+  .msg-container{
+    .msg-show{
+      .location{
+        font-size: 14px;
+      }
+      .vehicle{
+        margin-top: 13px;
+      }
+      .time{
+        font-size: 12px;
+      }
+      .car-type{
+        font-size: 11px;
+      }
+      .car-seats{
+        font-size: 11px;
+      }
+      .price{
+        font-size: 16px;
+      }
+      .book-btn{
+        a.btn {
+          font-size: 10px;
+        }
+      }
+
+      .search-big-text{
+        font-size: 26px;
+      }
+      .next-trip-text{
+       font-size: 30px;
+      }
+      a{
+
+      }
+
+    }
+  }
+}
+
+
+//////////////////////////////////////////////step//////////////////////////////////////////
+.search-step{
+  list-style: none;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  *{
+    padding: 0;
+  }
+  li{
+    display:inline-block;
+    line-height: 50px;
+  }
+}
+//////////////////////////////////////////////step//////////////////////////////////////////
+
+
+//////////////////////header///////////////////////////////////////////////////////////////
+
+.our-serveice-header{
+  .set-header-bg("../img/our_service_header.png")
+}
+.booking-search-header{
+  .set-header-bg("../img/booking_seach.png")
+}
+.promotion-header{
+  .set-header-bg("../img/promotion.png");
+}
+.fleet-rates-header{
+  .set-header-bg("../img/fleet_rates.png");
+}
+.fleet-rates-header-2{
+  .set-header-bg("../img/rates_taxi_bg_1.png");
+}
+
+
+@media(max-width: @xs-width){
+  .our-serveice-header,.booking-search-header,.promotion-header,fleet-rates-header{
+    .content-level-nav{
+      height: 180px;
+    }
+  }
+}
+
+//////////////////////header///////////////////////////////////////////////////////////////
+
+/////////////////////why us /////////////////////////////////////////////////////////////////
+
+.why-us-bg{
+  background-image: url("../img/why_choose_us_all.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 40px 0;
+  .four-why-us-bg{
+    //background-color: #222;
+  }
+  .why-us-video-bg{
+
+  }
+
+  .title{
+    color: #fff;
+  }
+  .item{
+    text-align: center;
+    img{
+      height: 100px;
+      width: 100px;
+    }
+    h3{
+      color: #fff;
+    }
+    p{
+      color: #fff;
+    }
+  }
+  .video-content{
+    border:20px solid #ccc;
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+}
+@media(max-width: @sm-width) {
+  .why-us-bg {
+    background-image: none;
+    background-color: #222;
+    padding-bottom: 0;
+    .four-why-us-bg {
+      background-color: #222;
+    }
+    .why-us-video-bg {
+      background-image: url("../img/why_choose_us_video_bg.png");
+      background-repeat: no-repeat;
+      background-position: 50%;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .title {
+    }
+    .item {
+
+    }
+    .video-content {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+/////////////////////why us /////////////////////////////////////////////////////////////////
+
+
+/////////////////////how it work/////////////////////////////////////////////////////////////////
+.how-it-work-bg{
+  background-image: url("../img/how_it_works_bg.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 40px;
+
+  .hand-phone-video-bg{
+    background-image: url("../img/holding mobile_bg.png");
+    background-repeat: no-repeat;
+    background-position: 100% 0%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 500px;
+    position: relative;
+    .video-item{
+      position: absolute;
+      width: 45%;
+      top: 70px;
+      right: 45px;
+      text-align: center;
+      h3{
+        //margin-top: 50px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+        //margin-right: 30px;
+      }
+      h2{
+        font-size: 20px;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        //margin-right: 20px;
+      }
+      img {
+        width: 70%;
+        height: auto;
+      }
+      a{
+        margin-top: 20px;
+        font-size: 12px;
+        padding: 6px;
+      }
+    }
+  }
+  .how-it-ork{
+    h2{
+      color: #000;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+  }
+  .items-cotainer {
+    margin-top: 40px;
+    .how-it-work-item {
+      .how-it-work-item-cilcle {
+        color: @navbar-background-color;
+        border: 3px solid @navbar-background-color;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        font-size: 40px;
+        margin: 0 auto;
+        padding-top: 20px;
+        padding-left: 30px;
+        &:hover {
+          background-color: @navbar-background-color;
+          color: #fff;
+        }
+      }
+
+      .step-label {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        color: @navbar-background-color;
+      }
+
+      .step-paragraph {
+        font-size: 14px;
+        font-style: italic;
+        text-align: center;
+      }
+    }
+  }
+}
+
+/////////////////////how it work/ /////////////////////////////////////////////////////////////////
+
+
+/////////////////////locations/ /////////////////////////////////////////////////////////////////
+.location-number{
+  background-color: @navbar-background-color;
+  height: 100px;
+  p{
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 100px;
+    text-align: center;
+    margin: 0;
+  }
+}
+.location-bg {
+  background-image: url("../img/locations_map.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  .calculator-rates {
+    background-color: rgba(40,40,40,0.8);
+    h4{
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+    }
+    .searchbar{
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+  }
+}
+@media(max-width: @sm-width) {
+  .location-number{
+    height: 80px;
+    p{
+      font-size: 18px;
+      line-height: 80px;
+    }
+  }
+}
+/////////////////////locations/ /////////////////////////////////////////////////////////////////
+
+
+////////////////////////sign-up-for-more-item/////////////////////////////////////////////////////////////
+.sign-up-for-more-title{
+  background-color: @navbar-background-color;
+  color: #fff;
+  text-align: center;
+  height: 70px;
+  h2{
+    line-height: 70px;
+    font-size: 26px;
+    font-weight: bold;
+  }
+}
+.sign-up-for-more-items-container{
+  background-color: @footer-backfround-color;
+  .sign-up-for-more-item {
+    position: relative;
+    color: #fff;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    p{
+
+    }
+    b{
+      font-size: 24px;
+    }
+    }
+  .item-line{
+    height: 50px;
+    width: 0;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+  }
+}
+@media(max-width: @xs-width) {
+
+  .sign-up-for-more-items-container{
+    .sign-up-for-more-item {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      p{
+
+      }
+      b{
+        font-size: 24px;
+      }
+    }
+    .item-line{
+      bottom:0;
+      top: auto;
+      left: 50%;
+      right: auto;
+      margin-left: -75px;
+      width: 150px;
+      height: 0;
+    }
+  }
+}
+
+////////////////////////sign-up-for-more-item/////////////////////////////////////////////////////////////
+////////////////////////service taxi ////////////////////////////////////////////////////////////
+
+.service-taxi-container{
+  padding-left: 30px;
+  padding-right: 30px;
+  .service-taxi-container-cilcle{
+    color: @navbar-background-color;
+    border: 3px solid @navbar-background-color;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 40px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    &:hover {
+      background-color: @navbar-background-color;
+      color: #fff;
+    }
+  }
+  *{
+    text-align: center;
+  }
+  .title,.title-b{
+    margin-top: 20px;
+    font-size: 22px;
+    color: #777;
+  }
+  .title-b{
+    margin-top: 10px;
+    color: #0b1f15;
+    font-weight: bold;
+  }
+  .details{
+    margin-top: 40px;
+    font-size: 16px;
+
+  }
+  .got-to-somewhere{
+    margin-top: 40px;
+    a{
+      color: #ab8454;
+      font-weight: bold;
+      &:hover{
+        color: #000;
+      }
+    }
+  }
+
+}
+
+////////////////////////service taxi ////////////////////////////////////////////////////////////
+
+//////////////////////////promotion///////////////////////////////////////////////////////////
+ul.my-tabs.nav-tabs{
+  text-align: center;
+  list-style: none;
+  border: none;
+  li{
+    float: none;
+    display: inline-block;
+    border-bottom: 2px solid #e3d1bb;
+    &.active{
+      a{
+        background-color: transparent;
+        border: none;
+        .car-circle{
+          background-color: @navbar-background-color;
+          border: 3px solid @navbar-background-color;
+          color: #fff;
+          i{
+            color: #fff;
+          }
+        }
+        strong{
+          color: @navbar-background-color;
+        }
+      }
+    }
+    a {
+      .car-circle{
+        color: @footer-backfround-color;
+        border: 3px solid @footer-backfround-color;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        font-size: 40px;
+        margin: 10px;
+        text-align: center;
+        padding: 20px;
+        i{
+          color: @footer-backfround-color;
+        }
+      }
+      strong{
+        color: @footer-backfround-color;
+      }
+
+      &:hover{
+        .car-circle{
+          background-color: @navbar-background-color;
+          border: 3px solid @navbar-background-color;
+          color: #fff;
+          i{
+            color: #fff;
+          }
+        }
+        strong{
+          color: @navbar-background-color;
+        }
+      }
+    }
+  }
+}
+
+//////////////////////////promotion///////////////////////////////////////////////////////////
+
+
+//////////////////////////mask/////////////////////////////////////////////////////////////
+.img-hover-style-container{
+  position: relative;
+
+  .mask {
+    top: 0;
+    left:0;
+    position: absolute;
+    background-color: @footer-backfround-color;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    .transition(0.5s);
+    &:hover{
+      opacity: 0.8;
+    }
+
+    .mask-item{
+      position: relative;
+      top: 50%;
+      .transform-translate(0,-50%);
+      color: #fff;
+      font-size: 18px;
+      padding: 10px 30px;
+      i{
+        font-size: 50px;
+        color: #fff;
+      }
+      .title{
+          margin-top: 40px;
+        color: #fff;
+      }
+      .find-out-more {
+        a {
+          color: #ab8454;
+          font-size: 16px;
+          text-decoration: none;
+          i{
+            color: #ab8454;
+          }
+          &:hover {
+            color: #fff;
+            i{
+              color: #fff;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+//////////////////////////mask/////////////////////////////////////////////////////////////
+
+
+///////////////////////////fleet &rates //////////////////////////////////////////////////////////
+.car-introduce{
+  text-align: right;
+  margin-top: 30px ;
+  margin-bottom: 30px;
+  padding-left: 20%;
+  padding-right: 30px;
+  border: 4px solid #e3d2bc;
+  background-color: #fff;
+  opacity: 0.8;
+  h2{
+    font-weight: bold;
+    small{
+      color: #e3d2bc;
+    }
+  }
+  .sub-title{
+    color: #0b1f15;
+    font-size: 16px;
+    text-align: right;
+  }
+  .details{
+    line-height: 1.8em;
+  }
+}
+.car-list-show{
+  img{
+    width: 100%;
+  }
+  text-align: center;
+  p{
+    margin-top: 20px;
+    font-weight: bolder;
+    line-height: 1.5em;
+    color: #787878;
+  }
+}
+
+.fleet-rates-seat-title{
+  margin-top: 20px;
+  text-align: center;
+
+  h2{
+    color: @navbar-background-color;
+    font-weight: bold;
+  }
+  p{
+    font-style: italic;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    color: #787878;
+  }
+  p.big-little{
+    font-size: 18px;
+    font-style: normal;
+  }
+}
+
+.fleet-rates-table{
+  *{
+    text-align: center;
+  }
+}
+
+@media(max-width: @sm-width) {
+  .car-list-show{
+    img{
+      width: 70%;
+      margin-top: 20px;
+    }
+    p{
+      margin-top: 20px;
+    }
+  }
+}
+
+///////////////////////////fleet &rates //////////////////////////////////////////////////////////
